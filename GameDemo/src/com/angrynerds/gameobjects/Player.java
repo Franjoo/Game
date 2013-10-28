@@ -141,6 +141,11 @@ public class Player extends GameObject {
         setPosition(position.x, position.y);
     }
 
+    /**
+     * detects whether the player collides with a solid
+     * and sets his position depending on the solids
+     * position and dimension
+     */
     private void setCollisionPosition() {
 
         /* --- COLLISION DETECTION --- */
@@ -201,17 +206,46 @@ public class Player extends GameObject {
             }
         }
 
-        /* COLLIDED OBJECTS */
-        Array<Rectangle> r = map.getCollisionObjects(position.x,position.y);
 
-        if(r.size != 0){
-            System.out.println("collided!");
+        /* COLLIDED OBJECTS */
+        Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
+
+        if (vX < 0) {
+            if (qX == position.x){
+                rectList = map.getCollisionObjects(qX, position.y);
+                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+                for (int i = 0; i < rectList.size; i++) {
+                    position.x = rectList.get(i).getX() + rectList.get(i).getWidth();
+                    rectList = map.getCollisionObjects(position.x, position.y);
+                    rectList.addAll(map.getCollisionObjects(position.x, position.y + dimension.y));
+                }
+            }
         }
+//        Array<Rectangle> r = null;
+//        // bottom left
+//        if (vX < 0) {
+//            r = map.getCollisionObjects(position.x, position.y);
+//
+//        }
+
+
+//        if (r.size != 0) {
+//            for (int i = 0; i < r.size; i++) {
+//                if (vX < 0) {
+//
+//                }
+//            }
+//            if (vX < 0) {
+//                position.x = r.
+//            }
+//            System.out.println("collided!");
+//        }
 
         //push
 
 
     }
+
 
     private void log() {
         if (input.get_isA()) Gdx.app.log("BUTTON PRESSED", "[A]");

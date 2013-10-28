@@ -14,9 +14,7 @@
   </data>
  </layer>
  <objectgroup draworder="topdown" name="$c.CollisionObjectLayer" width="100" height="20">
-  <object x="904" y="410" width="206" height="94"/>
-  <object x="390" y="18" width="390" height="620"/>
-  <object x="1348" y="70" width="38" height="332"/>
+  <object x="256" y="128" width="96" height="160"/>
  </objectgroup>
  <imagelayer name="ImageLayer" width="100" height="20" visible="0">
   <image source="C:/Users/Franjo/Desktop/rock_big.png"/>
