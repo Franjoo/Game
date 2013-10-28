@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import java.io.BufferedReader;
@@ -112,22 +115,14 @@ public class Map extends GameObject {
 
                     Array<HashMap<String, String>> objects = getObjectGroups(layers.get(i).getName());
 
-                    for (int j = 0; j < objects.size; j++) {
-                        if (objects.get(j).containsKey("width") &&
-                                objects.get(j).containsKey("height") &&
-                                objects.get(j).containsKey("x") &&
-                                objects.get(j).containsKey("y")) {
+                    for (MapObject object : map.getLayers().get("$c.CollisionObjectLayer").getObjects()) {
 
-                            float qX = Float.parseFloat(objects.get(j).get("x").toString());
-                            float qY = Float.parseFloat(objects.get(j).get("y").toString());
-                            float qW = Float.parseFloat(objects.get(j).get("width").toString());
-                            float qH = Float.parseFloat(objects.get(j).get("height").toString());
+                             if(object instanceof  RectangleMapObject) {
+                                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                                 collisionObjects.add(rect);
+                                 System.out.println("Added");
+                             }
 
-                            System.out.println(qX + " " + qY + " " + qW + " " + qH);
-
-                            collisionObjects.add(new Rectangle(qX, qY, qW, qH));
-
-                        }
                     }
                 }
             }
@@ -273,14 +268,15 @@ public class Map extends GameObject {
         return false;
     }
 
-    public Array<Rectangle> getCollisionObjects(float x, float y) {
-        if (qArray.size != 0) qArray.clear();
+    public boolean getCollisionObjects(float x, float y) {
+
         for (int i = 0; i < collisionObjects.size; i++) {
             if (collisionObjects.get(i).contains(x, y)) {
-                qArray.add(collisionObjects.get(i));
+
+               return true;
             }
         }
-        return qArray;
+        return false;
     }
 
 
