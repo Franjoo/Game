@@ -268,15 +268,15 @@ public class Map extends GameObject {
         return false;
     }
 
-    public boolean getCollisionObjects(float x, float y) {
+    public Rectangle getCollisionObjects(float x, float y) {
 
         for (int i = 0; i < collisionObjects.size; i++) {
             if (collisionObjects.get(i).contains(x, y)) {
 
-               return true;
+               return collisionObjects.get(i);
             }
         }
-        return false;
+        return null;
     }
 
 

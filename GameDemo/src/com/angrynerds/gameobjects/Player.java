@@ -131,8 +131,8 @@ public class Player extends GameObject {
 
 //        System.out.println("P: " + position.x + ", " + position.y);
 
-        vX = input.get_stickX() * deltaTime * 5 * 60;
-        vY = input.get_stickY() * deltaTime * 5 * 60;
+        vX = input.get_stickX() * deltaTime * 2 * 120;
+        vY = input.get_stickY() * deltaTime * 2 * 120;
 
         setCollisionPosition();
 
@@ -160,17 +160,15 @@ public class Player extends GameObject {
             if (map.isSolid(qX, position.y)) {
                 position.x = ((int) (position.x) / map.getTileWidth()) * map.getTileWidth();
             }
-            else if(map.getCollisionObjects(qX,position.y))  {
-                System.out.println("colision bottom left");
-                position.x = oldX;
-            }
             // top left
             else if (map.isSolid(qX, position.y + dimension.y)) {
-                position.x = ((int) (position.x) / map.getTileWidth()) * map.getTileWidth();
+                position.x =  (position.x) / map.getTileWidth() * map.getTileWidth();
             }
-            else if(map.getCollisionObjects(qX,position.y+ dimension.y))  {
-                System.out.println("colision top left");
-                position.x = oldX;
+            else if(map.getCollisionObjects(qX,position.y+ dimension.y) != null)  {
+                Rectangle rect = map.getCollisionObjects(qX,position.y+ dimension.y);
+                float x = rect.getX() + rect.getWidth();
+                position.x = x;
+                System.out.println(position.x + "    " + qX);
             }
             else {
                 position.x = qX;
@@ -180,18 +178,15 @@ public class Player extends GameObject {
             if (map.isSolid(qX + dimension.x, position.y)) {
                 position.x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
             }
-           // else if (map.getCollisionObjects(qX + dimension.x, position.y)) {
-            //    System.out.println("colision bottom right");
-           // position.x = oldX;
-        //}
             // top right
             else if (map.isSolid(qX + dimension.x, position.y + dimension.y)) {
                 position.x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
             }
 
-            else if (map.getCollisionObjects(qX+dimension.x , position.y + dimension.y)) {
-                position.x = oldX;
-                System.out.println("colision top ricght");
+            else if (map.getCollisionObjects(qX+dimension.x , position.y + dimension.y) != null) {
+                Rectangle rect = map.getCollisionObjects(qX+dimension.x,position.y+ dimension.y);
+                float x = rect.getX() - dimension.x ;
+                position.x = x;
             } else {
                 position.x = qX;
             }
@@ -202,15 +197,15 @@ public class Player extends GameObject {
             if (map.isSolid(position.x, qY)) {
                 position.y = ((int) (position.y) / map.getTileHeight()) * map.getTileHeight();
             }
-            else if (map.getCollisionObjects(position.x, qY)) {
-                position.y = oldY;
-            }
+
             // bottom right
             else if (map.isSolid(position.x + dimension.x, qY)) {
                 position.y = ((int) (position.y) / map.getTileHeight()) * map.getTileHeight();
             }
-            else if (map.getCollisionObjects(position.x + dimension.x, qY)) {
-                position.y = oldY;
+            else if (map.getCollisionObjects(position.x + dimension.x, qY) != null) {
+                Rectangle rect = map.getCollisionObjects(position.x + dimension.x, qY);
+                float y = rect.getY() + rect.getHeight() ;
+                position.y = y;
             }
             else {
                 position.y = qY;
@@ -220,15 +215,15 @@ public class Player extends GameObject {
             if (map.isSolid(position.x, qY + dimension.y)) {
                 position.y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
             }
-            else if (map.getCollisionObjects(position.x, qY + dimension.y)) {
-                position.y = oldY;
-            }
+
             // top right
             else if (map.isSolid(position.x + dimension.x, qY + dimension.y)) {
                 position.y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
             }
-            else if (map.getCollisionObjects(position.x + dimension.x, qY + dimension.y)) {
-                position.y = oldY;
+            else if (map.getCollisionObjects(position.x + dimension.x, qY + dimension.y)!= null) {
+                Rectangle rect = map.getCollisionObjects(position.x + dimension.x, qY + dimension.y);
+                float y = rect.getY() + dimension.y  ;
+                position.y = y;
             }
             else {
                 position.y = qY;
