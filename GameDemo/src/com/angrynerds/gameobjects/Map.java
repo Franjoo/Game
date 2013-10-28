@@ -334,7 +334,7 @@ public class Map extends GameObject {
         if (objects.size == 0) {
             throw new IllegalArgumentException("object array size must not be 0");
         } else {
-
+                                         ///
             for (int j = 0; j < objects.size; j++) {
                 if (objects.get(j).containsKey("width") &&
                         objects.get(j).containsKey("height") &&
