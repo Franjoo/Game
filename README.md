@@ -1,4 +1,4 @@
-Angry Nerds - Game
-==================
+Game
+====
 
-Medienprojekt II
+Medienprojekt II - Angry Nerds - Game
