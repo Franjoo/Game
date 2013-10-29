@@ -67,22 +67,42 @@ public class Player extends GameObject {
 
     private void init() {
 
-        // draw rectangular shape
-        Pixmap p = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
-        p.setColor(0, 0, 0, 1);
-        p.drawRectangle(0, 0, 32, 32);
+        position.x = 0;
+        position.y = 0;
 
-        setTexture(new Texture(p));
-        setSize(32, 32);
+        dimension.x = 32;
+        dimension.y = 32;
+
+        setPosition(position.x, position.y);
+        setSize(dimension.x,dimension.y);
+
+        setOrigin(0,0);
+
+        // draw rectangular shape
+        Pixmap p = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
+        Texture t = new Texture(p.getWidth(),p.getHeight(), Pixmap.Format.RGBA8888);
+
+        p.setColor(0, 0, 0, 1);
+        p.fillRectangle(0, 0, (int) getWidth(), (int) getHeight());
+        p.setColor(1, 1, 1, 1);
+        p.fillRectangle((int) origin.x, (int) origin.y, 5, 5);
+        p.setColor(1, 0, 0, 1);
+        p.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
+        p.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
+
+        t.draw(p, 0, 0);
+
+        setTexture(t);
+//        setSize(32, 32);
 //        position.x = Constants.VIEWPORT_WIDTH / 2 + 50;
 //        position.y = Constants.VIEWPORT_HEIGHT / 2;
 
-        position.x = 0;//Constants.VIEWPORT_WIDTH / 2 + 50;
-        position.y = 0;//Constants.VIEWPORT_HEIGHT / 2;
-
-        dimension.x = getTexture().getWidth();
-        dimension.y = getTexture().getHeight();
-        setOrigin(0, 0);
+//        position.x = 0;//Constants.VIEWPORT_WIDTH / 2 + 50;
+//        position.y = 0;//Constants.VIEWPORT_HEIGHT / 2;
+//
+//        dimension.x = getTexture().getWidth();
+//        dimension.y = getTexture().getHeight();
+//        setOrigin(0, 0);
 
         // input
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -101,13 +121,16 @@ public class Player extends GameObject {
         // some basic init assertions
         assert (input != null) : (TAG + ": input must not be null");
 
+        System.out.println("DIMENSION:" + dimension.x + " " + dimension.y);
+
     }
 
     @Override
     public void render(SpriteBatch batch) {
 
         batch.begin();
-        draw(batch);
+        batch.draw(getTexture(), getX(), getY());
+//        draw(batch);
         batch.end();
 
 
@@ -211,14 +234,27 @@ public class Player extends GameObject {
         Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
 
         if (vX < 0) {
-            if (qX == position.x){
+            if (qX == position.x) {
+                float _x = Float.MIN_VALUE;
                 rectList = map.getCollisionObjects(qX, position.y);
                 rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+//                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+                if (rectList.size != 0) System.out.println("collides");
+
                 for (int i = 0; i < rectList.size; i++) {
-                    position.x = rectList.get(i).getX() + rectList.get(i).getWidth();
-                    rectList = map.getCollisionObjects(position.x, position.y);
-                    rectList.addAll(map.getCollisionObjects(position.x, position.y + dimension.y));
+                    Rectangle r = rectList.get(i);
+                    System.out.println(r.getX() + " " + r.getY() + " " + r.getWidth() + " " + r.getHeight());
+//                    System.out.println(rectLis);
+                    if (rectList.get(i).getX() + rectList.get(i).getWidth() > _x) {
+                        _x = rectList.get(i).getX() + rectList.get(i).getWidth();
+                    } else {
+                        position.x = _x;
+
+                    }
+//                    rectList = map.getCollisionObjects(position.x, position.y);
+//                    rectList.addAll(map.getCollisionObjects(position.x, position.y - dimension.y));
                 }
+
             }
         }
 //        Array<Rectangle> r = null;

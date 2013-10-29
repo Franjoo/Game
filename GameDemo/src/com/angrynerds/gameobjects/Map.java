@@ -122,7 +122,7 @@ public class Map extends GameObject {
                     // object layer
                 } else {
                     Array<HashMap<String, String>> objects = getObjectGroups(layers.get(i));
-//                    flipObjectLayerRectangles(objects,1);
+                    flipObjectLayerRectangles(objects,1);
 //                    MapLayer mapLayer = (flipObjectLayerRectangles(layers.get(i), 1));
 //                    MapLayer mapLayer = layers.get(i);
 
@@ -330,7 +330,7 @@ public class Map extends GameObject {
         }
     }
 
-    private Array<HashMap<String, String>> flipObjectLayerRectangles(Array<HashMap<String, String>> objects, final int flipKind) {
+    private void flipObjectLayerRectangles(Array<HashMap<String, String>> objects, final int flipKind) {
         if (objects.size == 0) {
             throw new IllegalArgumentException("object array size must not be 0");
         } else {
@@ -401,7 +401,7 @@ public class Map extends GameObject {
 //                    assert (copy.getObjects().getCount() != 0) : "flipped object layer must not have an empty object list";
 //
 //                    return copy;
-            return objects;
+//            return objects;
         }
     }
 
