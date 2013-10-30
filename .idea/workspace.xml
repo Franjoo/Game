@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/tileset.png" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/tileset.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_000.tmx" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_000.tmx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GameDemo.iws" />
@@ -18,14 +21,14 @@
     <file path="/Main.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382905835165" ignored="false" />
     <file path="/GameInputController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382737043870" ignored="false" />
     <file path="/GameObject.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382868744575" ignored="false" />
-    <file path="/Player.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383054079960" ignored="false" />
+    <file path="/Player.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383127647186" ignored="false" />
     <file path="/Keyboard.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382783097380" ignored="false" />
     <file path="/Constants.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382779546253" ignored="false" />
     <file path="/TouchInput.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382884428410" ignored="false" />
     <file path="/ControllUI.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382886581559" ignored="false" />
     <file path="/MainActivity.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789182848" ignored="false" />
     <file path="/UIController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789524818" ignored="false" />
-    <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383048266916" ignored="false" />
+    <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383127589671" ignored="false" />
     <file path="$PROJECT_DIR$/GameDemo/src/com/angrynerds/testing/Test_Controller.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382818099938" ignored="false" />
     <file path="/GameRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382883618588" ignored="false" />
     <file path="/GameController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382882866538" ignored="false" />
@@ -38,8 +41,8 @@
     <file path="/World.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382903336165" ignored="false" />
     <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382883314641" ignored="false" />
     <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
-    <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382887794760" ignored="false" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383054465260" ignored="false" />
+    <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383128330834" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383135846863" ignored="false" />
     <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382965408978" ignored="false" />
     <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044698334" ignored="false" />
     <file path="/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044688488" ignored="false" />
@@ -59,6 +62,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -95,7 +99,53 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" line="250" class="com.angrynerds.gameobjects.Player" package="com.angrynerds.gameobjects">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" line="255" class="com.angrynerds.gameobjects.Player" package="com.angrynerds.gameobjects">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" line="256" class="com.angrynerds.gameobjects.Player" package="com.angrynerds.gameobjects">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -105,19 +155,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java">
+      <file leaf-file-name="Map.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="44" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0">
+            <state line="477" column="31" selection-start="19250" selection-end="19250" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Map.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <file leaf-file-name="tileset.png" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/tileset.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CameraHelper.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="353" column="20" selection-start="13871" selection-end="13871" vertical-scroll-proportion="0.0">
+            <state line="65" column="95" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.2074074">
               <folding />
             </state>
           </provider>
@@ -141,105 +198,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="9" selection-start="2026" selection-end="2026" vertical-scroll-proportion="0.029520296">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JAVA/com.angrynerds" pinned="false" current="false" current-in-tab="false">
-        <entry file="uml://JAVA/com.angrynerds">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>com.angrynerds</OriginalElement>
-              <nodes>
-                <node x="0.0" y="151.0">com.angrynerds.camera</node>
-                <node x="146.0" y="0.0">com.angrynerds.gameobjects</node>
-                <node x="0.0" y="224.0">com.angrynerds.game</node>
-                <node x="148.0" y="224.0">com.angrynerds.util</node>
-                <node x="8.0" y="78.0">com.angrynerds.ui</node>
-                <node x="0.0" y="0.0">com.angrynerds.input</node>
-                <node x="157.0" y="151.0">com.angrynerds.testing</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="com.angrynerds.ui" target="com.angrynerds.input">
-                  <point x="0.0" y="-14.0" />
-                  <point x="0.0" y="14.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="-145.0" y="206.0" />
-              <SelectedNodes>
-                <node>com.angrynerds.gameobjects</node>
-              </SelectedNodes>
-              <Categories />
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JAVA/com.angrynerds.game.GameController" pinned="false" current="false" current-in-tab="false">
-        <entry file="uml://JAVA/com.angrynerds.game.GameController">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>com.angrynerds.game.GameController</OriginalElement>
-              <nodes>
-                <node x="0.0" y="0.0">com.angrynerds.game.GameController</node>
-              </nodes>
-              <notes />
-              <edges />
-              <settings layout="Hierarchic Group" zoom="1.0" x="-233.0" y="94.0" />
-              <SelectedNodes>
-                <node>com.angrynerds.game.GameController</node>
-              </SelectedNodes>
-              <Categories />
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JAVA/com.angrynerds.game" pinned="false" current="false" current-in-tab="false">
-        <entry file="uml://JAVA/com.angrynerds.game">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>com.angrynerds.game</OriginalElement>
-              <nodes>
-                <node x="-305.0" y="18.0">com.angrynerds.game.Main</node>
-                <node x="187.0" y="439.0">com.angrynerds.game.screens</node>
-                <node x="373.0" y="326.0">com.angrynerds.game.DesktopStarter</node>
-                <node x="262.0" y="0.0">com.angrynerds.game.GameRenderer</node>
-                <node x="346.0" y="439.0">com.angrynerds.game.BuildConfig</node>
-                <node x="0.0" y="193.0">com.angrynerds.game.World</node>
-                <node x="0.0" y="439.0">com.angrynerds.game.UIController</node>
-                <node x="185.0" y="193.0">com.angrynerds.game.PlayRenderer</node>
-                <node x="0.0" y="532.0">com.angrynerds.game.R</node>
-                <node x="350.0" y="193.0">com.angrynerds.game.PlayController</node>
-                <node x="478.0" y="439.0">com.angrynerds.game.Manifest</node>
-                <node x="0.0" y="326.0">com.angrynerds.game.GameController</node>
-                <node x="165.0" y="326.0">com.angrynerds.game.AndroidStarterActivity</node>
-              </nodes>
-              <notes />
-              <edges />
-              <settings layout="Hierarchic Group" zoom="1.0" x="471.0" y="182.0" />
-              <SelectedNodes>
-                <node>com.angrynerds.game.BuildConfig</node>
-              </SelectedNodes>
-              <Categories>
-                <Category>Methods</Category>
-                <Category>Properties</Category>
-              </Categories>
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
+            <state line="68" column="43" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -248,6 +211,24 @@
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/gamepads/X360Gamepad.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="11" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllUI.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="115" column="17" selection-start="3776" selection-end="3776" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IGameInputController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/IGameInputController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="17" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -287,11 +268,11 @@
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayController.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Main.java" />
-        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/Constants.java" />
         <option value="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_000.tmx" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" />
       </list>
     </option>
   </component>
@@ -327,6 +308,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -513,6 +496,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angrynerds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="input" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -587,23 +592,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angrynerds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CameraHelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="154" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="154" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="154" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Workspaces/WORKSPACE [E SE]/libgdx/CanyonBunny/CanyonBunny" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="154" />
@@ -618,8 +643,8 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
@@ -627,8 +652,8 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -787,6 +812,9 @@
     </option>
     <option name="fileTypes" value="class;svn-base;svn-work;Extra;gif;png;jpg;jpeg;bmp;tga;tiff;ear;war;zip;jar;iml;iws;ipr;bz2;gz;" />
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value="SHOW_FIELDS" />
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -826,7 +854,11 @@
       <created>1382992618076</created>
       <updated>1382992618076</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modifications">
+      <created>1383054506543</created>
+      <updated>1383054506543</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -840,13 +872,13 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.318569" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32767403" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25378788" sideWeight="0.681431" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45249596" sideWeight="0.6556777" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.318569" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5394525" sideWeight="0.67250437" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21439394" sideWeight="0.681431" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31748727" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -900,7 +932,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="map modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifications" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -916,23 +948,16 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="first intellij push" />
     <MESSAGE value="map modified" />
+    <MESSAGE value="modifications" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="52" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="46" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="40" selection-start="1315" selection-end="1315" vertical-scroll-proportion="0.0">
@@ -945,42 +970,18 @@
         <state line="70" column="81" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="17" selection-start="3776" selection-end="3776" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="66" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/UIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/gamepads/X360Gamepad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JAVA/com.angrynerds">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>JAVA</ID>
           <OriginalElement>com.angrynerds</OriginalElement>
           <nodes>
-            <node x="0.0" y="151.0">com.angrynerds.camera</node>
             <node x="146.0" y="0.0">com.angrynerds.gameobjects</node>
+            <node x="0.0" y="151.0">com.angrynerds.camera</node>
             <node x="0.0" y="224.0">com.angrynerds.game</node>
             <node x="148.0" y="224.0">com.angrynerds.util</node>
-            <node x="8.0" y="78.0">com.angrynerds.ui</node>
             <node x="0.0" y="0.0">com.angrynerds.input</node>
+            <node x="8.0" y="78.0">com.angrynerds.ui</node>
             <node x="157.0" y="151.0">com.angrynerds.testing</node>
           </nodes>
           <notes />
@@ -1037,8 +1038,8 @@
             <node x="0.0" y="532.0">com.angrynerds.game.R</node>
             <node x="350.0" y="193.0">com.angrynerds.game.PlayController</node>
             <node x="478.0" y="439.0">com.angrynerds.game.Manifest</node>
-            <node x="165.0" y="326.0">com.angrynerds.game.AndroidStarterActivity</node>
             <node x="0.0" y="326.0">com.angrynerds.game.GameController</node>
+            <node x="165.0" y="326.0">com.angrynerds.game.AndroidStarterActivity</node>
           </nodes>
           <notes />
           <edges />
@@ -1062,18 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_000.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="855" selection-end="855" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="353" column="20" selection-start="13871" selection-end="13871" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="22" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
@@ -1081,12 +1070,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/UIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/gamepads/X360Gamepad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="17" selection-start="3776" selection-end="3776" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/IGameInputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/tileset.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_000.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="477" column="31" selection-start="19250" selection-end="19250" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="9" selection-start="2026" selection-end="2026" vertical-scroll-proportion="0.029520296">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="68" column="43" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="95" selection-start="1876" selection-end="1876" vertical-scroll-proportion="0.2074074">
+          <folding />
         </state>
       </provider>
     </entry>

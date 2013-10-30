@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import java.io.BufferedReader;
@@ -59,6 +60,9 @@ public class Map extends GameObject {
     private int mapWidth;
     private int mapHeight;
 
+    // player relevant subjects
+    private Vector2 spawn;
+
     private Array<TiledMapTileLayer> collsionLayers;
     private Array<Rectangle> collisionObjects;
 
@@ -71,6 +75,10 @@ public class Map extends GameObject {
         this.camera = camera;
 
         init();
+    }
+
+    public Map() {
+
     }
 
     private void init() {
@@ -122,7 +130,7 @@ public class Map extends GameObject {
                     // object layer
                 } else {
                     Array<HashMap<String, String>> objects = getObjectGroups(layers.get(i));
-                    flipObjectLayerRectangles(objects,1);
+//                    flipObjectLayerRectangles(objects,1);
 //                    MapLayer mapLayer = (flipObjectLayerRectangles(layers.get(i), 1));
 //                    MapLayer mapLayer = layers.get(i);
 
@@ -143,8 +151,30 @@ public class Map extends GameObject {
 
                             System.out.println(qX + " " + qY + " " + qW + " " + qH);
 
-                            collisionObjects.add(new Rectangle(qX,mapHeight - qY - qH, qW, qH));
+                            collisionObjects.add(new Rectangle(qX, mapHeight - qY - qH, qW, qH));
 
+                        }
+                    }
+                }
+            }
+
+            // subjectlayer
+            else if (layers.get(i).getName().startsWith("$s.")) {
+                // tiledMapTileLayerd
+                if (layers.get(i).getObjects().getCount() == 0) {
+                    System.out.println("kmvfds<dcwasfvaesdfcsdc");
+                    TiledMapTileLayer l = (TiledMapTileLayer) layers.get(i);
+
+                    for (int j = 0; j < l.getHeight(); j++) {
+                        for (int k = 0; k < l.getWidth(); k++) {
+                            if (l.getCell(k, j) != null) {
+                                if (l.getCell(k, j).getTile().getProperties().containsKey("spawn")) {
+                                    System.out.println("SPAWN FOUND");
+                                    float qX = k * tileWidth;
+                                    float qY = j * tileHeight;
+                                    spawn = new Vector2(qX, qY);
+                                }
+                            }
                         }
                     }
                 }
@@ -162,7 +192,8 @@ public class Map extends GameObject {
             for (int i = 0; i < collisionObjects.size; i++) {
                 Rectangle r = collisionObjects.get(i);
                 p.setColor(color_outline);
-                p.drawRectangle((int) (r.getX()), (int) (mapHeight - r.getHeight() - (r.getY())), (int) (r.getWidth()), (int) (r.getHeight()));
+//                p.drawRectangle((int) (r.getX()), (int) (mapHeight - r.getHeight() - (r.getY())), (int) (r.getWidth()), (int) (r.getHeight()));
+                p.drawRectangle((int) (r.getX()), (int) (r.getY()), (int) (r.getWidth()), (int) (r.getHeight()));
                 p.setColor(color_fill);
                 p.fillRectangle((int) (r.getX()), (int) (r.getY()), (int) (r.getWidth()), (int) (r.getHeight()));
 
@@ -334,7 +365,7 @@ public class Map extends GameObject {
         if (objects.size == 0) {
             throw new IllegalArgumentException("object array size must not be 0");
         } else {
-                                         ///
+            ///
             for (int j = 0; j < objects.size; j++) {
                 if (objects.get(j).containsKey("width") &&
                         objects.get(j).containsKey("height") &&
@@ -444,6 +475,9 @@ public class Map extends GameObject {
         return copy;
     }
 
+    public Vector2 getSpawn() {
+        return spawn;
+    }
 
     //<editor-fold desc="map property getters">
     public int getMapHeight() {

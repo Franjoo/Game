@@ -21,6 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import javax.swing.text.DefaultEditorKit;
+import java.util.ArrayList;
 
 /**
  * User: Franjo
@@ -67,20 +68,20 @@ public class Player extends GameObject {
 
     private void init() {
 
-        position.x = 0;
-        position.y = 0;
+        position.x = map.getSpawn().x;
+        position.y = map.getSpawn().y;
 
         dimension.x = 32;
         dimension.y = 32;
 
         setPosition(position.x, position.y);
-        setSize(dimension.x,dimension.y);
+        setSize(dimension.x, dimension.y);
 
-        setOrigin(0,0);
+        setOrigin(0, 0);
 
         // draw rectangular shape
         Pixmap p = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
-        Texture t = new Texture(p.getWidth(),p.getHeight(), Pixmap.Format.RGBA8888);
+        Texture t = new Texture(p.getWidth(), p.getHeight(), Pixmap.Format.RGBA8888);
 
         p.setColor(0, 0, 0, 1);
         p.fillRectangle(0, 0, (int) getWidth(), (int) getHeight());
@@ -229,34 +230,66 @@ public class Player extends GameObject {
             }
         }
 
-
-        /* COLLIDED OBJECTS */
-        Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
-
-        if (vX < 0) {
-            if (qX == position.x) {
-                float _x = Float.MIN_VALUE;
-                rectList = map.getCollisionObjects(qX, position.y);
-                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
-//                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
-                if (rectList.size != 0) System.out.println("collides");
-
-                for (int i = 0; i < rectList.size; i++) {
-                    Rectangle r = rectList.get(i);
-                    System.out.println(r.getX() + " " + r.getY() + " " + r.getWidth() + " " + r.getHeight());
-//                    System.out.println(rectLis);
-                    if (rectList.get(i).getX() + rectList.get(i).getWidth() > _x) {
-                        _x = rectList.get(i).getX() + rectList.get(i).getWidth();
-                    } else {
-                        position.x = _x;
-
-                    }
-//                    rectList = map.getCollisionObjects(position.x, position.y);
-//                    rectList.addAll(map.getCollisionObjects(position.x, position.y - dimension.y));
-                }
-
-            }
+        /* object collision test */
+//        ArrayList<Rectangle> rects = new ArrayList<Rectangle>();
+//        Rectangle[] rects = new Rectangle[10];
+        if(map.getCollisionObjects(position.x, position.y).size != 0){
+            System.out.println("bl");
         }
+
+        if(map.getCollisionObjects(position.x + dimension.x, position.y).size != 0){
+            System.out.println("br");
+        }
+
+        if(map.getCollisionObjects(position.x, position.y + dimension.y).size != 0){
+            System.out.println("tl");
+        }
+
+        if(map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y).size != 0){
+            System.out.println("tr");
+        }
+//        Array<Rectangle> rectList = map.getCollisionObjects(position.x, position.y + dimension.y); // bl
+//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y)); // br
+//        rectList.addAll(map.getCollisionObjects(position.x, position.y + dimension.y)); // tl
+//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y)); // tr
+//
+////        for (int i = 0; i < map.getCollisionObjects(position.x, position.y).size; i++) {
+////            rectList.add(map.getCollisionObjects(position.x, position.y).get(i));
+////        }
+////        rectList.addAll(map.getCollisionObjects(position.x,position.y));
+//        if (rectList.size != 0) {
+//            System.out.println("collides");
+//        }
+
+
+//        /* COLLIDED OBJECTS */
+//        Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
+//
+//        if (vX < 0) {
+//            if (qX == position.x) {
+//                float _x = Float.MIN_VALUE;
+//                rectList = map.getCollisionObjects(qX, position.y + dimension.y);
+////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+//                if (rectList.size != 0) System.out.println("collides");
+//
+//                for (int i = 0; i < rectList.size; i++) {
+//                    Rectangle r = rectList.get(i);
+//                    System.out.println(r.getX() + " " + r.getY() + " " + r.getWidth() + " " + r.getHeight());
+////                    System.out.println(rectLis);
+//                    if (rectList.get(i).getX() + rectList.get(i).getWidth() > _x) {
+//                        _x = rectList.get(i).getX() + rectList.get(i).getWidth();
+//                    } else {
+//                        position.x = _x;
+//
+//                    }
+////                    rectList = map.getCollisionObjects(position.x, position.y);
+////                    rectList.addAll(map.getCollisionObjects(position.x, position.y - dimension.y));
+//                }
+//
+//            }
+//        }
+
 //        Array<Rectangle> r = null;
 //        // bottom left
 //        if (vX < 0) {
