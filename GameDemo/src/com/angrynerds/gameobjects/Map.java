@@ -1,15 +1,17 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.game.World;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -19,11 +21,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * User: Franjo
@@ -32,6 +32,9 @@ import java.util.Iterator;
  * Project: Main
  */
 public class Map extends GameObject {
+    public static final String TAG = Map.class.getSimpleName();
+
+    private static Map instance;
 
     // debug controlls
     private static final boolean SHOW_GRID = false;
@@ -50,6 +53,11 @@ public class Map extends GameObject {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
+    private Player player;
+    private World world;
+
+    private float pOldX;
+    private float pOldY;
 
     // map properties
     private int numTilesX;
@@ -60,31 +68,57 @@ public class Map extends GameObject {
     private int mapWidth;
     private int mapHeight;
 
+    private int offsetX;
+    private int offsetY;
+    public final int borderWidth = 5;
+
     // player relevant subjects
     private Vector2 spawn;
 
     private Array<TiledMapTileLayer> collsionLayers;
     private Array<Rectangle> collisionObjects;
+    private Array<TmxMapObject> mapObjects;
 
-    private String mapPath = "data/maps/map_000.tmx";
+    private String mapPath = "data/maps/map_001.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
 
-    public Map(OrthographicCamera camera) {
-        this.camera = camera;
+    // atlas
+    private TextureAtlas atlas;
+    private TextureRegion reg_tree;
+
+
+    public Map(World world, Player player) {
+        this.player = player;
+        this.world = world;
+
+        camera = world.camera;
 
         init();
+
+        instance = this;
+
+        player.init();
     }
 
-    public Map() {
+    public static Map getInstance() {
+        if (instance == null)
+            throw new NullPointerException(TAG + " has not been initialized");
 
+        return instance;
     }
+
 
     private void init() {
+
+
         map = new TmxMapLoader().load(mapPath);
         renderer = new OrthogonalTiledMapRenderer(map);
         renderer.setView(camera);
+
+        atlas = new TextureAtlas("data/testSheet.txt");
+        reg_tree = atlas.findRegion("tree");
 
         // parse map properties
         int qWidth = Integer.parseInt(map.getProperties().get("width").toString());
@@ -98,6 +132,9 @@ public class Map extends GameObject {
         tileHeight = qTileHeight;
         mapWidth = numTilesX * tileWidth;
         mapHeight = numTilesY * tileHeight;
+
+        dimension.x = mapWidth;
+        dimension.y = mapHeight;
 
         if (SHOW_GRID) {
             Pixmap pixmap = new Pixmap(mapWidth, mapHeight, Pixmap.Format.RGBA8888);
@@ -119,6 +156,7 @@ public class Map extends GameObject {
 
         collsionLayers = new Array<TiledMapTileLayer>();
         collisionObjects = new Array<Rectangle>();
+        mapObjects = new Array<TmxMapObject>();
         for (int i = 0; i < layers.getCount(); i++) {
             if (layers.get(i).getName().startsWith("$c.")) {
                 // tile layer
@@ -178,6 +216,26 @@ public class Map extends GameObject {
                         }
                     }
                 }
+            } else if (layers.get(i).getName().startsWith("$i.")) {
+                if (layers.get(i).getObjects().getCount() != 0) {
+                    Array<HashMap<String, String>> objects = getObjectGroups(layers.get(i));
+                    for (int j = 0; j < objects.size; j++) {
+
+                        float qX = Float.parseFloat(objects.get(j).get("x"));
+                        float qY = Float.parseFloat(objects.get(j).get("y"));
+                        float qW = Float.parseFloat(objects.get(j).get("width"));
+                        float qH = Float.parseFloat(objects.get(j).get("height"));
+                        String qT = objects.get(j).get("type");
+
+                        TmxMapObject object = new TmxMapObject(atlas.findRegion(qT), qX, mapHeight - qH, qW, qH);
+                        mapObjects.add(object);
+
+                        //test
+                        System.out.println("object created");
+
+
+                    }
+                }
             }
 
 
@@ -218,6 +276,11 @@ public class Map extends GameObject {
             collisionShapeTexture = new Texture(p);
         }
 
+        System.out.println("map initialized");
+        System.out.println(getSpawn().x);
+//        player.init();
+
+
     }
 
     private Array<HashMap<String, String>> getObjectGroups(MapLayer layer) {
@@ -256,11 +319,30 @@ public class Map extends GameObject {
         return objects;
     }
 
-    @Override
+
     public void render(SpriteBatch batch) {
         batch.disableBlending();
         renderer.render();
         batch.enableBlending();
+
+        player.render(batch);
+
+        for (int i = 0; i < mapObjects.size; i++) {
+            if(player.position.y > mapObjects.get(i).y){
+                mapObjects.get(i).render(batch);
+            }
+        }
+
+        batch.begin();
+
+        float deltaX = pOldX - player.position.x;
+        float deltaY = pOldY - player.position.y;
+
+        batch.draw(reg_tree, 20, 100);
+//        batch.draw(reg_tree, 20 - deltaX - world.cameraHelper.deltaX, 100 - deltaY - world.cameraHelper.deltaY);
+//        batch.draw(reg_tree, 20 + deltaX, 100 + deltaY);
+        batch.end();
+
 
         if (SHOW_GRID) {
             batch.begin();
@@ -280,12 +362,22 @@ public class Map extends GameObject {
             batch.end();
         }
 
+//        if(player.position.x == pOldX){
+//            System.out.println("player pos x == poldx");
+//        }
+
+        pOldX = player.position.x;
+        pOldY = player.position.y;
+
 
     }
 
-    @Override
+
     public void update(float deltaTime) {
+
+        player.update(deltaTime);
         renderer.setView(camera);
+
     }
 
     /**
@@ -384,7 +476,7 @@ public class Map extends GameObject {
                     objects.get(j).put("x", "" + qX);
                     objects.get(j).put("y", "" + (mapHeight - qH - qY));
 //
-//                    MapObject o = new MapObject();
+//                    TmxMapObject o = new TmxMapObject();
 //                    objects.get(j).getProperties().put("width", qW);
 //                    o.getProperties().put("height", qH);
 //                    o.getProperties().put("x", "" + qX);
@@ -418,7 +510,7 @@ public class Map extends GameObject {
 //                            float qW = Float.parseFloat(objects.get(j).get("width").toString());
 //                            float qH = Float.parseFloat(objects.get(j).get("height").toString());
 //
-//                            MapObject o = new MapObject();
+//                            TmxMapObject o = new TmxMapObject();
 //                            o.getProperties().put("width", qW);
 //                            o.getProperties().put("height", qH);
 //                            o.getProperties().put("x", "" + qX);
@@ -503,5 +595,14 @@ public class Map extends GameObject {
     public int getMapWidth() {
         return mapWidth;
     }
+
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
     //</editor-fold>
 }

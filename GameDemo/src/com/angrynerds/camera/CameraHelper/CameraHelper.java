@@ -1,7 +1,9 @@
 package com.angrynerds.camera.CameraHelper;
 
 import com.angrynerds.game.PlayController;
+import com.angrynerds.game.World;
 import com.angrynerds.gameobjects.GameObject;
+import com.angrynerds.gameobjects.Map;
 import com.angrynerds.gameobjects.Player;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
@@ -14,22 +16,31 @@ import com.badlogic.gdx.math.Vector2;
 public class CameraHelper {
     public static final String TAG = CameraHelper.class.getSimpleName();
 
-    private final float MAX_ZOOM_IN = 0.25f;
-    private final float MAX_ZOOM_OUT = 4.0f;
+    private static final float MAX_ZOOM_IN = 0.25f;
+    private static final float MAX_ZOOM_OUT = 4.0f;
 
-    private float aX = 0.05f;
+    private float aX = 0.03f;
     private float aY = 0.1f;
+//    private float aX = 1;
+//    private float aY = 1;
 
     private Vector2 position;
     private float zoom;
     private Sprite target;
+    private Map map;
+
+    private World world;
 
     private PlayController playController;
+    public float deltaX;
+    public float deltaY;
 
-    public CameraHelper(PlayController playController) {
+    public CameraHelper(World world) {
         this.playController = playController;
+
+//        map = playController.world.map;
         position = new Vector2();
-        zoom = 1.0f;
+        zoom = 1;
 
     }
 
@@ -37,24 +48,25 @@ public class CameraHelper {
 
         handleDebugControlls();
 
-
-        if (!hasTarget())
+        if (!hasTarget()){
             return;
+        }
+
 
         float qX = target.getX();
         float qY = target.getY();
 
-        float mX = playController.world.map.position.x;
-        float mY = playController.world.map.position.y;
-        float mWidth = playController.world.map.dimension.x;
-        float mHeight = playController.world.map.dimension.y;
+        deltaX = qX - position.x;
+        deltaY = qY - position.y;
 
-        float deltaX = qX - position.x;
-        float deltaY = qY - position.y;
 
-//        position.x += deltaX * aX;
-//        position.y += deltaY * aY;
-
+//        if(Math.abs(deltaX) < 0.03){
+//            deltaX = 0;
+//        }
+//
+//        if(Math.abs(deltaY) < 0.03){
+//            deltaY = 0;
+//        }
 
 //        if (!(qX < Constants.VIEWPORT_WIDTH / 2)) {
 //            position.x = target.getX() + target.getOriginX();
@@ -62,9 +74,9 @@ public class CameraHelper {
 
 //        }
 
-//        if (!(qY < Constants.VIEWPORT_HEIGHT / 2 - deltaY)) {
-//            position.y = target.getY() + target.getOriginY();
-            position.y += deltaY * aY;
+//        if (!(qY < Constants.VIEWPORT_HEIGHT / 2 + 2 * 32)) {
+//            position.y = target.getY() + target.getOriginY();                                4
+        position.y += deltaY * aY;
 
 //        }
 

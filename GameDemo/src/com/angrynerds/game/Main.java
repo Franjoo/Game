@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.*;
 public class Main implements ApplicationListener {
 
     // debug bools
-    private static final boolean FPS_LOGGING = false;
+    private static final boolean FPS_LOGGING = true;
 
     private GameController gameController;
     private GameRenderer gameRenderer;

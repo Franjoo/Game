@@ -34,14 +34,18 @@ public class Player extends GameObject {
 
     private final float epsilon = Constants.EPSILON;
 
+    private static Player instance;
+
     private IGameInputController input;
     private PlayScreen playScreen;
     private Camera camera;
     private Map map;
     private World world;
 
-    private float vX = 5 * 60;
-    private float vY = 5 * 60;
+    private float vX = 3.2f * 60;
+    private float vY = 3.2f * 60;
+    private float vX_MAX =  3.2f * 60;
+    private float vY_MAX =  3.2f * 60;
     private float aX;
     private float aY;
 
@@ -52,21 +56,30 @@ public class Player extends GameObject {
         map = playScreen.playController.world.map;
         camera = playScreen.playController.camera;
 
-        init();
+//        init();
     }
+
+//    public static Player getInstance(){
+//        if(instance == null){
+//            instance = new Player()
+//        }
+//    }
 
     public Player(Camera camera, World world) {
         super();
 
         this.camera = camera;
-
         this.world = world;
-        map = world.map;
 
-        init();
+//        map = world.
+////        map = world.map;
+//
+////        init();
     }
 
-    private void init() {
+    public void init() {
+
+        map = Map.getInstance();
 
         position.x = map.getSpawn().x;
         position.y = map.getSpawn().y;
@@ -154,8 +167,8 @@ public class Player extends GameObject {
 
 //        System.out.println("P: " + position.x + ", " + position.y);
 
-        vX = input.get_stickX() * deltaTime * 5 * 60;
-        vY = input.get_stickY() * deltaTime * 5 * 60;
+        vX = input.get_stickX() * deltaTime * vX_MAX;
+        vY = input.get_stickY() * deltaTime * vY_MAX;
 
         setCollisionPosition();
 
@@ -177,6 +190,18 @@ public class Player extends GameObject {
         // helper variables
         float qX = position.x + vX;
         float qY = position.y + vY;
+
+
+        /* MAP COLLISION */
+        if (qX < map.position.x + map.borderWidth)
+            qX = map.position.x + map.borderWidth;
+        else if (qX + dimension.x > map.position.x + map.dimension.x - map.borderWidth)
+            qX = map.position.x + map.dimension.x - map.borderWidth - dimension.x;
+        if (qY > map.dimension.y - map.borderWidth - 64)// map.getOffsetX() * map.getTileHeight())
+            qY = map.dimension.y - map.borderWidth - 64;//map.getOffsetX() * map.getTileHeight();
+        else if (qY < map.getY() + map.borderWidth + 64)
+            qY = map.getY() + map.borderWidth + 64;
+
 
 
         /* COLLIDED TILES */
@@ -233,19 +258,19 @@ public class Player extends GameObject {
         /* object collision test */
 //        ArrayList<Rectangle> rects = new ArrayList<Rectangle>();
 //        Rectangle[] rects = new Rectangle[10];
-        if(map.getCollisionObjects(position.x, position.y).size != 0){
+        if (map.getCollisionObjects(position.x, position.y).size != 0) {
             System.out.println("bl");
         }
 
-        if(map.getCollisionObjects(position.x + dimension.x, position.y).size != 0){
+        if (map.getCollisionObjects(position.x + dimension.x, position.y).size != 0) {
             System.out.println("br");
         }
 
-        if(map.getCollisionObjects(position.x, position.y + dimension.y).size != 0){
+        if (map.getCollisionObjects(position.x, position.y + dimension.y).size != 0) {
             System.out.println("tl");
         }
 
-        if(map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y).size != 0){
+        if (map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y).size != 0) {
             System.out.println("tr");
         }
 //        Array<Rectangle> rectList = map.getCollisionObjects(position.x, position.y + dimension.y); // bl
