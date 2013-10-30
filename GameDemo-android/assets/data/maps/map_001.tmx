@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="16" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="OffsetX" value="2"/>
+  <property name="OffsetY" value="2"/>
+ </properties>
+ <tileset firstgid="1" name="grass_9" tilewidth="32" tileheight="32">
+  <image source="grass_9.png" width="512" height="640"/>
+ </tileset>
+ <tileset firstgid="321" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="128" height="128"/>
+  <tile id="4">
+   <properties>
+    <property name="spawn" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="ground" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztWMtywjAM9C/RB3fakrtpyz0U+P9PqJlmZ5ZFkpX0Gs9oEhxblnf1GkpZxzrW4Y1Nk6cmz01emrw22QbzQ5PaZDcJr9vQ72roGJt8iIwk1dCJs7253bT3tOAuO8dOfIfenybnDiZHQ76n535ag/Xb4Ny5dzgSdhtDsGd0+LDmcGfWy2siLuo/+MBezweyfNwwuRpymZ7Ky8bBYgkfrAuYWLGiOHo26J0tfCxbslwMwTeOyx4f6m+sZ0v2X4w7KS+I6Qwf0ZmcH8BBDe7Dc5ENaj/nLU9vLY94zc272O/ZdTvj0MFkmGQr81a+Ay81ONPio5cfDsTDmNQd2WDFSK+WZHNJL+9GfHr2Mg+oFbf3Pc1jnXLEcZnhw/NLzQ9j6d9H68nJwRgcfzb5Kn9xHWFx0/HW5L389QT7BXxcZ9rv1W/UCq7fXCu0lg8l9iELG60HVn7QvJjlw+u7LL1RrlL+5vJxlnMzNYu5AA9s74XmwY3Wco4Z6wwrRrkmQDzMjtN7Jl8dSj5nRTrn9KFZPqx+Meqler2xcgReOGZ6fDD23OdY+WEo971dxIdiGNXOyOc9WyLsvG/aB3GPwvkhquWMhXIZ+S+48TDT3hW5qZb7Gs5YwU/YR9V+vKuOpfGxJFdl6zn6OpYML4odSy9mLJ28n3sm1OyobvAc64H/4rxMb9rjA+9z+iqvP7PqOfKX/l+Q5UW5rKIrWx97+zWOPX5Yj8aBrrdwGsuj7/MaL2d6MQ9bGceeH1g5Zy4vPQ569XEd61iHP34B8BQ7Iw==
+  </data>
+ </layer>
+ <layer name="grass_1" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1jsKwCAQBFCvYe5/0DQKQ4oQ/BCL92Bai11kthQAgDG15WoB+Ft9hDOM7KL3C3v0+b79lez37Hy+yztpxfxWvcOc3GsGgPPc1e0DZA==
+  </data>
+ </layer>
+ <layer name="stones_0" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztl0kKAjEQRRN15zzsnIcLOBzAq3lEBd077h3XPmhaQi/tdGLb9eBBVr8KQoWUUr/FykKG1krlMI8FbS9X+I46d9DAJra0726yyR4PeMQhdzDCMU7w7Lm3LHLFG95xyh3McI4LfFrIL2IJy1ixkCfEo40d7GLPcy+u2RjnLe4sZK4jucpSbkg4P6ZZmaMq1nw3ESGcH9Mk5+iX/ot9HPhuQhCED2n8X0Xf9aWnPpIgjf8redfjc1LB/npxUMvcoV3WTRMPFeyvLwe1zB3aZV1BEP6DN6DJI1Y=
+  </data>
+ </layer>
+ <layer name="stones_1" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1bkNgEAUQ8HNOXPO/qvEEQkFfFaakV7uzK0BQD+GNKYpzcVbaG1LezrSWbwF+FrSWj2C15Xu6hEAdMWX/4svh/48EWcBYQ==
+  </data>
+ </layer>
+ <layer name="trees_1" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1zcOwkAQRuGV4AZwYWJP7Ik9sSf2xPPwagthZpE1u+w86et/WWZknPv/aqijgSZaaKsu0quEsvKGDrrooY8BhqqL9KqgqrxhhDEmmGKGueqi7wvhfc5Len8WWGKFNTbYFrzRt+zzD+F9zkt6f3bY44AjTjgXvNG3EJ6/9Dfpe39uuOOBp3BjSknfiZjuTwrFdH9S6IKrs/tjWdb7Yvhf8qnY92cL4bv4l2Lfb1mWFVovgfwvrg==
+  </data>
+ </layer>
+ <layer name="trees_2" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1KkSwkAQRdH59RCCD5tnCZ7VQwIeAnwP18SgEF01GfrdquO7zQtBKaVCyDBAjiEKjKJe5LsSY0wwxQzzqBf5boElVlijwibqRelmsTVb7LDHAUecDG+0Kot9wA9ZbM0ZF9RocMXN8EZPWWzNHQ+0eOKFt+GNnkpla7ykrelX31vzz3W/dmlXlVJKqbT6AIjUMmE=
+  </data>
+ </layer>
+ <layer name="grass_0" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1EsKwCAMRdHsoo37X2gdKITUgg6KaXMPPMzAQYgfEQAAgNhKzVFz7m4kOW0pLUBG/Q30VSTfe/Az0L3t3Ni/SgZ1tH6/Tl1t529n/yTiHcrMnyHWzf4zdtZ4lw4ysx/AP1xwdATV
+  </data>
+ </layer>
+ <layer name="$s.SubjectLayer" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6Abzv6VjPHNQQISAACArp32AAAA+OYAfZwARw==
+  </data>
+ </layer>
+ <layer name="trees_0" width="100" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1TsOglAURdGb6Ax0wvjr/fag0PvtFbVX0PG4B0AIFLxn8s5OVneL253IzEYYY4IpZqZ8NccCS6ywxsbrR2EXI8EWO6TIKu566Dv8K9T2OOCIE864VNwNMHT4V6hdcUOOOx541txHpr3pshfeKFDig2/Nvfbmv2q6N8pNTfdGuant3qhua7s3SimllFJK+ewHvQUwaw==
+  </data>
+ </layer>
+ <objectgroup draworder="topdown" name="$i.ImageLayer" width="100" height="16" opacity="0.9">
+  <object type="tree" x="0" y="0" width="192" height="192"/>
+  <object type="tree" x="384" y="128" width="192" height="192"/>
+ </objectgroup>
+</map>
