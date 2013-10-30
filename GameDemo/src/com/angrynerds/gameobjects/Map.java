@@ -227,7 +227,7 @@ public class Map extends GameObject {
                         float qH = Float.parseFloat(objects.get(j).get("height"));
                         String qT = objects.get(j).get("type");
 
-                        TmxMapObject object = new TmxMapObject(atlas.findRegion(qT), qX, mapHeight - qH, qW, qH);
+                        TmxMapObject object = new TmxMapObject(atlas.findRegion(qT), qX, mapHeight - qH - qY, qW, qH);
                         mapObjects.add(object);
 
                         //test
@@ -333,15 +333,15 @@ public class Map extends GameObject {
             }
         }
 
-        batch.begin();
-
-        float deltaX = pOldX - player.position.x;
-        float deltaY = pOldY - player.position.y;
-
-        batch.draw(reg_tree, 20, 100);
-//        batch.draw(reg_tree, 20 - deltaX - world.cameraHelper.deltaX, 100 - deltaY - world.cameraHelper.deltaY);
-//        batch.draw(reg_tree, 20 + deltaX, 100 + deltaY);
-        batch.end();
+//        batch.begin();
+//
+//        float deltaX = pOldX - player.position.x;
+//        float deltaY = pOldY - player.position.y;
+//
+//        batch.draw(reg_tree, 20, 100);
+////        batch.draw(reg_tree, 20 - deltaX - world.cameraHelper.deltaX, 100 - deltaY - world.cameraHelper.deltaY);
+////        batch.draw(reg_tree, 20 + deltaX, 100 + deltaY);
+//        batch.end();
 
 
         if (SHOW_GRID) {

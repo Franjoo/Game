@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/TmxMapObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/camera/CameraHelper/CameraHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/GameRenderer.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/GameRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Main.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayController.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayRenderer.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/PlayRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GameDemo.iws" />
@@ -32,7 +24,7 @@
     <file path="/ControllUI.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382886581559" ignored="false" />
     <file path="/MainActivity.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789182848" ignored="false" />
     <file path="/UIController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789524818" ignored="false" />
-    <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383158815259" ignored="false" />
+    <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383159419654" ignored="false" />
     <file path="$PROJECT_DIR$/GameDemo/src/com/angrynerds/testing/Test_Controller.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382818099938" ignored="false" />
     <file path="/GameRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383151824556" ignored="false" />
     <file path="/GameController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382882866538" ignored="false" />
@@ -46,7 +38,7 @@
     <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382883314641" ignored="false" />
     <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
     <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383155058080" ignored="false" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383136014181" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383159002070" ignored="false" />
     <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382965408978" ignored="false" />
     <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044698334" ignored="false" />
     <file path="/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044688488" ignored="false" />
@@ -164,7 +156,7 @@
       <file leaf-file-name="Map.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="330" column="34" selection-start="12553" selection-end="12553" vertical-scroll-proportion="0.42521995">
+            <state line="229" column="108" selection-start="8669" selection-end="8669" vertical-scroll-proportion="0.7536657">
               <folding>
                 <element signature="e#2507#2518#0" expanded="true" />
               </folding>
@@ -198,7 +190,7 @@
       <file leaf-file-name="map_001.tmx" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_001.tmx">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="34" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.0">
+            <state line="7" column="17" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -912,7 +904,11 @@
       <created>1383136027730</created>
       <updated>1383136027730</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="- class structure changed&#10;- y sorting&#10;- tmxMapObject added&#10;- resources added&#10;- camera modification&#10;">
+      <created>1383159013940</created>
+      <updated>1383159013940</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -932,8 +928,8 @@
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23712121" sideWeight="0.68313456" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21439394" sideWeight="0.68313456" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23712121" sideWeight="0.68313456" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21439394" sideWeight="0.68313456" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3168654" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -986,7 +982,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="- subjectLayer added&#10;- camera movement modified&#10;- camera debug controls added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- class structure changed&#10;- y sorting&#10;- tmxMapObject added&#10;- resources added&#10;- camera modification&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1004,6 +1000,7 @@
     <MESSAGE value="map modified" />
     <MESSAGE value="modifications" />
     <MESSAGE value="- subjectLayer added&#10;- camera movement modified&#10;- camera debug controls added" />
+    <MESSAGE value="- class structure changed&#10;- y sorting&#10;- tmxMapObject added&#10;- resources added&#10;- camera modification&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1107,13 +1104,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_001.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="34" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="38" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0">
@@ -1121,9 +1111,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_001.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="330" column="34" selection-start="12553" selection-end="12553" vertical-scroll-proportion="0.42521995">
+        <state line="229" column="108" selection-start="8669" selection-end="8669" vertical-scroll-proportion="0.7536657">
           <folding>
             <element signature="e#2507#2518#0" expanded="true" />
           </folding>
