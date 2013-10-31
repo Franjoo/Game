@@ -50,6 +50,8 @@ public class Player extends GameObject {
     private float aY;
     private float z;
 
+    private Texture outline;
+
     public Player(PlayScreen playScreen) {
         super();
 
@@ -112,6 +114,16 @@ public class Player extends GameObject {
         t.draw(p, 0, 0);
 
         setTexture(t);
+
+
+//        Pixmap pOutline = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
+//        pOutline.setColor(1, 0, 0, 1);
+////        t.getTextureData().prepare();
+//        pOutline.drawPixmap(t.getTextureData().consumePixmap(), 0, 0);
+//        Texture o = new Texture(32,32, Pixmap.Format.RGBA8888);
+//        o.draw(pOutline,0,0);
+////        t.draw(pOutline, 0, 0);
+//        setTexture(o);
 //        setSize(32, 32);
 //        position.x = Constants.VIEWPORT_WIDTH / 2 + 50;
 //        position.y = Constants.VIEWPORT_HEIGHT / 2;

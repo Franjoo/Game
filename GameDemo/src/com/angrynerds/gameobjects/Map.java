@@ -115,6 +115,7 @@ public class Map extends GameObject {
 
 
         map = new TmxMapLoader().load(mapPath);
+        // TODO renderer sollte mit statischem SpriteBatch instantiiert werden das im render verwendet wird
         renderer = new OrthogonalTiledMapRenderer(map);
         renderer.setView(camera);
 
@@ -242,8 +243,8 @@ public class Map extends GameObject {
                     mapObjects.sort(new Comparator<TmxMapObject>() {
                         @Override
                         public int compare(TmxMapObject o1, TmxMapObject o2) {
-                            if (o1.y > o2.y) return 1;
-                            else if (o1.y < o2.y) return -1;
+                            if (o1.y < o2.y) return 1;
+                            else if (o1.y > o2.y) return -1;
                             else return 0;
                         }
                     });
@@ -333,20 +334,25 @@ public class Map extends GameObject {
 
 
     public void render(SpriteBatch batch) {
-        world.cameraHelper.applyTo(camera);
 
 
         batch.disableBlending();
         renderer.render();
         batch.enableBlending();
 
+
+//        for (int i = 0; i < mapObjects.size; i++) {
+//            mapObjects.get(i).render(batch);
+//        }
+
+
         player.render(batch);
 
 
         for (int i = 0; i < mapObjects.size; i++) {
-                if (player.position.y > mapObjects.get(i).y) {
-                    mapObjects.get(i).render(batch);
-                }
+            if (player.position.y > mapObjects.get(i).y) {
+                mapObjects.get(i).render(batch);
+            }
         }
 
 
@@ -371,6 +377,7 @@ public class Map extends GameObject {
 //                }
 //            }
             batch.end();
+            world.cameraHelper.applyTo(camera);
         }
 
         if (SHOW_COLLISION_SHAPES) {
