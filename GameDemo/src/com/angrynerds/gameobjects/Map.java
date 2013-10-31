@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -125,6 +126,8 @@ public class Map extends GameObject {
         int qHeight = Integer.parseInt(map.getProperties().get("height").toString());
         int qTileWidth = Integer.parseInt(map.getProperties().get("tilewidth").toString());
         int qTileHeight = Integer.parseInt(map.getProperties().get("tileheight").toString());
+        int qOffSetX = Integer.parseInt(map.getProperties().get("OffsetX").toString());
+        int qOffSetY = Integer.parseInt(map.getProperties().get("OffsetY").toString());
 
         numTilesX = qWidth;
         numTilesY = qHeight;
@@ -132,6 +135,8 @@ public class Map extends GameObject {
         tileHeight = qTileHeight;
         mapWidth = numTilesX * tileWidth;
         mapHeight = numTilesY * tileHeight;
+        offsetX = qOffSetX;
+        offsetY = qOffSetY;
 
         dimension.x = mapWidth;
         dimension.y = mapHeight;
@@ -200,9 +205,7 @@ public class Map extends GameObject {
             else if (layers.get(i).getName().startsWith("$s.")) {
                 // tiledMapTileLayerd
                 if (layers.get(i).getObjects().getCount() == 0) {
-                    System.out.println("kmvfds<dcwasfvaesdfcsdc");
                     TiledMapTileLayer l = (TiledMapTileLayer) layers.get(i);
-
                     for (int j = 0; j < l.getHeight(); j++) {
                         for (int k = 0; k < l.getWidth(); k++) {
                             if (l.getCell(k, j) != null) {
@@ -235,6 +238,15 @@ public class Map extends GameObject {
 
 
                     }
+
+                    mapObjects.sort(new Comparator<TmxMapObject>() {
+                        @Override
+                        public int compare(TmxMapObject o1, TmxMapObject o2) {
+                            if (o1.y > o2.y) return 1;
+                            else if (o1.y < o2.y) return -1;
+                            else return 0;
+                        }
+                    });
                 }
             }
 
@@ -321,17 +333,22 @@ public class Map extends GameObject {
 
 
     public void render(SpriteBatch batch) {
+        world.cameraHelper.applyTo(camera);
+
+
         batch.disableBlending();
         renderer.render();
         batch.enableBlending();
 
         player.render(batch);
 
+
         for (int i = 0; i < mapObjects.size; i++) {
-            if(player.position.y > mapObjects.get(i).y){
-                mapObjects.get(i).render(batch);
-            }
+                if (player.position.y > mapObjects.get(i).y) {
+                    mapObjects.get(i).render(batch);
+                }
         }
+
 
 //        batch.begin();
 //
@@ -565,6 +582,10 @@ public class Map extends GameObject {
 
 
         return copy;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public Vector2 getSpawn() {

@@ -42,12 +42,13 @@ public class Player extends GameObject {
     private Map map;
     private World world;
 
-    private float vX = 3.2f * 60;
-    private float vY = 3.2f * 60;
-    private float vX_MAX =  3.2f * 60;
-    private float vY_MAX =  3.2f * 60;
+    private float vX;
+    private float vY;
+    private float vX_MAX = 3.2f * 60;
+    private float vY_MAX = 3.2f * 60;
     private float aX;
     private float aY;
+    private float z;
 
     public Player(PlayScreen playScreen) {
         super();
@@ -89,6 +90,10 @@ public class Player extends GameObject {
 
         setPosition(position.x, position.y);
         setSize(dimension.x, dimension.y);
+
+//        setBounds(position.x, position.y, dimension.x, dimension.y);
+
+        System.out.println("bounds: " + getBoundingRectangle().toString());
 
         setOrigin(0, 0);
 
@@ -170,10 +175,12 @@ public class Player extends GameObject {
         vX = input.get_stickX() * deltaTime * vX_MAX;
         vY = input.get_stickY() * deltaTime * vY_MAX;
 
+
         setCollisionPosition();
 
 //        position.x += vX * deltaTime * input.get_stickX();
 //        position.y += vY * deltaTime * input.get_stickY();
+
 
         setPosition(position.x, position.y);
     }
@@ -340,6 +347,21 @@ public class Player extends GameObject {
 
     }
 
+    public float getvX() {
+        return vX;
+    }
+
+    public float getvY() {
+        return vY;
+    }
+
+    public float getvX_MAX() {
+        return vX_MAX;
+    }
+
+    public float getvY_MAX() {
+        return vY_MAX;
+    }
 
     private void log() {
         if (input.get_isA()) Gdx.app.log("BUTTON PRESSED", "[A]");

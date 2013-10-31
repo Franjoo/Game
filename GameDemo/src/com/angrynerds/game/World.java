@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class World {
 
     public Map map;
+    public Background background;
     private Player player;
 
     public OrthographicCamera camera;
@@ -33,6 +34,7 @@ public class World {
 
         player = new Player(camera,this);
         map = new Map(this, player);
+        background = new Background(this);
 
 
         cameraHelper.setTarget(player);
@@ -40,16 +42,19 @@ public class World {
 
 
     public void update(float deltaTime) {
-        map.update(deltaTime);
 
         cameraHelper.update(deltaTime);
         cameraHelper.applyTo(camera);
+
+        map.update(deltaTime);
+        background.update(deltaTime);
 
     }
 
     public void render(SpriteBatch batch) {
 //        batch.begin();
         map.render(batch);
+        background.render(batch);
 //        batch.end();
     }
 }

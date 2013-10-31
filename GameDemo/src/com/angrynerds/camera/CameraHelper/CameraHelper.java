@@ -34,13 +34,24 @@ public class CameraHelper {
     private PlayController playController;
     public float deltaX;
     public float deltaY;
+    public float oldX;
+    public float oldY;
+
+    private float targetDeltaX;
+    private float targetDeltaY;
 
     public CameraHelper(World world) {
         this.playController = playController;
 
 //        map = playController.world.map;
+
+
         position = new Vector2();
         zoom = 1;
+
+        position.x = Constants.VIEWPORT_WIDTH/2;
+        position.y = Constants.VIEWPORT_HEIGHT/2 + 100;
+
 
     }
 
@@ -52,6 +63,9 @@ public class CameraHelper {
             return;
         }
 
+        if(map == null){
+            map = Map.getInstance();
+        }
 
         float qX = target.getX();
         float qY = target.getY();
@@ -60,29 +74,19 @@ public class CameraHelper {
         deltaY = qY - position.y;
 
 
-//        if(Math.abs(deltaX) < 0.03){
-//            deltaX = 0;
-//        }
-//
-//        if(Math.abs(deltaY) < 0.03){
-//            deltaY = 0;
-//        }
+        // TOP
+        if(qX + deltaX < Constants.VIEWPORT_WIDTH / 2){
+            position.x += (Constants.VIEWPORT_WIDTH/2 - position.x) * aX ;
+        }else{
+            position.x += deltaX * aX;
+        }
 
-//        if (!(qX < Constants.VIEWPORT_WIDTH / 2)) {
-//            position.x = target.getX() + target.getOriginX();
-        position.x += deltaX * aX;
-
-//        }
-
-//        if (!(qY < Constants.VIEWPORT_HEIGHT / 2 + 2 * 32)) {
-//            position.y = target.getY() + target.getOriginY();                                4
-        position.y += deltaY * aY;
-
-//        }
-
-//        position.x = target.getX() + target.getOriginX();
-//        position.y = target.getY() + target.getOriginY();
-
+        // BOTTOM
+        if(qY + deltaY - map.getOffsetY() * map.getTileHeight() < Constants.VIEWPORT_HEIGHT / 2){
+            position.y += (Constants.VIEWPORT_HEIGHT/2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY ;
+        }else{
+            position.y += deltaY * aY;
+        }
 
     }
 
@@ -131,6 +135,8 @@ public class CameraHelper {
 
     public void setTarget(Sprite target) {
         this.target = target;
+        position.x = Constants.VIEWPORT_WIDTH/2;
+        position.y = Constants.VIEWPORT_HEIGHT/2;
     }
 
     public Sprite getTarget() {

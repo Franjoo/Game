@@ -3,6 +3,7 @@ package com.angrynerds.gameobjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * User: Franjo
@@ -18,6 +19,7 @@ public class TmxMapObject {
     public float y;
     public float width;
     public float height;
+    public Rectangle rectangle;
 
     public TmxMapObject(TextureRegion region, float x, float y, float width, float height) {
         this.region = region;
@@ -25,6 +27,13 @@ public class TmxMapObject {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        rectangle = new Rectangle(x, y, width, height);
+    }
+
+    public TmxMapObject(TextureRegion region, Rectangle rectangle) {
+        this.region = region;
+        this.rectangle = rectangle;
     }
 
     public TmxMapObject(TextureRegion region) {
@@ -32,7 +41,7 @@ public class TmxMapObject {
     }
 
     public void render(SpriteBatch batch) {
-        System.out.println("render");
+//        System.out.println("render");
 
         batch.begin();
         batch.draw(region, x, y, width, height);
