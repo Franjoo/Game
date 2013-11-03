@@ -1,6 +1,6 @@
 package com.angrynerds.input;
 
-import com.angrynerds.game.screens.PlayScreen;
+import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.ui.ControllUI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

@@ -8,6 +8,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/GameDemo/libs/controllers/sources" />
+      <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

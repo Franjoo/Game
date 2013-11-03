@@ -42,7 +42,7 @@
  </layer>
  <layer name="trees_2" width="100" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt1KkSwkAQRdH59RCCD5tnCZ7VQwIeAnwP18SgEF01GfrdquO7zQtBKaVCyDBAjiEKjKJe5LsSY0wwxQzzqBf5boElVlijwibqRelmsTVb7LDHAUecDG+0Kot9wA9ZbM0ZF9RocMXN8EZPWWzNHQ+0eOKFt+GNnkpla7ykrelX31vzz3W/dmlXlVJKqbT6AIjUMmE=
+   eJzt1LsOgkAURdH5dUTsQaVXkV589OKjB9HvYTd0NMbIDczZyWqmOtNc55RSyrkAM4SYI8LCdJHfxUiwxAprpKaL/G6DLXbIsEduumi8BT1v396aAwocccIZlx93/aO+v06xK0rccMcDT9NFflehxgsN3viYLlJKTbHKesCAdXe1S3dVKaWUGlctr0sdxg==
   </data>
  </layer>
  <layer name="grass_0" width="100" height="16">

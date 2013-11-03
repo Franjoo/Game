@@ -1,6 +1,5 @@
 package com.angrynerds.ui;
 
-import com.angrynerds.game.GameRenderer;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
@@ -41,7 +40,7 @@ public class ControllUI implements IGameInputController {
     private Button btn_B;
 
     public ControllUI(Camera camera) {
-        stage = new Stage(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, true, GameRenderer.batch);
+        stage = new Stage(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, true);
         stage.setCamera(camera);
 
         this.camera = camera;

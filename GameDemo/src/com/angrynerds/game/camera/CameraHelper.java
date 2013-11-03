@@ -1,10 +1,8 @@
-package com.angrynerds.camera.CameraHelper;
+package com.angrynerds.game.camera;
 
-import com.angrynerds.game.PlayController;
+import com.angrynerds.game.screens.play.PlayController;
 import com.angrynerds.game.World;
-import com.angrynerds.gameobjects.GameObject;
 import com.angrynerds.gameobjects.Map;
-import com.angrynerds.gameobjects.Player;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -73,6 +71,10 @@ public class CameraHelper {
         deltaX = qX - position.x;
         deltaY = qY - position.y;
 
+//        System.out.println(deltaX + ", " + deltaY);
+
+
+
 
         // TOP
         if(qX + deltaX < Constants.VIEWPORT_WIDTH / 2){
@@ -87,6 +89,9 @@ public class CameraHelper {
         }else{
             position.y += deltaY * aY;
         }
+
+//        position.x = Math.round(position.x);
+//        position.y = Math.round(position.y);
 
     }
 
@@ -152,8 +157,12 @@ public class CameraHelper {
     }
 
     public void applyTo(OrthographicCamera camera) {
-        camera.position.x = position.x;
-        camera.position.y = position.y;
+        camera.position.x = Math.round(position.x);
+        camera.position.y = Math.round(position.y);
+
+//        camera.position.x = (position.x);
+//        camera.position.y = (position.y);
+
         camera.zoom = zoom;
         camera.update();
     }

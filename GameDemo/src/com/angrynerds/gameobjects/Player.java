@@ -1,8 +1,7 @@
 package com.angrynerds.gameobjects;
 
-import com.angrynerds.game.PlayController;
 import com.angrynerds.game.World;
-import com.angrynerds.game.screens.PlayScreen;
+import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.input.KeyboardInput;
 import com.angrynerds.input.TouchInput;
@@ -13,15 +12,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-
-import javax.swing.text.DefaultEditorKit;
-import java.util.ArrayList;
 
 /**
  * User: Franjo
@@ -56,8 +50,8 @@ public class Player extends GameObject {
         super();
 
         this.playScreen = playScreen;
-        map = playScreen.playController.world.map;
-        camera = playScreen.playController.camera;
+        map = playScreen.getPlayController().getWorld().getMap();
+        camera = playScreen.getPlayController().getCamera();
 
 //        init();
     }
@@ -160,8 +154,8 @@ public class Player extends GameObject {
     public void render(SpriteBatch batch) {
 
         batch.begin();
-        batch.draw(getTexture(), getX(), getY());
-//        draw(batch);
+//        batch.draw(getTexture(), getX(), getY());
+        draw(batch);
         batch.end();
 
 
@@ -173,9 +167,6 @@ public class Player extends GameObject {
             i.ui.render(batch);
 //        batch.end();
         }
-//        batch.end();
-//        batch.draw(getTexture(), position.x, position.y, origin.x, origin.y, dimension.x / 4, dimension.y / 4,
-//                scale.x, scale.y);
 
     }
 
@@ -355,8 +346,6 @@ public class Player extends GameObject {
 //        }
 
         //push
-
-
     }
 
     public float getvX() {
