@@ -17,7 +17,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android-sources.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/GameDemo-android/libs/gdx-controllers-android.jar" path-in-jar="/" />
-      <element id="dir-copy" path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [E SE]/libgdx/CanyonBunny/CanyonBunny-android/assets" />
+      <element id="dir-copy" path="$USER_HOME$/Workspaces/WORKSPACE [E SE]/libgdx/CanyonBunny/CanyonBunny-android/assets" />
     </root>
   </artifact>
 </component>

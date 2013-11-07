@@ -498,7 +498,7 @@ public class Map extends GameObject {
                     objects.get(j).put("width", "" + qW);
                     objects.get(j).put("height", "" + qH);
                     objects.get(j).put("x", "" + qX);
-                    objects.get(j).put("y", "" + (mapHeight - qH - qY));
+                    objects.get(j).put("y", "" +   qY);
 //
 //                    TmxMapObject o = new TmxMapObject();
 //                    objects.get(j).getProperties().put("width", qW);
