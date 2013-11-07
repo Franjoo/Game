@@ -16,9 +16,15 @@ public class Node implements Comparable {
 
 
     /** The path cost for this node */
-    private int cost;
+    private float cost;
+
+
+
     /** The parent of this node, how we reached it in the search */
     protected Node parent;
+
+
+
     /** The heuristic cost of this node */
     private float heuristic;
     /** The search depth of this node */
@@ -35,11 +41,11 @@ public class Node implements Comparable {
         this.x = x;
         this.y = y;
     }
-    public int getCost() {
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 
@@ -65,6 +71,18 @@ public class Node implements Comparable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public float getHeuristic() {
+        return heuristic;
+    }
+
+    public void setHeuristic(float heuristic) {
+        this.heuristic = heuristic;
+    }
+
+    public Node getParent() {
+        return parent;
     }
 
     /**
@@ -97,4 +115,6 @@ public class Node implements Comparable {
             return 0;
         }
     }
+
+
 }

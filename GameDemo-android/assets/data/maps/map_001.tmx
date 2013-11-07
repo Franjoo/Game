@@ -6,9 +6,17 @@
  </properties>
  <tileset firstgid="1" name="grass_9" tilewidth="32" tileheight="32">
   <image source="grass_9.png" width="512" height="640"/>
+  <tile id="3">
+   <properties>
+    <property name="blocked" value=""/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="321" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="128" height="128"/>
+  <terraintypes>
+   <terrain name="Neues Terrain erzeugen" tile="-1"/>
+  </terraintypes>
   <tile id="4">
    <properties>
     <property name="spawn" value=""/>
@@ -17,7 +25,7 @@
  </tileset>
  <layer name="ground" width="100" height="16">
   <data encoding="base64" compression="zlib">
-   eJztVkFywjAM9JfSUu5pS+6mLfdQ4P9PqDNkZ5ZFkp30Gs9oMI4ty1pJq5S2sY1teKMr8lLktciuyFuRfbA+FMlF+ll4X0f/s6FjLPIpMpJkQyfu9tb6+ex5xVt6x058h97fIpeKT06G/My/h3kP9u+De5e+4US+6wzBmdHBw1rDm1kv74mwyP/AA2e9GGjFY/LJzZDr/Ku4dI4v1uDBuuATK1fUj54N+mbLP5YtrVgMwTfOyxoeGm/Y8zUL7L8ab1JckNMteHi2AwvoAgY5eA+vRTao/Vy3PL05Pftrad3Fec+u6Y5jxSfAYy/rVr0DLjm408KjVh+OhMPYqDuywcqRGpe01pJa3Y3w9OwFnswb0/xA69inGHFetuDhxaXWhzHV36N8cnZ8DIynOPtO97yOfDHpeC/yke49wWEFHreF9nv8Da5g/mauUC4fUhxDlm+UD6z6oHWxFQ+v77L0RrVK8VuKx0XubeEsxgI4sL1XWgc2yuWcM9YdVo4yJ0A8n53meUu9Oqb2mhXpXNKHtuJh9YtRL1XrjRUj4MI5U8ODfc99jlUfhvTY20V4qA8j7oxi3rMl8p33Tfsg7lG4PkRczr5QLKP4BTaez7R3RW3K6ZHD2VeIE45RtR9z1bE2P9bUqlY+R18H2aWYT/UOxbI39GvOWDr5PPdM4OyIN3iN9SB+cV9Lb1rDA/MlfZXXn1l8jvoFAR7Kp56+bAjra+XH2nnNYw8f1qN5oPstP43pOfZ5j1czvZyHrezHWhxYNYf5tAWXGgY1ftzGNrbhjz/t4TsD
+   eJztVkFywjAMdJ+UlnIPLbmbttxDgf8/oc7gHRYhyUp6jWc0GMeWZa2kVUrrWMc6rNEVeS3yVmRT5L3I1lkfiuQifRXe19H/rOgYi3wKGUmyohN3W2t9PXta8JbesBPfofe3yLnhk6MiP/V3X/dg/9a5d+4bjuS7ThGcGQ08tDW8mfXyHg+L/A88cNaKgSgek0+uilzqr8SlM3yxBA/WBZ9ouSL9aNkg36z5R7MlisXgfOO8bOEh4w17vqrA/ovyJokLcjqCh2U7sIAuYJCd9/CaZ4O0n+uWpTenZ3/Nrbs4b9k13XFo+AR4bMW6Vu+AS3bu1PDgtd3LXeD/A+EwBnV7Nmg50uKSaC1p1V0PT8te4Mm8Mc33tI59EiPOywgeMi4ZD47JMbXfI/nkZPgYGE9x9p1uee35YtKxK/KRbj3BfgEe15n2W/wNrmD+Zq6QXD4kP4Y03zAfMB5eXYziYfVdml6vVkn85uJxFvdGOIuxAA5s74XWgY3kcs4Z7Q4tR5kTIJbPjnUeqVeHFK9Zns45fWgUD61f9HqpVm8sMQIunDMtPNj33Odo9WFIj72dh4f0ocedXsxbtni+s77JPoh7FK4PHpezLySWXvwCG8tnsncFT+T0yOHsK8QJx6i0H3OpY2l+LKlVUT5HXwfZJJ1PrTsklr2iX+aMppPPc88EzpZ9JevlNdaD+MV9kd60hQfmc/oqqz/T+Bz1CwI8JJ9a+rIirC/Kj63zMo8tfFiPzAO5X/PTmJ5jn/dYNdPKedjKfmzFgVZzmE8juLQwaPHjOtaxDnv8AZWWO2g=
   </data>
  </layer>
  <layer name="grass_1" width="100" height="16">
@@ -60,7 +68,7 @@
    eJztljcOwkAQRVeCG8CFTeqJPbEn9sSeeB5eY0HhNcPuCmyYJ73Oskff6/GPjDEVrGIN69gwSmgiI8u5iS1sYwe72PvQjFlGmp8Uac59HOAQRzjGScJ1BSx6zJM3Qp9Tac5TnOEcF7jEVcJ1JSx7zJM3pPlJkea8xg1ucYd7PKTcN/KYKU/Y8nPdE9Kcj3jCM17wijeH5/0atvxc90T8HjVnN1zPqa0H/Nu+zwraV7NF6B7wivg7fkb34ANpj1LCkdax3u2rij9p/2btq4qiKMo3uANFQWKI
   </data>
  </layer>
- <objectgroup draworder="topdown" name="$i.ImageLayer" width="100" height="16" opacity="0.9">
+ <objectgroup name="$i.ImageLayer" width="100" height="16" opacity="0.97">
   <object type="tree" x="0" y="0" width="192" height="192"/>
   <object type="tree" x="1440" y="96" width="192" height="192"/>
   <object type="tree" x="1344" y="160" width="192" height="192"/>
@@ -73,7 +81,7 @@
  </objectgroup>
  <layer name="$c.CollisinLayer" width="100" height="16">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+   eJzt0bEJACAQBMEH7UBLsv+afIzMBTWYgc0PLgIAgJtKVrPxeghLy3r44xdjCwAA4MQETKwBgw==
   </data>
  </layer>
 </map>

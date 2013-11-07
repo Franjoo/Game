@@ -1,5 +1,7 @@
 package com.angrynerds.ai.pathfinding;
 
+import com.angrynerds.gameobjects.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Sebastian
@@ -7,5 +9,8 @@ package com.angrynerds.ai.pathfinding;
  * Time: 15:35
  * To change this template use File | Settings | File Templates.
  */
-public class AStarHeuristic {
+public interface AStarHeuristic {
+
+    public float getCost(Map map, int TYPE, int x, int y, int tx, int ty);
+
 }

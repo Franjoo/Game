@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class SortedList{
 
-    private ArrayList list;
+    private ArrayList list = new ArrayList();
 
     public SortedList(){
 
@@ -53,5 +53,10 @@ public class SortedList{
 
     public boolean contains(Object o) {
         return list.contains(o);
+    }
+
+    public Object getByIndex(int i){
+        return list.get(i);
+
     }
 }
