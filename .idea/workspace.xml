@@ -38,7 +38,7 @@
     <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382883314641" ignored="false" />
     <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
     <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382887794760" ignored="false" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383846160418" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383846175457" ignored="false" />
     <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382956317349" ignored="false" />
     <file path="/AStarPathFinding.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383841511406" ignored="false" />
     <file path="/Path.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383834351180" ignored="false" />
@@ -728,7 +728,11 @@
       <created>1383846169175</created>
       <updated>1383846169175</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Pathfinding implementation">
+      <created>1383846177934</created>
+      <updated>1383846177934</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
