@@ -1,6 +1,7 @@
 package com.angrynerds.game;
 
 import com.angrynerds.camera.CameraHelper.CameraHelper;
+import com.angrynerds.gameobjects.Enemie;
 import com.angrynerds.gameobjects.Map;
 import com.angrynerds.gameobjects.Player;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,6 +18,7 @@ public class World {
     public Map map;
     public Background background;
     private Player player;
+    private Enemie enemie;
 
     public OrthographicCamera camera;
     public CameraHelper cameraHelper;
@@ -33,8 +35,10 @@ public class World {
         cameraHelper.applyTo(camera);
 
         player = new Player(camera,this);
-        map = new Map(this, player);
+        enemie = new Enemie(this,player);
+        map = new Map(this, player,enemie);
         background = new Background(this);
+
 
 
         cameraHelper.setTarget(player);
