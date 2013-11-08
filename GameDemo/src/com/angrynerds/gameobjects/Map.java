@@ -56,6 +56,7 @@ public class Map extends GameObject {
     private OrthographicCamera camera;
     private Player player;
     private World world;
+    private Enemie enemie;
 
     private float pOldX;
     private float pOldY;
@@ -89,10 +90,13 @@ public class Map extends GameObject {
     private TextureAtlas atlas;
     private TextureRegion reg_tree;
 
+    private boolean[][] visited;
 
-    public Map(World world, Player player) {
+
+    public Map(World world, Player player,Enemie enemie) {
         this.player = player;
         this.world = world;
+        this.enemie = enemie;
 
         camera = world.camera;
 
@@ -101,6 +105,7 @@ public class Map extends GameObject {
         instance = this;
 
         player.init();
+        enemie.init();
     }
 
     public static Map getInstance() {
@@ -138,6 +143,7 @@ public class Map extends GameObject {
         mapHeight = numTilesY * tileHeight;
         offsetX = qOffSetX;
         offsetY = qOffSetY;
+        visited = new boolean[this.mapWidth][this.mapHeight];
 
         dimension.x = mapWidth;
         dimension.y = mapHeight;
@@ -347,6 +353,7 @@ public class Map extends GameObject {
 
 
         player.render(batch);
+        enemie.render(batch);
 
 
         for (int i = 0; i < mapObjects.size; i++) {
@@ -400,6 +407,7 @@ public class Map extends GameObject {
     public void update(float deltaTime) {
 
         player.update(deltaTime);
+        enemie.update(deltaTime);
         renderer.setView(camera);
 
     }
@@ -423,12 +431,12 @@ public class Map extends GameObject {
     }
 
     public Array<Rectangle> getCollisionObjects(final float x, final float y) {
-        if (qArray.size != 0) qArray.clear();
+      Array<Rectangle> qArray = new Array<Rectangle>();
         for (int i = 0; i < collisionObjects.size; i++) {
             if (collisionObjects.get(i).contains(x, y)) {
                 qArray.add(collisionObjects.get(i));
             }
-        }
+       }
         return qArray;
     }
 
@@ -476,6 +484,11 @@ public class Map extends GameObject {
             return copy;
         }
     }
+    public int getTileByPixel(int x,int y){
+        return 0;
+
+    }
+
 
     private void flipObjectLayerRectangles(Array<HashMap<String, String>> objects, final int flipKind) {
         if (objects.size == 0) {
@@ -630,6 +643,15 @@ public class Map extends GameObject {
 
     public int getOffsetY() {
         return offsetY;
+    }
+
+    public void pathFinderVisited(int x, int y) {
+
+        visited[x][y] = true;
+    }
+
+    public boolean visited(int x, int y) {
+        return visited[x][y];
     }
 
     //</editor-fold>
