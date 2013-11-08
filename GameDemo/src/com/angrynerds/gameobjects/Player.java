@@ -1,5 +1,8 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.ai.pathfinding.AStarPathFinder;
+import com.angrynerds.ai.pathfinding.ClosestHeuristic;
+import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.game.PlayController;
 import com.angrynerds.game.World;
 import com.angrynerds.game.screens.PlayScreen;
@@ -50,7 +53,12 @@ public class Player extends GameObject {
     private float aY;
     private float z;
 
+    private Path path;
+    private AStarPathFinder pf;
+
     private Texture outline;
+    private Pixmap pm;
+    private Texture tm;
 
     public Player(PlayScreen playScreen) {
         super();
@@ -84,9 +92,9 @@ public class Player extends GameObject {
 
         map = Map.getInstance();
 
-        position.x = map.getSpawn().x;
-        position.y = map.getSpawn().y;
-
+        position.x = map.getSpawn().x+150;
+        position.y = map.getSpawn().y+150;
+             System.out.println("Position" + position.x+"   " + position.y);
         dimension.x = 32;
         dimension.y = 32;
 
@@ -112,9 +120,20 @@ public class Player extends GameObject {
         p.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
 
         t.draw(p, 0, 0);
+         pm = new Pixmap(2, 2, Pixmap.Format.RGBA8888) ;
 
+
+        pm.setColor(1,1,0,1);
+        pm.fillRectangle((int) origin.x, (int) origin.y,2,2);
+        pm.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
+        pm.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
+        tm = new Texture(pm.getWidth(), pm.getHeight(), Pixmap.Format.RGBA8888);
+        tm.draw(pm,0,0);
+        setTexture(tm);
         setTexture(t);
 
+        pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
+        path = pf.findPath(1,(int) position.x,(int) position.y,(int )map.getSpawn().x, (int)map.getSpawn().y);
 
 //        Pixmap pOutline = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
 //        pOutline.setColor(1, 0, 0, 1);
@@ -161,6 +180,13 @@ public class Player extends GameObject {
 
         batch.begin();
         batch.draw(getTexture(), getX(), getY());
+
+        for(int i = 0; i<path.getLength();i++) {
+
+            batch.draw(tm, path.getStep(i).getX(),path.getStep(i).getY());
+
+        }
+
 //        draw(batch);
         batch.end();
 
@@ -168,11 +194,11 @@ public class Player extends GameObject {
 //        draw(i.);
 
 //        batch.begin();
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            TouchInput i = (TouchInput) input;
-            i.ui.render(batch);
+       // if (Gdx.app.getType() == Application.ApplicationType.Android) {
+        //    TouchInput i = (TouchInput) input;
+      //      i.ui.render(batch);
 //        batch.end();
-        }
+    //    }
 //        batch.end();
 //        batch.draw(getTexture(), position.x, position.y, origin.x, origin.y, dimension.x / 4, dimension.y / 4,
 //                scale.x, scale.y);
