@@ -133,7 +133,10 @@ public class Player extends GameObject {
         setTexture(t);
 
         pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
-        path = pf.findPath(1,(int) position.x,(int) position.y,(int )map.getSpawn().x, (int)map.getSpawn().y);
+        path = pf.findPath(1,(int) (position.x / map.getTileWidth()),(int) (position.y / map.getTileHeight()),(int )(map.getSpawn().x / map.getTileWidth()), (int)(map.getSpawn().y / map.getTileHeight()));
+
+
+
 
 //        Pixmap pOutline = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
 //        pOutline.setColor(1, 0, 0, 1);
@@ -183,7 +186,7 @@ public class Player extends GameObject {
 
         for(int i = 0; i<path.getLength();i++) {
 
-            batch.draw(tm, path.getStep(i).getX(),path.getStep(i).getY());
+            batch.draw(tm, path.getStep(i).getX()*map.getTileWidth(),path.getStep(i).getY()*map.getTileHeight());
 
         }
 

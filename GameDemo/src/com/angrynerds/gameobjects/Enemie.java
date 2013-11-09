@@ -12,6 +12,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.Random;
+import java.util.Timer;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Basti
@@ -33,6 +36,10 @@ public class Enemie extends GameObject {
     private Path path;
     private AStarPathFinder pf;
 
+    private Random random;
+    private Boolean bol = true;
+    private Timer timer;
+
 
 
     public Enemie(PlayScreen playScreen,Player player){
@@ -40,6 +47,7 @@ public class Enemie extends GameObject {
         this.playScreen = playScreen;
         map = playScreen.playController.world.map;
         this.player = player;
+
 
     }
 
@@ -52,16 +60,21 @@ public class Enemie extends GameObject {
 
     public void init(){
         map = Map.getInstance();
+        this.timer = new Timer();
 
 
 
         position.x = 300;
         position.y = 150;
-        dimension.x = 3;
-        dimension.y = 3;
+        dimension.x = 15;
+        dimension.y = 15;
         setOrigin(0,0);
         setPosition(position.x,position.y);
         setSize(dimension.x,dimension.y);
+        pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
+        path = pf.findPath(1,(int) (position.x / map.getTileWidth()),(int) (position.y / map.getTileHeight()),(int )(player.position.x / map.getTileWidth()), (int)(player.position.y / map.getTileHeight()));
+
+        random = new Random();
 
 
         System.out.println("bounds enemie: " + getBoundingRectangle().toString());
@@ -87,7 +100,8 @@ public class Enemie extends GameObject {
     public void render(SpriteBatch batch){
         batch.begin();
         batch.draw(getTexture(), getX(), getY());
-
+        for(int i = 0; i< path.getLength();i++)
+            batch.draw(getTexture(),path.getStep(i).getX()*map.getTileWidth(), path.getStep(i).getY()*map.getTileHeight());
       draw(batch);
         batch.end();
 
@@ -97,11 +111,36 @@ public class Enemie extends GameObject {
     public void update(float deltatime){
       pX = player.position.x;
       pY = player.position.y;
+        /*
+        if(path != null && path.getStep(0) != null)   {
+            setPosition(path.getStep(0).getX(),path.getStep(0).getY());
+           System.out.println(position.x + "     " +position.y);
+               path.removeStep(0);
 
+        }
+         */
+       // path = pf.findPath(1,(int)position.x/map.getTileWidth(),(int)position.y/map.getTileWidth(),(int)player.position.x/map.getTileWidth(),(int)player.position.y/map.getTileHeight());
 
+        if(path != null ){
 
+            // for(int i= 0, len =  path.getLength(); i< len;i++){
+                 if(position.x != path.getStep(0).getX()*map.getTileWidth())    {
+                     if(position.x < path.getStep(0).getX()*map.getTileWidth())
+                     position.x += 1;
+                    else if(position.x > path.getStep(0).getX()*map.getTileWidth())
+                         position.x -= 1;
 
+                 }
 
+                 if(position.y != path.getStep(0).getY()*map.getTileHeight())  {
+                     if(position.y < path.getStep(0).getY()*map.getTileHeight())
+                         position.y += 1;
+                     else if(position.y > path.getStep(0).getY()*map.getTileHeight())
+                         position.y -= 1;
+                 }
+
+                setPosition(position.x,position.y);
+             }
 
 
 

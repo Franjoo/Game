@@ -28,7 +28,9 @@ public class Path {
      * @return The step information, the position on the map.
      */
     public Step getStep(int index) {
-        return (Step) steps.get(index);
+        if(steps.size() > index)
+            return (Step) steps.get(index);
+        return null;
     }
 
     /**
@@ -49,6 +51,11 @@ public class Path {
      */
     public int getY(int index) {
         return getStep(index).getY();
+    }
+
+    public void removeStep(int i){
+
+        steps.remove(i)    ;
     }
 
     /**

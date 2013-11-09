@@ -34,13 +34,13 @@ public class AStarPathFinder {
         this.maxSearchDistance = maxSearchDistance;
         this.allowDiagMovement = allowDiagMovement;
 
-        nodes = new Node[map.getMapWidth()][map.getMapHeight()];
-        System.out.println(map.getMapWidth());
-        for (int x = 0; x < map.getMapWidth(); x++) {
-            for (int y = 0; y < map.getMapHeight(); y++) {
+        nodes = new Node[map.getNumTilesX()][map.getNumTilesY()];
+        for (int x = 0; x < map.getNumTilesX(); x++) {
+            for (int y = 0; y < map.getNumTilesY(); y++) {
                 nodes[x][y] = new Node(x, y);
             }
         }
+
     }
 
     public Path findPath(int enemieType, int sx, int sy, int tx, int ty) {
@@ -52,6 +52,7 @@ public class AStarPathFinder {
       //  }
 
         /** Init A Star */
+
         nodes[sx][sy].setDepth(0);
         nodes[sx][sy].setCost(0);
         closedList.clear();
@@ -79,12 +80,16 @@ public class AStarPathFinder {
                 for (int y = -1; y <= 1; y++) {
                     if (x != 0 && y != 0) {
                         int xp = x + currentNode.getX();
-                        int yp = y + currentNode.getY();
+                       // int yp;
+
+                         int   yp = y + currentNode.getY();
+
 
 
                         if (isValidLocation(1, sx, sy, xp, yp)) {
 
                             float nextStepCost = currentNode.getCost() + getMovementCost();
+
                             Node neighbour = nodes[xp][yp];
                             map.pathFinderVisited(xp, yp);
 
@@ -128,14 +133,14 @@ public class AStarPathFinder {
             target = target.parent;
         }
         path.prependStep(sx,sy);
-        for(int f = 0; f<path.getLength(); f++)
-         System.out.println(path.getStep(f).getX() + "   "  + path.getStep(f).getY());
+
+
         return path;
     }
 
 
     protected boolean isValidLocation(int mover, int sx, int sy, int x, int y) {
-        boolean invalid = ((x < 0) || (y < 0) ); //|| (x >= map.getMapWidth() || (y >= map.getHeight()));
+        boolean invalid = ((x < 0) || (y < 0) ) || (x >= map.getNumTilesX() || (y >= map.getNumTilesY()));
 
         if ((!invalid) && ((sx != x) || (sy != y))) {
             invalid = map.isSolid(x, y);
