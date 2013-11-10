@@ -17,6 +17,7 @@
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="libs_main" level="project" />
+    <orderEntry type="library" name="spine" level="application" />
   </component>
 </module>
 

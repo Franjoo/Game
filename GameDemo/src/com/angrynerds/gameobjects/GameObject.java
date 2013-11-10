@@ -1,32 +1,24 @@
 package com.angrynerds.gameobjects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-
 /**
  * User: Franjo
- * Date: 25.10.13
- * Time: 23:40
- * Project: Main
+ * Date: 07.11.13
+ * Time: 15:13
+ * Project: GameDemo
  */
-public abstract class GameObject extends Sprite {
-    public Vector2 position;
-    public Vector2 dimension;
-    public Vector2 origin;
-    public Vector2 scale;
-    public float rotation;
+public abstract class GameObject {
 
-    public GameObject() {
-        position = new Vector2();
-        dimension = new Vector2(1, 1);
-        origin = new Vector2();
-        scale = new Vector2(1, 1);
-        rotation = 0;
+    protected float x;
+    protected float y;
+    protected float width;
+    protected float height;
+
+    public float getX(){
+        return x;
     }
 
-    public abstract void update(float deltaTime);
-
-    public abstract void render(SpriteBatch batch);
+    public float getY(){
+        return y;
+    }
 
 }

@@ -2,6 +2,7 @@ package com.angrynerds.input.gamepads;
 
 import com.angrynerds.input.IGameInputController;
 import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * User: Franjo
@@ -27,10 +28,13 @@ public class X360Gamepad implements IGameInputController {
     public static final int R3 = 9;
 
     // sticks
-    public static final int STICK_LEFT_X = 1;
-    public static final int STICK_LEFT_Y = 0;
-    public static final int STICK_RIGHT_X = 3;
-    public static final int STICK_RIGHT_Y = 2;
+    private static final float STICK_DEAD = 0.3f;
+    private static final int STICK_LEFT_X = 1;
+    private static final int STICK_LEFT_Y = 0;
+    private static final int STICK_RIGHT_X = 3;
+    private static final int STICK_RIGHT_Y = 2;
+
+    private Vector2 vec2 = new Vector2();
 
     // trigger
     public static final int TRIGGER = 4;
@@ -99,11 +103,21 @@ public class X360Gamepad implements IGameInputController {
 
     //<editor-fold desc="sticks">
     public float stick_left_X() {
-        return c.getAxis(STICK_LEFT_X);
+        if (Math.abs(c.getAxis(STICK_LEFT_X)) > STICK_DEAD) return c.getAxis(STICK_LEFT_X);
+        return 0;
     }
 
     public float stick_left_Y() {
-        return -(c.getAxis(STICK_LEFT_Y));
+        if (Math.abs(c.getAxis(STICK_LEFT_Y)) > STICK_DEAD) return -c.getAxis(STICK_LEFT_Y);
+        return 0;
+    }
+
+    public float stick_left_intensity() {
+//        vec2 = new Vector2(stick_left_X(),stick_left_Y());
+//        System.out.println("vec 2 length :" + vec2.len2());
+        float magnitude = (float) Math.sqrt(stick_left_X() * stick_left_X() + stick_left_Y() * stick_left_Y());
+//        System.out.println(magnitude);
+        return magnitude;
     }
 
     public float stick_right_X() {

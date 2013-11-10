@@ -1,6 +1,8 @@
 package com.angrynerds.game;
 
 import com.angrynerds.game.camera.CameraHelper;
+import com.angrynerds.game.screens.play.PlayController;
+import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.Map;
 import com.angrynerds.gameobjects.Player;
 import com.badlogic.gdx.Gdx;
@@ -15,20 +17,21 @@ public class World {
 
     private Map map;
     private Player player;
-    private Background background;
+    private Layer background;
 
     private OrthographicCamera camera;
+    private PlayController playController;
     private CameraHelper cameraHelper;
 
     /**
      * creates a new World
      *
-     * @param camera Camera that is used for gameplay
      */
-    public World(OrthographicCamera camera) {
+    public World(PlayController playController) {
         Gdx.app.log(TAG, " created");
 
-        this.camera = camera;
+        this.playController = playController;
+        camera = playController.getCamera();
 
         init();
     }
@@ -38,9 +41,9 @@ public class World {
      */
     private void init() {
         // world objects
-        player = new Player(camera, this);
+        player = new Player(playController.getControllerUI());
         map = new Map(this, player);
-        background = new Background(this);
+        background = new Layer(this);
 
         // camera
         cameraHelper = new CameraHelper(this);
@@ -54,8 +57,10 @@ public class World {
      * @param deltaTime time since last frame
      */
     public void update(float deltaTime) {
-        map.update(deltaTime);
         background.update(deltaTime);
+        map.update(deltaTime);
+
+        playController.getControllerUI().update(deltaTime);
     }
 
     /**
@@ -66,10 +71,14 @@ public class World {
     public void render(SpriteBatch batch) {
         cameraHelper.update(Gdx.graphics.getDeltaTime());
 
-        map.render(batch);
         background.render(batch);
+        map.render(batch);
+
+        playController.getControllerUI().render();
 
         cameraHelper.applyTo(camera);
+
+
     }
 
     /**
@@ -89,7 +98,7 @@ public class World {
     /**
      * returns the background
      */
-    public Background getBackground() {
+    public Layer getBackground() {
         return background;
     }
 

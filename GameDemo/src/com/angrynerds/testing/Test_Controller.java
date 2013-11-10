@@ -26,6 +26,8 @@ public class Test_Controller implements ApplicationListener {
             controllers.add(new X360Gamepad(list.get(i)));
             System.out.println(controllers.get(i).getName());
         }
+
+
     }
 
     @Override

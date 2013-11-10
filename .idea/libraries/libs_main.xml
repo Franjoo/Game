@@ -4,11 +4,14 @@
       <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx.jar!/" />
       <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-controllers.jar!/" />
+      <root url="jar://$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl-natives.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/GameDemo/libs/controllers/sources" />
       <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/GameDemo/libs/spine" />
+      <root url="jar://$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -26,9 +26,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 /**
- * represents the Map in which the game is taking place
+ * represents the Map in which the game is taking place.
+ * the Map contains
  */
-public class Map extends GameObject {
+public class Map {
     public static final String TAG = Map.class.getSimpleName();
 
     // constants
@@ -40,9 +41,9 @@ public class Map extends GameObject {
     private static Map instance;
 
     // debug controlls
-    private static final boolean SHOW_TILE_GRID = false;
-    private static final boolean SHOW_COLLISION_SHAPES = false;
-    private static final boolean SHOW_COLLISION_TILES = false;
+    private static final boolean SHOW_TILE_GRID = true;
+    private static final boolean SHOW_COLLISION_SHAPES = true;
+    private static final boolean SHOW_COLLISION_TILES = true;
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
@@ -66,6 +67,11 @@ public class Map extends GameObject {
     private int offsetY;
     public final int borderWidth = 5;
 
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+
     // player relevant subjects
     private Vector2 spawn;
 
@@ -79,7 +85,7 @@ public class Map extends GameObject {
     private TextureAtlas atlas;
 
     // tmx map path
-    private String mapPath = "data/maps/map_01.tmx";
+    private String mapPath = "data/maps/map_02.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
@@ -125,7 +131,7 @@ public class Map extends GameObject {
         renderer.setView(camera);
 
         // create texture atlas
-        atlas = new TextureAtlas("data/maps/atlas_map_01.txt");
+        atlas = new TextureAtlas("data/maps/map_02.txt");
         regionMap = new HashMap<String, TextureRegion>();
 
         // set Texture Filter
@@ -149,13 +155,16 @@ public class Map extends GameObject {
         mapWidth = numTilesX * tileWidth;
         mapHeight = numTilesY * tileHeight;
 
-        dimension.x = mapWidth;
-        dimension.y = mapHeight;
+        // position and size
+        x = 0;
+        y = 0;
+        width = mapWidth;
+        height = mapHeight;
 
 
         // fill collision relevant lists
         collisionTileLayers = getCollisionTileLayers();
-        collisionObjects = flipY(getCollisionObjects());
+        collisionObjects = getCollisionObjects();
         mapObjects = getMapObjects();
 
         // set render layers
@@ -185,8 +194,9 @@ public class Map extends GameObject {
         // get number of render layers
         for (int i = 0; i < map.getLayers().getCount(); i++) {
             MapLayer layer = map.getLayers().get(i);
-            if (!(layer.getName().startsWith("$c") && layer.getName().startsWith("s"))) {
+            if (!layer.getName().startsWith("$c") && !layer.getName().startsWith("$s")) {
                 rl.add(i);
+                System.out.println(layer.getName() + " : " + i);
             }
         }
 
@@ -194,6 +204,7 @@ public class Map extends GameObject {
         renderLayers = new int[rl.size];
         for (int i = 0; i < rl.size; i++) {
             renderLayers[i] = rl.get(i).intValue();
+//            System.out.println("layer: " + rl.get(i).intValue());
         }
     }
 
@@ -267,13 +278,14 @@ public class Map extends GameObject {
 
         // render tiled map layers
         renderer.render(renderLayers);
+//        renderer.render();
 
         // render player
         player.render(batch);
 
         // render map object in which are in foreground
         for (int i = 0; i < mapObjects.size; i++) {
-            if (player.position.y > mapObjects.get(i).y) {
+            if (player.getY() > mapObjects.get(i).getY()) {
                 mapObjects.get(i).render(batch);
             }
         }
@@ -292,7 +304,6 @@ public class Map extends GameObject {
         if (SHOW_COLLISION_TILES) batch.draw(collisionTilesTexture, 0, 0);
 
         batch.end();
-
 
     }
 
@@ -339,6 +350,62 @@ public class Map extends GameObject {
         }
         return qArray;
     }
+
+    public float getXmin(Array<Rectangle> rectangles){
+        if(rectangles.size == 0) throw new IllegalArgumentException("size of rectangle array must not be 0");
+
+        float min = Float.MAX_VALUE;
+        for(Rectangle r: rectangles){
+            if(r.getX() < min) min = r.getX();
+        }
+        return min;
+    }
+
+    public float getYmin(Array<Rectangle> rectangles){
+        if(rectangles.size == 0) throw new IllegalArgumentException("size of rectangle array must not be 0");
+
+        float min = Float.MAX_VALUE;
+        for(Rectangle r: rectangles){
+            if(r.getY() < min) min = r.getY();
+        }
+        return min;
+    }
+
+    public float getXmax(Array<Rectangle> rectangles){
+        if(rectangles.size == 0) throw new IllegalArgumentException("size of rectangle array must not be 0");
+
+        float max = Float.MIN_VALUE;
+        for(Rectangle r: rectangles){
+            if(r.getX() + r.getWidth() > max) max = r.getX() + r.getWidth();
+        }
+        return max;
+    }
+
+    public float getYmax(Array<Rectangle> rectangles){
+        if(rectangles.size == 0) throw new IllegalArgumentException("size of rectangle array must not be 0");
+
+        float max = Float.MIN_VALUE;
+        for(Rectangle r: rectangles){
+            if(r.getY() + r.getHeight()> max) max = r.getY() + r.getHeight();
+        }
+        return max;
+    }
+
+
+    public Array<Rectangle> getCollisionObjects(final float x1, final float y1, final float x2, final float y2) {
+        if (qArray.size != 0) qArray.clear();
+        for (int i = 0; i < collisionObjects.size; i++) {
+            if (collisionObjects.get(i).contains(x1, y1) || collisionObjects.get(i).contains(x2, y2)) {
+                qArray.add(collisionObjects.get(i));
+            }
+        }
+        return qArray;
+    }
+
+    public Array<Rectangle> getCollisionObjects(Vector2 p1, Vector2 p2) {
+        return getCollisionObjects(p1.x, p1.y,p2.x, p2.y);
+    }
+
 
     /**
      * returns an array of rectangles which contains the assigned point
@@ -444,8 +511,8 @@ public class Map extends GameObject {
                 mo.sort(new Comparator<TmxMapObject>() {
                     @Override
                     public int compare(TmxMapObject o1, TmxMapObject o2) {
-                        if (o1.y < o2.y) return 1;
-                        else if (o1.y > o2.y) return -1;
+                        if (o1.getY() < o2.getY()) return 1;
+                        else if (o1.getY() > o2.getY()) return -1;
                         else return 0;
                     }
                 });
@@ -506,7 +573,7 @@ public class Map extends GameObject {
     }
 
 
-    //***** DRAW METHODS *****/
+    //***** DRAW METHODS *****//
 
     /**
      * draws the tile grid of the tmx tile map
@@ -537,10 +604,11 @@ public class Map extends GameObject {
                     TiledMapTileLayer layer = (collisionTileLayers.get(j));
                     TiledMapTileLayer.Cell cell = layer.getCell(w, h);
                     if (cell != null) {
+                        Rectangle r = flipY(new Rectangle(w * tileWidth, h * tileHeight, tileWidth, tileHeight));
                         p.setColor(color_outline);
-                        p.drawRectangle(w * tileWidth, h * tileHeight, tileWidth, tileHeight);
+                        p.drawRectangle((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
                         p.setColor(color_fill);
-                        p.fillRectangle(w * tileWidth, h * tileHeight, tileWidth, tileHeight);
+                        p.fillRectangle((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
                     }
                 }
             }
@@ -558,7 +626,7 @@ public class Map extends GameObject {
 
         /* draws the collision rectangles */
         for (int i = 0; i < collisionObjects.size; i++) {
-            Rectangle r = collisionObjects.get(i);
+            Rectangle r = flipY(new Rectangle(collisionObjects.get(i)));
             p.setColor(color_outline);
             p.drawRectangle((int) (r.getX()), (int) (r.getY()), (int) (r.getWidth()), (int) (r.getHeight()));
             p.setColor(color_fill);
@@ -569,6 +637,34 @@ public class Map extends GameObject {
 
     //*** GETTER METHODS ****//
     //<editor-fold desc="getter methods">
+
+    /**
+     * returns x position
+     */
+    public float getX() {
+        return x;
+    }
+
+    /**
+     * returns y position
+     */
+    public float getY() {
+        return y;
+    }
+
+    /**
+     * returns width
+     */
+    public float getWidth() {
+        return width;
+    }
+
+    /**
+     * returns height
+     */
+    public float getHeight() {
+        return height;
+    }
 
     /**
      * returns the player
@@ -614,6 +710,7 @@ public class Map extends GameObject {
 
     /**
      * returns map height
+     *
      * @return
      */
     public int getMapHeight() {

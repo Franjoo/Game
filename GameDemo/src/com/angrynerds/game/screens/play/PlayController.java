@@ -1,6 +1,7 @@
 package com.angrynerds.game.screens.play;
 
 import com.angrynerds.game.World;
+import com.angrynerds.ui.ControllerUI;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
@@ -13,6 +14,9 @@ public class PlayController {
 
     private World world;
     private OrthographicCamera camera;
+
+    private ControllerUI controllerUI;
+
 
     /**
      * creates an new PlayController
@@ -28,7 +32,9 @@ public class PlayController {
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         camera.update();
 
-        world = new World(camera);
+        controllerUI = new ControllerUI();
+
+        world = new World(this);
     }
 
     /**
@@ -52,5 +58,9 @@ public class PlayController {
      */
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public ControllerUI getControllerUI() {
+        return controllerUI;
     }
 }

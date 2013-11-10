@@ -1,6 +1,7 @@
 package com.angrynerds.game.screens.play;
 
 import com.angrynerds.game.screens.AbstractScreen;
+import com.angrynerds.ui.ControllerUI;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -11,6 +12,7 @@ public class PlayScreen extends AbstractScreen {
 
     private PlayController playController;
     private PlayRenderer playRenderer;
+
 
     private static SpriteBatch batch;
 
@@ -34,6 +36,7 @@ public class PlayScreen extends AbstractScreen {
     private void init() {
         playController = new PlayController();
         playRenderer = new PlayRenderer(playController, batch);
+
     }
 
     /**

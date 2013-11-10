@@ -2,6 +2,7 @@ package com.angrynerds.game.camera;
 
 import com.angrynerds.game.screens.play.PlayController;
 import com.angrynerds.game.World;
+import com.angrynerds.gameobjects.GameObject;
 import com.angrynerds.gameobjects.Map;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
@@ -24,7 +25,7 @@ public class CameraHelper {
 
     private Vector2 position;
     private float zoom;
-    private Sprite target;
+    private GameObject target;
     private Map map;
 
     private World world;
@@ -65,8 +66,10 @@ public class CameraHelper {
             map = Map.getInstance();
         }
 
+        float focusY = 170;
+
         float qX = target.getX();
-        float qY = target.getY();
+        float qY = target.getY() + focusY;
 
         deltaX = qX - position.x;
         deltaY = qY - position.y;
@@ -138,13 +141,13 @@ public class CameraHelper {
         return zoom;
     }
 
-    public void setTarget(Sprite target) {
+    public void setTarget(GameObject target) {
         this.target = target;
         position.x = Constants.VIEWPORT_WIDTH/2;
         position.y = Constants.VIEWPORT_HEIGHT/2;
     }
 
-    public Sprite getTarget() {
+    public GameObject getTarget() {
         return target;
     }
 

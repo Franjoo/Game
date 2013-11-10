@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
  * Time: 13:12
  * Project: Main
  */
-public class ControllUI implements IGameInputController {
+public class DeprecatedControllUI implements IGameInputController {
 
     private  Sprite sprite;
     // stage
@@ -39,7 +39,7 @@ public class ControllUI implements IGameInputController {
     private Button btn_A;
     private Button btn_B;
 
-    public ControllUI(Camera camera) {
+    public DeprecatedControllUI(Camera camera) {
         stage = new Stage(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, true);
         stage.setCamera(camera);
 
