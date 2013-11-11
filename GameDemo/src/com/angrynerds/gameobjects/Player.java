@@ -1,5 +1,8 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.ai.pathfinding.AStarPathFinder;
+import com.angrynerds.ai.pathfinding.ClosestHeuristic;
+import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.game.PlayController;
 import com.angrynerds.game.World;
 import com.angrynerds.game.screens.PlayScreen;
@@ -21,6 +24,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import javax.swing.text.DefaultEditorKit;
+import java.util.ArrayList;
 
 /**
  * User: Franjo
@@ -33,16 +37,28 @@ public class Player extends GameObject {
 
     private final float epsilon = Constants.EPSILON;
 
+    private static Player instance;
+
     private IGameInputController input;
     private PlayScreen playScreen;
     private Camera camera;
     private Map map;
     private World world;
 
-    private float vX = 5 * 60;
-    private float vY = 5 * 60;
+    private float vX;
+    private float vY;
+    private float vX_MAX = 3.2f * 60;
+    private float vY_MAX = 3.2f * 60;
     private float aX;
     private float aY;
+    private float z;
+
+    private Path path;
+    private AStarPathFinder pf;
+
+    private Texture outline;
+    private Pixmap pm;
+    private Texture tm;
 
     public Player(PlayScreen playScreen) {
         super();
@@ -51,38 +67,95 @@ public class Player extends GameObject {
         map = playScreen.playController.world.map;
         camera = playScreen.playController.camera;
 
-        init();
+//        init();
     }
+
+//    public static Player getInstance(){
+//        if(instance == null){
+//            instance = new Player()
+//        }
+//    }
 
     public Player(Camera camera, World world) {
         super();
 
         this.camera = camera;
-
         this.world = world;
-        map = world.map;
 
-        init();
+//        map = world.
+////        map = world.map;
+//
+////        init();
     }
 
-    private void init() {
+    public void init() {
+
+        map = Map.getInstance();
+
+        position.x = map.getSpawn().x+150;
+        position.y = map.getSpawn().y+150;
+             System.out.println("Position" + position.x+"   " + position.y);
+        dimension.x = 32;
+        dimension.y = 32;
+
+        setPosition(position.x, position.y);
+        setSize(dimension.x, dimension.y);
+
+//        setBounds(position.x, position.y, dimension.x, dimension.y);
+
+        System.out.println("bounds: " + getBoundingRectangle().toString());
+
+        setOrigin(0, 0);
 
         // draw rectangular shape
-        Pixmap p = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
-        p.setColor(0, 0, 0, 1);
-        p.drawRectangle(0, 0, 32, 32);
+        Pixmap p = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
+        Texture t = new Texture(p.getWidth(), p.getHeight(), Pixmap.Format.RGBA8888);
 
-        setTexture(new Texture(p));
-        setSize(32, 32);
+        p.setColor(0, 0, 0, 1);
+        p.fillRectangle(0, 0, (int) getWidth(), (int) getHeight());
+        p.setColor(1, 1, 1, 1);
+        p.fillRectangle((int) origin.x, (int) origin.y, 5, 5);
+        p.setColor(1, 0, 0, 1);
+        p.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
+        p.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
+
+        t.draw(p, 0, 0);
+         pm = new Pixmap(2, 2, Pixmap.Format.RGBA8888) ;
+
+
+        pm.setColor(1,1,0,1);
+        pm.fillRectangle((int) origin.x, (int) origin.y,2,2);
+        pm.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
+        pm.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
+        tm = new Texture(pm.getWidth(), pm.getHeight(), Pixmap.Format.RGBA8888);
+        tm.draw(pm,0,0);
+        setTexture(tm);
+        setTexture(t);
+
+        pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
+        path = pf.findPath(1,(int) (position.x / map.getTileWidth()),(int) (position.y / map.getTileHeight()),(int )(map.getSpawn().x / map.getTileWidth()), (int)(map.getSpawn().y / map.getTileHeight()));
+
+
+
+
+//        Pixmap pOutline = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
+//        pOutline.setColor(1, 0, 0, 1);
+////        t.getTextureData().prepare();
+//        pOutline.drawPixmap(t.getTextureData().consumePixmap(), 0, 0);
+//        Texture o = new Texture(32,32, Pixmap.Format.RGBA8888);
+//        o.draw(pOutline,0,0);
+////        t.draw(pOutline, 0, 0);
+//        setTexture(o);
+//        setSize(32, 32);
 //        position.x = Constants.VIEWPORT_WIDTH / 2 + 50;
 //        position.y = Constants.VIEWPORT_HEIGHT / 2;
 
-        position.x = 0;//Constants.VIEWPORT_WIDTH / 2 + 50;
-        position.y = 0;//Constants.VIEWPORT_HEIGHT / 2;
-
-        dimension.x = getTexture().getWidth();
-        dimension.y = getTexture().getHeight();
-        setOrigin(0, 0);
+//        position.x = 0;//Constants.VIEWPORT_WIDTH / 2 + 50;
+//        position.y = 0;//Constants.VIEWPORT_HEIGHT / 2;
+//
+//        dimension.x = getTexture().getWidth();
+//        dimension.y = getTexture().getHeight();
+//        setOrigin(0, 0);
 
         // input
         if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
@@ -101,24 +174,34 @@ public class Player extends GameObject {
         // some basic init assertions
         assert (input != null) : (TAG + ": input must not be null");
 
+        System.out.println("DIMENSION:" + dimension.x + " " + dimension.y);
+
     }
 
     @Override
     public void render(SpriteBatch batch) {
 
         batch.begin();
-        draw(batch);
+        batch.draw(getTexture(), getX(), getY());
+
+        for(int i = 0; i<path.getLength();i++) {
+
+            batch.draw(tm, path.getStep(i).getX()*map.getTileWidth(),path.getStep(i).getY()*map.getTileHeight());
+
+        }
+
+//        draw(batch);
         batch.end();
 
 
 //        draw(i.);
 
 //        batch.begin();
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            TouchInput i = (TouchInput) input;
-            i.ui.render(batch);
+       // if (Gdx.app.getType() == Application.ApplicationType.Android) {
+        //    TouchInput i = (TouchInput) input;
+      //      i.ui.render(batch);
 //        batch.end();
-        }
+    //    }
 //        batch.end();
 //        batch.draw(getTexture(), position.x, position.y, origin.x, origin.y, dimension.x / 4, dimension.y / 4,
 //                scale.x, scale.y);
@@ -130,17 +213,24 @@ public class Player extends GameObject {
 
 //        System.out.println("P: " + position.x + ", " + position.y);
 
-        vX = input.get_stickX() * deltaTime * 5 * 60;
-        vY = input.get_stickY() * deltaTime * 5 * 60;
+        vX = input.get_stickX() * deltaTime * vX_MAX;
+        vY = input.get_stickY() * deltaTime * vY_MAX;
+
 
         setCollisionPosition();
 
 //        position.x += vX * deltaTime * input.get_stickX();
 //        position.y += vY * deltaTime * input.get_stickY();
 
+
         setPosition(position.x, position.y);
     }
 
+    /**
+     * detects whether the player collides with a solid
+     * and sets his position depending on the solids
+     * position and dimension
+     */
     private void setCollisionPosition() {
 
         /* --- COLLISION DETECTION --- */
@@ -148,6 +238,18 @@ public class Player extends GameObject {
         // helper variables
         float qX = position.x + vX;
         float qY = position.y + vY;
+
+
+        /* MAP COLLISION */
+        if (qX < map.position.x + map.borderWidth)
+            qX = map.position.x + map.borderWidth;
+        else if (qX + dimension.x > map.position.x + map.dimension.x - map.borderWidth)
+            qX = map.position.x + map.dimension.x - map.borderWidth - dimension.x;
+        if (qY > map.dimension.y - map.borderWidth - 64)// map.getOffsetX() * map.getTileHeight())
+            qY = map.dimension.y - map.borderWidth - 64;//map.getOffsetX() * map.getTileHeight();
+        else if (qY < map.getY() + map.borderWidth + 64)
+            qY = map.getY() + map.borderWidth + 64;
+
 
 
         /* COLLIDED TILES */
@@ -201,16 +303,105 @@ public class Player extends GameObject {
             }
         }
 
-        /* COLLIDED OBJECTS */
-        Array<Rectangle> r = map.getCollisionObjects(position.x,position.y);
-
-        if(r.size != 0){
-            System.out.println("collided!");
+        /* object collision test */
+//        ArrayList<Rectangle> rects = new ArrayList<Rectangle>();
+//        Rectangle[] rects = new Rectangle[10];
+        if (map.getCollisionObjects(position.x, position.y).size != 0) {
+            System.out.println("bl");
         }
+
+        if (map.getCollisionObjects(position.x + dimension.x, position.y).size != 0) {
+            System.out.println("br");
+        }
+
+        if (map.getCollisionObjects(position.x, position.y + dimension.y).size != 0) {
+            System.out.println("tl");
+        }
+
+        if (map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y).size != 0) {
+            System.out.println("tr");
+        }
+//        Array<Rectangle> rectList = map.getCollisionObjects(position.x, position.y + dimension.y); // bl
+//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y)); // br
+//        rectList.addAll(map.getCollisionObjects(position.x, position.y + dimension.y)); // tl
+//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y)); // tr
+//
+////        for (int i = 0; i < map.getCollisionObjects(position.x, position.y).size; i++) {
+////            rectList.add(map.getCollisionObjects(position.x, position.y).get(i));
+////        }
+////        rectList.addAll(map.getCollisionObjects(position.x,position.y));
+//        if (rectList.size != 0) {
+//            System.out.println("collides");
+//        }
+
+
+//        /* COLLIDED OBJECTS */
+//        Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
+//
+//        if (vX < 0) {
+//            if (qX == position.x) {
+//                float _x = Float.MIN_VALUE;
+//                rectList = map.getCollisionObjects(qX, position.y + dimension.y);
+////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
+//                if (rectList.size != 0) System.out.println("collides");
+//
+//                for (int i = 0; i < rectList.size; i++) {
+//                    Rectangle r = rectList.get(i);
+//                    System.out.println(r.getX() + " " + r.getY() + " " + r.getWidth() + " " + r.getHeight());
+////                    System.out.println(rectLis);
+//                    if (rectList.get(i).getX() + rectList.get(i).getWidth() > _x) {
+//                        _x = rectList.get(i).getX() + rectList.get(i).getWidth();
+//                    } else {
+//                        position.x = _x;
+//
+//                    }
+////                    rectList = map.getCollisionObjects(position.x, position.y);
+////                    rectList.addAll(map.getCollisionObjects(position.x, position.y - dimension.y));
+//                }
+//
+//            }
+//        }
+
+//        Array<Rectangle> r = null;
+//        // bottom left
+//        if (vX < 0) {
+//            r = map.getCollisionObjects(position.x, position.y);
+//
+//        }
+
+
+//        if (r.size != 0) {
+//            for (int i = 0; i < r.size; i++) {
+//                if (vX < 0) {
+//
+//                }
+//            }
+//            if (vX < 0) {
+//                position.x = r.
+//            }
+//            System.out.println("collided!");
+//        }
 
         //push
 
 
+    }
+
+    public float getvX() {
+        return vX;
+    }
+
+    public float getvY() {
+        return vY;
+    }
+
+    public float getvX_MAX() {
+        return vX_MAX;
+    }
+
+    public float getvY_MAX() {
+        return vY_MAX;
     }
 
     private void log() {

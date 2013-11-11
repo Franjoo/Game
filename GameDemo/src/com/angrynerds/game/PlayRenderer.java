@@ -38,7 +38,7 @@ public class PlayRenderer {
 //        playController.player.draw(batch);
 //        batch.begin();
 
-        playController.player.render(batch);
+//        playController.player.render(batch);
 //        batch.end();
 
 //        controllUI.render();
