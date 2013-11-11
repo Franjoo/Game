@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="GameDemo:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/goblins.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/goblins.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/goblins.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy-diffuse.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy-diffuse.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy-diffuse.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy-normal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy-normal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy-normal.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/AnimationStateTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/Box2DExample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllerUI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/CreatureTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/EventTimelineTests.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/logic/GameController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Goblin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Layer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/logic/Main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/mainmenu/MainMenuScreen.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/MixTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/MyButton.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/NormalMapTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayRenderer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayScreen.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/SkeletonTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/WalkTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/goblins.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/goblins.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/goblins.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/goblins.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/goblins.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/goblins.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/goblins.skel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/goblins.skel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/goblins.skel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy-diffuse.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy-diffuse.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy-diffuse.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy.atlas" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/spineboy.skel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spriter/raw/spineboy.skel" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw/spineboy.skel" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\maps\grass_9.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\Background.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\GameController.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\GameRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\Main.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\PlayController.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\PlayRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\screens\MainMenuScreen.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\game\screens\PlayScreen.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/AbstractScreen.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/AbstractScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java" afterPath="$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/spine/com/esotericsoftware/spine/attachments/AttachmentLoader.java" afterPath="$PROJECT_DIR$/GameDemo/libs/spine/com/esotericsoftware/spine/attachments/AttachmentLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/Constants.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/GameDemo-android.iml" afterPath="$PROJECT_DIR$/GameDemo-android/GameDemo-android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/GameDemo-desktop.iml" afterPath="$PROJECT_DIR$/GameDemo-desktop/GameDemo-desktop.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/GameDemo.iml" afterPath="$PROJECT_DIR$/GameDemo/GameDemo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/GameObject.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/GameObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/testing/Test_Controller.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/testing/Test_Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/TmxMapObject.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/TmxMapObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/TouchInput.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/TouchInput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/gamepads/X360Gamepad.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/gamepads/X360Gamepad.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\camera\CameraHelper\CameraHelper.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java" />
+      <change type="MOVED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\gameobjects\GameObject.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/GameDeprObject.java" />
+      <change type="MOVED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\input\TouchInput.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/DeprecatedTouchInput.java" />
+      <change type="MOVED" beforePath="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\ui\ControllUI.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/DeprecatedControllUI.java" />
+    </list>
+    <ignored path="GameDemo.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/fragment.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383906360458" ignored="false" />
+    <file path="/GameDemo.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382819627693" ignored="false" />
+    <file path="/Xbox360Controller.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382781974006" ignored="false" />
+    <file path="/Test_Controller.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383743943793" ignored="false" />
+    <file path="/Main.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383775020370" ignored="false" />
+    <file path="/GameInputController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382737043870" ignored="false" />
+    <file path="/GameObject.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383834795228" ignored="false" />
+    <file path="/Player.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383838695257" ignored="false" />
+    <file path="/Keyboard.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382783097380" ignored="false" />
+    <file path="/Constants.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383653455144" ignored="false" />
+    <file path="/TouchInput.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383836522878" ignored="false" />
+    <file path="/ControllUI.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382886581559" ignored="false" />
+    <file path="/MainActivity.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789182848" ignored="false" />
+    <file path="/UIController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382789524818" ignored="false" />
+    <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383865578182" ignored="false" />
+    <file path="/GameRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383151824556" ignored="false" />
+    <file path="/GameController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383416637259" ignored="false" />
+    <file path="/PlayScreen.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383838060685" ignored="false" />
+    <file path="/AbstraceScreen.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382823058332" ignored="false" />
+    <file path="/AbstractScreen.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383413176259" ignored="false" />
+    <file path="/MainMenuScreen.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382867373155" ignored="false" />
+    <file path="/map_000.tmx" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382915753126" ignored="false" />
+    <file path="/PlayController.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383839127912" ignored="false" />
+    <file path="/World.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383839194877" ignored="false" />
+    <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383418093970" ignored="false" />
+    <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
+    <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383834828899" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384165469635" ignored="false" />
+    <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383560023311" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044698334" ignored="false" />
+    <file path="/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044688488" ignored="false" />
+    <file path="/verz.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383037296529" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/verz.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383037301030" ignored="false" />
+    <file path="/MapObject.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383157989499" ignored="false" />
+    <file path="/TmxMapObject.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383565541147" ignored="false" />
+    <file path="/DesktopStarter.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383737263266" ignored="false" />
+    <file path="/Background.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383771741033" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/ImageSnipper/src/MainFrame.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383227811517" ignored="false" />
+    <file path="/MainFrame.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383227800716" ignored="false" />
+    <file path="/atlas_map_01.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383332389833" ignored="false" />
+    <file path="C:/xampp/htdocs/cg/cg2-a01/bezier_curve.js" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383559167824" ignored="false" />
+    <file path="C:/xampp/htdocs/cg/cg2-a01/html_controller.js" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383557296226" ignored="false" />
+    <file path="C:/xampp/htdocs/cg/.gitignore" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383557694479" ignored="false" />
+    <file path="/.gitignore" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383557690631" ignored="false" />
+    <file path="/bezier_curve.js" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383559167824" ignored="false" />
+    <file path="$USER_HOME$/Desktop/FrameTest/src/Fenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383572381316" ignored="false" />
+    <file path="/Fenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383572355822" ignored="false" />
+    <file path="/SkeletonTest.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383682719234" ignored="false" />
+    <file path="/AnimationStateTest.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383740081869" ignored="false" />
+    <file path="/MixTest.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383683739234" ignored="false" />
+    <file path="/Run.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383694509712" ignored="false" />
+    <file path="/WalkTest.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383694242492" ignored="false" />
+    <file path="/X360Gamepad.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383764907060" ignored="false" />
+    <file path="/Layer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383774882705" ignored="false" />
+    <file path="/Creature.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383863550173" ignored="false" />
+    <file path="/ControllerUI.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383841685458" ignored="false" />
+    <file path="/CreatureTest.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383864174030" ignored="false" />
+    <file path="/Goblin.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383864474536" ignored="false" />
+    <file path="/Boy.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383864482883" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383906318813" ignored="false" />
+    <file path="/beziercurve.js" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384161040080" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Computergrafik II/CG2/cg2-a01/beziercurve.js" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384161040488" ignored="false" />
+    <file path="/AStarPathFinder.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384165171845" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="GameDemo" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Map.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="13" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Layer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Layer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="37" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DesktopStarter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="52" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NormalMapTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/NormalMapTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="128" column="63" selection-start="5445" selection-end="5445" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Skeleton.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/Skeleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="14" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AStarPathFinder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="8" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Enemie.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="198" column="43" selection-start="7414" selection-end="7414" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShaderProgram.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/glutils/ShaderProgram.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="13" selection-start="2684" selection-end="2684" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Creature.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="6" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Boy.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="82" selection-start="796" selection-end="796" vertical-scroll-proportion="0.569395">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="testbranch" />
+      </map>
+    </option>
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/CreatureTest.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
+        <option value="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/SkeletonTest.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Goblin.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Creature.java" />
+        <option value="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/CreatureTest.java" />
+        <option value="$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Goblin.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
+        <option value="$PROJECT_DIR$/GameDemo-android/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java" />
+        <option value="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java" />
+        <option value="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/NormalMapTest.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages ProjectPane="true" />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angrynerds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angrynerds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gameobjects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angrynerds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gameobjects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creatures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="153" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="152" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="158" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GameDemo/libs/controllers/gdx-controllers.jar!/" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="153" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="832" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="819" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="153" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="147" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.angrynerds.game" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\spriter" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\buttons" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.angrynerds.gameobjects" />
+      <recent name="com.angrynerds.game" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\ui" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-desktop\src\spine_tests\com\esotericsoftware\spine\raw" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-desktop\src\spine_tests\com\esotericsoftware\spine" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\libs\spine" />
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\maps" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.NormalMapTest">
+    <configuration default="false" name="MixTest" type="Application" factoryName="Application" folderName="spine" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="spine_tests.com.esotericsoftware.spine.MixTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spine_tests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="NormalMapTest" type="Application" factoryName="Application" folderName="spine" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="spinetests.com.esotericsoftware.spine.NormalMapTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AnimationStateTest" type="Application" factoryName="Application" folderName="spine" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="spinetests.com.esotericsoftware.spine.AnimationStateTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SkeletonTest" type="Application" factoryName="Application" folderName="spine" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="spinetests.com.esotericsoftware.spine.SkeletonTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="CreatureTest" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.angrynerds.game.CreatureTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="EventTimelineTests" type="Application" factoryName="Application" folderName="spine">
+      <option name="MAIN_CLASS_NAME" value="com.esotericsoftware.spine.EventTimelineTests" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spine_tests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="GameDemo-android" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="GameDemo-android" />
+      <option name="ACTIVITY_CLASS" value="com.angrynerds.game.AndroidStarterActivity" />
+      <option name="MODE" value="specific_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="CreatureTest" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="GameDemo-android" />
+      <option name="ACTIVITY_CLASS" value="com.angrynerds.game.CreatureTest" />
+      <option name="MODE" value="specific_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DesktopStarter" type="Application" factoryName="Application" singleton="true">
+      <option name="MAIN_CLASS_NAME" value="com.angrynerds.game.DesktopStarter" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-android/assets" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="WalkTest" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="spinetests.com.esotericsoftware.spine.WalkTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/raw" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GameDemo-desktop" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <list size="10">
+      <item index="0" class="java.lang.String" itemvalue="Application.EventTimelineTests" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MixTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.NormalMapTest" />
+      <item index="3" class="java.lang.String" itemvalue="Application.AnimationStateTest" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SkeletonTest" />
+      <item index="5" class="java.lang.String" itemvalue="Android Application.GameDemo-android" />
+      <item index="6" class="java.lang.String" itemvalue="Android Application.CreatureTest" />
+      <item index="7" class="java.lang.String" itemvalue="Application.DesktopStarter" />
+      <item index="8" class="java.lang.String" itemvalue="Application.WalkTest" />
+      <item index="9" class="java.lang.String" itemvalue="Application.CreatureTest" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.NormalMapTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.CreatureTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.SkeletonTest" />
+        <item index="3" class="java.lang.String" itemvalue="Application.AnimationStateTest" />
+        <item index="4" class="java.lang.String" itemvalue="Application.MixTest" />
+      </list>
+    </recent_temporary>
+    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StatisticProjectComponent">
+    <option name="excludeCompilerOutput" value="true" />
+    <option name="excludeIdea9ArtifactDirectory" value="true" />
+    <option name="excludeTargetDirectories" value="true" />
+    <option name="activateWhenOpenProject" value="true" />
+    <option name="excludedDirectories">
+      <value>
+        <list size="0" />
+      </value>
+    </option>
+    <option name="fileTypes" value="class;svn-base;svn-work;Extra;gif;png;jpg;jpeg;bmp;tga;tiff;ear;war;zip;jar;iml;iws;ipr;bz2;gz;" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value="SHOW_FIELDS" />
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="" />
+      <created>1382721237643</created>
+      <updated>1382721237643</updated>
+    </task>
+    <task id="LOCAL-00001" summary="first intellij push">
+      <created>1382963571792</created>
+      <updated>1382963571792</updated>
+    </task>
+    <task id="LOCAL-00002" summary="map modified">
+      <created>1382991250242</created>
+      <updated>1382991250242</updated>
+    </task>
+    <task id="LOCAL-00003" summary="map modified">
+      <created>1382992563911</created>
+      <updated>1382992563911</updated>
+    </task>
+    <task id="LOCAL-00004" summary="map modified">
+      <created>1382992618076</created>
+      <updated>1382992618076</updated>
+    </task>
+    <task id="LOCAL-00005" summary="modifications">
+      <created>1383054506543</created>
+      <updated>1383054506543</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- subjectLayer added&#10;- camera movement modified&#10;- camera debug controls added">
+      <created>1383136027730</created>
+      <updated>1383136027730</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- class structure changed&#10;- y sorting&#10;- tmxMapObject added&#10;- resources added&#10;- camera modification&#10;">
+      <created>1383159013940</created>
+      <updated>1383159013940</updated>
+    </task>
+    <task id="LOCAL-00008" summary="TmxMapObject creation modified&#10;&#10;">
+      <created>1383159476528</created>
+      <updated>1383159476528</updated>
+    </task>
+    <task id="LOCAL-00009" summary="resources added&#10;&#10;">
+      <created>1383159701173</created>
+      <updated>1383159701173</updated>
+    </task>
+    <task id="LOCAL-00010" summary="tmxMapObject chatter fixed&#10;background added&#10;camera modified&#10;&#10;">
+      <created>1383215796886</created>
+      <updated>1383215796886</updated>
+    </task>
+    <task id="LOCAL-00011" summary="todo added">
+      <created>1383236607520</created>
+      <updated>1383236607520</updated>
+    </task>
+    <task id="LOCAL-00012" summary="project refactored&#10;javadoc added">
+      <created>1383519154990</created>
+      <updated>1383519154990</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44122657" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31439394" sideWeight="0.5587734" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23939393" sideWeight="0.5587734" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44122657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="project refactored&#10;javadoc added" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.4764706" />
+    <MESSAGE value="first intellij push" />
+    <MESSAGE value="map modified" />
+    <MESSAGE value="modifications" />
+    <MESSAGE value="- subjectLayer added&#10;- camera movement modified&#10;- camera debug controls added" />
+    <MESSAGE value="- class structure changed&#10;- y sorting&#10;- tmxMapObject added&#10;- resources added&#10;- camera modification&#10;" />
+    <MESSAGE value="TmxMapObject creation modified&#10;&#10;" />
+    <MESSAGE value="resources added&#10;&#10;" />
+    <MESSAGE value="tmxMapObject chatter fixed&#10;background added&#10;camera modified&#10;&#10;" />
+    <MESSAGE value="todo added" />
+    <MESSAGE value="project refactored&#10;javadoc added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/goblins.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/CreatureTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="73" selection-start="1814" selection-end="1814" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="300" selection-end="582" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="87" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="49" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Goblin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="13" selection-start="856" selection-end="856" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="6" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="13" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="37" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="52" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/glutils/ShaderProgram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="13" selection-start="2684" selection-end="2684" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/NormalMapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="63" selection-start="5445" selection-end="5445" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/Skeleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="14" selection-start="1977" selection-end="1977" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="8" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="198" column="43" selection-start="7414" selection-end="7414" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="82" selection-start="796" selection-end="796" vertical-scroll-proportion="0.569395">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>GameDemo:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Android</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>spine</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>Android 2.2 Platform</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>GameDemo-desktop</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>libs_android</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+

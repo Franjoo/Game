@@ -1,64 +1,124 @@
 package com.angrynerds.game;
 
-import com.angrynerds.camera.CameraHelper.CameraHelper;
-import com.angrynerds.gameobjects.Enemie;
+import com.angrynerds.game.camera.CameraHelper;
+import com.angrynerds.game.screens.play.PlayController;
+import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.Map;
 import com.angrynerds.gameobjects.Player;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- * User: Franjo
- * Date: 27.10.13
- * Time: 12:49
- * Project: GameDemo
+ * represents the World in which the game is taking place
  */
 public class World {
+    public static final String TAG = World.class.getSimpleName();
 
-    public Map map;
-    public Background background;
+    private Map map;
     private Player player;
-    private Enemie enemie;
+    private Layer background;
 
-    public OrthographicCamera camera;
-    public CameraHelper cameraHelper;
+    private OrthographicCamera camera;
+    private PlayController playController;
+    private CameraHelper cameraHelper;
 
-    public World(OrthographicCamera camera){
-        System.out.println("World");
-        this.camera = camera;
+    /**
+     * creates a new World
+     *
+     */
+    public World(PlayController playController) {
+        Gdx.app.log(TAG, " created");
+
+        this.playController = playController;
+        camera = playController.getCamera();
 
         init();
     }
 
+    /**
+     * initializes the World
+     */
     private void init() {
+        // world objects
+        player = new Player(playController.getControllerUI());
+        map = new Map(this, player);
+        background = new Layer(this);
+
+        // camera
         cameraHelper = new CameraHelper(this);
         cameraHelper.applyTo(camera);
-
-        player = new Player(camera,this);
-        enemie = new Enemie(this,player);
-        map = new Map(this, player,enemie);
-        background = new Background(this);
-
-
-
         cameraHelper.setTarget(player);
     }
 
-
+    /**
+     * updates the world
+     *
+     * @param deltaTime time since last frame
+     */
     public void update(float deltaTime) {
+        background.update(deltaTime);
+        map.update(deltaTime);
 
-        cameraHelper.update(deltaTime);
+        playController.getControllerUI().update(deltaTime);
+    }
+
+    /**
+     * renders all world objects
+     *
+     * @param batch SpriteBatch that is used for rendering
+     */
+    public void render(SpriteBatch batch) {
+        cameraHelper.update(Gdx.graphics.getDeltaTime());
+
+        background.render(batch);
+        map.render(batch);
+
+        playController.getControllerUI().render();
+
         cameraHelper.applyTo(camera);
 
-        map.update(deltaTime);
-        background.update(deltaTime);
 
     }
 
-    public void render(SpriteBatch batch) {
-//        batch.begin();
-        map.render(batch);
-        background.render(batch);
-//        batch.end();
+    /**
+     * returns the map
+     */
+    public Map getMap() {
+        return map;
     }
+
+    /**
+     * returns the player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * returns the background
+     */
+    public Layer getBackground() {
+        return background;
+    }
+
+    /**
+     * returns the camera
+     */
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    /**
+     * returns the camera helper
+     *
+     * @return
+     */
+    public CameraHelper getCameraHelper() {
+        return cameraHelper;
+    }
+
+    // TODO es bestehen bisher noch abhaengigkeiten zwischen player und map die nicht sein duerften. player wird in world erzeugt aber in map geupdated, das sollte überdacht werden.
+
+
 }

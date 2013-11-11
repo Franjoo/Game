@@ -33,7 +33,7 @@
 
 package com.esotericsoftware.spine.attachments;
 
-//import com.esotericsoftware.spine.Skin;
+import com.esotericsoftware.spine.Skin;
 
 public interface AttachmentLoader {
 	/** @return May be null to not load any attachment. */

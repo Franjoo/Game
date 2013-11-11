@@ -1,11 +1,6 @@
 package com.angrynerds.gameobjects;
 
-import com.angrynerds.ai.pathfinding.AStarPathFinder;
-import com.angrynerds.ai.pathfinding.ClosestHeuristic;
-import com.angrynerds.ai.pathfinding.Path;
-import com.angrynerds.game.PlayController;
-import com.angrynerds.game.World;
-import com.angrynerds.game.screens.PlayScreen;
+import com.angrynerds.input.DeprecatedTouchInput;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.input.KeyboardInput;
 import com.angrynerds.input.TouchInput;
@@ -13,217 +8,335 @@ import com.angrynerds.input.gamepads.X360Gamepad;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-
-import javax.swing.text.DefaultEditorKit;
-import java.util.ArrayList;
+import com.esotericsoftware.spine.*;
 
 /**
- * User: Franjo
- * Date: 25.10.13
- * Time: 23:48
- * Project: Main
+ * class that represents the Player
  */
 public class Player extends GameObject {
-    public static final String TAG = Player.class.getSimpleName();
+    private static final String TAG = Player.class.getSimpleName();
 
+    // constants
     private final float epsilon = Constants.EPSILON;
 
-    private static Player instance;
-
-    private IGameInputController input;
-    private PlayScreen playScreen;
+    // map
     private Camera camera;
     private Map map;
-    private World world;
 
+    // movement
     private float vX;
     private float vY;
-    private float vX_MAX = 3.2f * 60;
-    private float vY_MAX = 3.2f * 60;
-    private float aX;
-    private float aY;
-    private float z;
+    private float vX_MAX = 180;
+    private float vY_MAX = 120;
 
-    private Path path;
-    private AStarPathFinder pf;
+    // helper attributes
+    private Vector2 vec2 = new Vector2();
+    private Array<Vector2> collPos = new Array<Vector2>();
 
-    private Texture outline;
-    private Pixmap pm;
-    private Texture tm;
+    private Vector2 _po = new Vector2();
+    private Vector2 _pm = new Vector2();
+    private Vector2 _pt = new Vector2();
 
-    public Player(PlayScreen playScreen) {
-        super();
+    // spine relevant attributes
+    private SkeletonRenderer skeletonRenderer;
+    private SkeletonRendererDebug skeletonDebugRenderer;
+    Array<Event> events = new Array();
 
-        this.playScreen = playScreen;
-        map = playScreen.playController.world.map;
-        camera = playScreen.playController.camera;
+    private SkeletonData skeletonData;
+    private Skeleton skeleton;
+    private Animation walkAnimation;
+    private Animation jumpAnimation;
 
-//        init();
-    }
+    private float lastTime = 0;
+    private AnimationState state;
 
-//    public static Player getInstance(){
-//        if(instance == null){
-//            instance = new Player()
-//        }
-//    }
+    // input
+    private IGameInputController input;
 
-    public Player(Camera camera, World world) {
+
+    /**
+     * creates a new player with assigned camera used for input ui
+     *
+     * @deprecated
+     */
+    public Player(Camera camera) {
         super();
 
         this.camera = camera;
-        this.world = world;
+    }
 
-//        map = world.
-////        map = world.map;
-//
-////        init();
+    /**
+     * creates a new player
+     */
+    public Player(IGameInputController input) {
+        super();
+
+        this.input = input;
     }
 
     public void init() {
 
         map = Map.getInstance();
 
-        position.x = map.getSpawn().x+150;
-        position.y = map.getSpawn().y+150;
-             System.out.println("Position" + position.x+"   " + position.y);
-        dimension.x = 32;
-        dimension.y = 32;
+        x = map.getSpawn().x;
+        y = map.getSpawn().y;
 
-        setPosition(position.x, position.y);
-        setSize(dimension.x, dimension.y);
+        width = 32;
+        height = 32;
 
-//        setBounds(position.x, position.y, dimension.x, dimension.y);
-
-        System.out.println("bounds: " + getBoundingRectangle().toString());
-
-        setOrigin(0, 0);
+//        setPosition(x, y);
+//        setSize(width, height);
+//
+//
+//        setOrigin(0, 0);
 
         // draw rectangular shape
-        Pixmap p = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
+        Pixmap p = new Pixmap((int) (width), (int) (height), Pixmap.Format.RGBA8888);
         Texture t = new Texture(p.getWidth(), p.getHeight(), Pixmap.Format.RGBA8888);
 
         p.setColor(0, 0, 0, 1);
-        p.fillRectangle(0, 0, (int) getWidth(), (int) getHeight());
+        p.fillRectangle(0, 0, (int) width, (int) height);
         p.setColor(1, 1, 1, 1);
-        p.fillRectangle((int) origin.x, (int) origin.y, 5, 5);
+//        p.fillRectangle((int) origin.x, (int) origin.y, 5, 5);
         p.setColor(1, 0, 0, 1);
-        p.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
-        p.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
+        p.drawLine((int) x, (int) y, (int) width + 20, (int) y);
+        p.drawLine((int) x, (int) y, (int) (x), (int) height + 20);
 
         t.draw(p, 0, 0);
-         pm = new Pixmap(2, 2, Pixmap.Format.RGBA8888) ;
+
+//        setTexture(t);
 
 
-        pm.setColor(1,1,0,1);
-        pm.fillRectangle((int) origin.x, (int) origin.y,2,2);
-        pm.drawLine((int) getX(), (int) getY(), (int) (getWidth() + 20), (int) getY());
-        pm.drawLine((int) getX(), (int) getY(), (int) (getX()), (int) getHeight() + 20);
-        tm = new Texture(pm.getWidth(), pm.getHeight(), Pixmap.Format.RGBA8888);
-        tm.draw(pm,0,0);
-        setTexture(tm);
-        setTexture(t);
-
-        pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
-        path = pf.findPath(1,(int) (position.x / map.getTileWidth()),(int) (position.y / map.getTileHeight()),(int )(map.getSpawn().x / map.getTileWidth()), (int)(map.getSpawn().y / map.getTileHeight()));
-
-
-
-
-//        Pixmap pOutline = new Pixmap((int) (dimension.x), (int) (dimension.y), Pixmap.Format.RGBA8888);
-//        pOutline.setColor(1, 0, 0, 1);
-////        t.getTextureData().prepare();
-//        pOutline.drawPixmap(t.getTextureData().consumePixmap(), 0, 0);
-//        Texture o = new Texture(32,32, Pixmap.Format.RGBA8888);
-//        o.draw(pOutline,0,0);
-////        t.draw(pOutline, 0, 0);
-//        setTexture(o);
-//        setSize(32, 32);
-//        position.x = Constants.VIEWPORT_WIDTH / 2 + 50;
-//        position.y = Constants.VIEWPORT_HEIGHT / 2;
-
-//        position.x = 0;//Constants.VIEWPORT_WIDTH / 2 + 50;
-//        position.y = 0;//Constants.VIEWPORT_HEIGHT / 2;
-//
-//        dimension.x = getTexture().getWidth();
-//        dimension.y = getTexture().getHeight();
-//        setOrigin(0, 0);
-
-        // input
-        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            Array controllers = Controllers.getControllers();
-            if (controllers.size != 0) {
-                input = new X360Gamepad((Controller) controllers.get(X360Gamepad.NUM_CONTROLLERS));
-            } else {
-                input = new KeyboardInput();
-//                input = new TouchInput(camera);
-            }
-        } else if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            input = new TouchInput(camera);
-        }
+//        set input processor
+//        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+//            Array controllers = Controllers.getControllers();
+//            if (controllers.size != 0) {
+//                input = new X360Gamepad((Controller) controllers.get(X360Gamepad.NUM_CONTROLLERS));
+//            } else {
+////                input = new TouchInput();
+////                input = new KeyboardInput();
+////                input = new DeprecatedTouchInput(camera);
+//            }
+//        } else if (Gdx.app.getType() == Application.ApplicationType.Android) {
+//            input = new DeprecatedTouchInput(camera);
+//        }
 
 
         // some basic init assertions
         assert (input != null) : (TAG + ": input must not be null");
 
-        System.out.println("DIMENSION:" + dimension.x + " " + dimension.y);
+        System.out.println("DIMENSION:" + width + " " + height);
+
+
+        // skeleton
+        skeletonRenderer = new SkeletonRenderer();
+        skeletonDebugRenderer = new SkeletonRendererDebug();
+
+        final String name = "spineboy";
+
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(name + ".atlas"));
+
+
+        if (true) {
+            SkeletonJson json = new SkeletonJson(atlas);
+
+            // set skeleton and images scaled
+            json.setScale(0.7f);
+
+            skeletonData = json.readSkeletonData(Gdx.files.internal(name + ".json"));
+        } else {
+            SkeletonBinary binary = new SkeletonBinary(atlas);
+            // binary.setScale(2);
+            skeletonData = binary.readSkeletonData(Gdx.files.internal(name + ".skel"));
+        }
+
+        AnimationStateData stateData = new AnimationStateData(skeletonData);
+        stateData.setMix("walk", "jump", 0.2f);
+        stateData.setMix("jump", "walk", 0.4f);
+
+        state = new AnimationState(stateData);
+        state.setAnimation(0, "walk", true);
+
+        state.addListener(new AnimationState.AnimationStateListener() {
+            public void event(int trackIndex, Event event) {
+                System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
+            }
+
+            public void complete(int trackIndex, int loopCount) {
+                System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
+            }
+
+            public void start(int trackIndex) {
+                System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+            }
+
+            public void end(int trackIndex) {
+                System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
+                if (state.getCurrent(trackIndex).getAnimation().equals("jump")) {
+                    System.out.println("walk completed--------------------");
+                }
+            }
+        });
+
+
+        walkAnimation = skeletonData.findAnimation("walk");
+        jumpAnimation = skeletonData.findAnimation("jump");
+
+//        for (int i = 0; i < skeletonData.getAnimations().size; i++) {
+//            System.out.println(skeletonData.getAnimations().get(i).getName());
+//        }
+
+        skeleton = new Skeleton(skeletonData);
+
+
+        skeleton.updateWorldTransform();
+        skeleton.setX(x);
+        skeleton.setY(y);
+
+        System.out.println("skeleton time: " + skeleton.getTime());
+
 
     }
 
-    @Override
+    //    @Override
     public void render(SpriteBatch batch) {
 
         batch.begin();
-        batch.draw(getTexture(), getX(), getY());
-
-        for(int i = 0; i<path.getLength();i++) {
-
-            batch.draw(tm, path.getStep(i).getX()*map.getTileWidth(),path.getStep(i).getY()*map.getTileHeight());
-
-        }
-
-//        draw(batch);
+//        batch.draw(getTexture(), x, y);
         batch.end();
 
+        batch.begin();
+        skeletonRenderer.draw(batch, skeleton);
+        batch.end();
 
-//        draw(i.);
-
-//        batch.begin();
-       // if (Gdx.app.getType() == Application.ApplicationType.Android) {
-        //    TouchInput i = (TouchInput) input;
-      //      i.ui.render(batch);
-//        batch.end();
-    //    }
-//        batch.end();
-//        batch.draw(getTexture(), position.x, position.y, origin.x, origin.y, dimension.x / 4, dimension.y / 4,
-//                scale.x, scale.y);
+//        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+//            DeprecatedTouchInput i = (DeprecatedTouchInput) input;
+//            i.ui.render(batch);
+//        }
 
     }
 
-    @Override
+    //    @Override
     public void update(float deltaTime) {
 
-//        System.out.println("P: " + position.x + ", " + position.y);
-
+        // set v in x and y direction
         vX = input.get_stickX() * deltaTime * vX_MAX;
         vY = input.get_stickY() * deltaTime * vY_MAX;
 
+        // set collision position
+        Vector2 p = getCollisionPosition();
 
-        setCollisionPosition();
+        // update position attributes
+        x = p.x;
+        y = p.y;
 
-//        position.x += vX * deltaTime * input.get_stickX();
-//        position.y += vY * deltaTime * input.get_stickY();
+        // set position after setting collsion position
+//        setPosition(x, y);
+
+        //*** SKELETON ***//
 
 
-        setPosition(position.x, position.y);
+//        X360Gamepad gp = (X360Gamepad) input;
+//        float walkspeed = gp.stick_left_intensity();
+        float walkspeed = 1;
+
+        state.apply(skeleton);
+        skeleton.updateWorldTransform();
+
+
+        if (walkspeed != 0) {
+            // flip
+            if (vX < 0) skeleton.setFlipX(true);
+            else skeleton.setFlipX(false);
+
+            // position
+            skeleton.setX(x);
+            skeleton.setY(y);
+
+            state.update(deltaTime);
+
+
+//            skeleton.setTime(skeleton.getTime());
+//
+//            // update skeleton
+//            skeleton.updateWorldTransform();
+//            skeleton.update(Gdx.graphics.getDeltaTime());
+//
+//            walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, events);
+
+        }
+        // jump
+        if (input.get_isA()) {
+
+            System.out.println("a pressed");
+            state.setAnimation(0, "jump", false); // Set animation on track 0 to jump.
+            state.addAnimation(0, "walk", true, 0); // Queue walk to play after jump.
+
+//            state.getCurrent(0).
+
+//                    state.update(deltaTime);
+
+        }
+
+        if (state.getCurrent(0).getAnimation().getName().equals("jump")) {
+            state.update(deltaTime);
+            System.out.println("jump");
+            if (state.getCurrent(0).isComplete()) {
+                System.out.println("complete");
+            }
+        }
+
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            skeleton.setX(skeleton.getX() + vX_MAX * deltaTime);
+
+            if (skeleton.getFlipX()) skeleton.setFlipX(false);
+
+
+//            walktime += deltaTime;
+//            System.out.println(skeleton.getTime());
+
+            skeleton.updateWorldTransform();
+            skeleton.update(Gdx.graphics.getDeltaTime());
+
+//            walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime() + deltaTime, true, events);
+
+//            float speed = 360;
+//            if (time > beforeJump + blendIn && time < blendOutStart) speed = 360;
+
+//            System.out.println(walkAnimation.);
+
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            skeleton.setX(skeleton.getX() - vX_MAX * deltaTime);
+
+//            walktime += deltaTime;
+//            System.out.println(skeleton.getTime());
+
+            if (!skeleton.getFlipX()) skeleton.setFlipX(true);
+            skeleton.updateWorldTransform();
+            skeleton.update(Gdx.graphics.getDeltaTime());
+
+            walkAnimation.apply(skeleton, deltaTime, skeleton.getTime() + deltaTime, true, events);
+
+//            float speed = 360;
+//            if (time > beforeJump + blendIn && time < blendOutStart) speed = 360;
+
+//            System.out.println(walkAnimation.);
+
+        }
+
+
     }
 
     /**
@@ -231,161 +344,178 @@ public class Player extends GameObject {
      * and sets his position depending on the solids
      * position and dimension
      */
-    private void setCollisionPosition() {
+    private Vector2 getCollisionPosition() {
 
         /* --- COLLISION DETECTION --- */
 
         // helper variables
-        float qX = position.x + vX;
-        float qY = position.y + vY;
+        float qX = x + vX;
+        float qY = y + vY;
+
+        float nX;
+        float nY;
+
+        // _pm.x,_pm.y, qX - _pm.x, qY - _pm.y
+        // x, y, vX, vY
+
+        _pt.set(getTileCollisionPosition(x, y, vX, vY));
+        nX = _pt.x;
+        nY = _pt.y;
+
+//        _pm.set(getMapCollisionPosition(_po.x,_po.y, qX - _po.x, qY - _po.y));
+//        nX = _pm.x;
+//        nY = _pm.y;
+
+//        Vector2 _po = getObjectCollisionPosition(_pm.x,_pm.y, qX - _pm.x, qY - _pm.y);
+//        nX = _po.x;
+//        nY = _po.y;
+//        Vector2 _po = getObjectCollisionPosition(x, y, vX, vY);
+//        Vector2 _pt = getTileCollisionPosition(x, y, vX, vY);
+//        System.out.println(position + "  " + _pm);
+
+//        Vector2 _p = _pm;
+
+//        if(vX > 0){
+//           if(_pm.x < _po.x && _pm.x < _pt.x) nX = _pm.x;
+//           else if(_po.x < _pm.x && _po.x < _pt.x) nX = _po.x;
+//           else (_pt.x < _po.x && _pt.x < _pm.x) nX = _pt.x;
+//        }
+//        else if( vY > 0){
+//
+//        }
 
 
-        /* MAP COLLISION */
-        if (qX < map.position.x + map.borderWidth)
-            qX = map.position.x + map.borderWidth;
-        else if (qX + dimension.x > map.position.x + map.dimension.x - map.borderWidth)
-            qX = map.position.x + map.dimension.x - map.borderWidth - dimension.x;
-        if (qY > map.dimension.y - map.borderWidth - 64)// map.getOffsetX() * map.getTileHeight())
-            qY = map.dimension.y - map.borderWidth - 64;//map.getOffsetX() * map.getTileHeight();
-        else if (qY < map.getY() + map.borderWidth + 64)
-            qY = map.getY() + map.borderWidth + 64;
+        vec2.set(nX, nY);
+        return vec2;
+    }
+
+    private Vector2 getObjectCollisionPosition(float pX, float pY, float vX, float vY) {
+        float _x = pX + vX;
+        float _y = pY + vY;
+
+        Array<Rectangle> r;
+
+        // left
+        if (vX < 0) {
+            r = map.getCollisionObjects(pX + vX, pY, pX + vX, pY + height);
+            if (r.size != 0) {
+                _x = map.getXmax(r) + 0.001f;
+                System.out.println("collision");
+            }
+        }
+
+        // right
+        else if (vX > 0) {
+            r = map.getCollisionObjects(pX + vX + width, pY, pX + vX + width, pY + height);
+            if (r.size != 0) {
+                _x = map.getXmin(r) - width - 0.001f;
+                System.out.println("collision");
+            }
+        }
 
 
+        // top
+        if (vY > 0) {
+            r = map.getCollisionObjects(pX, pY + height + vY, pX + width, pY + height + vY);
+            if (r.size != 0) {
+                System.out.println("top");
+                _y = map.getYmin(r) - height - 0.001f;
+            }
+        }
+
+        // bottom
+        else if (vY < 0) {
+            r = map.getCollisionObjects(pX, pY + vY, pX + width, pY + vY);
+            if (r.size != 0) {
+                _y = map.getYmax(r) + 0.001f;
+                System.out.println("collision");
+            }
+        }
+
+        vec2.set(_x, _y);
+        return vec2;
+    }
+
+    private Vector2 getTileCollisionPosition(float pX, float pY, float vX, float vY) {
+
+        float _x = pX;
+        float _y = pY;
+
+        float qX = pX + vX;
+        float qY = pY + vY;
 
         /* COLLIDED TILES */
 
         /* X-AXIS */
         if (vX < 0) {
             // botton left
-            if (map.isSolid(qX, position.y)) {
-                position.x = ((int) (position.x) / map.getTileWidth()) * map.getTileWidth();
+            if (map.isSolid(qX, pY)) {
+                _x = ((int) (pX) / map.getTileWidth()) * map.getTileWidth();
             }
             // top left
-            else if (map.isSolid(qX, position.y + dimension.y)) {
-                position.x = ((int) (position.x) / map.getTileWidth()) * map.getTileWidth();
+            else if (map.isSolid(qX, pY + height)) {
+                _x = ((int) (pX) / map.getTileWidth()) * map.getTileWidth();
             } else {
-                position.x = qX;
+                _x = qX;
             }
         } else if (vX > 0)
             // bottom right
-            if (map.isSolid(qX + dimension.x, position.y)) {
-                position.x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
+            if (map.isSolid(qX + width, pY)) {
+                _x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
             }
             // top right
-            else if (map.isSolid(qX + dimension.x, position.y + dimension.y)) {
-                position.x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
+            else if (map.isSolid(qX + width, pY + height)) {
+                _x = ((int) (qX) / map.getTileWidth()) * map.getTileWidth() - epsilon;
             } else {
-                position.x = qX;
+                _x = qX;
             }
 
         /* Y_AXIS */
         if (vY < 0) {
             // bottom left
-            if (map.isSolid(position.x, qY)) {
-                position.y = ((int) (position.y) / map.getTileHeight()) * map.getTileHeight();
+            if (map.isSolid(pX, qY)) {
+                _y = ((int) (pY) / map.getTileHeight()) * map.getTileHeight();
             }
             // bottom right
-            else if (map.isSolid(position.x + dimension.x, qY)) {
-                position.y = ((int) (position.y) / map.getTileHeight()) * map.getTileHeight();
+            else if (map.isSolid(pX + width, qY)) {
+                _y = ((int) (pY) / map.getTileHeight()) * map.getTileHeight();
             } else {
-                position.y = qY;
+                _y = qY;
             }
         } else if (vY > 0) {
             // top left
-            if (map.isSolid(position.x, qY + dimension.y)) {
-                position.y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
+            if (map.isSolid(pX, qY + height)) {
+                _y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
             }
             // top right
-            else if (map.isSolid(position.x + dimension.x, qY + dimension.y)) {
-                position.y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
+            else if (map.isSolid(pX + width, qY + height)) {
+                _y = ((int) (qY) / map.getTileHeight()) * map.getTileHeight() - epsilon;
             } else {
-                position.y = qY;
+                _y = qY;
             }
         }
 
-        /* object collision test */
-//        ArrayList<Rectangle> rects = new ArrayList<Rectangle>();
-//        Rectangle[] rects = new Rectangle[10];
-        if (map.getCollisionObjects(position.x, position.y).size != 0) {
-            System.out.println("bl");
-        }
+        vec2.set(_x, _y);
+        return vec2;
+    }
 
-        if (map.getCollisionObjects(position.x + dimension.x, position.y).size != 0) {
-            System.out.println("br");
-        }
+    private Vector2 getMapCollisionPosition(float pX, float pY, float vX, float vY) {
+        // helper variables
+        float qX = pX + vX;
+        float qY = pY + vY;
 
-        if (map.getCollisionObjects(position.x, position.y + dimension.y).size != 0) {
-            System.out.println("tl");
-        }
+       /* MAP COLLISION */
+        if (qX < map.getX() + map.borderWidth)
+            qX = map.getX() + map.borderWidth;
+        else if (qX + width > map.getX() + map.getWidth() - map.borderWidth)
+            qX = map.getX() + map.getWidth() - map.borderWidth - width;
+        if (qY > map.getHeight() - map.borderWidth - 64)// map.getOffsetX() * map.getTileHeight())
+            qY = map.getHeight() - map.borderWidth - 64;//map.getOffsetX() * map.getTileHeight();
+        else if (qY < map.getY() + map.borderWidth + 64)
+            qY = map.getY() + map.borderWidth + 64;
 
-        if (map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y).size != 0) {
-            System.out.println("tr");
-        }
-//        Array<Rectangle> rectList = map.getCollisionObjects(position.x, position.y + dimension.y); // bl
-//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y)); // br
-//        rectList.addAll(map.getCollisionObjects(position.x, position.y + dimension.y)); // tl
-//        rectList.addAll(map.getCollisionObjects(position.x + dimension.x, position.y + dimension.y)); // tr
-//
-////        for (int i = 0; i < map.getCollisionObjects(position.x, position.y).size; i++) {
-////            rectList.add(map.getCollisionObjects(position.x, position.y).get(i));
-////        }
-////        rectList.addAll(map.getCollisionObjects(position.x,position.y));
-//        if (rectList.size != 0) {
-//            System.out.println("collides");
-//        }
-
-
-//        /* COLLIDED OBJECTS */
-//        Array<Rectangle> rectList = null; // = map.getCollisionObjects(position.x, position.y);
-//
-//        if (vX < 0) {
-//            if (qX == position.x) {
-//                float _x = Float.MIN_VALUE;
-//                rectList = map.getCollisionObjects(qX, position.y + dimension.y);
-////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
-////                rectList.addAll(map.getCollisionObjects(qX, position.y + dimension.y));
-//                if (rectList.size != 0) System.out.println("collides");
-//
-//                for (int i = 0; i < rectList.size; i++) {
-//                    Rectangle r = rectList.get(i);
-//                    System.out.println(r.getX() + " " + r.getY() + " " + r.getWidth() + " " + r.getHeight());
-////                    System.out.println(rectLis);
-//                    if (rectList.get(i).getX() + rectList.get(i).getWidth() > _x) {
-//                        _x = rectList.get(i).getX() + rectList.get(i).getWidth();
-//                    } else {
-//                        position.x = _x;
-//
-//                    }
-////                    rectList = map.getCollisionObjects(position.x, position.y);
-////                    rectList.addAll(map.getCollisionObjects(position.x, position.y - dimension.y));
-//                }
-//
-//            }
-//        }
-
-//        Array<Rectangle> r = null;
-//        // bottom left
-//        if (vX < 0) {
-//            r = map.getCollisionObjects(position.x, position.y);
-//
-//        }
-
-
-//        if (r.size != 0) {
-//            for (int i = 0; i < r.size; i++) {
-//                if (vX < 0) {
-//
-//                }
-//            }
-//            if (vX < 0) {
-//                position.x = r.
-//            }
-//            System.out.println("collided!");
-//        }
-
-        //push
-
-
+        vec2.set(qX, qY);
+        return vec2;
     }
 
     public float getvX() {
