@@ -15,12 +15,14 @@ import com.badlogic.gdx.utils.Disposable;
  */
 public class GameRenderer implements Disposable {
 
+    // gamestates
+    private static String STATE;
+    private static final String PLAY = "play";
+    private static final String MENU = "menu";
 
-    //    // Screens
-//    private PlayScreen playScreen;
-//    private MainMenuScreen mainMenuScreen;
     public static SpriteBatch batch;
     private GameController gameController;
+
 
     public GameRenderer(GameController gameController) {
         this.gameController = gameController;
@@ -30,8 +32,8 @@ public class GameRenderer implements Disposable {
 
     private void init() {
         batch = new SpriteBatch();
-//        playScreen = new PlayScreen();
-//        playScreen.toString();
+
+        STATE = PLAY;
     }
 
     public void resize(int width, int heigth) {
@@ -41,11 +43,9 @@ public class GameRenderer implements Disposable {
     public void render() {
         float deltaTime = Gdx.graphics.getDeltaTime();
 
-//        batch.begin();
-        gameController.playScreen.render(deltaTime, batch);
-//        batch.end();
-
-//        playScreen.render(deltaTime);
+        if (STATE == PLAY) {
+            gameController.playScreen.render(deltaTime, batch);
+        }
     }
 
     @Override

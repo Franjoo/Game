@@ -36,28 +36,28 @@ public class PlayController {
     private void init() {
         // camera
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
-//        camera.position.set(0, 0, 0);
-//        camera.setToOrtho(true);
         camera.update();
-        cameraHelper = new CameraHelper(this);
-        cameraHelper.applyTo(camera);
+//        cameraHelper = new CameraHelper(this);
+//        cameraHelper.applyTo(camera);
+
+
 
         System.out.println( "camera: " + camera);
 
+//        player = new Player();
         world = new World(camera);
-        player = new Player(camera,world);
 
-        cameraHelper.setTarget(player);
+
+//        cameraHelper.setTarget(player);
 
 
     }
 
 
     public void update(float deltaTime) {
-        cameraHelper.update(deltaTime);
-        cameraHelper.applyTo(camera);
 
-        player.update(deltaTime);
+
+//        player.update(deltaTime);
         world.update(deltaTime);
     }
 
