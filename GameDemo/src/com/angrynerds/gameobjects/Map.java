@@ -38,7 +38,7 @@ public class Map extends GameObject {
     private static Map instance;
 
     // debug controlls
-    private static final boolean SHOW_GRID = false;
+    private static final boolean SHOW_GRID = true;
     private static final boolean SHOW_COLLISION_SHAPES = true;
     private Texture gridTexture;
     private Texture collisionShapeTexture;
@@ -429,6 +429,18 @@ public class Map extends GameObject {
         }
         return false;
     }
+    public boolean isSolidTile(final float x, final float y) {
+
+        for (int i = 0; i < collsionLayers.size; i++) {
+            TiledMapTileLayer.Cell cell = collsionLayers.get(i).getCell((int) (x), (int) (y) );
+            if (cell != null) {
+                System.out.println("Blocked @ " + x + "    " + y);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public Array<Rectangle> getCollisionObjects(final float x, final float y) {
       Array<Rectangle> qArray = new Array<Rectangle>();
@@ -606,6 +618,11 @@ public class Map extends GameObject {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Vector2 getCellByPixel(int x,int y){
+
+       return new Vector2(x/tileWidth,y/tileHeight);
     }
 
     public Vector2 getSpawn() {
