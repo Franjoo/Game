@@ -115,7 +115,7 @@ public class Player extends GameObject {
 
         t.draw(p, 0, 0);
 
-//        setTexture(t);
+//       setTexture(t);
 
 
 //        set input processor
