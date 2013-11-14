@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="libs2" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="GameDemo" />
-    <orderEntry type="library" name="libs_desktop" level="project" />
-    <orderEntry type="library" name="libs_main" level="project" />
   </component>
 </module>
 
