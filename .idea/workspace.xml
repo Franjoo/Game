@@ -12,10 +12,7 @@
     <bookmark url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" line="155" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="&#10;">
-      <change type="DELETED" beforePath="C:\Users\Sebastian\MPI\Game\GameDemo-android\assets\data\backgrounds\ground_brige_460p.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarPathFinder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" />
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GameDemo.iws" />
@@ -47,7 +44,7 @@
     <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383418093970" ignored="false" />
     <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
     <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383834828899" ignored="false" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384445195299" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384446494876" ignored="false" />
     <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383560023311" ignored="false" />
     <file path="$USER_HOME$/Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044698334" ignored="false" />
     <file path="/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044688488" ignored="false" />
@@ -1173,7 +1170,11 @@
       <created>1383519154990</created>
       <updated>1383519154990</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="project refactored&#10;javadoc added">
+      <created>1384446501731</created>
+      <updated>1384446501731</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
