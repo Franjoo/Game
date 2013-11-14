@@ -1,6 +1,6 @@
 package com.angrynerds.game;
 
-import com.angrynerds.game.logic.Main;
+import com.angrynerds.game.core.Main;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
