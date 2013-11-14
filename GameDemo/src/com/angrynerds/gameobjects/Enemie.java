@@ -51,11 +51,11 @@ public class Enemie extends Creature {
     private Boolean bol = true;
     private Timer timer;
     private Vector2 velocity = new Vector2();
+    private Animation ani;
 
 
 
-
-    private int speed = 50;
+    private int speed = 100;
     private int tolerance = 1;
     private int rea = 0;
 
@@ -95,9 +95,8 @@ public class Enemie extends Creature {
 
        x = 300;
        y = 150;
-        AnimationState state = new AnimationState(new AnimationStateData(skeletonData));
 
-        state.setAnimation(0, "walk", true);
+        ani = skeletonData.findAnimation("walk");
 
 
         pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
@@ -127,14 +126,14 @@ public class Enemie extends Creature {
 
 
 
-        path = pf.findPath(1,(int)(x+map.getTileWidth()/2)/map.getTileWidth(),(int)(y+ map.getTileHeight()/2)/map.getTileHeight() ,(int)(player.x+ map.getTileWidth()/2)/map.getTileWidth() ,(int) (player.y+ map.getTileHeight()/2)/map.getTileHeight() );
+        path = pf.findPath(1,(int)(x)/map.getTileWidth(),(int)(y)/map.getTileHeight() ,(int)(player.x)/map.getTileWidth() ,(int) (player.y)/map.getTileHeight() );
         System.out.println(path);
         if(path != null && rea<path.getLength() ){
 
 
             if (!isReached(rea)) {
 
-                Vector2 nextStep =new Vector2((float) path.getStep(rea).getX()*map.getTileWidth() ,(float)path.getStep(rea).getY()*map.getTileHeight());
+                Vector2 nextStep =new Vector2((float) path.getStep(1).getX()*map.getTileWidth() ,(float)path.getStep(1).getY()*map.getTileHeight());
                 float angle = (float) Math.atan2(path.getStep(rea).getY()*map.getTileHeight() - y, path.getStep(rea).getX()*map.getTileWidth() - x);
                 velocity.set( (float) Math.cos( angle) * speed,(float) Math.sin(  angle)*speed);
 
@@ -161,6 +160,8 @@ public class Enemie extends Creature {
 
            }
         }
+        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+
         super.update(deltatime);
 
        // path = pf.findPath(1,(int)position.x/map.getTileWidth(),(int)position.y/map.getTileHeight(),(int)player.position.x/map.getTileWidth(),(int) player.position.y/map.getTileHeight());

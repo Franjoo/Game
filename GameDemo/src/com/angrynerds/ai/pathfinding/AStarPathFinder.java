@@ -78,7 +78,7 @@ public class AStarPathFinder {
             addToClosed(currentNode);
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
-                    if (!(x == 0 && y == 0) && !((x != 0) && (y != 0))) {
+                    if (!(x == 0 && y == 0)) {
                         int xp = x + currentNode.getX();
                         int yp = y + currentNode.getY();
 
@@ -190,7 +190,7 @@ public class AStarPathFinder {
     }
 
     private int getMovementCost() {
-       // return new Random().nextInt(5);
+        //return new Random().nextInt(100);
        return 1;
     }
 
