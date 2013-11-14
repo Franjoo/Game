@@ -1,16 +1,10 @@
 package com.angrynerds.gameobjects;
 
-import com.angrynerds.input.DeprecatedTouchInput;
-import com.angrynerds.input.IGameInputController;
-import com.angrynerds.input.KeyboardInput;
-import com.angrynerds.input.TouchInput;
-import com.angrynerds.input.gamepads.X360Gamepad;
+import com.angrynerds.input.*;
 import com.angrynerds.util.Constants;
-import com.badlogic.gdx.Application;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -277,7 +271,8 @@ public class Player extends GameObject {
 
         }
         // jump
-        if (input.get_isA()) {
+        System.out.println(input.getState());
+        if (input.getState().equals(State.JUMPING)) {
 
             System.out.println("a pressed");
             state.setAnimation(0, "jump", false); // Set animation on track 0 to jump.

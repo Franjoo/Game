@@ -1,6 +1,7 @@
 package com.angrynerds.input.gamepads;
 
 import com.angrynerds.input.IGameInputController;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.math.Vector2;
 
@@ -181,6 +182,11 @@ public class X360Gamepad implements IGameInputController {
     @Override
     public float get_stickY() {
         return stick_left_Y();
+    }
+
+    @Override
+    public State getState() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

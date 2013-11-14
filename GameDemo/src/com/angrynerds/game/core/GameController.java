@@ -1,4 +1,4 @@
-package com.angrynerds.game.logic;
+package com.angrynerds.game.core;
 
 import com.angrynerds.game.screens.mainmenu.MainMenuScreen;
 import com.angrynerds.game.screens.play.PlayScreen;

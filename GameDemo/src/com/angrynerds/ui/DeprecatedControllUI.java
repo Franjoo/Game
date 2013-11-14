@@ -2,6 +2,7 @@ package com.angrynerds.ui;
 
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.Constants;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
@@ -133,6 +134,11 @@ public class DeprecatedControllUI implements IGameInputController {
     @Override
     public float get_stickY() {
         return touchpad.getKnobPercentY();
+    }
+
+    @Override
+    public State getState() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

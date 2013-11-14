@@ -1,4 +1,4 @@
-package com.angrynerds.game.logic;
+package com.angrynerds.game.core;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
@@ -16,7 +16,7 @@ public class Main implements ApplicationListener {
     private static final String TAG = Main.class.getSimpleName();
 
     // debug bools
-    private static final boolean FPS_LOGGING = true;
+    private static final boolean FPS_LOGGING = false;
 
     private GameController gameController;
     private FPSLogger fpsLogger;

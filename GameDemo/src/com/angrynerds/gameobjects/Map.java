@@ -1,6 +1,7 @@
 package com.angrynerds.gameobjects;
 
 import com.angrynerds.game.World;
+import com.angrynerds.game.collision.CollisionDetector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -71,6 +72,9 @@ public class Map {
     private float y;
     private float width;
     private float height;
+
+    // collision detector
+    private CollisionDetector detector;
 
     // player relevant subjects
     private Vector2 spawn;
@@ -172,6 +176,10 @@ public class Map {
 
         // set player relevant attributes
         spawn = findSpawn();
+
+        // initialize Collision Detector
+        CollisionDetector.initialize(map);
+        detector = CollisionDetector.getInstance();
 
         // draw tile grid
         if (SHOW_TILE_GRID) drawTileGrid();

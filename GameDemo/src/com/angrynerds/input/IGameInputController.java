@@ -1,5 +1,7 @@
 package com.angrynerds.input;
 
+import com.angrynerds.util.State;
+
 /**
  * User: Franjo
  * Date: 25.10.13
@@ -12,6 +14,8 @@ public interface IGameInputController {
     public float get_stickX();
 
     public float get_stickY();
+
+    public State getState();
 
     public boolean get_isA();
 
