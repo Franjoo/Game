@@ -9,14 +9,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" afterPath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java" afterPath="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/GameDemo-android.iml" afterPath="$PROJECT_DIR$/GameDemo-android/GameDemo-android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/GameDemo-desktop.iml" afterPath="$PROJECT_DIR$/GameDemo-desktop/GameDemo-desktop.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/Manifest.java" afterPath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/Manifest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/R.java" afterPath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/libs/controllers/controllers1.iml" afterPath="$PROJECT_DIR$/GameDemo-desktop/libs/controllers/controllers1.iml" />
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="UI works again">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GameDemo.iws" />
@@ -49,7 +42,7 @@
     <file path="/PlayRenderer.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384297311878" ignored="false" />
     <file path="/a.dummy" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1382876446812" ignored="false" />
     <file path="/CameraHelper.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384178722085" ignored="false" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384446306974" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384859031797" ignored="false" />
     <file path="C:/xampp/htdocs/cg/.idea/workspace.xml" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383560023311" ignored="false" />
     <file path="$PROJECT_DIR$/../../Workspaces/WORKSPACE [INTELLIJ]/Telefonverzeichnis/src/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044698334" ignored="false" />
     <file path="/Suchfenster.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383044688488" ignored="false" />
@@ -119,6 +112,10 @@
     <file path="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/AbstractScreen.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384444963473" ignored="false" />
     <file path="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/GameObject.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384444963474" ignored="false" />
     <file path="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384444963475" ignored="false" />
+    <file path="$USER_HOME$/Desktop/studium/4. Semester/VSys/VSysTelefonbuch/src/book/Search.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384860000070" ignored="false" />
+    <file path="/Search.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384859895866" ignored="false" />
+    <file path="$USER_HOME$/Desktop/studium/4. Semester/VSys/VSysTelefonbuch/src/book/SearchThread.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384860528703" ignored="false" />
+    <file path="/SearchThread.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1384860491104" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +180,7 @@
       <file leaf-file-name="DesktopStarter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="96" selection-start="228" selection-end="228" vertical-scroll-proportion="0.4738676">
+            <state line="10" column="75" selection-start="259" selection-end="259" vertical-scroll-proportion="0.5923345">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -329,7 +326,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -344,8 +341,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,28 +349,52 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="144" />
-    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="161" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="165" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/studium/4. Semester/VSys/VSysTelefonbuch" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="168" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="840" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="847" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="840" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="161" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="154" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -510,6 +529,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -535,19 +567,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -809,12 +828,16 @@
       <created>1384446337373</created>
       <updated>1384446337373</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="UI works again">
+      <created>1384446794534</created>
+      <updated>1384446794534</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="728" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -830,7 +853,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31407407" sideWeight="0.5587734" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20222223" sideWeight="0.5604027" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20222223" sideWeight="0.5604027" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4395973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -946,16 +969,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="70" column="0" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="924" selection-end="924" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="33" column="0" selection-start="924" selection-end="924" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java">
@@ -1023,7 +1042,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/DesktopStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="96" selection-start="228" selection-end="228" vertical-scroll-proportion="0.4738676">
+        <state line="10" column="75" selection-start="259" selection-end="259" vertical-scroll-proportion="0.5923345">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
