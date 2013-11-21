@@ -37,7 +37,7 @@ public class Player extends Creature {
     // movement
     private float vX;
     private float vY;
-    private float vX_MAX = 500;
+    private float vX_MAX = 320;
     private float vY_MAX = 220;
 
     // stats
@@ -297,7 +297,7 @@ public class Player extends Creature {
 //>>>>>>> origin/master
 
          currentAnimation = walkAnimation;
-        currentAnimation.apply(skeleton, skeleton.getTime() * 2.2f, skeleton.getTime() * 2.2f, true, events);
+        currentAnimation.apply(skeleton, skeleton.getTime() * 3.2f, skeleton.getTime() * 3.2f, true, events);
 
 
     }

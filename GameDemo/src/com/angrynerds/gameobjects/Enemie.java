@@ -36,13 +36,12 @@ public class Enemie extends Creature {
     private Player player;
     private float vX;
     private float vY;
-    private float vX_MAX = 3.2f * 60;
-    private float vY_MAX = 3.2f * 60;
+    private float vX_MAX = 270;
+    private float vY_MAX = 210;
     private float pX;
     private float pY;
     private Path path;
     private Path path2;
-
 
 
     private AStarPathFinder pf;
@@ -54,17 +53,9 @@ public class Enemie extends Creature {
     private Animation ani;
 
 
-
-    private int speed = 100;
+    private int speed = 120;
     private int tolerance = 1;
     private int rea = 0;
-
-
-
-
-
-
-
 
 
 //    public Enemie(PlayScreen playScreen,Player player){
@@ -76,124 +67,115 @@ public class Enemie extends Creature {
 //
 //    }
 
-    public Enemie(String name, TextureAtlas atlas, String skin,Player player,float scale){
-        super(name,atlas,skin,scale);
+    public Enemie(String name, String path, String skin, Player player, float scale) {
+        super(name, path, skin, scale);
+//        super("Max_move", "data/spine/max/", null, 0.3f);
 
         this.player = player;
 
     }
 
 
-
-    public void init(){
+    public void init() {
 
 
         map = Map.getInstance();
-         // batch
+        // batch
 
         // params
 
-       x = 300;
-       y = 150;
+        x = 300;
+        y = 150;
 
         ani = skeletonData.findAnimation("walk");
 
 
-        pf= new AStarPathFinder(map,500,true,new ClosestHeuristic());
-        path = pf.findPath(1,(int) (x / map.getTileWidth()),(int) (y / map.getTileHeight()),(int )(player.x / map.getTileWidth()), (int)(player.y / map.getTileHeight()));
-        System.out.println("Starttile: " +x / map.getTileWidth() + "     " + y / map.getTileHeight() + "EndTile:    " +  player.x / map.getTileWidth() + "     " +    player.y / map.getTileHeight());
+        pf = new AStarPathFinder(map, 500, true, new ClosestHeuristic());
+        path = pf.findPath(1, (int) (x / map.getTileWidth()), (int) (y / map.getTileHeight()), (int) (player.x / map.getTileWidth()), (int) (player.y / map.getTileHeight()));
+        System.out.println("Starttile: " + x / map.getTileWidth() + "     " + y / map.getTileHeight() + "EndTile:    " + player.x / map.getTileWidth() + "     " + player.y / map.getTileHeight());
 
     }
 
 
-
-    public void render(SpriteBatch batch){
+    public void render(SpriteBatch batch) {
         super.render(batch);
 
 
 
-
-
     }
 
 
+    public void update(float deltatime) {
+        super.update(deltatime);
 
-    public void update(float deltatime){
-
-       // System.out.println(x + "   " + y +"   " + player.x + "   " + player.y);
-
-
+        // System.out.println(x + "   " + y +"   " + player.x + "   " + player.y);
 
 
-
-        path = pf.findPath(1,(int)(x)/map.getTileWidth(),(int)(y)/map.getTileHeight() ,(int)(player.x)/map.getTileWidth() ,(int) (player.y)/map.getTileHeight() );
+        path = pf.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
         System.out.println(path);
-        if(path != null && rea<path.getLength() ){
+        if (path != null && rea < path.getLength()) {
 
 
             if (!isReached(rea)) {
 
-                Vector2 nextStep =new Vector2((float) path.getStep(1).getX()*map.getTileWidth() ,(float)path.getStep(1).getY()*map.getTileHeight());
-                float angle = (float) Math.atan2(path.getStep(rea).getY()*map.getTileHeight() - y, path.getStep(rea).getX()*map.getTileWidth() - x);
-                velocity.set( (float) Math.cos( angle) * speed,(float) Math.sin(  angle)*speed);
+                Vector2 nextStep = new Vector2((float) path.getStep(1).getX() * map.getTileWidth(), (float) path.getStep(1).getY() * map.getTileHeight());
+                float angle = (float) Math.atan2(path.getStep(rea).getY() * map.getTileHeight() - y, path.getStep(rea).getX() * map.getTileWidth() - x);
+                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
-              // velocity.set( (nextStep.x - getX()),(nextStep.y - getY()));
+                // velocity.set( (nextStep.x - getX()),(nextStep.y - getY()));
 
-              if(x != nextStep.x)  {
-                x =  x +  velocity.x  * deltatime;
+                if (x != nextStep.x) {
+                    x = x + velocity.x * deltatime;
 
-              }
-                if(y != nextStep.y)
-               y = (y +  velocity.y  * deltatime ) ;
+                }
+                if (y != nextStep.y)
+                    y = (y + velocity.y * deltatime);
 
 
-
-                   }
-            else if(isReached(rea)){
+            } else if (isReached(rea)) {
                 System.out.println(rea);
                 System.out.println(path.getLength());
                 rea++;
             }
-            if(rea == path.getLength()){
+            if (rea == path.getLength()) {
                 System.out.println("New Path");
 
-           }
+            }
         }
+
+
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
-        super.update(deltatime);
 
-       // path = pf.findPath(1,(int)position.x/map.getTileWidth(),(int)position.y/map.getTileHeight(),(int)player.position.x/map.getTileWidth(),(int) player.position.y/map.getTileHeight());
+        // path = pf.findPath(1,(int)position.x/map.getTileWidth(),(int)position.y/map.getTileHeight(),(int)player.position.x/map.getTileWidth(),(int) player.position.y/map.getTileHeight());
 
         // for(int i= 0, len =  path.getLength(); i< len;i++){
-               /**
-                int nextDestinationX = path.getStep(i).getX()*map.getTileWidth();
-                int nextDestinationY = path.getStep(i).getY()*map.getTileHeight();
-                while( position.x != nextDestinationX || position.y != nextDestinationY){
-                    if(nextDestinationX<position.x)  {
-                        position.x -= 1;
-                        System.out.println("Walking" + i);                    }
-                   else if(nextDestinationX>position.x){
-                        position.x += 1;
+        /**
+         int nextDestinationX = path.getStep(i).getX()*map.getTileWidth();
+         int nextDestinationY = path.getStep(i).getY()*map.getTileHeight();
+         while( position.x != nextDestinationX || position.y != nextDestinationY){
+         if(nextDestinationX<position.x)  {
+         position.x -= 1;
+         System.out.println("Walking" + i);                    }
+         else if(nextDestinationX>position.x){
+         position.x += 1;
 
-                    }
-                  else  if(nextDestinationY<position.y){
-                        position.y -= 1 ;
+         }
+         else  if(nextDestinationY<position.y){
+         position.y -= 1 ;
 
-                    }
+         }
 
-                 else   if(nextDestinationY > position.y){
-                        position.y +=1;
+         else   if(nextDestinationY > position.y){
+         position.y +=1;
 
-                    }
-                    setPosition(position.x,position.y);
-                }  */
-
-
+         }
+         setPosition(position.x,position.y);
+         }  */
 
 
-        }
+    }
 
 
 
@@ -223,17 +205,17 @@ public class Enemie extends Creature {
             }
         }
             */
-      //  for(int i = 0; i<path.getLength();i++){
+    //  for(int i = 0; i<path.getLength();i++){
 
-       // setPosition(path.getStep(i).getX(),path.getStep(i).getY());
-        //    System.out.println("Walking");
-       // }
+    // setPosition(path.getStep(i).getX(),path.getStep(i).getY());
+    //    System.out.println("Walking");
+    // }
 
 
     private boolean isReached(int i) {
 
-        return Math.abs(path.getStep(i).getX()*map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
-        Math.abs(path.getStep(i).getY()*map.getTileHeight() - getY()) <=speed / tolerance * Gdx.graphics.getDeltaTime();
+        return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
+                Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
     }
 
 }

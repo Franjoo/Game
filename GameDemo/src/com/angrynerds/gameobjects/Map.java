@@ -5,7 +5,6 @@ import com.angrynerds.game.World;
 import com.angrynerds.game.collision.CollisionDetector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.util.Constants;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -48,7 +47,7 @@ public class Map {
     // debug controlls
     private static final boolean SHOW_TILE_GRID = false;
     private static final boolean SHOW_COLLISION_SHAPES = false;
-    private static final boolean SHOW_COLLISION_TILES = false;
+    private static final boolean SHOW_COLLISION_TILES = true;
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
@@ -121,7 +120,7 @@ public class Map {
         instance = this;
 
         player.init();
-        enemie = new Enemie("goblins",new TextureAtlas(Gdx.files.internal("goblins" + ".atlas")),"goblin",player,1);
+        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1);
         enemie.init();
     }
 
@@ -179,6 +178,8 @@ public class Map {
         width = mapWidth;
         height = mapHeight;
 
+        System.out.println("w/h: " + mapWidth + " " + mapHeight);
+
         // fixed camera & renderer
         fixedCamera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         fixedRenderer = new OrthogonalTiledMapRenderer(map, PlayScreen.getBatch());
@@ -224,24 +225,28 @@ public class Map {
             if (map.getLayers().get(i).getObjects().getCount() == 0) {
                 MapProperties ps = map.getLayers().get(i).getProperties();
 
-                // parse layer properties
-                float x = Float.parseFloat(ps.get("x").toString());
-                float y = Float.parseFloat(ps.get("y").toString());
-                float vX = Float.parseFloat(ps.get("vx").toString());
-                float vY = Float.parseFloat(ps.get("vy").toString());
-                TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
+                if (map.getLayers().get(i).getName().startsWith("bg") ||
+                        map.getLayers().get(i).getName().startsWith("fg")) {
 
-                // create layer
-                Layer layer = new Layer(x, y, vX, vY, tl);
+                    // parse layer properties
+                    float x = Float.parseFloat(ps.get("x").toString());
+                    float y = Float.parseFloat(ps.get("y").toString());
+                    float vX = Float.parseFloat(ps.get("vx").toString());
+                    float vY = Float.parseFloat(ps.get("vy").toString());
+                    TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
 
-                // background layer
-                if (tl.getName().startsWith("bg")) {
-                    layers_background.add(layer);
-                }
+                    // create layer
+                    Layer layer = new Layer(x, y, vX, vY, tl);
 
-                // foreground layer
-                else if (tl.getName().startsWith("fg")) {
-                    layers_foreground.add(layer);
+                    // background layer
+                    if (tl.getName().startsWith("bg")) {
+                        layers_background.add(layer);
+                    }
+
+                    // foreground layer
+                    else if (tl.getName().startsWith("fg")) {
+                        layers_foreground.add(layer);
+                    }
                 }
 
             }
@@ -707,14 +712,14 @@ public class Map {
      * draws the collision tiles of the map which are located on a collision tile layer
      */
     private void drawCollisionTiles() {
-        Pixmap p = new Pixmap(mapWidth, mapHeight, Pixmap.Format.RGBA8888);
+        Pixmap p = new Pixmap(mapWidth / 100, mapHeight, Pixmap.Format.RGBA8888);
         Color color_outline = new Color(0, 0, 0, 1);
         Color color_fill = new Color(1, 0, 0, 0.3f);
 
        /*draws the collision tiles */
         for (int j = 0; j < collisionTileLayers.size; j++) {
             for (int h = 0; h < numTilesY; h++) {
-                for (int w = 0; w < numTilesX; w++) {
+                for (int w = 0; w < numTilesX / 100; w++) {
                     TiledMapTileLayer layer = (collisionTileLayers.get(j));
                     TiledMapTileLayer.Cell cell = layer.getCell(w, h);
                     if (cell != null) {
@@ -727,6 +732,7 @@ public class Map {
                 }
             }
         }
+        System.out.println(p.toString());
         collisionTilesTexture = new Texture(p);
     }
 
