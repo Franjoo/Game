@@ -40,7 +40,7 @@ public class World {
      */
     private void init() {
         // world objects
-        player = new Player(playController.getControllerUI());
+        player = new Player(playController.getControllerUI().getListener());
         map = new Map(this, player);
 
         // camera

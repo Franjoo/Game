@@ -6,7 +6,10 @@ import com.angrynerds.game.collision.CollisionDetector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -58,6 +61,7 @@ public class Map {
     private OrthographicCamera camera;
     private OrthographicCamera fixedCamera;
     private Player player;
+    private Enemie enemie;
     private World world;
 
     // map properties
@@ -117,6 +121,8 @@ public class Map {
         instance = this;
 
         player.init();
+        enemie = new Enemie("goblins",new TextureAtlas(Gdx.files.internal("goblins" + ".atlas")),"goblin",player,1);
+        enemie.init();
     }
 
     /**
@@ -344,7 +350,13 @@ public class Map {
         // render player
         player.render(batch);
 
-        // render map object
+//<<<<<<< HEAD
+//        // render map object
+//=======
+        enemie.render(batch);
+
+        // render map object in which are in foreground
+//>>>>>>> origin/master
         for (int i = 0; i < mapObjects.size; i++) {
             if (player.getY() > mapObjects.get(i).getY()) {
                 mapObjects.get(i).render(batch);
@@ -414,6 +426,7 @@ public class Map {
      */
     public void update(float deltaTime) {
         player.update(deltaTime);
+        enemie.update(deltaTime);
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
     }

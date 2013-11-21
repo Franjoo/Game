@@ -2,6 +2,7 @@ package com.angrynerds.input;
 
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.ui.DeprecatedControllUI;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 
@@ -54,6 +55,11 @@ public class DeprecatedTouchInput implements IGameInputController {
             return ui.get_stickY();
         }
         return 0;
+    }
+
+    @Override
+    public State getState() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

@@ -45,20 +45,20 @@ public class AStarPathFinder {
 
     public Path findPath(int enemieType, int sx, int sy, int tx, int ty) {
 
-//        return null;
+       // return null;
 
-//       if (map.isSolidTile(tx, ty)) {
-//
-//           return null;
-//
-//        }
+       if (map.isSolid(tx*map.getTileWidth(), ty*map.getTileHeight())) {
+
+           return null;
+
+        }
 
         /** Init A Star */
-//        nodes[sx][sy].setDepth(0);
-//        nodes[sx][sy].setCost(0);
-//        closedList.clear();
-//        openList.clear();
-//        openList.add(nodes[sx][sy]);
+        nodes[sx][sy].setDepth(0);
+        nodes[sx][sy].setCost(0);
+        closedList.clear();
+        openList.clear();
+        openList.add(nodes[sx][sy]);
 
         nodes[tx][ty].parent = null;
 
@@ -78,7 +78,7 @@ public class AStarPathFinder {
             addToClosed(currentNode);
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
-                    if (!(x == 0 && y == 0) && !((x != 0) && (y != 0))) {
+                    if (!(x == 0 && y == 0)) {
                         int xp = x + currentNode.getX();
                         int yp = y + currentNode.getY();
 
@@ -139,7 +139,7 @@ public class AStarPathFinder {
         boolean invalid = ((x < 0) || (y < 0) ) || (x >= map.getNumTilesX() || (y >= map.getNumTilesY()));
 
         if ((!invalid) && ((sx != x) || (sy != y))) {
-//            invalid = map.isSolidTile(x , y );
+           invalid = map.isSolid(x*map.getTileWidth() , y*map.getTileHeight() );
 
 
         }
@@ -190,7 +190,7 @@ public class AStarPathFinder {
     }
 
     private int getMovementCost() {
-       // return new Random().nextInt(5);
+        //return new Random().nextInt(100);
        return 1;
     }
 

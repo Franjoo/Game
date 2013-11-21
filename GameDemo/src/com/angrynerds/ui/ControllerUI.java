@@ -2,6 +2,7 @@ package com.angrynerds.ui;
 
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.input.IGameInputController;
+import com.angrynerds.input.UIButtonListener;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,18 +23,17 @@ import java.util.ArrayList;
  * Time: 16:05
  * Project: GameDemo
  */
-public class ControllerUI implements IGameInputController {
+public class ControllerUI  {
 
-    private ArrayList<MyButton> touchOrder;
-    private MyButtonListener listener;
+    private UIButtonListener listener;
+
     private Touchpad touchpad;
     private MyButton midButton;
     private MyButton topButton;
-    private MyButton downButton;
+    private MyButton botButton;
     private MyButton leftButton;
     private MyButton rightButton;
     private MyButton[] buttons = new MyButton[5];
-    private Boolean isJumping =false;
 
     private Stage stage;
 
@@ -42,9 +42,6 @@ public class ControllerUI implements IGameInputController {
     }
 
     private void init() {
-        //listener = new MyButtonListener();+
-
-
         // start touchpad init
         Skin skin = new Skin();
         skin.add("joystick_bg", new Texture("data/buttons/button_256/joystick_bg.png"));
@@ -53,6 +50,13 @@ public class ControllerUI implements IGameInputController {
         skin.add("mid_down", new Texture("data/buttons/button_256/button_pushed.png"));
         skin.add("top_up", new Texture("data/buttons/button_256/button_oben_norm.png"));
         skin.add("top_down", new Texture("data/buttons/button_256/button_oben_pushed.png"));
+        skin.add("right_up", new Texture("data/buttons/button_256/button_rechts_norm.png"));
+        skin.add("right_down", new Texture("data/buttons/button_256/button_rechts_pushed.png"));
+        skin.add("left_up", new Texture("data/buttons/button_256/button_links_norm.png"));
+        skin.add("left_down", new Texture("data/buttons/button_256/button_links_pushed.png"));
+        skin.add("bottom_up", new Texture("data/buttons/button_256/button_unten_norm.png"));
+        skin.add("bottom_down", new Texture("data/buttons/button_256/button_unten_pushed.png"));
+
 
         Touchpad.TouchpadStyle style = new Touchpad.TouchpadStyle();
         Drawable joystickBG = skin.getDrawable("joystick_bg");
@@ -61,104 +65,59 @@ public class ControllerUI implements IGameInputController {
         style.knob = joystickKnob;
 
         touchpad = new Touchpad(10, style);
-        touchpad.setBounds(15, 100, 100, 100);
-//		touchpad.addListener(listener);
+        touchpad.setBounds(15, 75, 120, 120);
         //end touchpad init
 
 
         //start button init
-        listener = new MyButtonListener();
 
-        midButton = new MyButton(skin.getDrawable("mid_up"), skin.getDrawable("mid_down"));
-//        midButton.setPosition(Constants.VIEWPORT_WIDTH - 30, midButton.getHeight() + 15);
-        midButton.setSize(75,75);
-        midButton.setPosition(Constants.VIEWPORT_WIDTH - midButton.getWidth(), midButton.getHeight());
+
+        midButton = new MyButton(0, skin.getDrawable("mid_up"), skin.getDrawable("mid_down"));
+        midButton.setBounds(Constants.VIEWPORT_WIDTH - midButton.getWidth()/1.5f, midButton.getHeight()/3, 100, 100);
 
 //        midButton.setBounds(Constants.VIEWPORT_WIDTH - midButton.getWidth() * midButton.getScaleX(), midButton.getHeight(), 75, 75);
-        midButton.addListener(listener);
 
-        topButton = new MyButton(skin.getDrawable("top_up"), skin.getDrawable("top_down"));
-        topButton.setBounds(250, 200, 100, 100);
+        topButton = new MyButton(1, skin.getDrawable("top_up"), skin.getDrawable("top_down"));
+        topButton.setBounds(midButton.getX(), midButton.getY()+midButton.getHeight()/1.25f, 100, 70);
+
+        rightButton = new MyButton(2, skin.getDrawable("right_up"), skin.getDrawable("right_down"));
+        rightButton.setBounds(midButton.getX()+midButton.getWidth()/1.25f, midButton.getY()-midButton.getHeight()/15, 70, 100);
+
+        botButton = new MyButton(3, skin.getDrawable("bottom_up"), skin.getDrawable("bottom_down"));
+        botButton.setBounds(midButton.getX(), midButton.getY()-midButton.getHeight()/1.8f, 100, 70);
+
+        leftButton = new MyButton(4, skin.getDrawable("left_up"), skin.getDrawable("left_down"));
+        leftButton.setBounds(midButton.getX()-midButton.getWidth()/1.75f, midButton.getY()-midButton.getHeight()/15, 70, 100);
+         // end button init
+
+        listener = new UIButtonListener(this);
         topButton.addListener(listener);
-        // end button init
+        midButton.addListener(listener);
+        rightButton.addListener(listener);
+        botButton.addListener(listener);
+        leftButton.addListener(listener);
 
+
+        //fills button[]
         buttons[0] = midButton;
         buttons[1] = topButton;
-
-        touchOrder = new ArrayList<MyButton>();
+        buttons[2] = rightButton;
+        buttons[3] = botButton;
+        buttons[4] = leftButton;
 
         stage = new Stage(800,480,true,PlayScreen.getBatch());
 
         Gdx.input.setInputProcessor(stage);
-//        stage = new Stage(800,480,true,PlayScreen.getBatch());
+
+        // add buttons and touchpad to the stage
         stage.addActor(touchpad);
-        stage.addActor(midButton);
         stage.addActor(topButton);
+        stage.addActor(rightButton);
+        stage.addActor(botButton);
+        stage.addActor(leftButton);
+        stage.addActor(midButton);
     }
 
-    @Override
-    public float get_stickX() {
-        return touchpad.getKnobPercentX();
-    }
-
-    @Override
-    public float get_stickY() {
-        return touchpad.getKnobPercentY();
-    }
-
-    @Override
-    public boolean get_isA() {
-        if(isJumping) {
-            isJumping = false;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean get_isB() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-
-    class MyButtonListener extends DragListener {
-
-
-        @Override
-        public void touchUp(InputEvent event, float x, float y, int pointer,
-                            int button) {
-            System.out.println("touchup");
-            for (MyButton but : buttons) {
-                if (but != null)
-                    but.setOver(false);
-                MyButton.overCounter = 0;
-            }
-            if (touchOrder.size() == 2) {
-                if (touchOrder.get(0).equals(midButton)) {
-                    if (touchOrder.get(1).equals(topButton)) {
-                        System.out.println("jumpjump");
-                        isJumping = true;
-                    }
-                }
-            }
-            touchOrder.clear();
-            super.touchUp(event, x, y, pointer, button);
-        }
-
-
-        @Override
-        public void enter(InputEvent event, float x, float y, int pointer,
-                          Actor fromActor) {
-            MyButton b;
-            b = (MyButton) event.getTarget();
-            if (!b.getOver()) {
-                b.setOver(true);
-                touchOrder.add(b);
-            }
-
-            super.enter(event, x, y, pointer, fromActor);
-        }
-    }
 
     public void update(float deltaTime) {
         stage.act(deltaTime);
@@ -178,23 +137,27 @@ public class ControllerUI implements IGameInputController {
         return touchpad;
     }
 
-    public Button getMidButton() {
+    public MyButton getMidButton() {
         return midButton;
     }
 
-    public Button getTopButton() {
+    public MyButton getTopButton() {
         return topButton;
     }
 
-    public Button getDownButton() {
-        return downButton;
+    public MyButton getBotButton() {
+        return botButton;
     }
 
-    public Button getLeftButton() {
+    public MyButton getLeftButton() {
         return leftButton;
     }
 
-    public Button getRightButton() {
+    public MyButton getRightButton() {
         return rightButton;
+    }
+
+    public UIButtonListener getListener() {
+        return listener;
     }
 }

@@ -1,5 +1,7 @@
 package com.angrynerds.input;
 
+import com.angrynerds.util.State;
+
 /**
  * User: Franjo
  * Date: 07.11.13
@@ -19,6 +21,11 @@ public class TouchInput implements IGameInputController {
     @Override
     public float get_stickY() {
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public State getState() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

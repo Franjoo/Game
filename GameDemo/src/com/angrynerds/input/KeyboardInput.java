@@ -1,5 +1,6 @@
 package com.angrynerds.input;
 
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -30,6 +31,11 @@ public class KeyboardInput extends InputAdapter implements IGameInputController 
         else if (Gdx.input.isKeyPressed(Keys.UP)) return 1;
         else if (Gdx.input.isKeyPressed(Keys.DOWN)) return -1;
         return 0;
+    }
+
+    @Override
+    public State getState() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

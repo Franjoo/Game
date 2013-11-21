@@ -8,7 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="gdx-controllers" level="project" />
-    <orderEntry type="library" name="MainLibs" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="controllers" />
   </component>
 </module>
