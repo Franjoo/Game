@@ -3,6 +3,7 @@ package com.angrynerds.gameobjects;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.CollisionDetector;
 import com.angrynerds.game.screens.play.PlayScreen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -55,6 +56,7 @@ public class Map {
     private int[] renderLayers;
     private OrthographicCamera camera;
     private Player player;
+    private Enemie enemie;
     private World world;
 
     // map properties
@@ -111,6 +113,8 @@ public class Map {
         instance = this;
 
         player.init();
+        enemie = new Enemie("goblins",new TextureAtlas(Gdx.files.internal("goblins" + ".atlas")),"goblin",player,1);
+        enemie.init();
     }
 
     /**
@@ -291,6 +295,8 @@ public class Map {
         // render player
         player.render(batch);
 
+        enemie.render(batch);
+
         // render map object in which are in foreground
         for (int i = 0; i < mapObjects.size; i++) {
             if (player.getY() > mapObjects.get(i).getY()) {
@@ -322,6 +328,7 @@ public class Map {
      */
     public void update(float deltaTime) {
         player.update(deltaTime);
+        enemie.update(deltaTime);
         renderer.setView(camera);
     }
 

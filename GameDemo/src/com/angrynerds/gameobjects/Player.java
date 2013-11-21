@@ -34,6 +34,10 @@ public class Player extends GameObject {
     private float vX_MAX = 180;
     private float vY_MAX = 120;
 
+    // stats
+    private int maxHP = 100;
+    private int actHP;
+
     // helper attributes
     private Vector2 vec2 = new Vector2();
     private Array<Vector2> collPos = new Array<Vector2>();
@@ -86,6 +90,8 @@ public class Player extends GameObject {
         x = map.getSpawn().x;
         y = map.getSpawn().y;
 
+        actHP = maxHP;
+
         width = 32;
         height = 32;
 
@@ -109,7 +115,7 @@ public class Player extends GameObject {
 
         t.draw(p, 0, 0);
 
-//        setTexture(t);
+//       setTexture(t);
 
 
 //        set input processor
@@ -527,6 +533,22 @@ public class Player extends GameObject {
 
     public float getvY_MAX() {
         return vY_MAX;
+    }
+
+    public int getMaxHP(){
+        return maxHP;
+    }
+
+    public int getActualHP(){
+        return actHP;
+    }
+
+    public void setActualHP(int hp){
+        actHP = hp;
+    }
+
+    public void setMaxHP(int hp){
+        maxHP = hp;
     }
 
     private void log() {
