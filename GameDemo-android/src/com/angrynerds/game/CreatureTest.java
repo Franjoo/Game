@@ -37,19 +37,22 @@ public class CreatureTest extends AndroidApplication implements ApplicationListe
         float scale;
         String skin;
 
-        // set up goblin
-        name = "goblins";
-        atlas = new TextureAtlas(Gdx.files.internal("goblins" + ".atlas"));
-        scale = 1;
-        skin = "goblin";
-        goblin = new Goblin(name, atlas, skin, scale);
+//        // set up goblin
+//        name = "goblins";
+//        atlas = new TextureAtlas(Gdx.files.internal("goblins" + ".atlas"));
+//        scale = 1;
+//        skin = "goblin";
+//        goblin = new Goblin(name, atlas, skin, scale);
 
-        // set up boy
-        name = "spineboy";
-        atlas = new TextureAtlas(Gdx.files.internal(name + ".atlas"));
-        scale = 1;
-        skin = null;
-        boy = new Boy(name, atlas, skin, scale);
+//        // set up boy
+//        name = "spineboy";
+//        atlas = new TextureAtlas(Gdx.files.internal(name + ".atlas"));
+//        scale = 1;
+//        skin = null;
+//        boy = new Boy(name, atlas, skin, scale);
+//
+//        // set up ted
+
     }
 
     @Override

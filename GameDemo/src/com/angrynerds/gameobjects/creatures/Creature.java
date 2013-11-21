@@ -25,28 +25,34 @@ public class Creature extends GameObject {
     protected SkeletonRenderer skeletonRenderer;
     protected SkeletonRendererDebug skeletonDebugRenderer;
 
+    // atlas
+    private TextureAtlas atlas;
+
     // constructor params
     private String name;
-    private TextureAtlas atlas;
+    private String path;
     private float scale;
     private String skin;
 
 
-    public Creature(String name, TextureAtlas atlas, String skin, float scale) {
-        this.atlas = atlas;
+    public Creature(String name, String path, String skin, float scale) {
         this.name = name;
+        this.path = path;
         this.scale = scale;
         this.skin = skin;
 
         create();
     }
 
-    public Creature(String name, TextureAtlas atlas, String skin) {
-        this(name, atlas, skin, 1);
+    public Creature(String name, String path, String skin) {
+        this(name, path, skin, 1);
     }
 
 
     private void create() {
+        // atlas
+        atlas = new TextureAtlas(Gdx.files.internal(path + name + ".atlas"));
+
         // skeleton json
         skeletonJson = new SkeletonJson(atlas);
 
@@ -54,7 +60,7 @@ public class Creature extends GameObject {
         skeletonJson.setScale(scale);
 
         // get skeletonData
-        skeletonData = skeletonJson.readSkeletonData(Gdx.files.internal(name + ".json"));
+        skeletonData = skeletonJson.readSkeletonData(Gdx.files.internal(path + name + ".json"));
 
         // create skeleton
         skeleton = new Skeleton(skeletonData);
@@ -72,6 +78,9 @@ public class Creature extends GameObject {
         // create renderer
         skeletonRenderer = new SkeletonRenderer();
         skeletonDebugRenderer = new SkeletonRendererDebug();
+
+
+
     }
 
     public void update(float deltaTime) {

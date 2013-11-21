@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1000" height="23" tilewidth="20" tileheight="20">
  <properties>
+  <property name="$bg" value=""/>
   <property name="OffsetX" value="8"/>
   <property name="OffsetY" value="0"/>
  </properties>

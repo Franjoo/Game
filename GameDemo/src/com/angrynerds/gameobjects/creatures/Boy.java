@@ -17,8 +17,8 @@ public class Boy extends Creature {
     Array<Event> events;
     Animation walkAnimation;
 
-    public Boy(String name, TextureAtlas atlas, String skin, float scale) {
-        super(name, atlas, skin, scale);
+    public Boy(String name, String path, String skin, float scale) {
+        super(name, path, skin, scale);
 
         walkAnimation = skeletonData.findAnimation("walk");
         showBounds = false;

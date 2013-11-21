@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
  */
 public class DesktopStarter {
 
-    private static final String VERSION = "v0.45";
+    private static final String VERSION = "v0.1";
 
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();

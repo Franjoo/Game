@@ -18,8 +18,8 @@ public class Goblin extends Creature {
     Array<Event> events;
     Animation walkAnimation;
 
-    public Goblin(String name, TextureAtlas atlas, String skin, float scale) {
-        super(name, atlas, skin, scale);
+    public Goblin(String name, String path, String skin, float scale) {
+        super(name, path, skin, scale);
 
         walkAnimation = skeletonData.findAnimation("walk");
         showBounds = true;

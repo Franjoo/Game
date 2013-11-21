@@ -17,7 +17,6 @@ public class World {
 
     private Map map;
     private Player player;
-    private Layer background;
 
     private OrthographicCamera camera;
     private PlayController playController;
@@ -43,7 +42,6 @@ public class World {
         // world objects
         player = new Player(playController.getControllerUI());
         map = new Map(this, player);
-        background = new Layer(this);
 
         // camera
         cameraHelper = new CameraHelper(this);
@@ -57,7 +55,6 @@ public class World {
      * @param deltaTime time since last frame
      */
     public void update(float deltaTime) {
-        background.update(deltaTime);
         map.update(deltaTime);
 
         playController.getControllerUI().update(deltaTime);
@@ -71,7 +68,6 @@ public class World {
     public void render(SpriteBatch batch) {
         cameraHelper.update(Gdx.graphics.getDeltaTime());
 
-        background.render(batch);
         map.render(batch);
 
         playController.getControllerUI().render();
@@ -95,12 +91,6 @@ public class World {
         return player;
     }
 
-    /**
-     * returns the background
-     */
-    public Layer getBackground() {
-        return background;
-    }
 
     /**
      * returns the camera
