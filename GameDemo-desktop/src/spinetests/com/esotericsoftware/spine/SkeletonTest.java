@@ -106,6 +106,7 @@ public class SkeletonTest extends ApplicationAdapter {
 		animation = skeletonData.findAnimation("walk");
 
 		skeleton = new Skeleton(skeletonData);
+
 		if (name.equals("goblins")) skeleton.setSkin("goblin");
 		skeleton.setToSetupPose();
 		skeleton = new Skeleton(skeleton);

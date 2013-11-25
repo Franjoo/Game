@@ -1,9 +1,24 @@
 package com.angrynerds.game.collision;
 
+import com.angrynerds.gameobjects.creatures.Creature;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+
+
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.FloatArray;
+import com.esotericsoftware.spine.Skeleton;
+import com.esotericsoftware.spine.SkeletonBounds;
+import com.esotericsoftware.spine.Slot;
+import com.esotericsoftware.spine.attachments.BoundingBoxAttachment;
+import com.esotericsoftware.spine.attachments.RegionAttachment;
+
 
 /**
  * User: Franjo
@@ -89,6 +104,50 @@ public class CollisionDetector {
             }
         }
         return ctl;
+    }
+
+    public boolean polygonCollision(Creature c1, Creature c2){
+        Slot s = c1.skeleton.findSlot("left hand item");
+        RegionAttachment ra = (RegionAttachment) c1.skeleton.getAttachment("left hand item","spear");
+
+        ra.updateWorldVertices(s, false);
+        BoundingBoxAttachment boundingBoxWeapon = c1.getSkeletonBounds().getBoundingBoxes().get(0);
+        Array<BoundingBoxAttachment> boundingBoxesCreature1 = c1.getSkeletonBounds().getBoundingBoxes();
+        for(int i = 0; i < boundingBoxesCreature1.size;i++){
+            if(boundingBoxesCreature1.get(i).getName().equals("weapon")){
+               boundingBoxWeapon = boundingBoxesCreature1.get(i);
+            }
+        }
+
+      //  for (int i = 0; i< c1.skeleton.getBones().size;i++){
+
+        float[] weaponPolygon =  new float[]{ra.getWorldVertices()[0],ra.getWorldVertices()[1],ra.getWorldVertices()[5],ra.getWorldVertices()[6],ra.getWorldVertices()[10],ra.getWorldVertices()[11],ra.getWorldVertices()[15],ra.getWorldVertices()[16]};
+         // float[] weaponPolygon = ra.getOffset();
+
+
+        //}
+
+
+        BoundingBoxAttachment skeletonBoundsCreature = c2.getSkeletonBounds().getBoundingBoxes().get(0);
+
+
+
+        //FloatArray weaponPolygon = c1.getSkeletonBounds().getPolygon(boundingBoxWeapon);
+        FloatArray enemyPolygon = c2.getSkeletonBounds().getPolygon(skeletonBoundsCreature);
+        FloatArray weaponPol = new FloatArray(weaponPolygon);
+        Polygon pol = new Polygon(weaponPolygon);
+        Polygon pol2 = new Polygon(enemyPolygon.toArray());
+
+
+        if(Intersector.overlapConvexPolygons(pol2, pol, new Intersector.MinimumTranslationVector())){
+            System.out.println(weaponPol.toString());
+
+            return true;
+        }
+        else
+           return false;
+
+
     }
 
 

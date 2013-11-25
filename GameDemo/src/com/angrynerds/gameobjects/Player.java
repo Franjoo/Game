@@ -20,6 +20,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.spine.*;
+import com.esotericsoftware.spine.attachments.BoundingBoxAttachment;
 
 /**
  * class that represents the Player
@@ -60,6 +61,7 @@ public class Player extends Creature {
     private Animation jumpAnimation;
 
     private Animation currentAnimation;
+    private SkeletonBounds sB;
 
     // input
     private IGameInputController input;
@@ -69,11 +71,12 @@ public class Player extends Creature {
      * creates a new player
      */
     public Player(IGameInputController input) {
-        super("Max_move", "data/spine/max/", null, 0.3f);
+       // super("Max_move", "data/spine/max/", null, 0.3f);
+       super("spineboy", "data/spine/spineboy/", null, 1);
 
         this.input = input;
 
-        walkAnimation = skeletonData.findAnimation("run_test");
+        walkAnimation = skeletonData.findAnimation("walk");
         jumpAnimation = skeletonData.findAnimation("jump");
 
     }
@@ -95,6 +98,7 @@ public class Player extends Creature {
 
         width = 32;
         height = 32;
+
 
 //        setPosition(x, y);
 //        setSize(width, height);
@@ -147,11 +151,12 @@ public class Player extends Creature {
 
     private void setAnimationStates() {
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-        stateData.setMix("run_test", "jump", 0.2f);
-        stateData.setMix("jump", "run_test", 0.4f);
-        stateData.setMix("jump", "jump", 0.2f);
+       // stateData.setMix("walk", "jump", 0.2f);
+       // stateData.setMix("jump", "walk", 0.4f);
+       // stateData.setMix("jump", "jump", 0.2f);
 
-        state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
+        state = new AnimationState(stateData);
+        // Holds the animation state for a skeleton (current animation, time, etc).
         state.addListener(new AnimationState.AnimationStateListener() {
             public void event(int trackIndex, Event event) {
                 System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
@@ -169,7 +174,7 @@ public class Player extends Creature {
                 System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
             }
         });
-        state.setAnimation(0, "run_test", true);
+        state.setAnimation(0, "walk", true);
     }
 
     public void render(SpriteBatch batch) {
@@ -196,6 +201,7 @@ public class Player extends Creature {
 
         // apply animation
         skeleton.setFlipX(vX < 0);
+
 //        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
 ////            currentAnimation = jumpAnimation;
 //            state.setAnimation(0, "jump", false);
@@ -298,6 +304,7 @@ public class Player extends Creature {
 
          currentAnimation = walkAnimation;
         currentAnimation.apply(skeleton, skeleton.getTime() * 3.2f, skeleton.getTime() * 3.2f, true, events);
+
 
 
     }

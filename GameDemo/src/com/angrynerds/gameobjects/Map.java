@@ -345,20 +345,15 @@ public class Map {
      */
 
     public void render(SpriteBatch batch) {
-
         // background
         renderBackground(batch);
+
+        // render player
+
 
         // set camera
         renderer.getSpriteBatch().setProjectionMatrix(camera.combined);
 
-        // render player
-        player.render(batch);
-
-//<<<<<<< HEAD
-//        // render map object
-//=======
-        enemie.render(batch);
 
         // render map object in which are in foreground
 //>>>>>>> origin/master
@@ -367,7 +362,13 @@ public class Map {
                 mapObjects.get(i).render(batch);
             }
         }
+        player.render(batch);
 
+
+//<<<<<<< HEAD
+//        // render map object
+//=======
+        enemie.render(batch);
         // render foreground
         renderForeground(batch);
 
@@ -432,6 +433,11 @@ public class Map {
     public void update(float deltaTime) {
         player.update(deltaTime);
         enemie.update(deltaTime);
+       if(detector.polygonCollision(enemie,player)){
+           System.out.println("Collision");
+       }
+
+
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
     }

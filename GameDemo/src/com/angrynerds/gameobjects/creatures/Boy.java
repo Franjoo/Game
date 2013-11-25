@@ -1,5 +1,7 @@
 package com.angrynerds.gameobjects.creatures;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Array;
@@ -25,6 +27,8 @@ public class Boy extends Creature {
 
         x = 160;
         y = 30;
+
+
     }
 
     @Override
@@ -36,7 +40,22 @@ public class Boy extends Creature {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+
+           x = getX() + 320 * deltaTime;
+
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+
+            x = getX() - 320 * deltaTime;
+
+
+
+        }
+
         walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, events);
+       // for(int i = 0; i< getSkeletonBounds().getBoundingBoxes().size;i++)
+           //System.out.println(getSkeletonBounds().getBoundingBoxes());
     }
 
 
