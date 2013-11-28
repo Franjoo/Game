@@ -1,7 +1,7 @@
 package com.angrynerds.ui;
 
 import com.angrynerds.input.IGameInputController;
-import com.angrynerds.util.C;
+import com.angrynerds.util.Constants;
 import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -41,7 +41,7 @@ public class DeprecatedControllUI implements IGameInputController {
     private Button btn_B;
 
     public DeprecatedControllUI(Camera camera) {
-        stage = new Stage(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT, true);
+        stage = new Stage(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, true);
         stage.setCamera(camera);
 
         this.camera = camera;
@@ -69,7 +69,7 @@ public class DeprecatedControllUI implements IGameInputController {
 
         touchpad = new Touchpad(10, touchpadStyle);
         touchpad.setBounds(15, 15, 200, 200);
-        touchpad.setPosition(-C.VIEWPORT_WIDTH / 2, -C.VIEWPORT_HEIGHT / 2);
+        touchpad.setPosition(-Constants.VIEWPORT_WIDTH / 2, -Constants.VIEWPORT_HEIGHT / 2);
 
         stage.addActor(touchpad);
 
@@ -99,8 +99,8 @@ public class DeprecatedControllUI implements IGameInputController {
         btn_B.setSize(btn_B.getWidth() * 1.4f, btn_B.getHeight() * 1.4f);
 //        btn_B.scale(5);
 
-        btn_B.setPosition(C.VIEWPORT_WIDTH / 2 - btn_B.getWidth() - 20, -C.VIEWPORT_HEIGHT / 2);
-        btn_A.setPosition(C.VIEWPORT_WIDTH / 2 - 1.3f * btn_B.getWidth() - btn_A.getWidth(), -C.VIEWPORT_HEIGHT / 2);
+        btn_B.setPosition(Constants.VIEWPORT_WIDTH / 2 - btn_B.getWidth() - 20, -Constants.VIEWPORT_HEIGHT / 2);
+        btn_A.setPosition(Constants.VIEWPORT_WIDTH / 2 - 1.3f * btn_B.getWidth() - btn_A.getWidth(), -Constants.VIEWPORT_HEIGHT / 2);
 
         stage.addActor(btn_A);
         stage.addActor(btn_B);

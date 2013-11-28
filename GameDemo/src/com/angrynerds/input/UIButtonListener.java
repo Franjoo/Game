@@ -20,6 +20,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
     private ControllerUI controller;
     private Array<Integer> touchOrder;
 
+    private Array<Integer> attackOrder;
     private Array<Integer> jumpOrder; //midButton -> topButton
     private Array<Integer> smashOrder; //midButton -> topButton -> botButton
     private Array<Integer> turnAroundOrder; // top -> right -> bot -> left
@@ -39,7 +40,10 @@ public class UIButtonListener extends DragListener implements IGameInputControll
         jumpOrder = new Array<Integer>(new Integer[]{controller.getMidButton().getId(), controller.getTopButton().getId()});
         smashOrder = new Array<Integer>(new Integer[]{controller.getMidButton().getId(), controller.getTopButton().getId(), controller.getBotButton().getId()});
         turnAroundOrder = new Array<Integer>(new Integer[]{controller.getTopButton().getId(), controller.getRightButton().getId(), controller.getBotButton().getId(), controller.getLeftButton().getId()});
+        attackOrder = new Array<Integer>(new Integer[]{controller.getMidButton().getId()});
     }
+
+
 
     @Override
     public void touchUp(InputEvent event, float x, float y, int pointer,
@@ -51,7 +55,11 @@ public class UIButtonListener extends DragListener implements IGameInputControll
                 but.setOver(false);
             MyButton.overCounter = 0;
         }
-        if (touchOrder.equals(jumpOrder)){
+        if(touchOrder.equals(attackOrder)){
+            state = State.ATTACKING;
+        }
+
+        else if (touchOrder.equals(jumpOrder)){
             System.out.println("jump to the sky");
             state = State.JUMPING;
         }

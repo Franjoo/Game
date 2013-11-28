@@ -2,9 +2,9 @@ package com.angrynerds.gameobjects;
 
 import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
-import com.angrynerds.game.collision.Detector;
+import com.angrynerds.game.collision.CollisionDetector;
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.util.C;
+import com.angrynerds.util.Constants;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -60,7 +60,7 @@ public class Map {
     private OrthographicCamera camera;
     private OrthographicCamera fixedCamera;
     private Player player;
-    private Enemy enemy;
+    private Enemie enemie;
     private World world;
 
     // map properties
@@ -80,7 +80,7 @@ public class Map {
     private float height;
 
     // collision detector
-    private Detector detector;
+    private CollisionDetector detector;
 
     // player relevant subjects
     private Vector2 spawn;
@@ -120,8 +120,8 @@ public class Map {
         instance = this;
 
         player.init();
-        enemy = new Enemy("goblins", "data/spine/goblins/", "goblingirl", player, 1);
-        enemy.init();
+        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1);
+        enemie.init();
     }
 
     /**
@@ -181,8 +181,8 @@ public class Map {
         System.out.println("w/h: " + mapWidth + " " + mapHeight);
 
         // fixed camera & renderer
-        fixedCamera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
-        fixedRenderer = new OrthogonalTiledMapRenderer(map, 0.7f, PlayScreen.getBatch());
+        fixedCamera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
+        fixedRenderer = new OrthogonalTiledMapRenderer(map, PlayScreen.getBatch());
         fixedRenderer.setView(fixedCamera);
 
 
@@ -200,8 +200,8 @@ public class Map {
         spawn = findSpawn();
 
         // initialize Collision Detector
-        Detector.initialize(map);
-        detector = Detector.getInstance();
+        CollisionDetector.initialize(map);
+        detector = CollisionDetector.getInstance();
 
         // draw tile grid
         if (SHOW_TILE_GRID) drawTileGrid();
@@ -234,8 +234,6 @@ public class Map {
                     float vX = Float.parseFloat(ps.get("vx").toString());
                     float vY = Float.parseFloat(ps.get("vy").toString());
                     TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
-
-                    System.out.println(x + "  " + y + " " + vX + "  " + vY);
 
                     // create layer
                     Layer layer = new Layer(x, y, vX, vY, tl);
@@ -292,7 +290,6 @@ public class Map {
         }
         return rects;
     }
-
 
     private Rectangle flipY(Rectangle rectangle) {
         rectangle.setY(mapHeight - rectangle.getHeight() - rectangle.getY());
@@ -355,14 +352,16 @@ public class Map {
         // set camera
         renderer.getSpriteBatch().setProjectionMatrix(camera.combined);
 
-//       }
-
         // render player
         player.render(batch);
 
-//        enemy.render(batch);
+//<<<<<<< HEAD
+//        // render map object
+//=======
+        enemie.render(batch);
 
-
+        // render map object in which are in foreground
+//>>>>>>> origin/master
         for (int i = 0; i < mapObjects.size; i++) {
             if (player.getY() > mapObjects.get(i).getY()) {
                 mapObjects.get(i).render(batch);
@@ -395,8 +394,8 @@ public class Map {
         for (int i = 0; i < layers_foreground.size; i++) {
 
             Layer l = layers_foreground.get(i);
-            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() * (-1) + C.VIEWPORT_WIDTH / 2;
-            fixedCamera.position.y = camera.position.y * l.getvY() + l.getY() * (-1);
+            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + Constants.VIEWPORT_WIDTH / 2;
+            fixedCamera.position.y = camera.position.y * l.getvY() + l.getY();
 
             fixedCamera.update();
 
@@ -413,8 +412,8 @@ public class Map {
         for (int i = 0; i < layers_background.size; i++) {
 
             Layer l = layers_background.get(i);
-            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + C.VIEWPORT_WIDTH / 2;
-            fixedCamera.position.y = camera.position.y * l.getvY() + l.getY() * (-1);
+            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + Constants.VIEWPORT_WIDTH / 2;
+            fixedCamera.position.y = camera.position.y * l.getvY() + l.getY();
 
             fixedCamera.update();
 
@@ -432,7 +431,7 @@ public class Map {
      */
     public void update(float deltaTime) {
         player.update(deltaTime);
-        enemy.update(deltaTime);
+        enemie.update(deltaTime);
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
     }
