@@ -82,8 +82,9 @@ public class Player extends Creature {
 
     public void init() {
 
-        // set map
         map = Map.getInstance();
+        detector = Detector.getInstance();
+
         x = 500;
         y = 300;
 
@@ -185,9 +186,6 @@ public class Player extends Creature {
 
     private void setTileCollisionPosition() {
 
-        if (detector == null) {
-            detector = Detector.getInstance();
-        }
 
         //LEFT
         if (vX < 0) {
