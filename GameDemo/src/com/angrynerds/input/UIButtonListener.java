@@ -72,7 +72,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
         else if (touchOrder.equals(turnAroundOrder))
             System.out.println("turn around");
 
-        else state = State.IDLE;
+        state = State.IDLE;
 
         touchOrder.clear();
 
