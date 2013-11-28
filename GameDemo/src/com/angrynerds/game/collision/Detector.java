@@ -11,10 +11,10 @@ import com.badlogic.gdx.utils.Array;
  * Time: 15:15
  * Project: TileRunner
  */
-public class CollisionDetector {
-    private static String TAG = CollisionDetector.class.getSimpleName();
+public class Detector {
+    private static String TAG = Detector.class.getSimpleName();
 
-    private static CollisionDetector instance = null;
+    private static Detector instance = null;
 
     // tiled map properties
     public TiledMap tiledMap;
@@ -27,12 +27,14 @@ public class CollisionDetector {
 
     // map lists
     private Array<TiledMapTileLayer> collisionTileLayers;
+    private boolean[][] solids;
+
 //    private Array<Rectangle> collisionObjects;
 //    private Array<TmxMapObject> mapObjects;
 //    private HashMap<String, TextureRegion> regionMap;
 
 
-    private CollisionDetector(TiledMap tiledMap) {
+    private Detector(TiledMap tiledMap) {
         this.tiledMap = tiledMap;
 
         init();
@@ -52,8 +54,20 @@ public class CollisionDetector {
 
         collisionTileLayers = getCollisionTileLayers();
 
+        // fill boolean solid array
+        solids = new boolean[numTilesX][numTilesY];
+        for (int w = 0; w < solids.length; w++) {
+            for (int h = 0; h < solids[w].length; h++) {
+                for (int i = 0; i < collisionTileLayers.size; i++) {
+                    TiledMapTileLayer.Cell cell = collisionTileLayers.get(i).getCell(w, h);
+                    solids[w][h] = cell != null;
+                }
+            }
+        }
 
     }
+
+
 
     /**
      * checks whether there is a solid tile at specified position
@@ -62,15 +76,19 @@ public class CollisionDetector {
      * @param y position y
      * @return whether point collides with solid tile or not
      */
-    public boolean isSolid(final float x, final float y) {
+//    public boolean isSolid(final float x, final float y) {
+//
+//        for (int i = 0; i < collisionTileLayers.size; i++) {
+//            TiledMapTileLayer.Cell cell = collisionTileLayers.get(i).getCell((int) (x) / tileWidth, (int) (y) / tileHeight);
+//            if (cell != null) {
+//                return true;
+//            }
+//        }
+//        return false;
 
-        for (int i = 0; i < collisionTileLayers.size; i++) {
-            TiledMapTileLayer.Cell cell = collisionTileLayers.get(i).getCell((int) (x) / tileWidth, (int) (y) / tileHeight);
-            if (cell != null) {
-                return true;
-            }
-        }
-        return false;
+
+    public boolean isSolid(final float x, final float y) {
+        return solids[(int) (x) / tileWidth][(int) (y) / tileHeight];
     }
 
     /**
@@ -93,13 +111,13 @@ public class CollisionDetector {
 
 
     //*** SINGLETON ***//
-    public static CollisionDetector getInstance() {
+    public static Detector getInstance() {
         if (instance == null) throw new InstantiationError(TAG + " has not been initialized");
         return instance;
     }
 
     public static void initialize(TiledMap tiledMap) {
-        new CollisionDetector(tiledMap);
+        new Detector(tiledMap);
     }
 
 }

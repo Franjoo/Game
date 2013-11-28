@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.esotericsoftware.spine.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * User: Franjo
  * Date: 07.11.13
@@ -28,6 +31,9 @@ public class Creature extends GameObject {
     // atlas
     private TextureAtlas atlas;
 
+    // animation map
+    private Map<String, Animation> animationMap;
+
     // constructor params
     private String name;
     private String path;
@@ -42,10 +48,25 @@ public class Creature extends GameObject {
         this.skin = skin;
 
         create();
+
+        fillAnimationMap();
     }
 
     public Creature(String name, String path, String skin) {
         this(name, path, skin, 1);
+    }
+
+    private void fillAnimationMap() {
+        animationMap = new HashMap<String, Animation>();
+        for (int i = 0; i < skeletonData.getAnimations().size; i++) {
+            Animation animation = skeletonData.getAnimations().get(i);
+            System.out.println(animation.getName());
+            animationMap.put(animation.getName(), animation);
+        }
+    }
+
+    protected Animation getAnimation(String name){
+          return null;
     }
 
 
@@ -59,11 +80,15 @@ public class Creature extends GameObject {
         // set scale
         skeletonJson.setScale(scale);
 
+
         // get skeletonData
         skeletonData = skeletonJson.readSkeletonData(Gdx.files.internal(path + name + ".json"));
 
+
         // create skeleton
         skeleton = new Skeleton(skeletonData);
+
+//        skeleton.getDrawOrder().get(i).getData().
 
         if (skin != null) {
             // set skin
@@ -78,7 +103,6 @@ public class Creature extends GameObject {
         // create renderer
         skeletonRenderer = new SkeletonRenderer();
         skeletonDebugRenderer = new SkeletonRendererDebug();
-
 
 
     }

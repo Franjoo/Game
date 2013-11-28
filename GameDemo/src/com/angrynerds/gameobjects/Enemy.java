@@ -6,18 +6,10 @@ import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.game.World;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Creature;
-import com.angrynerds.gameobjects.creatures.Goblin;
-import com.angrynerds.input.TouchInput;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.esotericsoftware.spine.*;
+import com.esotericsoftware.spine.Animation;
 
 import java.util.Random;
 import java.util.Timer;
@@ -29,7 +21,7 @@ import java.util.Timer;
  * Time: 14:44
  * To change this template use File | Settings | File Templates.
  */
-public class Enemie extends Creature {
+public class Enemy extends Creature {
     private PlayScreen playScreen;
     private Map map;
     private World world;
@@ -58,7 +50,7 @@ public class Enemie extends Creature {
     private int rea = 0;
 
 
-//    public Enemie(PlayScreen playScreen,Player player){
+//    public Enemy(PlayScreen playScreen,Player player){
 //        super();
 //        this.playScreen = playScreen;
 //        map = screena.playController.world.map;
@@ -67,11 +59,13 @@ public class Enemie extends Creature {
 //
 //    }
 
-    public Enemie(String name, String path, String skin, Player player, float scale) {
+    public Enemy(String name, String path, String skin, Player player, float scale) {
         super(name, path, skin, scale);
 //        super("Max_move", "data/spine/max/", null, 0.3f);
 
         this.player = player;
+
+//        showBounds = true;
 
     }
 
@@ -111,8 +105,8 @@ public class Enemie extends Creature {
         // System.out.println(x + "   " + y +"   " + player.x + "   " + player.y);
 
 
-        path = pf.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
-        System.out.println(path);
+//        path = pf.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
+//        System.out.println(path);
         if (path != null && rea < path.getLength()) {
 
 

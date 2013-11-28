@@ -1,21 +1,14 @@
 package com.angrynerds.ui;
 
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.input.IGameInputController;
 import com.angrynerds.input.UIButtonListener;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-
-import java.util.ArrayList;
 
 /**
  * User: Franjo
@@ -73,9 +66,9 @@ public class ControllerUI  {
 
 
         midButton = new MyButton(0, skin.getDrawable("mid_up"), skin.getDrawable("mid_down"));
-        midButton.setBounds(Constants.VIEWPORT_WIDTH - midButton.getWidth()/1.5f, midButton.getHeight()/3, 100, 100);
+        midButton.setBounds(C.VIEWPORT_WIDTH - midButton.getWidth()/1.5f, midButton.getHeight()/3, 100, 100);
 
-//        midButton.setBounds(Constants.VIEWPORT_WIDTH - midButton.getWidth() * midButton.getScaleX(), midButton.getHeight(), 75, 75);
+//        midButton.setBounds(C.VIEWPORT_WIDTH - midButton.getWidth() * midButton.getScaleX(), midButton.getHeight(), 75, 75);
 
         topButton = new MyButton(1, skin.getDrawable("top_up"), skin.getDrawable("top_down"));
         topButton.setBounds(midButton.getX(), midButton.getY()+midButton.getHeight()/1.25f, 100, 70);

@@ -3,7 +3,7 @@ package com.angrynerds.util;
 /**
  * class that store public static constant values
  */
-public class Constants {
+public class C {
     /**
      * width of the ViewPort
      */
