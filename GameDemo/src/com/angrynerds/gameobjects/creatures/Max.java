@@ -44,5 +44,9 @@ public class Max extends Creature {
         dieAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime()/2, true, events);
     }
 
+    @Override
+    public void attack() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

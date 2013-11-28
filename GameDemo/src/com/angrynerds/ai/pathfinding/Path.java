@@ -87,7 +87,5 @@ public class Path {
      */
     public boolean contains(int x, int y) {
         return steps.contains(new Step(x,y));
-
-
     }
 }

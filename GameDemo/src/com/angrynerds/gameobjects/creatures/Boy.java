@@ -39,5 +39,9 @@ public class Boy extends Creature {
         walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, events);
     }
 
+    @Override
+    public void attack() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

@@ -2,7 +2,7 @@ package com.angrynerds.game.screens.play;
 
 import com.angrynerds.game.World;
 import com.angrynerds.ui.ControllerUI;
-import com.angrynerds.util.C;
+import com.angrynerds.util.Constants;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 /**
@@ -30,7 +30,7 @@ public class PlayController {
      * initializes PlayController
      */
     private void init() {
-        camera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
+        camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         camera.update();
 
         controllerUI = new ControllerUI();
