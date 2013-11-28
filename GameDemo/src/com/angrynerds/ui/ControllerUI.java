@@ -46,6 +46,8 @@ public class ControllerUI  {
 
     private void init() {
 
+        stage = new Stage(800,480,true,PlayScreen.getBatch());
+
         lifeBar = new Lifebar("lifebar2_03.png", "lifebar2b_03.png", "lifebar2c_03.png");
         lifeBar.setPosition(10, Constants.VIEWPORT_HEIGHT - lifeBar.getHeight());
         // start touchpad init
@@ -96,6 +98,7 @@ public class ControllerUI  {
 
         buttonTable.setBounds(0, 0, leftButton.getWidth()+midButton.getWidth()+rightButton.getWidth(), topButton.getHeight()+midButton.getHeight()+botButton.getHeight());
 
+        buttonTable.setPosition(stage.getWidth()-buttonTable.getWidth(), 0);
 //        buttonTable.add().width(leftButton.getWidth()).height(topButton.getHeight());
 //        buttonTable.add(topButton).width(topButton.getWidth()).height(topButton.getHeight()).bottom();
 //        buttonTable.add().width(rightButton.getWidth()).height(topButton.getHeight()).row();
@@ -106,11 +109,11 @@ public class ControllerUI  {
 //        buttonTable.add(botButton).width(botButton.getWidth()).height(botButton.getHeight()).top();
 //        buttonTable.add().width(rightButton.getWidth()).height(botButton.getHeight());
 
-        buttonTable.add(topButton).colspan(3).row();
-        buttonTable.add(leftButton);
-        buttonTable.add(midButton);
-        buttonTable.add(rightButton).row();
-        buttonTable.add(botButton).colspan(3);
+        buttonTable.add(topButton).colspan(3).expand().row();
+        buttonTable.add(leftButton).expand();
+        buttonTable.add(midButton).expand();
+        buttonTable.add(rightButton).expand().row();
+        buttonTable.add(botButton).colspan(3).expand();
 
         listener = new UIButtonListener(this);
         topButton.addListener(listener);
@@ -127,7 +130,7 @@ public class ControllerUI  {
         buttons[3] = botButton;
         buttons[4] = leftButton;
 
-        stage = new Stage(800,480,true,PlayScreen.getBatch());
+
 
         Gdx.input.setInputProcessor(stage);
 
