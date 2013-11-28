@@ -1,21 +1,14 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.game.collision.Detector;
 import com.angrynerds.gameobjects.creatures.Creature;
-import com.angrynerds.input.DeprecatedTouchInput;
 import com.angrynerds.input.IGameInputController;
-import com.angrynerds.input.KeyboardInput;
-import com.angrynerds.input.TouchInput;
-import com.angrynerds.input.gamepads.X360Gamepad;
-import com.angrynerds.input.*;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.angrynerds.util.State;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -28,7 +21,7 @@ public class Player extends Creature {
     private static final String TAG = Player.class.getSimpleName();
 
     // constants
-    private final float epsilon = Constants.EPSILON;
+    private final float epsilon = C.EPSILON;
 
     // map
     private Camera camera;
@@ -59,7 +52,12 @@ public class Player extends Creature {
     private Animation walkAnimation;
     private Animation jumpAnimation;
 
+    private AnimationListener animationListener;
+
     private Animation currentAnimation;
+
+
+    private Detector detector;
 
     // input
     private IGameInputController input;
@@ -71,75 +69,30 @@ public class Player extends Creature {
     public Player(IGameInputController input) {
         super("Max_move", "data/spine/max/", null, 0.3f);
 
+
         this.input = input;
 
-        walkAnimation = skeletonData.findAnimation("run_test");
-        jumpAnimation = skeletonData.findAnimation("jump");
+//        walkAnimation = skeletonData.findAnimation("run_test");
+//        jumpAnimation = skeletonData.findAnimation("jump");
+
+
+//        showBounds = true;
 
     }
 
     public void init() {
 
-        // set map
         map = Map.getInstance();
+        detector = Detector.getInstance();
 
-        // set position
-//        x = map.getSpawn().x;
-//        y = map.getSpawn().y;
         x = 500;
         y = 300;
-//        x = map.getSpawn().x;
-//        y = map.getSpawn().y;
 
         actHP = maxHP;
 
         width = 32;
         height = 32;
 
-//        setPosition(x, y);
-//        setSize(width, height);
-//
-//
-//        setOrigin(0, 0);
-
-//        // draw rectangular shape
-//        Pixmap p = new Pixmap((int) (width), (int) (height), Pixmap.Format.RGBA8888);
-//        Texture t = new Texture(p.getWidth(), p.getHeight(), Pixmap.Format.RGBA8888);
-//
-//        p.setColor(0, 0, 0, 1);
-//        p.fillRectangle(0, 0, (int) width, (int) height);
-//        p.setColor(1, 1, 1, 1);
-////        p.fillRectangle((int) origin.x, (int) origin.y, 5, 5);
-//        p.setColor(1, 0, 0, 1);
-//        p.drawLine((int) x, (int) y, (int) width + 20, (int) y);
-//        p.drawLine((int) x, (int) y, (int) (x), (int) height + 20);
-//
-//        t.draw(p, 0, 0);
-
-//       setTexture(t);
-
-
-//        set input processor
-//        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-//            Array controllers = Controllers.getControllers();
-//            if (controllers.size != 0) {
-//                input = new X360Gamepad((Controller) controllers.get(X360Gamepad.NUM_CONTROLLERS));
-//            } else {
-////                input = new TouchInput();
-////                input = new KeyboardInput();
-////                input = new DeprecatedTouchInput(camera);
-//            }
-//        } else if (Gdx.app.getType() == Application.ApplicationType.Android) {
-//            input = new DeprecatedTouchInput(camera);
-//        }
-
-
-//        // some basic init assertions
-//        assert (input != null) : (TAG + ": input must not be null");
-//
-//        System.out.println("DIMENSION:" + width + " " + height);
-//
-//>>>>>>> origin/master
 
         setAnimationStates();
 
@@ -147,28 +100,16 @@ public class Player extends Creature {
 
     private void setAnimationStates() {
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-        stateData.setMix("run_test", "jump", 0.2f);
-        stateData.setMix("jump", "run_test", 0.4f);
+        stateData.setMix("run_test", "jump", 0.6f);
+        stateData.setMix("jump", "run_test", 0.5f);
         stateData.setMix("jump", "jump", 0.2f);
+        stateData.setMix("run_test", "attack_1", 0.4f);
+        stateData.setMix("attack_1", "run_test", 0.4f);
+
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
-        state.addListener(new AnimationState.AnimationStateListener() {
-            public void event(int trackIndex, Event event) {
-                System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
-            }
-
-            public void complete(int trackIndex, int loopCount) {
-                System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
-            }
-
-            public void start(int trackIndex) {
-                System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
-            }
-
-            public void end(int trackIndex) {
-                System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
-            }
-        });
+        animationListener = new AnimationListener();
+        state.addListener(animationListener);
         state.setAnimation(0, "run_test", true);
     }
 
@@ -176,14 +117,8 @@ public class Player extends Creature {
         super.render(batch);
     }
 
-
-
     public void update(float deltaTime) {
         super.update(deltaTime);
-
-        state.update(deltaTime);
-        state.apply(skeleton);
-
 
         // set v in x and y direction
         vX = input.get_stickX() * deltaTime * vX_MAX;
@@ -196,112 +131,30 @@ public class Player extends Creature {
         x = p.x;
         y = p.y;
 
-        // apply animation
+        // flip skeleton
         skeleton.setFlipX(vX < 0);
-//        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-////            currentAnimation = jumpAnimation;
-//            state.setAnimation(0, "jump", false);
-//            state.addAnimation(0, "run_test", true, 0);
-//        }
-        // set position after setting collsion position
-//        setPosition(x, y);
 
-        //*** SKELETON ***//
+        // set current state
+        setCurrentState();
 
-
-//        X360Gamepad gp = (X360Gamepad) input;
-//        float walkspeed = gp.stick_left_intensity();
-//        float walkspeed = 1;
-
+        // apply and update skeleton
+        state.update(deltaTime);
         state.apply(skeleton);
-        skeleton.updateWorldTransform();
 
+    }
 
-//        if (walkspeed != 0) {
-//            // flip
-//            if (vX < 0) skeleton.setFlipX(true);
-//            else skeleton.setFlipX(false);
-//
-//            // position
-//            skeleton.setX(x);
-//            skeleton.setY(y);
-//
-//            state.update(deltaTime);
-//
-//
-////            skeleton.setTime(skeleton.getTime());
-////
-////            // update skeleton
-////            skeleton.updateWorldTransform();
-////            skeleton.update(Gdx.graphics.getDeltaTime());
-////
-////            walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, events);
-//
-//        }
-//        // jump
-//        System.out.println(input.getState());
-//        if (input.getState().equals(State.JUMPING)) {
-//
-//            System.out.println("a pressed");
-//            state.setAnimation(0, "jump", false); // Set animation on track 0 to jump.
-//            state.addAnimation(0, "walk", true, 0); // Queue walk to play after jump.
-//
-////            state.getCurrent(0).
-//
-////                    state.update(deltaTime);
-//
-//        }
-//
-//        if (state.getCurrent(0).getAnimation().getName().equals("jump")) {
-//            state.update(deltaTime);
-//            System.out.println("jump");
-//            if (state.getCurrent(0).isComplete()) {
-//                System.out.println("complete");
-//            }
-//        }
-//
-//
-//        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-//            skeleton.setX(skeleton.getX() + vX_MAX * deltaTime);
-//
-//            if (skeleton.getFlipX()) skeleton.setFlipX(false);
-//
-//
-////            walktime += deltaTime;
-////            System.out.println(skeleton.getTime());
-//
-//            skeleton.updateWorldTransform();
-//            skeleton.update(Gdx.graphics.getDeltaTime());
-//
-////            walkAnimation.apply(skeleton, skeleton.getTime(), skeleton.getTime() + deltaTime, true, events);
-//
-////            float speed = 360;
-////            if (time > beforeJump + blendIn && time < blendOutStart) speed = 360;
-//
-////            System.out.println(walkAnimation.);
-//
-//        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-//            skeleton.setX(skeleton.getX() - vX_MAX * deltaTime);
-//
-////            walktime += deltaTime;
-////            System.out.println(skeleton.getTime());
-//
-//            if (!skeleton.getFlipX()) skeleton.setFlipX(true);
-//            skeleton.updateWorldTransform();
-//            skeleton.update(Gdx.graphics.getDeltaTime());
-//
-//            walkAnimation.apply(skeleton, deltaTime, skeleton.getTime() + deltaTime, true, events);
-//
-////            float speed = 360;
-////            if (time > beforeJump + blendIn && time < blendOutStart) speed = 360;
-//
-////            System.out.println(walkAnimation.);
-//>>>>>>> origin/master
+    private void setCurrentState() {
+        if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
+            state.setAnimation(0, "jump", false);
+            state.addAnimation(0, "run_test", true, 0);
+//            state.addAnimation(1, "run_test", true, jumpAnimation.getDuration() - 30);
+//            state.addAnimation(1, "run_test", false, 0);
+        }
 
-         currentAnimation = walkAnimation;
-        currentAnimation.apply(skeleton, skeleton.getTime() * 3.2f, skeleton.getTime() * 3.2f, true, events);
-
-
+        if (input.getState() == State.ATTACKING) {
+            state.setAnimation(0, "attack_1", false);
+            state.addAnimation(0, "run_test", true, 0);
+        }
     }
 
     /**
@@ -330,11 +183,44 @@ public class Player extends Creature {
         return vec2;
     }
 
+
+    private void setTileCollisionPosition() {
+
+
+        //LEFT
+        if (vX < 0) {
+            if (detector.isSolid(x, y) || detector.isSolid(x, y + height)) {
+                vX = 0;
+            }
+
+            // RIGHT
+        } else if (vX > 0) {
+            if (detector.isSolid(x + width, y) || detector.isSolid(x + width, y + height)) {
+                vX = 0;
+            }
+        }
+
+        // BOTTOM
+        if (vY < 0) {
+            if (detector.isSolid(x, y) || detector.isSolid(x + width, y)) {
+                vY = 0;
+            }
+        }
+
+        // TOP
+        if (vY > 0) {
+            if (detector.isSolid(x, y + height) || detector.isSolid(x + width, y + height)) {
+                vY = 0;
+            }
+        }
+    }
+
     private Vector2 getObjectCollisionPosition(float pX, float pY, float vX, float vY) {
         float _x = pX + vX;
         float _y = pY + vY;
 
         Array<Rectangle> r;
+
 
         // left
         if (vX < 0) {
@@ -471,25 +357,53 @@ public class Player extends Creature {
         t.draw(p, 0, 0);
     }
 
-    public int getMaxHP(){
+//    public boolean isHit(float x, float y){
+////        return
+//    }
+
+
+    public int getMaxHP() {
         return maxHP;
     }
 
-    public int getActualHP(){
+    public int getActualHP() {
         return actHP;
     }
 
-    public void setActualHP(int hp){
+    public void setActualHP(int hp) {
         actHP = hp;
     }
 
-    public void setMaxHP(int hp){
+    public void setMaxHP(int hp) {
         maxHP = hp;
     }
 
-    @Override
-    public void attack() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
+    class AnimationListener implements AnimationState.AnimationStateListener {
+
+        @Override
+        public void event(int trackIndex, Event event) {
+//            System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
+        }
+
+        @Override
+        public void complete(int trackIndex, int loopCount) {
+//            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
+            System.out.println(state.getCurrent(trackIndex));
+            if (state.getCurrent(trackIndex).toString().equals("jump")) {
+                state.setAnimation(0, "run_test", true);
+            }
+        }
+
+        @Override
+        public void start(int trackIndex) {
+//            System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+        }
+
+        @Override
+        public void end(int trackIndex) {
+//            System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
+        }
     }
 
 }
