@@ -29,6 +29,8 @@ public class Detector {
     private Array<TiledMapTileLayer> collisionTileLayers;
     private boolean[][] solids;
 
+    private int yMax;
+
 //    private Array<Rectangle> collisionObjects;
 //    private Array<TmxMapObject> mapObjects;
 //    private HashMap<String, TextureRegion> regionMap;
@@ -65,8 +67,13 @@ public class Detector {
             }
         }
 
-    }
+        if (tiledMap.getProperties().containsKey("walkable")) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            yMax = Integer.parseInt(tiledMap.getProperties().get("walkable").toString()) * tileHeight;
+            System.out.println("ymax: " + yMax);
+        }
 
+    }
 
 
     /**
@@ -85,9 +92,8 @@ public class Detector {
 //            }
 //        }
 //        return false;
-
-
     public boolean isSolid(final float x, final float y) {
+        if(y > yMax * 0.7f) return true;
         return solids[(int) (x) / tileWidth][(int) (y) / tileHeight];
     }
 

@@ -178,6 +178,8 @@ public class Player extends Creature {
         nX = _pt.x;
         nY = _pt.y;
 
+        System.out.println(detector.isSolid(x, y));
+
 
         vec2.set(nX, nY);
         return vec2;
@@ -244,6 +246,7 @@ public class Player extends Creature {
         // top
         if (vY > 0) {
             r = map.getCollisionObjects(pX, pY + height + vY, pX + width, pY + height + vY);
+            System.out.println("solid: " + detector.isSolid(x, y));
             if (r.size != 0) {
                 System.out.println("top");
                 _y = map.getYmin(r) - height - 0.001f;
@@ -389,7 +392,7 @@ public class Player extends Creature {
         @Override
         public void complete(int trackIndex, int loopCount) {
 //            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
-            System.out.println(state.getCurrent(trackIndex));
+//            System.out.println(state.getCurrent(trackIndex));
             if (state.getCurrent(trackIndex).toString().equals("jump")) {
                 state.setAnimation(0, "run_test", true);
             }

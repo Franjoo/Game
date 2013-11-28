@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="10000" height="10" tilewidth="100" tileheight="100">
+ <properties>
+  <property name="walkable" value="4"/>
+ </properties>
  <tileset firstgid="1" name="gamelayer" tilewidth="100" tileheight="100">
   <image source="../../layers/gamelayer.png" width="3286" height="1000"/>
  </tileset>
