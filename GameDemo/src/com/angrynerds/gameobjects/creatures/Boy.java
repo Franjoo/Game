@@ -58,5 +58,9 @@ public class Boy extends Creature {
            //System.out.println(getSkeletonBounds().getBoundingBoxes());
     }
 
+    @Override
+    public void attack() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

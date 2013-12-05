@@ -1,6 +1,6 @@
 package com.angrynerds.game.screens.play;
 
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -41,7 +41,7 @@ public class PlayRenderer {
      * @param height new height of the viewport in pixels
      */
     public void resize(int width, int height) {
-        playController.getCamera().viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
+        playController.getCamera().viewportWidth = (C.VIEWPORT_HEIGHT / height) * width;
         playController.getCamera().update();
     }
 }

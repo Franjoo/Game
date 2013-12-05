@@ -140,7 +140,7 @@ public class Detector {
 
         FloatArray creatureTwoPolygon = c2.getSkeletonBounds().getPolygon(skeletonBoundsCreature2);
         FloatArray weaponPol = new FloatArray(weaponFloatArr);
-        if(weaponFloatArrfromBB != null)
+        if(weaponFloatArrfromBB!= null)
             weaponPol = new FloatArray(weaponFloatArrfromBB);
 
 

@@ -3,7 +3,7 @@ package com.angrynerds.gameobjects;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.input.IGameInputController;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.angrynerds.util.State;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -21,7 +21,7 @@ public class Player extends Creature {
     private static final String TAG = Player.class.getSimpleName();
 
     // constants
-    private final float epsilon = Constants.EPSILON;
+    private final float epsilon = C.EPSILON;
 
     // map
     private Camera camera;
@@ -118,12 +118,19 @@ public class Player extends Creature {
     }
 
 
+
+
+
+
+
+    @Override
     public void attack() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     public void update(float deltaTime) {
         super.update(deltaTime);
+
 
         // set v in x and y direction
         vX = input.get_stickX() * deltaTime * vX_MAX;
@@ -148,6 +155,7 @@ public class Player extends Creature {
 
     }
 
+
     private void setCurrentState() {
         if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
             state.setAnimation(0, "jump", false);
@@ -155,6 +163,10 @@ public class Player extends Creature {
 //            state.addAnimation(1, "run_test", true, jumpAnimation.getDuration() - 30);
 //            state.addAnimation(1, "run_test", false, 0);
         }
+
+
+
+
 
         if (input.getState() == State.ATTACKING) {
             state.setAnimation(0, "attack_1", false);

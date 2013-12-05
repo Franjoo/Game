@@ -12,7 +12,7 @@ import com.esotericsoftware.spine.*;
  * Time: 14:38
  * Project: GameDemo
  */
-public class Creature extends GameObject {
+public abstract class Creature extends GameObject {
     // debug attributes
     public boolean showBounds;
 
@@ -114,6 +114,7 @@ public class Creature extends GameObject {
         batch.end();
 
         // draw bounds
+
        // if (showBounds)
 
     }
@@ -122,6 +123,13 @@ public class Creature extends GameObject {
 
         return skeletonBounds;
 
+
+
+     //   if (showBounds) skeletonDebugRenderer.draw(skeleton);
+//            skeletonDebugRenderer.draw(skeleton);
+
     }
+
+    public abstract void attack();
 
 }

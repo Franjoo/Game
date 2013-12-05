@@ -226,4 +226,9 @@ public class Enemie extends Creature {
                 Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
     }
 
+    @Override
+    public void attack() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

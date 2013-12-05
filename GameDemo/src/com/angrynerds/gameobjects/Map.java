@@ -6,7 +6,7 @@ import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -36,6 +36,9 @@ import java.util.HashMap;
  * the Map contains
  */
 public class Map {
+
+    // GIT PUSH
+
     public static final String TAG = Map.class.getSimpleName();
 
     // constants
@@ -49,8 +52,11 @@ public class Map {
     // debug controlls
     private static final boolean SHOW_TILE_GRID = false;
     private static final boolean SHOW_COLLISION_SHAPES = false;
-    private static final boolean SHOW_COLLISION_TILES = true;
+
     private  AStarPathFinder pathFinder;
+
+    private static final boolean SHOW_COLLISION_TILES = false;
+
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
@@ -186,8 +192,8 @@ public class Map {
         System.out.println("w/h: " + mapWidth + " " + mapHeight);
 
         // fixed camera & renderer
-        fixedCamera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
-        fixedRenderer = new OrthogonalTiledMapRenderer(map, PlayScreen.getBatch());
+        fixedCamera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
+        fixedRenderer = new OrthogonalTiledMapRenderer(map, 0.6f,PlayScreen.getBatch());
         fixedRenderer.setView(fixedCamera);
 
 
@@ -400,7 +406,7 @@ public class Map {
         for (int i = 0; i < layers_foreground.size; i++) {
 
             Layer l = layers_foreground.get(i);
-            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + Constants.VIEWPORT_WIDTH / 2;
+            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + C.VIEWPORT_WIDTH / 2;
             fixedCamera.position.y = camera.position.y * l.getvY() + l.getY();
 
             fixedCamera.update();
@@ -418,7 +424,7 @@ public class Map {
         for (int i = 0; i < layers_background.size; i++) {
 
             Layer l = layers_background.get(i);
-            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + Constants.VIEWPORT_WIDTH / 2;
+            fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + C.VIEWPORT_WIDTH / 2;
             fixedCamera.position.y = camera.position.y * l.getvY() + l.getY();
 
             fixedCamera.update();
