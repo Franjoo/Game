@@ -106,7 +106,7 @@ public abstract class Creature extends GameObject {
     public void render(SpriteBatch batch) {
         // draw skeleton
         //batch.draw(skeletonDebugRenderer.draw(skeleton);
-        skeletonDebugRenderer.draw(skeleton);
+        //skeletonDebugRenderer.draw(skeleton);
 
         batch.begin();
         skeletonRenderer.draw(batch, skeleton);
