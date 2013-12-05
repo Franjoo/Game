@@ -11,10 +11,10 @@ import com.badlogic.gdx.utils.Array;
  * Time: 15:15
  * Project: TileRunner
  */
-public class CollisionDetector {
-    private static String TAG = CollisionDetector.class.getSimpleName();
+public class Detector {
+    private static String TAG = Detector.class.getSimpleName();
 
-    private static CollisionDetector instance = null;
+    private static Detector instance = null;
 
     // tiled map properties
     public TiledMap tiledMap;
@@ -32,7 +32,7 @@ public class CollisionDetector {
 //    private HashMap<String, TextureRegion> regionMap;
 
 
-    private CollisionDetector(TiledMap tiledMap) {
+    private Detector(TiledMap tiledMap) {
         this.tiledMap = tiledMap;
 
         init();
@@ -93,13 +93,13 @@ public class CollisionDetector {
 
 
     //*** SINGLETON ***//
-    public static CollisionDetector getInstance() {
+    public static Detector getInstance() {
         if (instance == null) throw new InstantiationError(TAG + " has not been initialized");
         return instance;
     }
 
     public static void initialize(TiledMap tiledMap) {
-        new CollisionDetector(tiledMap);
+        new Detector(tiledMap);
     }
 
 }

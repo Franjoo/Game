@@ -96,12 +96,12 @@ public abstract class Creature extends GameObject {
     public void render(SpriteBatch batch) {
         // draw skeleton
         batch.begin();
-        //skeletonRenderer.draw(batch, skeleton);
+        skeletonRenderer.draw(batch, skeleton);
         batch.end();
 
         // draw bounds
-        //if (showBounds) skeletonDebugRenderer.draw(skeleton);
-        skeletonDebugRenderer.draw(skeleton);
+        if (showBounds) skeletonDebugRenderer.draw(skeleton);
+//            skeletonDebugRenderer.draw(skeleton);
     }
 
     public abstract void attack();

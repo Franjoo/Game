@@ -1,22 +1,15 @@
 package com.angrynerds.ui;
 
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.input.IGameInputController;
 import com.angrynerds.input.UIButtonListener;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-
-import java.util.ArrayList;
 
 /**
  * User: Franjo
@@ -49,7 +42,7 @@ public class ControllerUI  {
         stage = new Stage(800,480,true,PlayScreen.getBatch());
 
         lifeBar = new Lifebar("lifebar2_03.png", "lifebar2b_03.png", "lifebar2c_03.png");
-        lifeBar.setPosition(10, Constants.VIEWPORT_HEIGHT - lifeBar.getHeight());
+        lifeBar.setPosition(10, C.VIEWPORT_HEIGHT - lifeBar.getHeight());
         // start touchpad init
         Skin skin = new Skin();
         skin.add("joystick_bg", new Texture("data/buttons/joystick_bg.png"));
@@ -81,7 +74,7 @@ public class ControllerUI  {
         buttonTable = new Table();
 
         midButton = new MyButton(0, skin.getDrawable("mid_up"), skin.getDrawable("mid_down"));
-        //midButton.setBounds(Constants.VIEWPORT_WIDTH - midButton.getWidth(), midButton.getHeight()/3, 100, 100);
+        //midButton.setBounds(C.VIEWPORT_WIDTH - midButton.getWidth(), midButton.getHeight()/3, 100, 100);
 
         topButton = new MyButton(1, skin.getDrawable("top_up"), skin.getDrawable("top_down"));
         //topButton.setBounds(midButton.getX(), midButton.getY()+midButton.getHeight()/1.25f, 100, 70);

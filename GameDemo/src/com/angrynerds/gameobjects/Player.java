@@ -117,6 +117,11 @@ public class Player extends Creature {
         super.render(batch);
     }
 
+    @Override
+    public void attack() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     public void update(float deltaTime) {
         super.update(deltaTime);
 

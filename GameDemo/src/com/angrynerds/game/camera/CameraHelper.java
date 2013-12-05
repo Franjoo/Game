@@ -4,7 +4,7 @@ import com.angrynerds.game.screens.play.PlayController;
 import com.angrynerds.game.World;
 import com.angrynerds.gameobjects.GameObject;
 import com.angrynerds.gameobjects.Map;
-import com.angrynerds.util.Constants;
+import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -48,8 +48,8 @@ public class CameraHelper {
         position = new Vector2();
         zoom = 1;
 
-        position.x = Constants.VIEWPORT_WIDTH/2;
-        position.y = Constants.VIEWPORT_HEIGHT/2 + 100;
+        position.x = C.VIEWPORT_WIDTH/2;
+        position.y = C.VIEWPORT_HEIGHT/2 + 100;
 
 
     }
@@ -80,15 +80,15 @@ public class CameraHelper {
 
 
         // TOP
-        if(qX + deltaX < Constants.VIEWPORT_WIDTH / 2){
-            position.x += (Constants.VIEWPORT_WIDTH/2 - position.x) * aX ;
+        if(qX + deltaX < C.VIEWPORT_WIDTH / 2){
+            position.x += (C.VIEWPORT_WIDTH/2 - position.x) * aX ;
         }else{
             position.x += deltaX * aX;
         }
 
         // BOTTOM
-        if(qY + deltaY - map.getOffsetY() * map.getTileHeight() < Constants.VIEWPORT_HEIGHT / 2){
-            position.y += (Constants.VIEWPORT_HEIGHT/2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY ;
+        if(qY + deltaY - map.getOffsetY() * map.getTileHeight() < C.VIEWPORT_HEIGHT / 2){
+            position.y += (C.VIEWPORT_HEIGHT/2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY ;
         }else{
             position.y += deltaY * aY;
         }
@@ -143,8 +143,8 @@ public class CameraHelper {
 
     public void setTarget(GameObject target) {
         this.target = target;
-        position.x = Constants.VIEWPORT_WIDTH/2;
-        position.y = Constants.VIEWPORT_HEIGHT/2;
+        position.x = C.VIEWPORT_WIDTH/2;
+        position.y = C.VIEWPORT_HEIGHT/2;
     }
 
     public GameObject getTarget() {
