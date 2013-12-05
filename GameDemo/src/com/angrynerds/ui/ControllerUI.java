@@ -1,9 +1,13 @@
 package com.angrynerds.ui;
 
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.Bounce;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.input.UIButtonListener;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -17,7 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
  * Time: 16:05
  * Project: GameDemo
  */
-public class ControllerUI  {
+public class ControllerUI implements Screen {
 
     private UIButtonListener listener;
 
@@ -32,6 +36,8 @@ public class ControllerUI  {
     private Lifebar lifeBar;
 
     private Stage stage;
+
+    private TweenManager manager;
 
     public ControllerUI() {
         init();
@@ -137,6 +143,9 @@ public class ControllerUI  {
 //        stage.addActor(midButton);
         stage.addActor(lifeBar);
 
+        manager = new TweenManager();
+
+
     }
 
 
@@ -144,9 +153,9 @@ public class ControllerUI  {
         stage.act(deltaTime);
     }
 
-    public void render() {
-        stage.draw();
-    }
+   // public void render() {
+//        stage.draw();
+   // }
 
 
     // getters
@@ -184,5 +193,46 @@ public class ControllerUI  {
 
     public Lifebar getLifeBar() {
         return lifeBar;
+    }
+
+    @Override
+    public void render(float delta) {
+        stage.draw();
+//        Tween.to(lifeBar, -1 , 1.0f)
+//        .target(-1, -1)
+//        .ease(Bounce.INOUT)
+//        .delay(1.0f)
+//        .repeatYoyo(2, 0.5f)
+//        .start(manager);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void show() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void hide() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void pause() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void resume() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void dispose() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

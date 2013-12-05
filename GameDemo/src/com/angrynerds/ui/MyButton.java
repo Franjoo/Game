@@ -15,7 +15,7 @@ public class MyButton extends Button{
 	private Boolean over = false;
 	
 	public MyButton(int id, Drawable up, Drawable down) {
-        super(up, down);
+        super(up, down, down);
         this.id = new Integer(id);
 	}
 	

@@ -70,7 +70,7 @@ public class World {
 
         map.render(batch);
 
-        playController.getControllerUI().render();
+        playController.getControllerUI().render(Gdx.graphics.getDeltaTime());
 
         cameraHelper.applyTo(camera);
 

@@ -53,6 +53,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
         for (MyButton but : controller.getButtons()) {
             if ((but != null) && but.getOver())
                 but.setOver(false);
+                but.setChecked(false);
             MyButton.overCounter = 0;
         }
         if(touchOrder.equals(attackOrder)){
@@ -86,6 +87,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
         if (!b.getOver()) {
             b.setOver(true);
             touchOrder.add(b.getId());
+            b.setChecked(true);
         }
 
         super.enter(event, x, y, pointer, fromActor);
