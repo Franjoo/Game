@@ -9,88 +9,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/layers/bg_clouds.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/bottom_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/bottom_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/joystick_bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/joystick_knob.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/left_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/left_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/bars/lifebar2_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/bars/lifebar2b_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/bars/lifebar2c_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/mid_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/mid_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/right_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/right_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/top_down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/buttons/top_up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/Lifebar.java" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_links_norm.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_links_pushed.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_norm.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_oben_norm.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_oben_pushed.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_pushed.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_rechts_norm.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_rechts_pushed.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_unten_norm.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\button_unten_pushed.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\joystick_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-android\assets\data\buttons\button_256\joystick_knob.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\controllers1.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\META-INF\MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\gdx-controllers-desktop-natives.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\gdx-controllers-desktop.dll" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\gdx-controllers-desktop64.dll" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\libgdx-controllers-desktop.dylib" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\libgdx-controllers-desktop.so" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\natives\libgdx-controllers-desktop64.so" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\META-INF\MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\DesktopControllerManager.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\DesktopControllersBuild.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\OisControllers.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\ois\Ois.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\ois\OisJoystick.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\ois\OisListener.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\com\badlogic\gdx\controllers\desktop\ois\OisTest.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\controllers\sources\gdx-controllers-desktop-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\gdx-backend-lwjgl-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo-desktop\libs\gdx-controllers-desktop-sources.jar" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\src\com\angrynerds\util\Constants.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/C.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android-sources.jar" afterPath="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android.jar" afterPath="$PROJECT_DIR$/GameDemo-android/libs/gdx-backend-android.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl.jar" afterPath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/libs/gdx-controllers-android-sources.jar" afterPath="$PROJECT_DIR$/GameDemo-android/libs/gdx-controllers-android-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/libs/gdx-controllers-android.jar" afterPath="$PROJECT_DIR$/GameDemo-android/libs/gdx-controllers-android.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-controllers-desktop-natives.jar" afterPath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-controllers-desktop-natives.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-controllers-desktop.jar" afterPath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-controllers-desktop.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/gdx-controllers-sources.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/gdx-controllers-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/controllers/sources/gdx-controllers-sources.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/controllers/sources/gdx-controllers-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/gdx-controllers.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/gdx-controllers.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/controllers/gdx-controllers.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/controllers/gdx-controllers.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-natives.jar" afterPath="$PROJECT_DIR$/GameDemo-desktop/libs/gdx-natives.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/gdx.jar" afterPath="$PROJECT_DIR$/GameDemo/libs/gdx.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllerUI.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllerUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/DeprecatedControllUI.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/DeprecatedControllUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/collision/Detector.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/collision/Detector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Goblin.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Goblin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Max.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Max.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayController.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayRenderer.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/UIButtonListener.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/UIButtonListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_03.tmx" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_03.tmx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="" />
     <ignored path="GameDemo.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1383906360458" ignored="false" />
@@ -223,7 +142,7 @@
           <file leaf-file-name="Map.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="58" column="0" selection-start="1925" selection-end="1925" vertical-scroll-proportion="-14.661891">
+                <state line="58" column="0" selection-start="1925" selection-end="1925" vertical-scroll-proportion="-15.1002865">
                   <folding />
                 </state>
               </provider>
@@ -1299,7 +1218,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1512,7 +1431,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="1925" selection-end="1925" vertical-scroll-proportion="-14.661891">
+        <state line="58" column="0" selection-start="1925" selection-end="1925" vertical-scroll-proportion="-15.1002865">
           <folding />
         </state>
       </provider>
