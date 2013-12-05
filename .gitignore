@@ -1,4 +1,4 @@
-.idea/*
-out/
-workspace.xml
-tasks.xml
+# Intellij
+.idea/
+*.iml
+*.iws
