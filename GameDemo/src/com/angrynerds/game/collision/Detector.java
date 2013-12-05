@@ -26,10 +26,10 @@ import com.esotericsoftware.spine.attachments.RegionAttachment;
  * Time: 15:15
  * Project: TileRunner
  */
-public class CollisionDetector {
-    private static String TAG = CollisionDetector.class.getSimpleName();
+public class Detector {
+    private static String TAG = Detector.class.getSimpleName();
 
-    private static CollisionDetector instance = null;
+    private static Detector instance = null;
 
     // tiled map properties
     public TiledMap tiledMap;
@@ -47,7 +47,7 @@ public class CollisionDetector {
 //    private HashMap<String, TextureRegion> regionMap;
 
 
-    private CollisionDetector(TiledMap tiledMap) {
+    private Detector(TiledMap tiledMap) {
         this.tiledMap = tiledMap;
 
         init();
@@ -107,11 +107,18 @@ public class CollisionDetector {
     }
 
     public boolean polygonCollision(Creature c1, Creature c2){
-        Slot s = c1.skeleton.findSlot("left hand item");
-        RegionAttachment ra = (RegionAttachment) c1.skeleton.getAttachment("left hand item","spear");
 
-        ra.updateWorldVertices(s, false);
-        BoundingBoxAttachment boundingBoxWeapon = c1.getSkeletonBounds().getBoundingBoxes().get(0);
+        //Find Slot for Left hand item
+        Slot slotLeft = c1.skeleton.findSlot("left hand item");
+        //Find Slot for right hand item
+        Slot slotRight = c1.skeleton.findSlot("right hand item");
+
+        // Region Attachment for Lefthand weapon
+        RegionAttachment regionAttachmentLeft = (RegionAttachment) c1.skeleton.getAttachment("left hand item","spear");
+
+        // Search BoundingBox with name "weapon"
+
+        BoundingBoxAttachment boundingBoxWeapon = null;
         Array<BoundingBoxAttachment> boundingBoxesCreature1 = c1.getSkeletonBounds().getBoundingBoxes();
         for(int i = 0; i < boundingBoxesCreature1.size;i++){
             if(boundingBoxesCreature1.get(i).getName().equals("weapon")){
@@ -119,28 +126,32 @@ public class CollisionDetector {
             }
         }
 
-      //  for (int i = 0; i< c1.skeleton.getBones().size;i++){
-
-        float[] weaponPolygon =  new float[]{ra.getWorldVertices()[0],ra.getWorldVertices()[1],ra.getWorldVertices()[5],ra.getWorldVertices()[6],ra.getWorldVertices()[10],ra.getWorldVertices()[11],ra.getWorldVertices()[15],ra.getWorldVertices()[16]};
-         // float[] weaponPolygon = ra.getOffset();
-
-
-        //}
-
-
-        BoundingBoxAttachment skeletonBoundsCreature = c2.getSkeletonBounds().getBoundingBoxes().get(0);
+        // Creates floatArray for Polygon Collision Detection
+        //if(regionAttachmentLeft.getWorldVertices() != null)
+            float[] weaponFloatArr =  new float[]{regionAttachmentLeft.getWorldVertices()[0],regionAttachmentLeft.getWorldVertices()[1],regionAttachmentLeft.getWorldVertices()[5],regionAttachmentLeft.getWorldVertices()[6],regionAttachmentLeft.getWorldVertices()[10],regionAttachmentLeft.getWorldVertices()[11],regionAttachmentLeft.getWorldVertices()[15],regionAttachmentLeft.getWorldVertices()[16]};
+        float[] weaponFloatArrfromBB = null;
+        if(boundingBoxWeapon != null )
+            weaponFloatArrfromBB = boundingBoxWeapon.getVertices();
 
 
+        BoundingBoxAttachment skeletonBoundsCreature2 = c2.getSkeletonBounds().getBoundingBoxes().get(0);
 
-        //FloatArray weaponPolygon = c1.getSkeletonBounds().getPolygon(boundingBoxWeapon);
-        FloatArray enemyPolygon = c2.getSkeletonBounds().getPolygon(skeletonBoundsCreature);
-        FloatArray weaponPol = new FloatArray(weaponPolygon);
-        Polygon pol = new Polygon(weaponPolygon);
-        Polygon pol2 = new Polygon(enemyPolygon.toArray());
+        // Create LibGDX FLoatArrays
+
+        FloatArray creatureTwoPolygon = c2.getSkeletonBounds().getPolygon(skeletonBoundsCreature2);
+        FloatArray weaponPol = new FloatArray(weaponFloatArr);
+        if(weaponFloatArrfromBB != null)
+            weaponPol = new FloatArray(weaponFloatArrfromBB);
 
 
-        if(Intersector.overlapConvexPolygons(pol2, pol, new Intersector.MinimumTranslationVector())){
-            System.out.println(weaponPol.toString());
+
+        Polygon weaponPolygon = new Polygon(weaponFloatArr);
+
+        Polygon creature2Polygon = new Polygon(creatureTwoPolygon.toArray());
+
+
+        if(Intersector.overlapConvexPolygons(creature2Polygon, weaponPolygon, new Intersector.MinimumTranslationVector())){
+           // System.out.println(weaponPol.toString());
 
             return true;
         }
@@ -152,13 +163,13 @@ public class CollisionDetector {
 
 
     //*** SINGLETON ***//
-    public static CollisionDetector getInstance() {
+    public static Detector getInstance() {
         if (instance == null) throw new InstantiationError(TAG + " has not been initialized");
         return instance;
     }
 
     public static void initialize(TiledMap tiledMap) {
-        new CollisionDetector(tiledMap);
+        new Detector(tiledMap);
     }
 
 }

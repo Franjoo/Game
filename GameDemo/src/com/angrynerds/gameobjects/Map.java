@@ -1,8 +1,10 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.ai.pathfinding.AStarPathFinder;
+import com.angrynerds.ai.pathfinding.ClosestHeuristic;
 import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
-import com.angrynerds.game.collision.CollisionDetector;
+import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.util.Constants;
 import com.badlogic.gdx.graphics.Color;
@@ -48,6 +50,7 @@ public class Map {
     private static final boolean SHOW_TILE_GRID = false;
     private static final boolean SHOW_COLLISION_SHAPES = false;
     private static final boolean SHOW_COLLISION_TILES = true;
+    private  AStarPathFinder pathFinder;
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
@@ -80,7 +83,7 @@ public class Map {
     private float height;
 
     // collision detector
-    private CollisionDetector detector;
+    private Detector detector;
 
     // player relevant subjects
     private Vector2 spawn;
@@ -120,7 +123,9 @@ public class Map {
         instance = this;
 
         player.init();
-        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1);
+        AStarPathFinder.initialize(this,200,true,new ClosestHeuristic());
+        pathFinder = AStarPathFinder.getInstance();
+        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1,pathFinder);
         enemie.init();
     }
 
@@ -200,8 +205,8 @@ public class Map {
         spawn = findSpawn();
 
         // initialize Collision Detector
-        CollisionDetector.initialize(map);
-        detector = CollisionDetector.getInstance();
+        Detector.initialize(map);
+        detector = Detector.getInstance();
 
         // draw tile grid
         if (SHOW_TILE_GRID) drawTileGrid();
@@ -433,7 +438,7 @@ public class Map {
     public void update(float deltaTime) {
         player.update(deltaTime);
         enemie.update(deltaTime);
-       if(detector.polygonCollision(enemie,player)){
+       if(detector.polygonCollision(enemie,enemie)){
            System.out.println("Collision");
        }
 

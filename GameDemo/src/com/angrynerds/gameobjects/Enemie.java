@@ -43,7 +43,8 @@ public class Enemie extends Creature {
     private float pX;
     private float pY;
     private Path path;
-    private Path path2;
+    private AStarPathFinder pathFinder;
+
 
 
     private AStarPathFinder pf;
@@ -69,11 +70,12 @@ public class Enemie extends Creature {
 //
 //    }
 
-    public Enemie(String name, String path, String skin, Player player, float scale) {
+    public Enemie(String name, String path, String skin, Player player, float scale, AStarPathFinder pathFinder) {
         super(name, path, skin, scale);
 //        super("Max_move", "data/spine/max/", null, 0.3f);
 
         this.player = player;
+
 
     }
 
@@ -82,7 +84,7 @@ public class Enemie extends Creature {
 
 
         map = Map.getInstance();
-        // batch
+        pathFinder = AStarPathFinder.getInstance();
 
         // params
 
@@ -92,9 +94,8 @@ public class Enemie extends Creature {
         ani = skeletonData.findAnimation("walk");
 
 
-        pf = new AStarPathFinder(map, 500, true, new ClosestHeuristic());
-        path = pf.findPath(1, (int) (x / map.getTileWidth()), (int) (y / map.getTileHeight()), (int) (player.x / map.getTileWidth()), (int) (player.y / map.getTileHeight()));
-        //System.out.println("Starttile: " + x / map.getTileWidth() + "     " + y / map.getTileHeight() + "EndTile:    " + player.x / map.getTileWidth() + "     " + player.y / map.getTileHeight());
+
+
 
 
     }
@@ -114,7 +115,7 @@ public class Enemie extends Creature {
 
         // System.out.println(x + "   " + y +"   " + player.x + "   " + player.y);
 
-        path = pf.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
+        path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
 
         if (path != null && rea < path.getLength()) {
 
