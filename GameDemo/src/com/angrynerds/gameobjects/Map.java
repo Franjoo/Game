@@ -245,7 +245,7 @@ public class Map {
                     float vX = Float.parseFloat(ps.get("vx").toString());
                     float vY = Float.parseFloat(ps.get("vy").toString());
                     TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
-
+                    System.out.println(tl.getName() + "  " + "x: " + x + "y: " + y);
                     // create layer
                     Layer layer = new Layer(x, y, vX, vY, tl);
 
@@ -444,9 +444,7 @@ public class Map {
     public void update(float deltaTime) {
         player.update(deltaTime);
         enemie.update(deltaTime);
-       if(detector.polygonCollision(enemie,enemie)){
-           System.out.println("Collision");
-       }
+
 
 
         renderer.setView(camera);

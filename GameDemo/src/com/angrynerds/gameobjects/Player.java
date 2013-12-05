@@ -146,8 +146,8 @@ public class Player extends Creature {
         // flip skeleton
         skeleton.setFlipX(vX < 0);
 
-        // set current state
-        setCurrentState();
+
+            setCurrentState();
 
         // apply and update skeleton
         state.update(deltaTime);
@@ -168,10 +168,11 @@ public class Player extends Creature {
 
 
 
-        if (input.getState() == State.ATTACKING) {
+        if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
             state.setAnimation(0, "attack_1", false);
             state.addAnimation(0, "run_test", true, 0);
         }
+        input.setState(State.IDLE);
     }
 
     /**
@@ -195,7 +196,7 @@ public class Player extends Creature {
         nX = _pt.x;
         nY = _pt.y;
 
-        System.out.println(detector.isSolid(x, y));
+
 
 
         vec2.set(nX, nY);

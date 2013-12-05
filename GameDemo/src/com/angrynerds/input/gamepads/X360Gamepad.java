@@ -198,4 +198,9 @@ public class X360Gamepad implements IGameInputController {
     public boolean get_isB() {
         return is_B_pressed();
     }
+
+    @Override
+    public void setState(State state) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
