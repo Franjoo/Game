@@ -12,10 +12,7 @@
     <bookmark url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" line="162" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="" />
     <list id="b5e5e9df-0442-41ec-940d-688ae62688b3" name="New changelist" comment="" />
     <ignored path="GameDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraHelper.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CameraHelper.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2771">
+            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="-0.25260028" vertical-offset="238" max-vertical-offset="2771">
               <folding />
             </state>
           </provider>
@@ -109,7 +106,7 @@
       <file leaf-file-name="SkeletonRendererDebug.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2567">
+            <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1717">
               <folding />
             </state>
           </provider>
@@ -142,10 +139,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="5" selection-start="29" selection-end="29" vertical-scroll-proportion="0.075780086" vertical-offset="0" max-vertical-offset="673">
+            <state line="3" column="89" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
               <folding />
             </state>
           </provider>
@@ -1529,13 +1526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1564,16 +1554,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2771">
+        <state line="3" column="89" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="29" selection-end="29" vertical-scroll-proportion="0.075780086" vertical-offset="0" max-vertical-offset="673">
+        <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1717">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="-0.25260028" vertical-offset="238" max-vertical-offset="2771">
           <folding />
         </state>
       </provider>
