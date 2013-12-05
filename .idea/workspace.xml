@@ -12,7 +12,10 @@
     <bookmark url="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java" line="162" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="" />
+    <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Basti\Game\.gitignore" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <list id="b5e5e9df-0442-41ec-940d-688ae62688b3" name="New changelist" comment="" />
     <ignored path="GameDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,10 +97,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraHelper.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CameraHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="-0.25260028" vertical-offset="238" max-vertical-offset="2771">
+            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2771">
               <folding />
             </state>
           </provider>
@@ -115,7 +118,7 @@
       <file leaf-file-name="Intersector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="20995" max-vertical-offset="21182">
+            <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="0.0" vertical-offset="20101" max-vertical-offset="20774">
               <folding />
             </state>
           </provider>
@@ -130,19 +133,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Creature.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Creature.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="63" selection-start="2497" selection-end="2497" vertical-scroll-proportion="-5.923077" vertical-offset="1529" max-vertical-offset="2176">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="89" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+            <state line="103" column="63" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.23802164" vertical-offset="1529" max-vertical-offset="2176">
               <folding />
             </state>
           </provider>
@@ -1495,13 +1489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/TextureRegion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="13" selection-start="1089" selection-end="1089" vertical-scroll-proportion="-4.675676" vertical-offset="0" max-vertical-offset="0" />
@@ -1547,16 +1534,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="63" selection-start="2497" selection-end="2497" vertical-scroll-proportion="-5.923077" vertical-offset="1529" max-vertical-offset="2176">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="89" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+        <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2771">
           <folding />
         </state>
       </provider>
@@ -1568,9 +1548,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
+    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="-0.25260028" vertical-offset="238" max-vertical-offset="2771">
+        <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="0.0" vertical-offset="20101" max-vertical-offset="20774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="63" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.23802164" vertical-offset="1529" max-vertical-offset="2176">
           <folding />
         </state>
       </provider>
