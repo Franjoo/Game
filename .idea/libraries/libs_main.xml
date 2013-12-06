@@ -1,17 +1,13 @@
 <component name="libraryTable">
   <library name="libs_main">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx.jar!/" />
-      <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-controllers.jar!/" />
-      <root url="jar://$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl-natives.jar!/" />
+      <root url="file://$PROJECT_DIR$/GameDemo/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/GameDemo/libs/controllers/sources" />
-      <root url="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/" />
-      <root url="file://$PROJECT_DIR$/GameDemo/libs/spine" />
-      <root url="jar://$PROJECT_DIR$/GameDemo-desktop/libs/gdx-backend-lwjgl-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/GameDemo/libs" />
     </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/GameDemo/libs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/GameDemo/libs" recursive="false" type="SOURCES" />
   </library>
 </component>

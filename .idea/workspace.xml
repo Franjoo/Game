@@ -13,7 +13,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\controllers.iml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\gdx-controllers.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\META-INF\MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers.gwt.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControlType.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\Controller.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerListener.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerManager.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerManagerStub.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\Controllers.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\PovDirection.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\mappings\Ouya.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\gdx-controllers-sources.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" afterPath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/libs.iml" afterPath="$PROJECT_DIR$/GameDemo/libs/libs.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="b5e5e9df-0442-41ec-940d-688ae62688b3" name="New changelist" comment="" />
@@ -79,28 +96,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Map.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="434" column="24" selection-start="13992" selection-end="13992" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13991">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpriteBatch.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CameraHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2771">
+            <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="3043">
               <folding />
             </state>
           </provider>
@@ -109,16 +108,7 @@
       <file leaf-file-name="SkeletonRendererDebug.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1717">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Intersector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="0.0" vertical-offset="20101" max-vertical-offset="20774">
+            <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2567">
               <folding />
             </state>
           </provider>
@@ -136,16 +126,43 @@
       <file leaf-file-name="Creature.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="149" selection-start="2342" selection-end="2342" vertical-scroll-proportion="-1.3461539" vertical-offset="1529" max-vertical-offset="2176">
+            <state line="96" column="149" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="2397">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="19" selection-start="49" selection-end="49" vertical-scroll-proportion="0.10104012" vertical-offset="0" max-vertical-offset="673">
+            <state line="3" column="100" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="153">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameDemo.iml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GameDemo/GameDemo.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.40563992" vertical-offset="0" max-vertical-offset="461">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidStarterActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="13" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="408">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreatureTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1751">
               <folding />
             </state>
           </provider>
@@ -213,8 +230,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1320" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -292,6 +311,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -301,30 +321,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GameDemo-desktop/libs" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -349,7 +388,7 @@
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-desktop\src\spine_tests\com\esotericsoftware\spine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DesktopStarter">
+  <component name="RunManager" selected="Android Application.GameDemo-android">
     <configuration default="false" name="MixTest" type="Application" factoryName="Application" folderName="spine" temporary="true">
       <option name="MAIN_CLASS_NAME" value="spine_tests.com.esotericsoftware.spine.MixTest" />
       <option name="VM_PARAMETERS" value="" />
@@ -582,7 +621,7 @@
     <configuration default="false" name="CreatureTest" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="GameDemo-android" />
       <option name="ACTIVITY_CLASS" value="com.angrynerds.game.CreatureTest" />
-      <option name="MODE" value="specific_activity" />
+      <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
@@ -793,7 +832,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -802,20 +841,20 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.251606" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39823008" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25073746" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3169165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31563422" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31376734" sideWeight="0.7519466" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23739496" sideWeight="0.74745184" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.251606" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2369632" sideWeight="0.74745184" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25073746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -866,18 +905,42 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="372" column="108" selection-start="11951" selection-end="11951" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13991">
+        <state line="8" column="13" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655">
+        <state line="20" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1751">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SlotData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="13" selection-start="1958" selection-end="1958" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="1632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/attachments/RegionAttachment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="21" selection-start="5456" selection-end="5456" vertical-scroll-proportion="0.0" vertical-offset="2210" max-vertical-offset="4658">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="434" column="24" selection-start="13992" selection-end="13992" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15011" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
@@ -896,9 +959,71 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="20995" max-vertical-offset="21182">
+        <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="0.0" vertical-offset="20791" max-vertical-offset="21182" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="3" selection-start="2622" selection-end="2622" vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="4080">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="149" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="2397">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="19" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="153">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SlotData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="13" selection-start="1958" selection-end="1958" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="1632">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/attachments/RegionAttachment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="21" selection-start="5456" selection-end="5456" vertical-scroll-proportion="0.0" vertical-offset="2210" max-vertical-offset="4658">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="372" column="108" selection-start="11951" selection-end="11951" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13991" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="3043">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="20995" max-vertical-offset="21182" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
@@ -931,16 +1056,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="372" column="108" selection-start="11817" selection-end="11817" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13923">
-          <folding />
-        </state>
+        <state line="372" column="108" selection-start="11817" selection-end="11817" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13923" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655">
-          <folding />
-        </state>
+        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="10285" max-vertical-offset="20655" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
@@ -959,9 +1080,7 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="20995" max-vertical-offset="21182">
-          <folding />
-        </state>
+        <state line="1235" column="24" selection-start="43689" selection-end="43689" vertical-scroll-proportion="0.0" vertical-offset="20995" max-vertical-offset="21182" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
@@ -994,23 +1113,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/attachments/BoundingBoxAttachment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="37" column="13" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="13" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="44" column="13" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/attachments/AtlasAttachmentLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="13" selection-start="2085" selection-end="2085" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="40" column="13" selection-start="2085" selection-end="2085" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SlotData.java">
@@ -1027,9 +1140,7 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/TextureAtlas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="24" selection-start="16639" selection-end="16639" vertical-scroll-proportion="8.864865" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="448" column="24" selection-start="16639" selection-end="16639" vertical-scroll-proportion="8.864865" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/utils/NumberUtils.java">
@@ -1046,9 +1157,7 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/graphics/g2d/SpriteBatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
+        <state line="605" column="0" selection-start="21212" selection-end="21212" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemie.java">
@@ -1060,9 +1169,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="434" column="24" selection-start="13992" selection-end="13992" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13991">
-          <folding />
-        </state>
+        <state line="434" column="24" selection-start="13992" selection-end="13992" vertical-scroll-proportion="0.0" vertical-offset="6324" max-vertical-offset="13991" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/camera/CameraHelper.java">
@@ -1072,30 +1179,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="1717">
+        <state line="96" column="149" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="2397">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/CreatureTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/src/com/angrynerds/game/AndroidStarterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="0.0" vertical-offset="20101" max-vertical-offset="20774">
-          <folding />
-        </state>
+        <state line="1223" column="33" selection-start="43529" selection-end="43529" vertical-scroll-proportion="10.600447" vertical-offset="15634" max-vertical-offset="20774" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Creature.java">
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/esotericsoftware/spine/SkeletonRendererDebug.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="149" selection-start="2342" selection-end="2342" vertical-scroll-proportion="-1.3461539" vertical-offset="1529" max-vertical-offset="2176">
+        <state line="63" column="16" selection-start="3048" selection-end="3048" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="1717">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="19" selection-start="49" selection-end="49" vertical-scroll-proportion="0.10104012" vertical-offset="0" max-vertical-offset="673">
+        <state line="3" column="100" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/GameDemo.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.40563992" vertical-offset="0" max-vertical-offset="461">
           <folding />
         </state>
       </provider>
@@ -1106,12 +1232,10 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>GameDemo:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1131,7 +1255,6 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>spine</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1143,7 +1266,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>Android 2.2 Platform</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1179,7 +1302,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>libs_android</last-edited>
+          <last-edited>libs_main</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
