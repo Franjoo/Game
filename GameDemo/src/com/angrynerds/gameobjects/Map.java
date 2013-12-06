@@ -1,5 +1,7 @@
 package com.angrynerds.gameobjects;
 
+import com.angrynerds.ai.pathfinding.AStarPathFinder;
+import com.angrynerds.ai.pathfinding.ClosestHeuristic;
 import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
@@ -34,6 +36,9 @@ import java.util.HashMap;
  * the Map contains
  */
 public class Map {
+
+    // GIT PUSH
+
     public static final String TAG = Map.class.getSimpleName();
 
     // constants
@@ -47,7 +52,11 @@ public class Map {
     // debug controlls
     private static final boolean SHOW_TILE_GRID = false;
     private static final boolean SHOW_COLLISION_SHAPES = false;
+
+    private  AStarPathFinder pathFinder;
+
     private static final boolean SHOW_COLLISION_TILES = false;
+
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
@@ -120,7 +129,9 @@ public class Map {
         instance = this;
 
         player.init();
-        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1);
+        AStarPathFinder.initialize(this,200,true,new ClosestHeuristic());
+        pathFinder = AStarPathFinder.getInstance();
+        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1,pathFinder);
         enemie.init();
     }
 
@@ -234,7 +245,7 @@ public class Map {
                     float vX = Float.parseFloat(ps.get("vx").toString());
                     float vY = Float.parseFloat(ps.get("vy").toString());
                     TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
-
+                    System.out.println(tl.getName() + "  " + "x: " + x + "y: " + y);
                     // create layer
                     Layer layer = new Layer(x, y, vX, vY, tl);
 
@@ -345,20 +356,15 @@ public class Map {
      */
 
     public void render(SpriteBatch batch) {
-
         // background
         renderBackground(batch);
+
+        // render player
+
 
         // set camera
         renderer.getSpriteBatch().setProjectionMatrix(camera.combined);
 
-        // render player
-        player.render(batch);
-
-//<<<<<<< HEAD
-//        // render map object
-//=======
-        enemie.render(batch);
 
         // render map object in which are in foreground
 //>>>>>>> origin/master
@@ -367,7 +373,13 @@ public class Map {
                 mapObjects.get(i).render(batch);
             }
         }
+        player.render(batch);
 
+
+//<<<<<<< HEAD
+//        // render map object
+//=======
+        enemie.render(batch);
         // render foreground
         renderForeground(batch);
 
@@ -432,6 +444,9 @@ public class Map {
     public void update(float deltaTime) {
         player.update(deltaTime);
         enemie.update(deltaTime);
+
+
+
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
     }

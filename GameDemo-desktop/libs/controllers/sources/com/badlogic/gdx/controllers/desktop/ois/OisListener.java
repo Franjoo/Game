@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package com.badlogic.gdx.controllers;
+package com.badlogic.gdx.controllers.desktop.ois;
 
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.controllers.desktop.ois.OisJoystick.OisPov;
 
-/** @author Nathan Sweet */
-public interface ControllerManager {
-	public Array<Controller> getControllers ();
+/** @author mzechner
+ * @author Nathan Sweet */
+public interface OisListener {
+	public void buttonPressed (OisJoystick joystick, int buttonIndex);
 
-	public void addListener (ControllerListener listener);
+	public void buttonReleased (OisJoystick joystick, int buttonIndex);
 
-	public void removeListener (ControllerListener listener);
+	public void axisMoved (OisJoystick joystick, int axisIndex, float value);
+
+	public void povMoved (OisJoystick joystick, int povIndex, OisPov value);
+
+	public void xSliderMoved (OisJoystick joystick, int sliderIndex, boolean value);
+
+	public void ySliderMoved (OisJoystick joystick, int sliderIndex, boolean value);
 }

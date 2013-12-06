@@ -13,29 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
+package com.badlogic.gdx.controllers.desktop;
 
-package com.badlogic.gdx.controllers;
-
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.ControllerListener;
+import com.badlogic.gdx.controllers.ControllerManager;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SharedLibraryLoader;
 
-/**
- * Used on platforms that don't support the extenions, e.g. HTML5
- * and iOS.
- * @author mzechner
- *
- */
-public class ControllerManagerStub implements ControllerManager {
-	Array<Controller> controllers = new Array<Controller>();
-	@Override
+/** @author Nathan Sweet */
+public class DesktopControllerManager implements ControllerManager {
+	final Array<Controller> controllers = new Array();
+	final Array<ControllerListener> listeners = new Array();
+
+	public DesktopControllerManager () {
+		new SharedLibraryLoader().load("gdx-controllers-desktop");
+		new OisControllers(this);
+	}
+
 	public Array<Controller> getControllers () {
 		return controllers;
 	}
 
-	@Override
 	public void addListener (ControllerListener listener) {
+		listeners.add(listener);
 	}
 
-	@Override
 	public void removeListener (ControllerListener listener) {
+		listeners.removeValue(listener, true);
 	}
 }

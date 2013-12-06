@@ -17,6 +17,10 @@ import java.util.Random;
  */
 public class AStarPathFinder {
 
+    private static String TAG = AStarPathFinder.class.getSimpleName();
+
+    private static AStarPathFinder instance = null;
+
     private final Map map;
     private Path path;
     private AStarHeuristic heuristic;
@@ -27,7 +31,7 @@ public class AStarPathFinder {
     private SortedList openList = new SortedList();
 
 
-    public AStarPathFinder(Map map, int maxSearchDistance,
+    private AStarPathFinder(Map map, int maxSearchDistance,
                            boolean allowDiagMovement, AStarHeuristic heuristic) {
         this.heuristic = heuristic;
         this.map = map;
@@ -41,6 +45,7 @@ public class AStarPathFinder {
                 nodes[x][y] = new Node(x, y);
             }
         }
+        instance = this;
     }
 
     public Path findPath(int enemieType, int sx, int sy, int tx, int ty) {
@@ -52,6 +57,8 @@ public class AStarPathFinder {
            return null;
 
         }
+        if(tx < 0 || ty < 0)
+            return null;
 
         /** Init A Star */
         nodes[sx][sy].setDepth(0);
@@ -190,8 +197,19 @@ public class AStarPathFinder {
     }
 
     private int getMovementCost() {
-        //return new Random().nextInt(100);
+      //  return new Random().nextInt(2);
        return 1;
+    }
+
+    //*** SINGLETON ***//
+
+    public static AStarPathFinder getInstance(){
+        if (instance == null) throw new InstantiationError(TAG + " has not been initialized");
+         return instance;
+    }
+    public static void initialize(Map map, int maxSearchDistance,
+                                  boolean allowDiagMovement, AStarHeuristic heuristic) {
+        new AStarPathFinder(map,maxSearchDistance,allowDiagMovement,heuristic);
     }
 
 }

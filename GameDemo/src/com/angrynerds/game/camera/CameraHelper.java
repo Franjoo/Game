@@ -100,14 +100,14 @@ public class CameraHelper {
 
     private void handleDebugControlls() {
         // Zoom in
-        if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_1)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.X)) {
             addZoom(-0.006f);
             if (getZoom() < MAX_ZOOM_IN) setZoom(MAX_ZOOM_IN);
             System.out.println("Zoom: " + getZoom());
         }
 
         // Zoom out
-        if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_2)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.Y)) {
             addZoom(0.006f);
             if (getZoom() > MAX_ZOOM_OUT) setZoom(MAX_ZOOM_OUT);
             System.out.println("Zoom: " + getZoom());

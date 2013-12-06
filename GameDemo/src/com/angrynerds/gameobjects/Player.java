@@ -117,6 +117,12 @@ public class Player extends Creature {
         super.render(batch);
     }
 
+
+
+
+
+
+
     @Override
     public void attack() {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -124,6 +130,7 @@ public class Player extends Creature {
 
     public void update(float deltaTime) {
         super.update(deltaTime);
+
 
         // set v in x and y direction
         vX = input.get_stickX() * deltaTime * vX_MAX;
@@ -139,14 +146,15 @@ public class Player extends Creature {
         // flip skeleton
         skeleton.setFlipX(vX < 0);
 
-        // set current state
-        setCurrentState();
+
+            setCurrentState();
 
         // apply and update skeleton
         state.update(deltaTime);
         state.apply(skeleton);
 
     }
+
 
     private void setCurrentState() {
         if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
@@ -156,10 +164,15 @@ public class Player extends Creature {
 //            state.addAnimation(1, "run_test", false, 0);
         }
 
-        if (input.getState() == State.ATTACKING) {
+
+
+
+
+        if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
             state.setAnimation(0, "attack_1", false);
             state.addAnimation(0, "run_test", true, 0);
         }
+        input.setState(State.IDLE);
     }
 
     /**
@@ -182,6 +195,8 @@ public class Player extends Creature {
         _pt.set(getTileCollisionPosition(x, y, vX, vY));
         nX = _pt.x;
         nY = _pt.y;
+
+
 
 
         vec2.set(nX, nY);
@@ -249,6 +264,7 @@ public class Player extends Creature {
         // top
         if (vY > 0) {
             r = map.getCollisionObjects(pX, pY + height + vY, pX + width, pY + height + vY);
+            System.out.println("solid: " + detector.isSolid(x, y));
             if (r.size != 0) {
                 System.out.println("top");
                 _y = map.getYmin(r) - height - 0.001f;
@@ -394,7 +410,7 @@ public class Player extends Creature {
         @Override
         public void complete(int trackIndex, int loopCount) {
 //            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
-            System.out.println(state.getCurrent(trackIndex));
+//            System.out.println(state.getCurrent(trackIndex));
             if (state.getCurrent(trackIndex).toString().equals("jump")) {
                 state.setAnimation(0, "run_test", true);
             }

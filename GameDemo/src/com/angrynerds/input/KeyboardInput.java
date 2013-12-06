@@ -48,4 +48,9 @@ public class KeyboardInput extends InputAdapter implements IGameInputController 
         return Gdx.input.isKeyPressed(Keys.X);
 
     }
+
+    @Override
+    public void setState(State state) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

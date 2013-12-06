@@ -71,4 +71,9 @@ public class DeprecatedTouchInput implements IGameInputController {
     public boolean get_isB() {
         return ui.get_isB();
     }
+
+    @Override
+    public void setState(State state) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

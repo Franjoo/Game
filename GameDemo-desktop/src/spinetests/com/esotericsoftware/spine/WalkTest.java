@@ -54,6 +54,7 @@ public class WalkTest extends ApplicationAdapter {
     SkeletonRendererDebug debugRenderer;
 
     SkeletonData skeletonData;
+    SkeletonBounds sb = new SkeletonBounds();
     Skeleton skeleton;
     Animation walkAnimation;
     Animation jumpAnimation;
@@ -144,9 +145,10 @@ public class WalkTest extends ApplicationAdapter {
 
         batch.begin();
         renderer.draw(batch, skeleton);
+
         batch.end();
 
-//        debugRenderer.draw(skeleton);
+       debugRenderer.draw(skeleton);
     }
 
     private void update(float deltaTime) {
@@ -202,6 +204,7 @@ public class WalkTest extends ApplicationAdapter {
                         jumpAnimation.apply(skeleton, 0, skeleton.getTime() + deltaTime, false, events);
 
         }
+        sb.update(skeleton,true);
 
 
     }

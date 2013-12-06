@@ -22,5 +22,5 @@ public interface IGameInputController {
     public boolean get_isB();
 
 
-
+   public void setState(State state);
 }
