@@ -13,24 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\controllers.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\gdx-controllers.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\META-INF\MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers.gwt.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControlType.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerListener.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerManager.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\ControllerManagerStub.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\Controllers.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\PovDirection.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\com\badlogic\gdx\controllers\mappings\Ouya.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sebastian\_dev\Game\GameDemo\libs\controllers\sources\gdx-controllers-sources.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" afterPath="$PROJECT_DIR$/GameDemo-android/gen/com/angrynerds/game/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/libs/libs.iml" afterPath="$PROJECT_DIR$/GameDemo/libs/libs.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="b5e5e9df-0442-41ec-940d-688ae62688b3" name="New changelist" comment="" />
@@ -144,7 +127,7 @@
       <file leaf-file-name="GameDemo.iml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo/GameDemo.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.40563992" vertical-offset="0" max-vertical-offset="461">
+            <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.45721272" vertical-offset="0" max-vertical-offset="409">
               <folding />
             </state>
           </provider>
@@ -311,8 +294,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,6 +328,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -509,6 +492,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -534,19 +530,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -832,8 +815,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1320" height="784" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -842,19 +825,19 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39823008" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25073746" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32743362" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31563422" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32743362" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31376734" sideWeight="0.7519466" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2369632" sideWeight="0.74745184" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25073746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25073746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1221,7 +1204,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/GameDemo.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.40563992" vertical-offset="0" max-vertical-offset="461">
+        <state line="11" column="50" selection-start="502" selection-end="502" vertical-scroll-proportion="0.45721272" vertical-offset="0" max-vertical-offset="409">
           <folding />
         </state>
       </provider>
