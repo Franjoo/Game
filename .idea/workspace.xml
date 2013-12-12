@@ -13,17 +13,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9bd23286-72a6-48a6-bfbd-51e1b99b267f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/maps/layers/1408x640/GameLayer_03.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Hase.json" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Hase.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Hase.skel" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Hase.skel" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_idle.json" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_idle.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_idle.skel" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_idle.skel" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_move.json" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_move.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_move.skel" afterPath="$PROJECT_DIR$/GameDemo-android/assets/data/spine/max/Max_move.skel" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" afterPath="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="b5e5e9df-0442-41ec-940d-688ae62688b3" name="New changelist" comment="" />
     <ignored path="GameDemo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386859640814" ignored="false" />
+    <file path="/Dummy.txt" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386863176641" ignored="false" />
     <file path="/Map.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386856449052" ignored="false" />
     <file path="/Enemie.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386856181176" ignored="false" />
     <file path="/MyButton.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386857196085" ignored="false" />
     <file path="/UIButtonListener.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386857261264" ignored="false" />
     <file path="/Player.java" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386857920779" ignored="false" />
+    <file path="/map_04.tmx" changelist="9bd23286-72a6-48a6-bfbd-51e1b99b267f" time="1386862098251" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +97,7 @@
       <file leaf-file-name="ControllerUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllerUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="22" selection-start="7117" selection-end="7117" vertical-scroll-proportion="0.0">
+            <state line="199" column="21" selection-start="7117" selection-end="7117" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,15 +107,6 @@
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/MyButton.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="12" column="13" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="State.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/util/State.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="12" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,7 +124,7 @@
       <file leaf-file-name="Map.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="759" column="29" selection-start="25777" selection-end="25782" vertical-scroll-proportion="-4.72">
+            <state line="237" column="61" selection-start="7704" selection-end="7704" vertical-scroll-proportion="-8.56">
               <folding />
             </state>
           </provider>
@@ -159,7 +160,16 @@
       <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="123" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.28498727">
+            <state line="77" column="72" selection-start="2006" selection-end="2006" vertical-scroll-proportion="0.55774647">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map_04.tmx" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_04.tmx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="17" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,7 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/WalkTest.java" />
         <option value="$PROJECT_DIR$/GameDemo-desktop/src/spinetests/com/esotericsoftware/spine/SkeletonTest.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/creatures/Boy.java" />
         <option value="$PROJECT_DIR$/GameDemo-desktop/src/com/angrynerds/game/CreatureTest.java" />
@@ -210,8 +219,9 @@
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Enemy.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/MyButton.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/input/UIButtonListener.java" />
-        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/World.java" />
+        <option value="$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_04.tmx" />
+        <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java" />
         <option value="$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java" />
       </list>
     </option>
@@ -329,6 +339,32 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1408x64" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -393,6 +429,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="max" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameDemo-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1408x640" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -509,19 +623,16 @@
     <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.angrynerds.gameobjects" />
       <recent name="com.angrynerds.game" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\maps" />
       <recent name="C:\Users\Basti\Game\GameDemo-desktop\src\com\angrynerds\game" />
       <recent name="C:\Users\Basti\Game\GameDemo-desktop" />
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\spriter" />
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets" />
-      <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-android\assets\data\buttons" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.angrynerds.gameobjects" />
-      <recent name="com.angrynerds.game" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Basti\Game\GameDemo-desktop" />
@@ -529,6 +640,9 @@
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo\src\com\angrynerds\ui" />
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-desktop\src\spine_tests\com\esotericsoftware\spine\raw" />
       <recent name="D:\Dropbox\_dev\_medienprojekt\GameDemo\GameDemo-desktop\src\spine_tests\com\esotericsoftware\spine" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.angrynerds.game" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DesktopStarter">
@@ -937,7 +1051,11 @@
       <created>1386859667934</created>
       <updated>1386859667934</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="enemy bounding boxes added">
+      <created>1386860892434</created>
+      <updated>1386860892434</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -947,13 +1065,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31516185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31516185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2504259" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2504259" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2504259" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32597622" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24090908" sideWeight="0.7495741" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24090908" sideWeight="0.6848382" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1064,13 +1182,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/GameDemo/libs/gdx-sources.jar!/com/badlogic/gdx/Screen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="17" selection-start="1022" selection-end="1022" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ai/pathfinding/AStarHeuristic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="17" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
@@ -1122,7 +1233,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/ui/ControllerUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="22" selection-start="7117" selection-end="7117" vertical-scroll-proportion="0.0">
+        <state line="199" column="21" selection-start="7117" selection-end="7117" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1148,13 +1259,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="759" column="29" selection-start="25777" selection-end="25782" vertical-scroll-proportion="-4.72">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/game/screens/play/PlayScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="25" selection-start="526" selection-end="534" vertical-scroll-proportion="-10.88">
@@ -1169,9 +1273,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo-android/assets/data/maps/map_04.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="17" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="237" column="61" selection-start="7704" selection-end="7704" vertical-scroll-proportion="-8.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GameDemo/src/com/angrynerds/gameobjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="123" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.28498727">
+        <state line="77" column="72" selection-start="2006" selection-end="2006" vertical-scroll-proportion="0.55774647">
           <folding />
         </state>
       </provider>

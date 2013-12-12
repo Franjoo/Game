@@ -109,7 +109,7 @@ public class Map {
     private TextureAtlas atlas;
 
     // tmx map path
-    private String mapPath = "data/maps/map_03.tmx";
+    private String mapPath = "data/maps/map_04.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
@@ -235,7 +235,7 @@ public class Map {
 
         // fixed camera & renderer
         fixedCamera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
-        fixedRenderer = new OrthogonalTiledMapRenderer(map, 0.4f, PlayScreen.getBatch());
+        fixedRenderer = new OrthogonalTiledMapRenderer(map, 1, PlayScreen.getBatch());
         fixedRenderer.setView(fixedCamera);
 
 
