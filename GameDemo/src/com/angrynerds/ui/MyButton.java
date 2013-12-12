@@ -12,14 +12,14 @@ public class MyButton extends Button{
 
     private Integer id;
 	public static int overCounter = 0;
-	private Boolean over = false;
+	private boolean over = false;
 	
 	public MyButton(int id, Drawable up, Drawable down) {
         super(up, down, down);
         this.id = new Integer(id);
 	}
 	
-	public void setOver(Boolean b){
+	public void setOver(boolean b){
 		this.over = b;
 	}
 	

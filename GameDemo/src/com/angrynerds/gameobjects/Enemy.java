@@ -31,7 +31,7 @@ import java.util.Timer;
  * Time: 14:44
  * To change this template use File | Settings | File Templates.
  */
-public class Enemie extends Creature {
+public class Enemy extends Creature {
     private PlayScreen playScreen;
     private Map map;
     private World world;
@@ -61,7 +61,7 @@ public class Enemie extends Creature {
     private int rea = 0;
 
 
-//    public Enemie(PlayScreen playScreen,Player player){
+//    public Enemy(PlayScreen playScreen,Player player){
 //        super();
 //        this.playScreen = playScreen;
 //        map = screena.playController.world.map;
@@ -70,13 +70,22 @@ public class Enemie extends Creature {
 //
 //    }
 
-    public Enemie(String name, String path, String skin, Player player, float scale, AStarPathFinder pathFinder) {
+    public Enemy(String name, String path, String skin, Player player, float scale) {
         super(name, path, skin, scale);
-//        super("Max_move", "data/spine/max/", null, 0.3f);
+
+        this.player = player;
+        x = 300;
+        y = 150;
+    }
+
+    public Enemy(float x, float y,String name, String path, String skin, Player player, float scale) {
+        super(name, path, skin, scale);
+        this.x = x;
+        this.y = y;
 
         this.player = player;
 
-
+        init();
     }
 
 
@@ -88,8 +97,7 @@ public class Enemie extends Creature {
 
         // params
 
-        x = 300;
-        y = 150;
+
 
         ani = skeletonData.findAnimation("walk");
 

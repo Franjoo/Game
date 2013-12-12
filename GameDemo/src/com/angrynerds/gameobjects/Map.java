@@ -6,6 +6,7 @@ import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
+import com.angrynerds.gameobjects.creatures.Goblin;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,9 +15,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -53,7 +52,7 @@ public class Map {
     private static final boolean SHOW_TILE_GRID = false;
     private static final boolean SHOW_COLLISION_SHAPES = false;
 
-    private  AStarPathFinder pathFinder;
+    private AStarPathFinder pathFinder;
 
     private static final boolean SHOW_COLLISION_TILES = false;
 
@@ -69,7 +68,10 @@ public class Map {
     private OrthographicCamera camera;
     private OrthographicCamera fixedCamera;
     private Player player;
-    private Enemie enemie;
+    private Enemy enemy;
+
+    private Array<Enemy> enemies;
+
     private World world;
 
     // map properties
@@ -129,10 +131,50 @@ public class Map {
         instance = this;
 
         player.init();
-        AStarPathFinder.initialize(this,200,true,new ClosestHeuristic());
+        AStarPathFinder.initialize(this, 200, true, new ClosestHeuristic());
         pathFinder = AStarPathFinder.getInstance();
-        enemie = new Enemie("goblins", "data/spine/goblins/", "goblingirl", player, 1,pathFinder);
-        enemie.init();
+        enemy = new Enemy("goblins", "data/spine/goblins/", "goblingirl", player, 1);
+        enemy.init();
+
+        // creation methods
+        createEnemies();
+    }
+
+    private void createEnemies() {
+        enemies = new Array<Enemy>();
+        MapLayers l = map.getLayers();
+        for (int i = 0; i < l.getCount(); i++) {
+            // contains objects
+            if (l.get(i).getObjects().getCount() != 0) {
+                MapObjects objects = l.get(i).getObjects();
+                for (int j = 0; j < objects.getCount(); j++) {
+                    MapProperties p = objects.get(j).getProperties();
+
+                    // goblin spawn
+                    if (p.containsKey("spawn") && p.get("spawn").equals("goblin")) {
+
+                        System.out.println("goblin spawned");
+
+                        int min = Integer.parseInt((String) p.get("min"));
+                        int max = Integer.parseInt((String) p.get("max"));
+
+                        int num = (int) (min + Math.random() * (max - min));
+                        for (int k = 0; k < num; k++) {
+                            float x = Float.parseFloat(p.get("x").toString());
+                            float y = Float.parseFloat(p.get("y").toString());
+                            float w = Float.parseFloat(p.get("width").toString());
+                            float h = Float.parseFloat(p.get("height").toString());
+
+                            Enemy e = new Enemy((float)(x + Math.random() * 180),(float)(y - Math.random() * 192),"goblins", "data/spine/goblins/", "goblingirl", player, 0.4f);
+                            enemies.add(e);
+                        }
+                    }
+
+                }
+
+            }
+        }
+
     }
 
     /**
@@ -193,7 +235,7 @@ public class Map {
 
         // fixed camera & renderer
         fixedCamera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
-        fixedRenderer = new OrthogonalTiledMapRenderer(map, 0.6f,PlayScreen.getBatch());
+        fixedRenderer = new OrthogonalTiledMapRenderer(map, 0.4f, PlayScreen.getBatch());
         fixedRenderer.setView(fixedCamera);
 
 
@@ -367,7 +409,6 @@ public class Map {
 
 
         // render map object in which are in foreground
-//>>>>>>> origin/master
         for (int i = 0; i < mapObjects.size; i++) {
             if (player.getY() > mapObjects.get(i).getY()) {
                 mapObjects.get(i).render(batch);
@@ -376,10 +417,11 @@ public class Map {
         player.render(batch);
 
 
-//<<<<<<< HEAD
-//        // render map object
-//=======
-        enemie.render(batch);
+        for (int i = 0; i < enemies.size; i++) {
+            enemies.get(i).render(batch);
+        }
+
+//        enemy.render(batch);
         // render foreground
         renderForeground(batch);
 
@@ -443,9 +485,11 @@ public class Map {
      */
     public void update(float deltaTime) {
         player.update(deltaTime);
-        enemie.update(deltaTime);
+//        enemy.update(deltaTime);
 
-
+        for (int i = 0; i < enemies.size; i++) {
+           enemies.get(i).update(deltaTime);
+        }
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
