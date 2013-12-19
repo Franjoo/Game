@@ -2,6 +2,7 @@ package com.angrynerds.game.screens.play;
 
 import com.angrynerds.game.screens.AbstractScreen;
 import com.angrynerds.ui.ControllerUI;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -27,6 +28,8 @@ public class PlayScreen extends AbstractScreen {
         // allow static access, note: ugly code practice
         batch = super.getSpriteBatch();
 
+
+        Sprite s;
         init();
     }
 

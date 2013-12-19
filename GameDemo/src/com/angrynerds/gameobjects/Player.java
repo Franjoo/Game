@@ -67,7 +67,7 @@ public class Player extends Creature {
      * creates a new player
      */
     public Player(IGameInputController input) {
-        super("Max_move", "data/spine/max/", null, 0.20f);
+        super("Max_move", "data/spine/animations/", null, 0.20f);
 
 
         this.input = input;

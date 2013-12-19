@@ -3,6 +3,7 @@ package com.angrynerds.game;
 import com.angrynerds.game.core.Main;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import tests.lights.LightTest;
 
 /**
  * Desktop Starter Class
@@ -20,7 +21,8 @@ public class DesktopStarter {
 //        cfg.fullscreen = true;
 //        cfg.vSyncEnabled = true;
 		
-//		new LwjglApplication(new Main(), cfg);
 		new LwjglApplication(new Main(), cfg);
+//		new LwjglApplication(new Main(), cfg);
+//		new LwjglApplication(new LightTest(), cfg);
 	}
 }
