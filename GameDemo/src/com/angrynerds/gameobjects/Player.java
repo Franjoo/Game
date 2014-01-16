@@ -39,6 +39,7 @@ public class Player extends Creature {
 
     // helper attributes
     private Vector2 vec2 = new Vector2();
+    private boolean flipped;
     private Array<Vector2> collPos = new Array<Vector2>();
 
     private Vector2 _po = new Vector2();
@@ -86,7 +87,7 @@ public class Player extends Creature {
         detector = Detector.getInstance();
 
         x = 500;
-        y = 300;
+        y = 150;
 
         actHP = maxHP;
 
@@ -118,11 +119,6 @@ public class Player extends Creature {
     }
 
 
-
-
-
-
-
     @Override
     public void attack() {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -144,15 +140,17 @@ public class Player extends Creature {
         y = p.y;
 
         // flip skeleton
-        skeleton.setFlipX(vX < 0);
+        if (vX == 0) skeleton.setFlipX(flipped);
+        else skeleton.setFlipX(vX < 0);
 
-
-            setCurrentState();
+        setCurrentState();
 
         // apply and update skeleton
         state.update(deltaTime);
         state.apply(skeleton);
 
+        // was flipped for vX == 0 in next update
+        flipped = skeleton.getFlipX();
     }
 
 
@@ -165,15 +163,14 @@ public class Player extends Creature {
         }
 
 
-
-
-
         if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
             state.setAnimation(0, "attack_1", false);
             state.addAnimation(0, "run_test", true, 0);
         }
         input.setState(State.IDLE);
+
     }
+
 
     /**
      * detects whether the player collides with a solid
@@ -195,8 +192,6 @@ public class Player extends Creature {
         _pt.set(getTileCollisionPosition(x, y, vX, vY));
         nX = _pt.x;
         nY = _pt.y;
-
-
 
 
         vec2.set(nX, nY);
