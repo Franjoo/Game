@@ -498,10 +498,10 @@ public class Map {
             if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
 
                     enemy.hit(50);
-                player.setAction("attacking");
+                player.setState(State.ATTACKING);
 
             }
-        player.setAction("idle");
+        player.setState(State.IDLE);
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
