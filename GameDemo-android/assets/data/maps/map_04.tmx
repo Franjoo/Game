@@ -3,18 +3,6 @@
  <tileset firstgid="1" name="GameLayer_03" tilewidth="64" tileheight="64">
   <image source="layers/1408x640/GameLayer_03.png" width="1408" height="640"/>
  </tileset>
- <tileset firstgid="221" name="layer_01" tilewidth="64" tileheight="64">
-  <image source="layers/640x1408/layer_01.png" width="1408" height="640"/>
- </tileset>
- <tileset firstgid="441" name="layer_02" tilewidth="64" tileheight="64">
-  <image source="layers/640x1408/layer_02.png" width="1408" height="640"/>
- </tileset>
- <tileset firstgid="661" name="layer_03" tilewidth="64" tileheight="64">
-  <image source="layers/640x1408/layer_03.png" width="1408" height="640"/>
- </tileset>
- <tileset firstgid="881" name="layer_05" tilewidth="64" tileheight="64">
-  <image source="layers/640x1408/layer_05.png" width="1408" height="640"/>
- </tileset>
  <layer name="bg_Kachelebene 1" width="100" height="10">
   <properties>
    <property name="vx" value="1"/>
@@ -23,13 +11,22 @@
    <property name="y" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup draworder="topdown" name="@bg_Kachelebene 1" width="100" height="10">
-  <object x="576" y="0" width="64" height="64">
+ <objectgroup name="$enemySpawn" width="100" height="10">
+  <properties>
+   <property name="max" value="8"/>
+   <property name="min" value="3"/>
+   <property name="spawn" value="goblin"/>
+  </properties>
+  <object x="1678" y="323" width="448" height="192">
    <properties>
-    <property name="img" value="cube.png"/>
+    <property name="height" value="3"/>
+    <property name="max" value="9"/>
+    <property name="min" value="3"/>
+    <property name="spawn" value="goblin"/>
+    <property name="width" value="7"/>
    </properties>
   </object>
  </objectgroup>

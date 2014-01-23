@@ -44,7 +44,8 @@ public class SkeletonData {
 	final Array<EventData> events = new Array();
 	final Array<Animation> animations = new Array();
 
-	public void clear () {
+
+    public void clear () {
 		bones.clear();
 		slots.clear();
 		skins.clear();

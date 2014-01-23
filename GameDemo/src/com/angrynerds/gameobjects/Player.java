@@ -62,6 +62,7 @@ public class Player extends Creature {
 
     // input
     private IGameInputController input;
+    public int attackFlag = 0;
 
 
     /**
@@ -116,6 +117,11 @@ public class Player extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
+    }
+
+    public String getAnimation(){
+       return  state.getCurrent(0).toString();
+
     }
 
 
