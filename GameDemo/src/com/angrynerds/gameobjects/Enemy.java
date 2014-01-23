@@ -58,7 +58,7 @@ public class Enemy extends Creature {
 
 
     private int speed = 120;
-    private int tolerance = 1;
+    private float tolerance = 0.1f;
     private int nextStepInPath = 1;
 
     private boolean alive  = true;
@@ -148,7 +148,7 @@ public class Enemy extends Creature {
 
     public void moveToPlayer(float deltatime){
 
-        //
+
         path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
         if (alive){
 
@@ -189,6 +189,11 @@ public class Enemy extends Creature {
                 path = getNewPath();
 
             }
+
+            if(path.getLength() <= 3)
+             ani =  skeletonData.findAnimation("attack");
+            else
+             ani  = skeletonData.findAnimation("move");
         }
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
