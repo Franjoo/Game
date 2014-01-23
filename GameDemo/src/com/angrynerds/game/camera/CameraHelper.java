@@ -48,8 +48,8 @@ public class CameraHelper {
         position = new Vector2();
         zoom = 1;
 
-        position.x = C.VIEWPORT_WIDTH/2;
-        position.y = C.VIEWPORT_HEIGHT/2 + 100;
+        position.x = C.VIEWPORT_WIDTH / 2;
+        position.y = C.VIEWPORT_HEIGHT / 2 + 100;
 
 
     }
@@ -58,11 +58,11 @@ public class CameraHelper {
 
         handleDebugControlls();
 
-        if (!hasTarget()){
+        if (!hasTarget()) {
             return;
         }
 
-        if(map == null){
+        if (map == null) {
             map = Map.getInstance();
         }
 
@@ -77,19 +77,25 @@ public class CameraHelper {
 //        System.out.println(deltaX + ", " + deltaY);
 
 
-
-
         // TOP
-        if(qX + deltaX < C.VIEWPORT_WIDTH / 2){
-            position.x += (C.VIEWPORT_WIDTH/2 - position.x) * aX ;
-        }else{
+        if (qX + deltaX < C.VIEWPORT_WIDTH / 2) {
+            position.x += (C.VIEWPORT_WIDTH / 2 - position.x) * aX;
+        } else {
             position.x += deltaX * aX;
         }
 
         // BOTTOM
-        if(qY + deltaY - map.getOffsetY() * map.getTileHeight() < C.VIEWPORT_HEIGHT / 2){
-            position.y += (C.VIEWPORT_HEIGHT/2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY ;
-        }else{
+        if (qY + deltaY + 10 > C.VIEWPORT_HEIGHT) {
+
+        } else if (qY + deltaY - map.getOffsetY() * map.getTileHeight() < C.VIEWPORT_HEIGHT / 2) {
+            position.y += (C.VIEWPORT_HEIGHT / 2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY;
+        }
+
+//        else if (qY + deltaY - map.getOffsetY() * map.getTileHeight() > C.VIEWPORT_HEIGHT / 2) {
+//            position.y -= (C.VIEWPORT_HEIGHT / 2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY;
+//        }
+
+        else {
             position.y += deltaY * aY;
         }
 
@@ -143,8 +149,8 @@ public class CameraHelper {
 
     public void setTarget(GameObject target) {
         this.target = target;
-        position.x = C.VIEWPORT_WIDTH/2;
-        position.y = C.VIEWPORT_HEIGHT/2;
+        position.x = C.VIEWPORT_WIDTH / 2;
+        position.y = C.VIEWPORT_HEIGHT / 2;
     }
 
     public GameObject getTarget() {

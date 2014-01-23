@@ -57,8 +57,10 @@ public abstract class Creature extends GameObject {
         atlas = new TextureAtlas(Gdx.files.internal(path + name + ".atlas"));
         showBounds = true;
 
+
         // skeleton json
         skeletonJson = new SkeletonJson(atlas);
+
 
         // set scale
         skeletonJson.setScale(scale);
@@ -69,8 +71,11 @@ public abstract class Creature extends GameObject {
         // create skeleton
         skeleton = new Skeleton(skeletonData);
 
+
         // create skeleton Bounds
         skeletonBounds = new SkeletonBounds();
+
+
 
 
         if (skin != null) {
@@ -97,16 +102,21 @@ public abstract class Creature extends GameObject {
         skeleton.y = y;
 
         // update state
+
         skeleton.updateWorldTransform();
         skeleton.update(deltaTime);
         skeletonBounds.update(skeleton,true);
+
+
+
+
 
     }
 
     public void render(SpriteBatch batch) {
         // draw skeleton
         //batch.draw(skeletonDebugRenderer.draw(skeleton);
-        //skeletonDebugRenderer.draw(skeleton);
+        skeletonDebugRenderer.draw(skeleton);
 
         batch.begin();
         skeletonRenderer.draw(batch, skeleton);

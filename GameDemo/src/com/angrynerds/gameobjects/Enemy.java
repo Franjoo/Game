@@ -44,6 +44,7 @@ public class Enemy extends Creature {
     private float pY;
     private Path path;
     private AStarPathFinder pathFinder;
+    public float health = 100;
 
 
 
@@ -59,6 +60,9 @@ public class Enemy extends Creature {
     private int speed = 120;
     private int tolerance = 1;
     private int rea = 0;
+
+    private boolean alive  = true;
+    private boolean flipped = false;
 
 
 //    public Enemy(PlayScreen playScreen,Player player){
@@ -99,7 +103,7 @@ public class Enemy extends Creature {
 
 
 
-        ani = skeletonData.findAnimation("walk");
+        ani = skeletonData.findAnimation("move");
 
 
 
@@ -120,11 +124,15 @@ public class Enemy extends Creature {
     public void update(float deltatime) {
         super.update(deltatime);
 
+       // for (int i= 0;  i < getSkeletonBounds().getBoundingBoxes().get(0).getVertices().length;i++)
+        //    System.out.print(getSkeletonBounds().getBoundingBoxes().get(0).getVertices()[i] + " ");
 
-        // System.out.println(x + "   " + y +"   " + player.x + "   " + player.y);
+        // Orientation to player
+        skeleton.setFlipX((player.x - x >= 0));
 
+        //
         path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
-
+        if (alive){
         if (path != null && rea < path.getLength()) {
 
 
@@ -154,11 +162,18 @@ public class Enemy extends Creature {
 
             }
         }
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+        }
+
+        else
+        ani.mix( skeleton, skeleton.getTime(), skeleton.getTime(), false, null,1);
+       // ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
 
 
-        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+
+
        // if(getSkeletonBounds().aabbIntersectsSkeleton(player.getSkeletonBounds()))
-        //System.out.println(getSkeletonBounds().getMaxX());
+       // System.out.println(getSkeletonBounds().getMaxX());
 
 
 
@@ -227,6 +242,21 @@ public class Enemy extends Creature {
     //    System.out.println("Walking");
     // }
 
+    public void hit(int healthDecrease){
+        health -= healthDecrease;
+        if(health <= 0)   {
+           die();
+
+
+        }
+
+    }
+    public void die(){
+
+
+        ani = skeletonData.findAnimation("die");
+        alive = false;
+    }
 
     private boolean isReached(int i) {
 

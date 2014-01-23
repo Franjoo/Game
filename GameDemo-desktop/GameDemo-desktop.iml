@@ -11,6 +11,7 @@
     <orderEntry type="library" name="libs2" level="project" />
     <orderEntry type="module" module-name="GameDemo" />
     <orderEntry type="module" module-name="libs" />
+    <orderEntry type="library" name="desktop-libs" level="project" />
   </component>
 </module>
 

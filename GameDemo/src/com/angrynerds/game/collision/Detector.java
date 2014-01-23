@@ -108,50 +108,38 @@ public class Detector {
 
     public boolean polygonCollision(Creature c1, Creature c2){
 
-        //Find Slot for Left hand item
-        Slot slotLeft = c1.skeleton.findSlot("left hand item");
-        //Find Slot for right hand item
-        Slot slotRight = c1.skeleton.findSlot("right hand item");
-
-        // Region Attachment for Lefthand weapon
-        RegionAttachment regionAttachmentLeft = (RegionAttachment) c1.skeleton.getAttachment("left hand item","spear");
 
         // Search BoundingBox with name "weapon"
 
         BoundingBoxAttachment boundingBoxWeapon = null;
         Array<BoundingBoxAttachment> boundingBoxesCreature1 = c1.getSkeletonBounds().getBoundingBoxes();
+
         for(int i = 0; i < boundingBoxesCreature1.size;i++){
+
             if(boundingBoxesCreature1.get(i).getName().equals("weapon")){
                boundingBoxWeapon = boundingBoxesCreature1.get(i);
+
             }
         }
 
         // Creates floatArray for Polygon Collision Detection
-        //if(regionAttachmentLeft.getWorldVertices() != null)
-            float[] weaponFloatArr =  new float[]{regionAttachmentLeft.getWorldVertices()[0],regionAttachmentLeft.getWorldVertices()[1],regionAttachmentLeft.getWorldVertices()[5],regionAttachmentLeft.getWorldVertices()[6],regionAttachmentLeft.getWorldVertices()[10],regionAttachmentLeft.getWorldVertices()[11],regionAttachmentLeft.getWorldVertices()[15],regionAttachmentLeft.getWorldVertices()[16]};
-        float[] weaponFloatArrfromBB = null;
-        if(boundingBoxWeapon != null )
-            weaponFloatArrfromBB = boundingBoxWeapon.getVertices();
 
 
-        BoundingBoxAttachment skeletonBoundsCreature2 = c2.getSkeletonBounds().getBoundingBoxes().get(0);
+        float[] weaponFloatArrfromBB = new FloatArray(boundingBoxWeapon.getVertices()).toArray();
+        float[] creatureTwoPolygon = new FloatArray(c2.getSkeletonBounds().getBoundingBoxes().get(0).getVertices()).toArray();
 
-        // Create LibGDX FLoatArrays
-
-        FloatArray creatureTwoPolygon = c2.getSkeletonBounds().getPolygon(skeletonBoundsCreature2);
-        FloatArray weaponPol = new FloatArray(weaponFloatArr);
-        if(weaponFloatArrfromBB!= null)
-            weaponPol = new FloatArray(weaponFloatArrfromBB);
+        Polygon weaponPolygon = new Polygon(weaponFloatArrfromBB);
+        Polygon creature2Polygon = new Polygon(creatureTwoPolygon);
 
 
 
-        Polygon weaponPolygon = new Polygon(weaponFloatArr);
-
-        Polygon creature2Polygon = new Polygon(creatureTwoPolygon.toArray());
-
-
-        if(Intersector.overlapConvexPolygons(creature2Polygon, weaponPolygon, new Intersector.MinimumTranslationVector())){
-           // System.out.println(weaponPol.toString());
+        if(Intersector.overlapConvexPolygons(creatureTwoPolygon, weaponFloatArrfromBB,new Intersector.MinimumTranslationVector())){
+            for(int i =0; i< creatureTwoPolygon.length;i++)
+            System.out.print(creatureTwoPolygon[i] + " ");
+            System.out.println("");
+            for(int j =0; j< weaponFloatArrfromBB.length;j++)
+            System.out.print(weaponFloatArrfromBB[j] + " ");
+            System.out.println(" ");
 
             return true;
         }

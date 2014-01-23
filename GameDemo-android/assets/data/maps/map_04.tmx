@@ -14,4 +14,20 @@
    eJztzEN3HgEAQNEvtW03tW2kbdLUtm3btm3btm2bP6b3dDH72c87525fXCwWS0FKUpGaNKQlHenJQEYykZksZCUb2clBTnKRmzzERd//37DlJR/5KUBBClGYIhSlGMWJpwQlKUVpylCWcpSnAhWjb/ANWyUqU4WqVKM6NahJLWpTh7rUoz4NaEgjGpNAE5rSLPoG37AlkkRzkmlBS1rRmja0pR3t6UBHOtGZLnSlG93pQc/oG3zD1ove9KEv/ejPAAYyiMEMYSjDGM4IRjKK0YxhLOMYH32Db9gmMJFJTGYKU5nGdGYwk1nMZg5zmcd8FrCQRSxmCUujb/AN2zKWs4KVrGI1a1jLOtazgY1sYjNb2Mo2trODnexid/QNvmHbw172sZ8DHOQQhznCUY5xnBOc5BSnOcNZznGeC1yMvsE3bJe4zBWuco3r3OAmt7jNHe5yj/s84CGPeMwTnvKM59E3+IbtBS95xWve8JZ3vOcDH/nEZ77wlW985wc/+cVv/vA3+gbfsP0DngN76A==
   </data>
  </layer>
+ <objectgroup name="$enemySpawn" width="100" height="10">
+  <properties>
+   <property name="max" value="8"/>
+   <property name="min" value="3"/>
+   <property name="spawn" value="goblin"/>
+  </properties>
+  <object x="1678" y="323" width="448" height="192">
+   <properties>
+    <property name="height" value="3"/>
+    <property name="max" value="9"/>
+    <property name="min" value="3"/>
+    <property name="spawn" value="goblin"/>
+    <property name="width" value="7"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
