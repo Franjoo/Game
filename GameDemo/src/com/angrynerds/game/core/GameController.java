@@ -1,18 +1,23 @@
 package com.angrynerds.game.core;
 
+import com.angrynerds.game.screens.AbstractScreen;
+import com.angrynerds.game.screens.mainmenu.MainMenu;
 import com.angrynerds.game.screens.mainmenu.MainMenuScreen;
 import com.angrynerds.game.screens.play.PlayScreen;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
  * class that is reponsible for updating and rendering all the
  * screen which are in use
  */
-public class GameController implements Disposable {
+public class GameController extends Game implements Disposable {
 
     // screens
-    public PlayScreen playScreen;
-    private MainMenuScreen mainMenuScreen;
+    private PlayScreen playScreen;
+    private MainMenu mainMenu;
+    private AbstractScreen activeScreen;
 
     // game states
     private static String STATE;
@@ -27,7 +32,15 @@ public class GameController implements Disposable {
      * initializes the screens which should be used
      */
     private void init() {
+        mainMenu = new MainMenu(this);
         playScreen = new PlayScreen();
+        activeScreen = mainMenu;
+        this.setScreen(activeScreen);
+    }
+
+    @Override
+    public void create() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     /**
@@ -36,13 +49,16 @@ public class GameController implements Disposable {
      * @param deltaTime time since last frame
      */
     public void update(float deltaTime) {
-        playScreen.update(deltaTime);
-        playScreen.render(deltaTime);
+        activeScreen.update(deltaTime);
+        activeScreen.render(deltaTime);
+//        mainMenu.render(deltaTime);
+        //playScreen.update(deltaTime);
+        //playScreen.render(deltaTime);
     }
 
     @Override
     public void dispose() {
-        playScreen.dispose();
+        activeScreen.dispose();
     }
 
     /**
@@ -52,7 +68,7 @@ public class GameController implements Disposable {
      * @param height new height in pixels
      */
     public void resize(int width, int height) {
-        playScreen.resize(width, height);
+        activeScreen.resize(width, height);
     }
 
     /**
@@ -68,5 +84,17 @@ public class GameController implements Disposable {
     public void resume() {
         // TODO
 
+    }
+
+    public PlayScreen getPlayScreen() {
+        return playScreen;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+
+    public void setActiveScreen(AbstractScreen activeScreen) {
+        this.activeScreen = activeScreen;
     }
 }

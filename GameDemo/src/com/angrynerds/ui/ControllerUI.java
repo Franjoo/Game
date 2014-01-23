@@ -5,6 +5,7 @@ import aurelienribon.tweenengine.TweenManager;
 import aurelienribon.tweenengine.equations.Bounce;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.input.UIButtonListener;
+import com.angrynerds.tweens.LifebarAccessor;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -21,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
  * Time: 16:05
  * Project: GameDemo
  */
-public class ControllerUI implements Screen {
+public class ControllerUI{
 
     private UIButtonListener listener;
 
@@ -143,9 +144,14 @@ public class ControllerUI implements Screen {
 //        stage.addActor(midButton);
         stage.addActor(lifeBar);
 
+        Tween.registerAccessor(Lifebar.class, new LifebarAccessor());
+
         manager = new TweenManager();
-
-
+        Tween.to(lifeBar, LifebarAccessor.SCALE_XY, 3)
+                .target(100, 200)
+                .ease(Bounce.OUT)
+                .repeatYoyo(10, .5f)
+                .start(manager);
     }
 
 
@@ -195,8 +201,8 @@ public class ControllerUI implements Screen {
         return lifeBar;
     }
 
-    @Override
     public void render(float delta) {
+        manager.update(delta);
         stage.draw();
 //        Tween.to(lifeBar, -1 , 1.0f)
 //        .target(-1, -1)
@@ -204,35 +210,5 @@ public class ControllerUI implements Screen {
 //        .delay(1.0f)
 //        .repeatYoyo(2, 0.5f)
 //        .start(manager);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void show() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void hide() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void pause() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void resume() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void dispose() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

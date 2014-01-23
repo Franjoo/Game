@@ -1,0 +1,220 @@
+
+mainMenuButton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_play
+  rotate: false
+  xy: 1, 280
+  size: 419, 210
+  orig: 419, 210
+  offset: 0, 0
+  index: -1
+button_settings
+  rotate: false
+  xy: 1, 68
+  size: 419, 210
+  orig: 419, 210
+  offset: 0, 0
+  index: -1
+joystick_bg
+  rotate: false
+  xy: 422, 362
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+left_down
+  rotate: false
+  xy: 422, 209
+  size: 74, 151
+  orig: 74, 151
+  offset: 0, 0
+  index: -1
+mid_up
+  rotate: false
+  xy: 552, 382
+  size: 107, 108
+  orig: 107, 108
+  offset: 0, 0
+  index: -1
+bottom_down
+  rotate: false
+  xy: 1, 1
+  size: 149, 65
+  orig: 149, 65
+  offset: 0, 0
+  index: -1
+bottom_up
+  rotate: false
+  xy: 661, 425
+  size: 149, 65
+  orig: 149, 65
+  offset: 0, 0
+  index: -1
+top_down
+  rotate: false
+  xy: 152, 1
+  size: 149, 65
+  orig: 149, 65
+  offset: 0, 0
+  index: -1
+top_up
+  rotate: false
+  xy: 812, 425
+  size: 149, 65
+  orig: 149, 65
+  offset: 0, 0
+  index: -1
+left_up
+  rotate: false
+  xy: 422, 56
+  size: 74, 151
+  orig: 74, 151
+  offset: 0, 0
+  index: -1
+right_down
+  rotate: false
+  xy: 498, 209
+  size: 74, 151
+  orig: 74, 151
+  offset: 0, 0
+  index: -1
+right_up
+  rotate: false
+  xy: 498, 56
+  size: 74, 151
+  orig: 74, 151
+  offset: 0, 0
+  index: -1
+mid_down
+  rotate: false
+  xy: 574, 273
+  size: 106, 107
+  orig: 106, 107
+  offset: 0, 0
+  index: -1
+joystick_knob
+  rotate: false
+  xy: 303, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Xbox360_Button_A
+  rotate: false
+  xy: 574, 207
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Xbox360_Button_B
+  rotate: false
+  xy: 574, 141
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Xbox360_Button_X
+  rotate: false
+  xy: 574, 75
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Xbox360_Button_Y
+  rotate: false
+  xy: 640, 207
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+mainMenuButton2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_256/button_norm
+  rotate: false
+  xy: 1, 647
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+button_256/button_pushed
+  rotate: false
+  xy: 1, 389
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+button_256/button_links_norm
+  rotate: false
+  xy: 259, 647
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+button_256/button_links_pushed
+  rotate: false
+  xy: 1, 131
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+button_256/button_oben_norm
+  rotate: false
+  xy: 389, 775
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+button_256/button_oben_pushed
+  rotate: false
+  xy: 647, 775
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+button_256/button_rechts_norm
+  rotate: false
+  xy: 259, 389
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+button_256/button_rechts_pushed
+  rotate: false
+  xy: 131, 131
+  size: 128, 256
+  orig: 128, 256
+  offset: 0, 0
+  index: -1
+button_256/button_unten_norm
+  rotate: false
+  xy: 1, 1
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+button_256/button_unten_pushed
+  rotate: false
+  xy: 389, 645
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+button_256/joystick_bg
+  rotate: false
+  xy: 389, 515
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+button_256/joystick_knob
+  rotate: false
+  xy: 905, 871
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

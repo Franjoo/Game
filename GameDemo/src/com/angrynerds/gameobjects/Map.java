@@ -8,6 +8,7 @@ import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Goblin;
 import com.angrynerds.util.C;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -133,8 +134,8 @@ public class Map {
         player.init();
         AStarPathFinder.initialize(this, 200, true, new ClosestHeuristic());
         pathFinder = AStarPathFinder.getInstance();
-        enemy = new Enemy("goblins", "data/spine/goblins/", "goblingirl", player, 1);
-        enemy.init();
+        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
+                enemy.init();
 
         // creation methods
         createEnemies();
@@ -159,13 +160,16 @@ public class Map {
                         int max = Integer.parseInt((String) p.get("max"));
 
                         int num = (int) (min + Math.random() * (max - min));
-                        for (int k = 0; k < num; k++) {
+                        for (int k = 0; k < 1; k++) {
                             float x = Float.parseFloat(p.get("x").toString());
                             float y = Float.parseFloat(p.get("y").toString());
                             float w = Float.parseFloat(p.get("width").toString());
                             float h = Float.parseFloat(p.get("height").toString());
 
-                            Enemy e = new Enemy((float)(x + Math.random() * 180),(float)(y - Math.random() * 192),"goblins", "data/spine/goblins/", "goblingirl", player, 0.4f);
+                            Enemy e = new Enemy((float)(x + Math.random() * 180),(float)(y - Math.random() * 192),"goblins", "data/spine/goblins/", "goblin", player, 0.2f);
+                            //detector.polygonCollision(player,e)    ;
+
+
                             enemies.add(e);
                         }
                     }
@@ -421,7 +425,7 @@ public class Map {
             enemies.get(i).render(batch);
         }
 
-//        enemy.render(batch);
+        enemy.render(batch);
         // render foreground
         renderForeground(batch);
 
@@ -485,11 +489,20 @@ public class Map {
      */
     public void update(float deltaTime) {
         player.update(deltaTime);
-//        enemy.update(deltaTime);
+       enemy.update(deltaTime);
 
-        for (int i = 0; i < enemies.size; i++) {
-           enemies.get(i).update(deltaTime);
-        }
+
+
+           //enemies.get(0).update(deltaTime);
+
+            if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
+            if(player.attackFlag == 0);{
+                    player.attackFlag = 1;
+                    enemy.hit(50);
+                    player.attackFlag = 0;
+                }
+
+            }
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
@@ -791,7 +804,7 @@ public class Map {
                 }
             }
         }
-        System.out.println(p.toString());
+        //System.out.println(p.toString());
         collisionTilesTexture = new Texture(p);
     }
 

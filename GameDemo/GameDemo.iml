@@ -7,8 +7,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="libs_main" level="project" />
     <orderEntry type="library" name="libs2" level="project" />
+=======
+
+
+
+    <orderEntry type="library" exported="" name="libs" level="project" />
+
+>>>>>>> 58295b56492b9ba2183c337e5f78c7858b9c1e16
   </component>
 </module>
 
