@@ -9,6 +9,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="GameDemo" />
     <orderEntry type="library" name="libs_desktop" level="project" />
+    <orderEntry type="library" name="libs2" level="project" />
+    <orderEntry type="library" name="libs1" level="project" />
   </component>
 </module>
 
