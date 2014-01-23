@@ -8,7 +8,6 @@ import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.creatures.Goblin;
 import com.angrynerds.input.TouchInput;
-import com.angrynerds.util.State;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -122,6 +121,7 @@ public class Enemy extends Creature {
 
 
 
+
         if (alive){
          updatePositions();
          moveToPlayer(deltatime);
@@ -147,6 +147,11 @@ public class Enemy extends Creature {
     }
 
     public void moveToPlayer(float deltatime){
+
+        //
+        path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
+        if (alive){
+
 
         skeleton.setFlipX((player.x - x >= 0));
 
@@ -184,25 +189,18 @@ public class Enemy extends Creature {
                 path = getNewPath();
 
             }
-
-            if(path.getLength() <= 3)
-                ani = skeletonData.findAnimation("attack");
-            else
-                ani = skeletonData.findAnimation("move");
-
         }
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
     }
-
+    }
     public void hit(int healthDecrease){
-         if(player.getState() != State.ATTACKING){
         health -= healthDecrease;
         if(health <= 0)   {
            die();
 
-        }
+
         }
 
     }
