@@ -147,11 +147,9 @@ public class Enemy extends Creature {
     }
 
     public void moveToPlayer(float deltatime){
-
-
-        path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
+         Vector2 nextStep;
+        float angle;
         if (alive){
-
 
         skeleton.setFlipX((player.x - x >= 0));
 
@@ -159,12 +157,13 @@ public class Enemy extends Creature {
 
         path = getNewPath();
         if (path != null && nextStepInPath < path.getLength()) {
+           nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+           angle = (float) Math.atan2(path.getStep(nextStepInPath-1).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath-1).getX() * map.getTileWidth() - x);
+            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+        }
+         if (!isReached(nextStepInPath)) {
 
-            if (!isReached(nextStepInPath)) {
 
-                Vector2 nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-                float angle = (float) Math.atan2(path.getStep(nextStepInPath-1).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath-1).getX() * map.getTileWidth() - x);
-                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
                 // velocity.set( (nextStep.x - getX()),(nextStep.y - getY()));
@@ -184,7 +183,7 @@ public class Enemy extends Creature {
            // System.out.println("player x tile: " + xTilePlayer + ",Player y tile: " + yTilePlayer);
            // System.out.println("enemy x tile: " + xTilePosition + ",Enemy y tile: " + yTilePosition);
 
-            if (nextStepInPath == path.getLength()) {
+            if (nextStepInPath == path.getLength()-1) {
                 System.out.println("New Path");
                 path = getNewPath();
 
@@ -199,6 +198,7 @@ public class Enemy extends Creature {
 
 
     }
+
     }
     public void hit(int healthDecrease){
         health -= healthDecrease;
