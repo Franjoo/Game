@@ -400,6 +400,9 @@ public class Player extends Creature {
         maxHP = hp;
     }
 
+    public IGameInputController getInput() {
+        return input;
+    }
 
     class AnimationListener implements AnimationState.AnimationStateListener {
 
