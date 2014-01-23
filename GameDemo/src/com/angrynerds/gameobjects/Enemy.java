@@ -8,6 +8,7 @@ import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.creatures.Goblin;
 import com.angrynerds.input.TouchInput;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -124,17 +125,14 @@ public class Enemy extends Creature {
     public void update(float deltatime) {
         super.update(deltatime);
 
-       // for (int i= 0;  i < getSkeletonBounds().getBoundingBoxes().get(0).getVertices().length;i++)
-        //    System.out.print(getSkeletonBounds().getBoundingBoxes().get(0).getVertices()[i] + " ");
-
         // Orientation to player
-        skeleton.setFlipX((player.x - x >= 0));
 
-        //
+
+        //Creates new Path to Player
         path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
         if (alive){
+            skeleton.setFlipX((player.x - x >= 0));
         if (path != null && rea < path.getLength()) {
-
 
             if (!isReached(rea)) {
 
@@ -161,6 +159,12 @@ public class Enemy extends Creature {
                 System.out.println("New Path");
 
             }
+
+            if(path.getLength() <= 3)
+                ani = skeletonData.findAnimation("attack");
+            else
+                ani = skeletonData.findAnimation("move");
+
         }
             ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
         }
@@ -243,11 +247,12 @@ public class Enemy extends Creature {
     // }
 
     public void hit(int healthDecrease){
+         if(player.getState() != State.ATTACKING){
         health -= healthDecrease;
         if(health <= 0)   {
            die();
 
-
+        }
         }
 
     }

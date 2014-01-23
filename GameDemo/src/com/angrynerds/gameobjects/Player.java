@@ -14,6 +14,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.spine.*;
 
+import java.sql.Timestamp;
+
 /**
  * class that represents the Player
  */
@@ -63,6 +65,7 @@ public class Player extends Creature {
     // input
     private IGameInputController input;
     public int attackFlag = 0;
+    private String action = "idle";
 
 
     /**
@@ -398,6 +401,15 @@ public class Player extends Creature {
 
     public void setMaxHP(int hp) {
         maxHP = hp;
+    }
+
+    public State getState() {
+        return input.getState();
+    }
+
+    public void setState(State state){
+        input.setState(state);
+
     }
 
 
