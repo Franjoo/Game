@@ -32,6 +32,30 @@ public class Lifebar extends Actor {
 
     }
 
+    public Sprite getBubble() {
+        return bubble;
+    }
+
+    public void setBubble(Sprite bubble) {
+        this.bubble = bubble;
+    }
+
+    public Sprite getLife() {
+        return life;
+    }
+
+    public void setLife(Sprite life) {
+        this.life = life;
+    }
+
+    public Sprite getBorder() {
+        return border;
+    }
+
+    public void setBorder(Sprite border) {
+        this.border = border;
+    }
+
     public void setLifePercent(float percent){
         life.setSize(life.getWidth()*percent, life.getHeight());
     }

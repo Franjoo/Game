@@ -81,6 +81,7 @@ public class PlayScreen extends AbstractScreen {
 
     @Override
     public void show() {
+        init();
     }
 
     @Override
