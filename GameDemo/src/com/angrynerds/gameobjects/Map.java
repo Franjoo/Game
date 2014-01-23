@@ -6,9 +6,8 @@ import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.gameobjects.creatures.Goblin;
+import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.util.C;
-import com.angrynerds.util.State;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -71,6 +70,7 @@ public class Map {
     private Player player;
     private Enemy enemy;
 
+    private SpawnController spawnController;
     private Array<Enemy> enemies;
 
     private World world;
@@ -134,8 +134,10 @@ public class Map {
         player.init();
         AStarPathFinder.initialize(this, 200, true, new ClosestHeuristic());
         pathFinder = AStarPathFinder.getInstance();
-        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
-                enemy.init();
+//        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
+//        enemy.init();
+
+        spawnController = new SpawnController();
 
         // creation methods
         createEnemies();
@@ -148,31 +150,40 @@ public class Map {
             // contains objects
             if (l.get(i).getObjects().getCount() != 0) {
                 MapObjects objects = l.get(i).getObjects();
+
                 for (int j = 0; j < objects.getCount(); j++) {
                     MapProperties p = objects.get(j).getProperties();
 
-                    // goblin spawn
-                    if (p.containsKey("spawn") && p.get("spawn").equals("goblin")) {
-
-                        System.out.println("goblin spawned");
-
-                        int min = Integer.parseInt((String) p.get("min"));
-                        int max = Integer.parseInt((String) p.get("max"));
-
-                        int num = (int) (min + Math.random() * (max - min));
-                        for (int k = 0; k < 1; k++) {
-                            float x = Float.parseFloat(p.get("x").toString());
-                            float y = Float.parseFloat(p.get("y").toString());
-                            float w = Float.parseFloat(p.get("width").toString());
-                            float h = Float.parseFloat(p.get("height").toString());
-
-                            Enemy e = new Enemy((float)(x + Math.random() * 180),(float)(y - Math.random() * 192),"goblins", "data/spine/goblins/", "goblin", player, 0.2f);
-                            //detector.polygonCollision(player,e)    ;
-
-
-                            enemies.add(e);
-                        }
+                    if (p.containsKey("spawn")) {
+                        System.out.println("add enemy");
+                        spawnController.add(objects.get(j));
                     }
+
+//
+//                    // goblin spawn
+//                    if (p.containsKey("spawn") && p.get("spawn").equals("goblin")) {
+//
+//                        System.out.println("goblin spawned");
+//
+//                        int min = Integer.parseInt((String) p.get("min"));
+//                        int max = Integer.parseInt((String) p.get("max"));
+//
+//                        int num = (int) (min + Math.random() * (max - min));
+//                        for (int k = 0; k < 1; k++) {
+//                            float x = Float.parseFloat(p.get("x").toString());
+//                            float y = Float.parseFloat(p.get("y").toString());
+//                            float w = Float.parseFloat(p.get("width").toString());
+//                            float h = Float.parseFloat(p.get("height").toString());
+//
+//
+//
+//                            Enemy e = new Enemy((float) (x + Math.random() * 180), (float) (y - Math.random() * 192), "goblins", "data/spine/goblins/", "goblin", player, 0.2f);
+//                            //detector.polygonCollision(player,e)    ;
+//
+//
+//                            enemies.add(e);
+//                        }
+//                    }
 
                 }
 
@@ -405,30 +416,30 @@ public class Map {
         // background
         renderBackground(batch);
 
-        // render player
-
-
         // set camera
         renderer.getSpriteBatch().setProjectionMatrix(camera.combined);
 
-
-        // render map object in which are in foreground
-        for (int i = 0; i < mapObjects.size; i++) {
-            if (player.getY() > mapObjects.get(i).getY()) {
-                mapObjects.get(i).render(batch);
+        // enemies in background
+        for (int i = 0; i < enemies.size; i++) {
+            Enemy e = enemies.get(i);
+            if (player.getY() <= e.getY()) {
+                e.render(batch);
             }
         }
+
+        // player (middleground)
         player.render(batch);
 
-
+        // enemies in foreground
         for (int i = 0; i < enemies.size; i++) {
-            enemies.get(i).render(batch);
+            Enemy e = enemies.get(i);
+            if (player.getY() > e.getY()) {
+                e.render(batch);
+            }
         }
 
-        enemy.render(batch);
         // render foreground
         renderForeground(batch);
-
 
         //** draw debug textures **//
         batch.begin();
@@ -488,20 +499,27 @@ public class Map {
      * @param deltaTime time since last frame
      */
     public void update(float deltaTime) {
+
+        // update player
         player.update(deltaTime);
-       enemy.update(deltaTime);
 
+        // update spawnController
+        spawnController.update(deltaTime);
 
+        // update enemies
+        for (int i = 0; i < enemies.size; i++) {
+            enemies.get(i).update(deltaTime);
+        }
 
-           //enemies.get(0).update(deltaTime);
+        //enemies.get(0).update(deltaTime);
 
-            if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
-
-                    enemy.hit(50);
-                player.setState(State.ATTACKING);
-
-            }
-        player.setState(State.IDLE);
+//        if (player.getAnimation().equals("attack_1") && player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
+//
+//            enemy.hit(50);
+//            player.setState(State.ATTACKING);
+//
+//        }
+//        player.setState(State.IDLE);
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
@@ -675,7 +693,7 @@ public class Map {
 
     /**
      * returns an array of TmxMapObject which are located on a tmx object layer<br>
-     * note: tmx map object layer starts with $o
+     * note: tmx map object layer starts with $mapObject
      */
     private Array<TmxMapObject> createMapObjects() {
         Array<TmxMapObject> mo = new Array<TmxMapObject>();
@@ -920,6 +938,7 @@ public class Map {
      */
     public int getOffsetX() {
         return offsetX;
+
     }
 
     /**
@@ -927,6 +946,81 @@ public class Map {
      */
     public int getOffsetY() {
         return offsetY;
+
+    }
+
+
+    private class SpawnController {
+
+        private Array<SpawnObject> objects;
+        private final int xDist = 400;
+
+        public SpawnController() {
+            objects = new Array<SpawnObject>();
+        }
+
+        public void add(MapObject mapObject) {
+            objects.add(new SpawnObject(mapObject));
+        }
+
+        public void update(float delta) {
+            for (int i = 0; i < objects.size; i++) {
+                SpawnObject o = objects.get(i);
+                if (o.rectangle.x - o.distance <= player.x) {
+                    o.spawn();
+                    objects.removeIndex(i);
+                }
+            }
+
+        }
+
+        class SpawnObject extends MapObject {
+
+            public Rectangle rectangle;
+            public float distance;
+            private Array<Enemy> freeEnemies;
+
+            public SpawnObject(MapObject mapObject) {
+
+                // parse mapObject
+                MapProperties p = mapObject.getProperties();
+
+                float x = Float.parseFloat(p.get("x").toString());
+                float y = Float.parseFloat(p.get("y").toString());
+                float w = Float.parseFloat(p.get("width").toString()) * tileWidth;
+                float h = Float.parseFloat(p.get("height").toString()) * tileHeight;
+                rectangle = new Rectangle(x, y, w, h);
+
+                distance = Float.parseFloat(p.get("dist").toString());
+
+                int min = Integer.parseInt(p.get("min").toString());
+                int max = Integer.parseInt(p.get("max").toString());
+
+                int num = (int) (min + (Math.random() * (max - min)));
+
+                String type = p.get("spawn").toString();
+
+                // create free create array
+                freeEnemies = new Array<Enemy>();
+                for (int i = 0; i < num; i++) {
+                    if (type.equals("goblin")) {
+                        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
+                        enemy.init();
+
+                        enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
+                        enemy.y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
+                        freeEnemies.add(enemy);
+                    }
+                }
+            }
+
+
+            private void spawn() {
+                enemies.addAll(freeEnemies);
+            }
+
+        }
+
     }
 
     //</editor-fold>

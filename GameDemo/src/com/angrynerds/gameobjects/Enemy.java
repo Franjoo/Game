@@ -116,17 +116,11 @@ public class Enemy extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
-
-
-
     }
 
 
     public void update(float deltatime) {
         super.update(deltatime);
-
-        // Orientation to player
-
 
         //Creates new Path to Player
         path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
@@ -258,7 +252,7 @@ public class Enemy extends Creature {
     }
     public void die(){
 
-
+//        skeletonData.addAnimation(skeletonData.findAnimation("die"));
         ani = skeletonData.findAnimation("die");
         alive = false;
     }
