@@ -121,7 +121,7 @@ public class MainMenu extends AbstractScreen {
                 .start(manager);
         Tween.to(buttonSettings, MenuAccessor.POSITION_Y, 1.5f)
                 .targetRelative(15)
-                .ease(Sine.INOUT)
+                .ease(Sine.IN)
                 .repeatYoyo(-1, 0)
                 .start(manager);
 
