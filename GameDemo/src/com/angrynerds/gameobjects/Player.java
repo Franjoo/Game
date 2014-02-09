@@ -39,6 +39,7 @@ public class Player extends Creature {
     // stats
     private int maxHP = 100;
     private int actHP;
+    private int atckDmg = 25;
 
     // helper attributes
     private Vector2 vec2 = new Vector2();
@@ -61,6 +62,7 @@ public class Player extends Creature {
     private Animation currentAnimation;
 
     private boolean dashRight;
+    private boolean alive = true;
 
 
     private Detector detector;
@@ -114,6 +116,10 @@ public class Player extends Creature {
         stateData.setMix("attack_1", "run_test", 0.4f);
         stateData.setMix("dash", "run_test", 0.4f);
         stateData.setMix("run_test", "dash", 0.4f);
+        stateData.setMix("run_test", "die", 0.4f);
+        stateData.setMix("attack_1", "die", 0.4f);
+        stateData.setMix("jump", "die", 0.4f);
+        stateData.setMix("dash", "die", 0.4f);
 
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
@@ -136,52 +142,56 @@ public class Player extends Creature {
     public void attack() {
         for (Enemy e : map.getEnemies()) {
             if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
-
+                e.setHealth(e.getHealth()-atckDmg);
+                System.out.println("atccking enemy " + e.getHealth());
             }
 
         }
-        actHP -= 50;
+        //actHP -= 50;
     }
 
     public void update(float deltaTime) {
         super.update(deltaTime);
+        if(alive){
 
-        // set v in x and y direction
-        vX = input.get_stickX() * deltaTime * vX_MAX;
-        vY = input.get_stickY() * deltaTime * vY_MAX;
+            // set v in x and y direction
+            vX = input.get_stickX() * deltaTime * vX_MAX;
+            vY = input.get_stickY() * deltaTime * vY_MAX;
 
-        // set collision position
-        Vector2 p = getCollisionPosition();
+            // set collision position
+            Vector2 p = getCollisionPosition();
 
 
-        // flip skeleton
-        if (vX == 0) skeleton.setFlipX(flipped);
-        else skeleton.setFlipX(vX < 0);
+            // flip skeleton
+            if (vX == 0) skeleton.setFlipX(flipped);
+            else skeleton.setFlipX(vX < 0);
 
-        setCurrentState();
+            setCurrentState();
 
-        // update position attributes
-        if(state.getCurrent(0).toString().equals("dash")){
-            x += dash(deltaTime);
+            // update position attributes
+            if(state.getCurrent(0).toString().equals("dash")){
+                x += dash(deltaTime);
+            }
+            else{
+                x = p.x;
+            }
+            y = p.y;
+
+
+            // apply and update skeleton
+    //        Animation animation = state.getCurrent(0).getAnimation();
+    //        if(animation.getName().equals("run_test")){
+    //            System.out.println(vX);
+    //            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
+    //        }
+
+
+            // was flipped for vX == 0 in next update
+            flipped = skeleton.getFlipX();
         }
-        else{
-            x = p.x;
-        }
-        y = p.y;
-
-
-        // apply and update skeleton
-//        Animation animation = state.getCurrent(0).getAnimation();
-//        if(animation.getName().equals("run_test")){
-//            System.out.println(vX);
-//            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
-//        }
         state.update(deltaTime);
 
         state.apply(skeleton);
-
-        // was flipped for vX == 0 in next update
-        flipped = skeleton.getFlipX();
     }
 
     private float dash(float deltaTime) {
@@ -219,7 +229,13 @@ public class Player extends Creature {
             state.setAnimation(0, "dash", false);
             state.addAnimation(0, "run_test", true, 0);
         }
-        input.setState(State.IDLE);
+
+        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            state.setAnimation(0, "die", false);
+        }
+
+        if(input.getState() != State.DEAD)
+            input.setState(State.IDLE);
 
 
     }
@@ -440,7 +456,17 @@ public class Player extends Creature {
     }
 
     public void setActualHP(int hp) {
-        actHP = hp;
+        if(actHP > 0)
+            actHP = hp;
+        if(actHP <= 0 && alive)
+            die();
+    }
+
+    private void die() {
+        alive = false;
+        state.setAnimation(0, "die", false);
+//        input.setState(State.DEAD);
+//        setCurrentState();
     }
 
     public void setMaxHP(int hp) {

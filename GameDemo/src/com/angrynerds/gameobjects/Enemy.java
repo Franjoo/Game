@@ -66,13 +66,15 @@ public class Enemy extends Creature {
     private int yTilePosition;
     private int xTilePlayer;
     private int yTilePlayer;
+    private int atckDmg;
 
 
-    public Enemy(String name, String path, String skin, Player player, float scale, int health, int type) {
+    public Enemy(String name, String path, String skin, Player player, float scale, int health, int atckDmg, int type) {
         super(name, path, skin, scale);
 
         this.player = player;
         this.health = health;
+        this.atckDmg = atckDmg;
         this.type = type;
     }
 
@@ -238,7 +240,18 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
+         if(player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
+             player.setActualHP(player.getActualHP()- atckDmg);
+    }
 
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+        if(health <= 0) alive = false;
     }
 
 }

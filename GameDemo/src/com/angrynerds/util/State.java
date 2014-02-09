@@ -8,5 +8,5 @@ package com.angrynerds.util;
  * To change this template use File | Settings | File Templates.
  */
 public enum State {
-    JUMPING, SMASHING, RUNNING, IDLE, DASHING, DASHINGRIGHT, DASHINGLEFT, ATTACKING
+    JUMPING, SMASHING, RUNNING, IDLE, DASHING, DASHINGRIGHT, DASHINGLEFT, ATTACKING, DEAD
 }
