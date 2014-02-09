@@ -8,6 +8,7 @@ import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.creatures.Goblin;
 import com.angrynerds.input.TouchInput;
+import com.angrynerds.util.State;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -65,6 +66,8 @@ public class Enemy extends Creature {
     private int yTilePosition;
     private int xTilePlayer;
     private int yTilePlayer;
+    private AnimationState state;
+    private AnimationListener animationListener;
 
 
     public Enemy(String name, String path, String skin, Player player, float scale, int health, int type) {
@@ -85,6 +88,25 @@ public class Enemy extends Creature {
         init();
     }
 
+    private void setAnimationStates() {
+
+        AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
+        stateData.setMix("move", "attack", 0.6f);
+        stateData.setMix("attack", "move", 0.6f);
+        stateData.setMix("attack", "die", 0.5f);
+        stateData.setMix("move", "die", 0.2f);
+
+
+
+        state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
+        animationListener = new AnimationListener();
+        state.addListener(animationListener);
+        state.setAnimation(0, "move", true);
+    }
+
+
+
+
 
     public void init() {
 
@@ -97,7 +119,7 @@ public class Enemy extends Creature {
         path = getNewPath();
         ranX = -1 + (int) ( + (Math.random() *3)  );
         ranY = -1 + (int) ( + (Math.random() *3)  );
-        System.out.println(ranX);
+        setAnimationStates();
 
 
 
@@ -127,15 +149,17 @@ public class Enemy extends Creature {
                  moveToPlayer(deltatime);
             else   {
                 ani = skeletonData.findAnimation("attack");
-                ani.mix( skeleton, skeleton.getTime(), skeleton.getTime(), true, null,1);
+                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null );
 
             }
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
         }
 
         else {
-            ani = skeletonData.findAnimation("die");
-            ani.mix( skeleton, skeleton.getTime(), skeleton.getTime(), false, null,1);
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
         }
+
+
 
     }
 
@@ -205,7 +229,6 @@ public class Enemy extends Creature {
         }
 
 
-        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
     }
@@ -223,8 +246,9 @@ public class Enemy extends Creature {
 
     }
     public void die(){
-
+        state.addAnimation(0,"die",false,0);
         alive = false;
+
     }
 
     private boolean isReached(int i) {
@@ -238,6 +262,33 @@ public class Enemy extends Creature {
     @Override
     public void attack() {
 
+    }
+
+    class AnimationListener implements AnimationState.AnimationStateListener {
+
+        @Override
+        public void event(int trackIndex, Event event) {
+//            System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
+        }
+
+        @Override
+        public void complete(int trackIndex, int loopCount) {
+//            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
+//            System.out.println(state.getCurrent(trackIndex));
+            if (state.getCurrent(trackIndex).toString().equals("jump")) {
+                state.setAnimation(0, "run_test", true);
+            }
+        }
+
+        @Override
+        public void start(int trackIndex) {
+//            System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+        }
+
+        @Override
+        public void end(int trackIndex) {
+//            System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
+        }
     }
 
 }
