@@ -53,8 +53,9 @@ public class AStarPathFinder {
 
        // return null;
 
-       for(int i = 0; i< path.getLength();i++)
-              path.removeStep(i);
+
+
+       path.flushPath();
 
        if (map.isSolid(tx*map.getTileWidth(), ty*map.getTileHeight())) {
 
