@@ -153,6 +153,10 @@ public class Player extends Creature {
 
         setCurrentState();
 
+        if(state.getCurrent(0).toString().equals("dash")){
+              x += deltaTime*700;
+        }
+
         // apply and update skeleton
 //        Animation animation = state.getCurrent(0).getAnimation();
 //        if(animation.getName().equals("run_test")){
