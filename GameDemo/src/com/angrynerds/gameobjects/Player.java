@@ -71,7 +71,7 @@ public class Player extends Creature {
      * creates a new player
      */
     public Player(IGameInputController input) {
-        super("Max_move2", "data/spine/animations/", null, 0.20f);
+        super("Max_move", "data/spine/animations/", null, 0.20f);
 
 
         this.input = input;
@@ -149,6 +149,7 @@ public class Player extends Creature {
         x = p.x;
         y = p.y;
 
+
         // flip skeleton
         if (vX == 0) skeleton.setFlipX(flipped);
         else skeleton.setFlipX(vX < 0);
@@ -158,6 +159,7 @@ public class Player extends Creature {
         if(state.getCurrent(0).toString().equals("dash")){
             x += dash(deltaTime);
         }
+
 
         // apply and update skeleton
 //        Animation animation = state.getCurrent(0).getAnimation();
