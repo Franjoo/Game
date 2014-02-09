@@ -190,7 +190,7 @@ public class Enemy extends Creature {
 
             }
 
-            if(path.getLength() <= 3)
+            if(path.getLength() <= 4)
              ani =  skeletonData.findAnimation("attack");
             else
              ani  = skeletonData.findAnimation("move");
