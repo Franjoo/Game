@@ -509,6 +509,7 @@ public class Map {
         return false;
     }
 
+
     /**
      * returns an array of rectangles which contains the assigned point
      *
@@ -817,6 +818,16 @@ public class Map {
 
         return enemies;
 
+    }
+
+    public boolean blockedByEnemie(int x, int y){
+        for (int i = 0; i < enemies.size; i++) {
+              if(x == enemies.get(i).getTilePostionX() && y == enemies.get(i).getTilePostionY())
+                  return true;
+              else
+                  return false;
+        }
+       return false;
     }
 
     /**

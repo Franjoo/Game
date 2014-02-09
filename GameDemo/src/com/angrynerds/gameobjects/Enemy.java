@@ -36,6 +36,7 @@ public class Enemy extends Creature {
 
     private Map map;
     private Player player;
+    private Random randomY = new Random();
 
     private Path path;
     private AStarPathFinder pathFinder;
@@ -95,6 +96,8 @@ public class Enemy extends Creature {
 
 
 
+
+
     }
 
 
@@ -114,8 +117,9 @@ public class Enemy extends Creature {
 
         if (alive){
          updatePositions();
+            moveToPlayer(deltatime);
 
-         moveToPlayer(deltatime);
+
 
 
         }
@@ -133,12 +137,24 @@ public class Enemy extends Creature {
         yTilePosition =   (int) (y) / map.getTileHeight();
         xTilePlayer   =   (int) (player.x) / map.getTileWidth();
         yTilePlayer   =   (int) (player.y) / map.getTileHeight() ;
+
     }
 
     public Path getNewPath(){
                //updatePositions();
-        return pathFinder.findPath(1,xTilePosition ,yTilePosition ,xTilePlayer , yTilePlayer);
+        return pathFinder.findPath(1,xTilePosition ,yTilePosition ,xTilePlayer  , yTilePlayer );
     }
+
+    public int getTilePostionX(){
+
+            return xTilePosition;
+    }
+
+    public int getTilePostionY(){
+
+        return yTilePosition;
+    }
+
 
     public void moveToPlayer(float deltatime){
 
@@ -149,18 +165,19 @@ public class Enemy extends Creature {
 
         if (path != null && nextStepInPath < path.getLength()) {
             attack();
-            nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+            nextStep = new Vector2((float) path.getStep(1).getX() * map.getTileWidth(), (float) path.getStep(1).getY() * map.getTileHeight());
+            angle = (float) Math.atan2(path.getStep(1).getY() * map.getTileHeight() - y, path.getStep(1).getX() * map.getTileWidth() - x);
             velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
 
-                if (xTilePosition != nextStep.x) {
+                if ((int) x  != nextStep.x) {
                     x = x + velocity.x * deltatime;
-
+                    System.out.println(x + "      " + nextStep.x);
                      }
 
-                if (yTilePosition != nextStep.y){
+
+                if ((int)y != nextStep.y ){
                     y = (y + velocity.y * deltatime);
                      }
 
@@ -187,26 +204,28 @@ public class Enemy extends Creature {
 
             if(nextStepInPath == path.getLength()-1){
 
-             for(int i = 0; i< map.getEnemies().size; i++){
-                 if(xTilePosition == map.getEnemies().get(i).xTilePosition)
-
-                     path.appendStep(xTilePosition + 1, yTilePosition);
-
-
-             }
-
-
-
 
                 ani =  skeletonData.findAnimation("attack");
             }
             else
                 ani  = skeletonData.findAnimation("move");
+
         }
         }
 
 
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+
+
+    }
+
+    public void blockTile(){
+
+
+
+    }
+
+    public void freeTile(){
 
 
     }
