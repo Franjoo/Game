@@ -990,7 +990,7 @@ public class Map {
                 freeEnemies = new Array<Enemy>();
                 for (int i = 0; i < num; i++) {
                     if (type.equals("goblin")) {
-                        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
+                        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f,100,1);
                         enemy.init();
 
                         enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
