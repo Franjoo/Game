@@ -118,8 +118,10 @@ public class Enemy extends Creature {
 
         }
 
-        else
-            ani.mix( skeleton, skeleton.getTime(), skeleton.getTime(), false, null,1);
+        else {
+            ani = skeletonData.findAnimation("die");
+            ani.apply( skeleton, skeleton.getTime(), skeleton.getTime(), false,null);
+        }
     }
 
     public void updatePositions(){
@@ -152,10 +154,13 @@ public class Enemy extends Creature {
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
+
                      }
 
-                if (yTilePosition != nextStep.y)
+                if (yTilePosition != nextStep.y){
                     y = (y + velocity.y * deltatime);
+
+                }
 
 
 //         if(isReached(nextStepInPath)){
@@ -167,22 +172,35 @@ public class Enemy extends Creature {
 
 
 
-            if (nextStepInPath == path.getLength()-1) {
-                System.out.println("New Path");
-                path = getNewPath();
-                nextStepInPath = 1;
+//            if (nextStepInPath == path.getLength()-1) {
+//                System.out.println("New Path");
+//                path = getNewPath();
+//                nextStepInPath = 1;
+//
+//
+//            }
 
 
-            }
 
-            if(nextStepInPath == path.getLength()-1)
+            if(nextStepInPath == path.getLength()-1){
+
+             for(int i = 0; i< map.getEnemies().size; i++){
+                 if(xTilePosition == map.getEnemies().get(i).xTilePosition)
+
+                     path.appendStep(xTilePosition + 1, yTilePosition);
+
+
+             }
+
+
+
                 ani =  skeletonData.findAnimation("attack");
+            }
             else
                 ani  = skeletonData.findAnimation("move");
-      //  }
+        }
         }
 
-    }
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
@@ -202,7 +220,7 @@ public class Enemy extends Creature {
     }
     public void die(){
 
-//        skeletonData.addAnimation(skeletonData.findAnimation("die"));
+//       skeletonData.addAnimation(skeletonData.findAnimation("die"));
         ani = skeletonData.findAnimation("die");
         alive = false;
     }
@@ -218,7 +236,7 @@ public class Enemy extends Creature {
     @Override
     public void attack() {
         if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
-
+            System.out.println(player.getSkeletonBounds().getBoundingBoxes().first());
                 hit(50);
 
 
