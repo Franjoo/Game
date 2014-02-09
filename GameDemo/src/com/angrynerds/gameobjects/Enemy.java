@@ -51,7 +51,7 @@ public class Enemy extends Creature {
 
     private Vector2 velocity = new Vector2();
     private int speed = 120;
-    private float tolerance =0.1f;
+    private float tolerance =1.0f;
     private boolean alive  = true;
 
     private Animation ani;
@@ -100,27 +100,30 @@ public class Enemy extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
+
+
+
     }
 
 
     public void update(float deltatime) {
         super.update(deltatime);
 
-        //Creates new Path to Player
 
 
 
         if (alive){
          updatePositions();
-           // path = getNewPath();
+
          moveToPlayer(deltatime);
 
 
         }
 
+
         else {
             ani = skeletonData.findAnimation("die");
-            ani.apply( skeleton, skeleton.getTime(), skeleton.getTime(), false,null);
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
         }
     }
 
@@ -150,7 +153,7 @@ public class Enemy extends Creature {
             angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
             velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
-       // if (!isReached(nextStepInPath)) {
+
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
@@ -159,13 +162,13 @@ public class Enemy extends Creature {
 
                 if (yTilePosition != nextStep.y){
                     y = (y + velocity.y * deltatime);
-
-                }
+                     }
 
 
 //         if(isReached(nextStepInPath)){
 //                System.out.println("Reached");
 //                nextStepInPath++;
+//
 //
 //            }
 
@@ -194,12 +197,14 @@ public class Enemy extends Creature {
 
 
 
+
                 ani =  skeletonData.findAnimation("attack");
             }
             else
                 ani  = skeletonData.findAnimation("move");
         }
         }
+
 
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
@@ -220,18 +225,18 @@ public class Enemy extends Creature {
     }
     public void die(){
 
-//       skeletonData.addAnimation(skeletonData.findAnimation("die"));
+
         ani = skeletonData.findAnimation("die");
         alive = false;
     }
 
-//    private boolean isReached(int i) {
-//
-//        //System.out.println(Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) + "     " + speed / tolerance * Gdx.graphics.getDeltaTime());
-//
-//        return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
-//                Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
-//    }
+    private boolean isReached(int i) {
+
+        System.out.println(Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) + "     " + speed / tolerance * Gdx.graphics.getDeltaTime());
+
+        return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
+                Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
+    }
 
     @Override
     public void attack() {

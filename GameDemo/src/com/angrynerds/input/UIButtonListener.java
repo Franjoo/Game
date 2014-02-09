@@ -25,6 +25,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
     private Array<Integer> jumpOrder; //midButton -> topButton
     private Array<Integer> smashOrder; //midButton -> topButton -> botButton
     private Array<Integer> turnAroundOrder; // top -> right -> bot -> left
+    private Array<Integer> dashOrder;
 
     State state;
 
@@ -42,6 +43,7 @@ public class UIButtonListener extends DragListener implements IGameInputControll
         smashOrder = new Array<Integer>(new Integer[]{controller.getMidButton().getId(), controller.getTopButton().getId(), controller.getBotButton().getId()});
         turnAroundOrder = new Array<Integer>(new Integer[]{controller.getTopButton().getId(), controller.getRightButton().getId(), controller.getBotButton().getId(), controller.getLeftButton().getId()});
         attackOrder = new Array<Integer>(new Integer[]{controller.getMidButton().getId()});
+        dashOrder = new Array<Integer>(new Integer[]{controller.getLeftButton().getId(), controller.getMidButton().getId(), controller.getRightButton().getId()});
     }
 
 
@@ -73,6 +75,11 @@ public class UIButtonListener extends DragListener implements IGameInputControll
 
         else if (touchOrder.equals(turnAroundOrder))
             System.out.println("turn around");
+
+        else if (touchOrder.equals(dashOrder)){
+            state = State.DASHING;
+            System.out.println("dash through it");
+        }
 
         //state = State.IDLE;
 

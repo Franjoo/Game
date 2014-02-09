@@ -159,32 +159,6 @@ public class Map {
                         spawnController.add(objects.get(j));
                     }
 
-//
-//                    // goblin spawn
-//                    if (p.containsKey("spawn") && p.get("spawn").equals("goblin")) {
-//
-//                        System.out.println("goblin spawned");
-//
-//                        int min = Integer.parseInt((String) p.get("min"));
-//                        int max = Integer.parseInt((String) p.get("max"));
-//
-//                        int num = (int) (min + Math.random() * (max - min));
-//                        for (int k = 0; k < 1; k++) {
-//                            float x = Float.parseFloat(p.get("x").toString());
-//                            float y = Float.parseFloat(p.get("y").toString());
-//                            float w = Float.parseFloat(p.get("width").toString());
-//                            float h = Float.parseFloat(p.get("height").toString());
-//
-//
-//
-//                            Enemy e = new Enemy((float) (x + Math.random() * 180), (float) (y - Math.random() * 192), "goblins", "data/spine/goblins/", "goblin", player, 0.2f);
-//                            //detector.polygonCollision(player,e)    ;
-//
-//
-//                            enemies.add(e);
-//                        }
-//                    }
-
                 }
 
             }

@@ -18,7 +18,7 @@ public class CameraHelper {
     private static final float MAX_ZOOM_IN = 0.25f;
     private static final float MAX_ZOOM_OUT = 4.0f;
 
-    private float aX = 0.03f;
+    private float aX = 0.07f;
     private float aY = 0.1f;
 //    private float aX = 1;
 //    private float aY = 1;
