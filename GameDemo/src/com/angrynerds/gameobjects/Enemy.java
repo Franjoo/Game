@@ -41,6 +41,7 @@ public class Enemy extends Creature {
     private AStarPathFinder pathFinder;
     private int nextStepInPath = 1;
 
+    private Random gen = new Random();
 
     public float health = 100;
 
