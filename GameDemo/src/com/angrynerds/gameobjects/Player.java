@@ -57,6 +57,8 @@ public class Player extends Creature {
 
     private Animation currentAnimation;
 
+    private boolean dashRight;
+
 
     private Detector detector;
 
@@ -154,7 +156,7 @@ public class Player extends Creature {
         setCurrentState();
 
         if(state.getCurrent(0).toString().equals("dash")){
-              x += deltaTime*700;
+            x += dash(deltaTime);
         }
 
         // apply and update skeleton
@@ -169,6 +171,16 @@ public class Player extends Creature {
 
         // was flipped for vX == 0 in next update
         flipped = skeleton.getFlipX();
+    }
+
+    private float dash(float deltaTime) {
+        if(dashRight)
+            return deltaTime * 600;
+
+        else{
+            skeleton.setFlipX(true);
+            return -deltaTime * 600;
+        }
     }
 
 
@@ -186,7 +198,10 @@ public class Player extends Creature {
             state.addAnimation(0, "run_test", true, 0);
         }
 
-        if (input.getState() == State.DASHING && !state.getCurrent(0).toString().equals("dash")){
+        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            if(input.getState() == State.DASHINGRIGHT)
+                dashRight = true;
+            else dashRight = false;
             state.setAnimation(0, "dash", false);
             state.addAnimation(0, "run_test", true, 0);
         }
