@@ -107,6 +107,8 @@ public class Player extends Creature {
         stateData.setMix("jump", "jump", 0.2f);
         stateData.setMix("run_test", "attack_1", 0.4f);
         stateData.setMix("attack_1", "run_test", 0.4f);
+        stateData.setMix("dash", "run_test", 0.4f);
+        stateData.setMix("run_test", "dash", 0.4f);
 
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
@@ -151,6 +153,10 @@ public class Player extends Creature {
 
         setCurrentState();
 
+        if(state.getCurrent(0).toString().equals("dash")){
+              x += deltaTime*700;
+        }
+
         // apply and update skeleton
 //        Animation animation = state.getCurrent(0).getAnimation();
 //        if(animation.getName().equals("run_test")){
@@ -179,7 +185,13 @@ public class Player extends Creature {
             state.setAnimation(0, "attack_1", false);
             state.addAnimation(0, "run_test", true, 0);
         }
+
+        if (input.getState() == State.DASHING && !state.getCurrent(0).toString().equals("dash")){
+            state.setAnimation(0, "dash", false);
+            state.addAnimation(0, "run_test", true, 0);
+        }
         input.setState(State.IDLE);
+
 
     }
 
