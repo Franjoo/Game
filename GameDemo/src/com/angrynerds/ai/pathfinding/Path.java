@@ -33,6 +33,11 @@ public class Path {
         return null;
     }
 
+    public void flushPath(){
+
+        steps.removeAll(steps);
+    }
+
     /**
      * Get the x coordinate for the step at the given index
      *

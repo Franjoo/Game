@@ -511,14 +511,7 @@ public class Map {
             enemies.get(i).update(deltaTime);
         }
 
-            if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
-            if(player.attackFlag == 0);{
-                    player.attackFlag = 1;
-                    enemy.hit(50);
-                    player.attackFlag = 0;
-                }
 
-            }
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);

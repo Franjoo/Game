@@ -32,36 +32,30 @@ import java.util.Timer;
  * To change this template use File | Settings | File Templates.
  */
 public class Enemy extends Creature {
-    private PlayScreen playScreen;
+
+
     private Map map;
-    private World world;
     private Player player;
-    private float vX;
-    private float vY;
-    private float vX_MAX = 270;
-    private float vY_MAX = 210;
-    private float pX;
-    private float pY;
+
     private Path path;
     private AStarPathFinder pathFinder;
-    public float health = 100;
-
-
-
-    private AStarPathFinder pf;
-
-    private Random random;
-    private Boolean bol = true;
-    private Timer timer;
-    private Vector2 velocity = new Vector2();
-    private Animation ani;
-
-
-    private int speed = 120;
-    private float tolerance = 0.1f;
     private int nextStepInPath = 1;
 
+
+    public float health = 100;
+
+    Vector2 nextStep = new Vector2();
+    float angle;
+
+
+
+    private Vector2 velocity = new Vector2();
+    private int speed = 120;
+    private float tolerance =0.1f;
     private boolean alive  = true;
+
+    private Animation ani;
+
     private int xTilePosition;
     private int yTilePosition;
     private int xTilePlayer;
@@ -93,10 +87,6 @@ public class Enemy extends Creature {
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
 
-        // params
-
-
-
         ani = skeletonData.findAnimation("move");
         updatePositions();
         path = getNewPath();
@@ -122,7 +112,9 @@ public class Enemy extends Creature {
 
         if (alive){
          updatePositions();
+           // path = getNewPath();
          moveToPlayer(deltatime);
+
 
         }
 
@@ -145,58 +137,60 @@ public class Enemy extends Creature {
 
     public void moveToPlayer(float deltatime){
 
-
-        path = pathFinder.findPath(1, (int) (x) / map.getTileWidth(), (int) (y) / map.getTileHeight(), (int) (player.x) / map.getTileWidth(), (int) (player.y) / map.getTileHeight());
         if (alive){
-
-
+       path = getNewPath();
         skeleton.setFlipX((player.x - x >= 0));
 
-       // System.out.println(!isReached(nextStepInPath));
 
-        path = getNewPath();
         if (path != null && nextStepInPath < path.getLength()) {
+            attack();
+            nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
-            if (!isReached(nextStepInPath)) {
-
-                Vector2 nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-                float angle = (float) Math.atan2(path.getStep(nextStepInPath-1).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath-1).getX() * map.getTileWidth() - x);
-                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
-
-
-                // velocity.set( (nextStep.x - getX()),(nextStep.y - getY()));
+       // if (!isReached(nextStepInPath)) {
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
+                     }
 
-                }
                 if (yTilePosition != nextStep.y)
                     y = (y + velocity.y * deltatime);
 
 
-            }  if (isReached(nextStepInPath)) {
-                System.out.println("Reached");
-                nextStepInPath++;
-            }
-           // System.out.println("player x tile: " + xTilePlayer + ",Player y tile: " + yTilePlayer);
-           // System.out.println("enemy x tile: " + xTilePosition + ",Enemy y tile: " + yTilePosition);
+//         if(isReached(nextStepInPath)){
+//                System.out.println("Reached");
+//                nextStepInPath++;
+//
+//            }
 
-            if (nextStepInPath == path.getLength()) {
+
+
+
+            if (nextStepInPath == path.getLength()-1) {
                 System.out.println("New Path");
                 path = getNewPath();
+                nextStepInPath = 1;
+
 
             }
 
-            if(path.getLength() <= 3)
-             ani =  skeletonData.findAnimation("attack");
+            if(nextStepInPath == path.getLength()-1)
+                ani =  skeletonData.findAnimation("attack");
             else
-             ani  = skeletonData.findAnimation("move");
+                ani  = skeletonData.findAnimation("move");
+      //  }
         }
+
+    }
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
     }
-    }
+
+
+
+
     public void hit(int healthDecrease){
         health -= healthDecrease;
         if(health <= 0)   {
@@ -213,15 +207,23 @@ public class Enemy extends Creature {
         alive = false;
     }
 
-    private boolean isReached(int i) {
-
-        return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
-                Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
-    }
+//    private boolean isReached(int i) {
+//
+//        //System.out.println(Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) + "     " + speed / tolerance * Gdx.graphics.getDeltaTime());
+//
+//        return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
+//                Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
+//    }
 
     @Override
     public void attack() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
+
+                hit(50);
+
+
+
+        }
     }
 
 }

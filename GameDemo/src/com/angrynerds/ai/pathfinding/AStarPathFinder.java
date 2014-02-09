@@ -45,12 +45,16 @@ public class AStarPathFinder {
                 nodes[x][y] = new Node(x, y);
             }
         }
+        path = new Path();
         instance = this;
     }
 
     public Path findPath(int enemieType, int sx, int sy, int tx, int ty) {
 
         // return null;
+
+
+        path.flushPath();
 
         if (map.isSolid(tx * map.getTileWidth(), ty * map.getTileHeight())) {
 
@@ -127,7 +131,7 @@ public class AStarPathFinder {
         if (nodes[tx][ty].parent == null)
             return null;
 
-        Path path = new Path();
+
         Node target = nodes[tx][ty];
         while (target != nodes[sx][sy]) {
             path.prependStep(target.getX(), target.getY());
