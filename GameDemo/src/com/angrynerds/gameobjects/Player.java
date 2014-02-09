@@ -5,6 +5,7 @@ import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.C;
 import com.angrynerds.util.State;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -145,10 +146,6 @@ public class Player extends Creature {
         // set collision position
         Vector2 p = getCollisionPosition();
 
-        // update position attributes
-        x = p.x;
-        y = p.y;
-
 
         // flip skeleton
         if (vX == 0) skeleton.setFlipX(flipped);
@@ -156,9 +153,14 @@ public class Player extends Creature {
 
         setCurrentState();
 
+        // update position attributes
         if(state.getCurrent(0).toString().equals("dash")){
             x += dash(deltaTime);
         }
+        else{
+            x = p.x;
+        }
+        y = p.y;
 
 
         // apply and update skeleton
@@ -176,12 +178,14 @@ public class Player extends Creature {
     }
 
     private float dash(float deltaTime) {
-        if(dashRight)
-            return deltaTime * 600;
+        if(dashRight){
+            skeleton.setFlipX(false);
+            return deltaTime * Gdx.graphics.getWidth()/2;
+        }
 
         else{
             skeleton.setFlipX(true);
-            return -deltaTime * 600;
+            return -deltaTime * Gdx.graphics.getWidth()/2;
         }
     }
 
