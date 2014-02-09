@@ -46,7 +46,8 @@ public class Enemy extends Creature {
     private int nextStepInPath = 1;
 
 
-    public float health = 100;
+    public int health;
+    public int type;
 
     Vector2 nextStep = new Vector2();
     float angle;
@@ -66,12 +67,12 @@ public class Enemy extends Creature {
     private int yTilePlayer;
 
 
-    public Enemy(String name, String path, String skin, Player player, float scale) {
+    public Enemy(String name, String path, String skin, Player player, float scale, int health, int type) {
         super(name, path, skin, scale);
 
         this.player = player;
-        x = 300;
-        y = 150;
+        this.health = health;
+        this.type = type;
     }
 
     public Enemy(float x, float y,String name, String path, String skin, Player player, float scale) {
