@@ -45,6 +45,7 @@ public class PlayController {
      */
     public void update(float deltaTime) {
         world.update(deltaTime);
+        controllerUI.getLifeBar().setLifePercent((float)world.getPlayer().getActualHP()/(float)world.getPlayer().getMaxHP());
     }
 
     /**
