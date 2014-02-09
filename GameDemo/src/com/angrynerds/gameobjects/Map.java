@@ -477,6 +477,8 @@ public class Map {
         // update player
         player.update(deltaTime);
 
+
+
         // update spawnController
         spawnController.update(deltaTime);
 

@@ -15,6 +15,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.spine.*;
 
+import java.util.Iterator;
+
 /**
  * class that represents the Player
  */
@@ -132,12 +134,17 @@ public class Player extends Creature {
 
     @Override
     public void attack() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        for (Enemy e : map.getEnemies()) {
+            if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
+
+            }
+
+        }
+        actHP -= 50;
     }
 
     public void update(float deltaTime) {
         super.update(deltaTime);
-
 
         // set v in x and y direction
         vX = input.get_stickX() * deltaTime * vX_MAX;
@@ -200,6 +207,7 @@ public class Player extends Creature {
 
 
         if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
+            attack();
             state.setAnimation(0, "attack_1", false);
             state.addAnimation(0, "run_test", true, 0);
         }
