@@ -32,36 +32,30 @@ import java.util.Timer;
  * To change this template use File | Settings | File Templates.
  */
 public class Enemy extends Creature {
-    private PlayScreen playScreen;
+
+
     private Map map;
-    private World world;
     private Player player;
-    private float vX;
-    private float vY;
-    private float vX_MAX = 270;
-    private float vY_MAX = 210;
-    private float pX;
-    private float pY;
+
     private Path path;
     private AStarPathFinder pathFinder;
-    public float health = 100;
-
-
-
-    private AStarPathFinder pf;
-
-    private Random random;
-    private Boolean bol = true;
-    private Timer timer;
-    private Vector2 velocity = new Vector2();
-    private Animation ani;
-
-
-    private int speed = 120;
-    private float tolerance = 0.1f;
     private int nextStepInPath = 1;
 
+
+    public float health = 100;
+
+    Vector2 nextStep = new Vector2();
+    float angle;
+
+
+
+    private Vector2 velocity = new Vector2();
+    private int speed = 120;
+    private float tolerance = 0.1f;
     private boolean alive  = true;
+
+    private Animation ani;
+
     private int xTilePosition;
     private int yTilePosition;
     private int xTilePlayer;
@@ -92,10 +86,6 @@ public class Enemy extends Creature {
 
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
-
-        // params
-
-
 
         ani = skeletonData.findAnimation("move");
         updatePositions();
@@ -147,59 +137,60 @@ public class Enemy extends Creature {
     }
 
     public void moveToPlayer(float deltatime){
-         Vector2 nextStep;
-        float angle;
+
         if (alive){
 
         skeleton.setFlipX((player.x - x >= 0));
+            attack();
 
-       // System.out.println(!isReached(nextStepInPath));
 
-        path = getNewPath();
         if (path != null && nextStepInPath < path.getLength()) {
-           nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-           angle = (float) Math.atan2(path.getStep(nextStepInPath-1).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath-1).getX() * map.getTileWidth() - x);
-            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
-        }
+
+
          if (!isReached(nextStepInPath)) {
-
-
-
-
-                // velocity.set( (nextStep.x - getX()),(nextStep.y - getY()));
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
+                     }
 
-                }
                 if (yTilePosition != nextStep.y)
                     y = (y + velocity.y * deltatime);
+                     }
 
-
-            }  if (isReached(nextStepInPath)) {
+         else if(!isReached(nextStepInPath) && nextStepInPath + 1 < path.getLength()){
                 System.out.println("Reached");
                 nextStepInPath++;
+                nextStep = new Vector2((float) path.getStep(1).getX() * map.getTileWidth(), (float) path.getStep(1).getY() * map.getTileHeight());
+                angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
             }
-           // System.out.println("player x tile: " + xTilePlayer + ",Player y tile: " + yTilePlayer);
-           // System.out.println("enemy x tile: " + xTilePosition + ",Enemy y tile: " + yTilePosition);
 
-            if (nextStepInPath == path.getLength()-1) {
+
+
+
+            if (nextStepInPath == path.getLength()) {
                 System.out.println("New Path");
                 path = getNewPath();
+                nextStepInPath = 0;
 
             }
 
             if(path.getLength() <= 3)
-             ani =  skeletonData.findAnimation("attack");
+                ani =  skeletonData.findAnimation("attack");
             else
-             ani  = skeletonData.findAnimation("move");
+                ani  = skeletonData.findAnimation("move");
         }
+        }
+
+
         ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
     }
 
-    }
+
+
+
     public void hit(int healthDecrease){
         health -= healthDecrease;
         if(health <= 0)   {
@@ -224,7 +215,14 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
+            if(player.attackFlag == 0);{
+                player.attackFlag = 1;
+                hit(50);
+                player.attackFlag = 0;
+            }
+
+        }
     }
 
 }
