@@ -14,8 +14,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.spine.*;
 
-import java.sql.Timestamp;
-
 /**
  * class that represents the Player
  */
@@ -65,7 +63,6 @@ public class Player extends Creature {
     // input
     private IGameInputController input;
     public int attackFlag = 0;
-    private String action = "idle";
 
 
     /**
@@ -122,8 +119,8 @@ public class Player extends Creature {
         super.render(batch);
     }
 
-    public String getAnimation(){
-       return  state.getCurrent(0).toString();
+    public String getAnimation() {
+        return state.getCurrent(0).toString();
 
     }
 
@@ -155,7 +152,13 @@ public class Player extends Creature {
         setCurrentState();
 
         // apply and update skeleton
+//        Animation animation = state.getCurrent(0).getAnimation();
+//        if(animation.getName().equals("run_test")){
+//            System.out.println(vX);
+//            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
+//        }
         state.update(deltaTime);
+
         state.apply(skeleton);
 
         // was flipped for vX == 0 in next update
@@ -403,15 +406,9 @@ public class Player extends Creature {
         maxHP = hp;
     }
 
-    public State getState() {
-        return input.getState();
+    public IGameInputController getInput() {
+        return input;
     }
-
-    public void setState(State state){
-        input.setState(state);
-
-    }
-
 
     class AnimationListener implements AnimationState.AnimationStateListener {
 

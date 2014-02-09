@@ -1,7 +1,14 @@
 package com.angrynerds.game.screens.mainmenu;
 
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenEquation;
+import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.*;
 import com.angrynerds.game.core.GameController;
 import com.angrynerds.game.screens.AbstractScreen;
+import com.angrynerds.tweens.LifebarAccessor;
+import com.angrynerds.tweens.MenuAccessor;
+import com.angrynerds.ui.Lifebar;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -37,6 +44,7 @@ public class MainMenu extends AbstractScreen {
     private TextureAtlas atlas;
     private Label heading;
     private MenuButtonListener bListener;
+    private TweenManager manager;
 
 
     public MainMenu(GameController gameController) {
@@ -49,7 +57,9 @@ public class MainMenu extends AbstractScreen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        Table.drawDebug(stage);
+        //Table.drawDebug(stage);
+        manager.update(v);
+
         
         batch.begin();
         batch.draw(bg, 0, 0, stage.getWidth(),stage.getHeight() );
@@ -100,6 +110,20 @@ public class MainMenu extends AbstractScreen {
         table.getCell(buttonSettings).size(buttonSettings.getWidth()/2.5f,buttonSettings.getHeight()/2.5f);
         stage.addActor(table);
         table.debug();
+
+        Tween.registerAccessor(buttonPlay.getClass(), new MenuAccessor());
+
+        manager = new TweenManager();
+        Tween.to(buttonPlay, MenuAccessor.POSITION_Y,2.0f)
+                .targetRelative(15)
+                .ease(Sine.IN)
+                .repeatYoyo(-1, 0)
+                .start(manager);
+        Tween.to(buttonSettings, MenuAccessor.POSITION_Y, 1.5f)
+                .targetRelative(15)
+                .ease(Sine.IN)
+                .repeatYoyo(-1, 0)
+                .start(manager);
 
     }
 

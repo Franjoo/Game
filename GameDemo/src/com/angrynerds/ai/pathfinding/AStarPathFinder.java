@@ -32,14 +32,14 @@ public class AStarPathFinder {
 
 
     private AStarPathFinder(Map map, int maxSearchDistance,
-                           boolean allowDiagMovement, AStarHeuristic heuristic) {
+                            boolean allowDiagMovement, AStarHeuristic heuristic) {
         this.heuristic = heuristic;
         this.map = map;
         this.maxSearchDistance = maxSearchDistance;
         this.allowDiagMovement = allowDiagMovement;
 
         nodes = new Node[map.getNumTilesX()][map.getNumTilesY()];
-       // System.out.println(map.getMapWidth());
+        // System.out.println(map.getMapWidth());
         for (int x = 0; x < map.getNumTilesX(); x++) {
             for (int y = 0; y < map.getNumTilesY(); y++) {
                 nodes[x][y] = new Node(x, y);
@@ -50,14 +50,14 @@ public class AStarPathFinder {
 
     public Path findPath(int enemieType, int sx, int sy, int tx, int ty) {
 
-       // return null;
+        // return null;
 
-       if (map.isSolid(tx*map.getTileWidth(), ty*map.getTileHeight())) {
+        if (map.isSolid(tx * map.getTileWidth(), ty * map.getTileHeight())) {
 
-           return null;
+            return null;
 
         }
-        if(tx < 0 || ty < 0)
+        if (tx < 0 || ty < 0)
             return null;
 
         /** Init A Star */
@@ -71,8 +71,6 @@ public class AStarPathFinder {
 
 
         int currentDepth = 0;
-
-
 
 
         while (currentDepth <= maxSearchDistance && openList.getSize() != 0) {
@@ -126,7 +124,7 @@ public class AStarPathFinder {
 
         }
 
-        if(nodes[tx][ty].parent == null)
+        if (nodes[tx][ty].parent == null)
             return null;
 
         Path path = new Path();
@@ -135,18 +133,18 @@ public class AStarPathFinder {
             path.prependStep(target.getX(), target.getY());
             target = target.parent;
         }
-        path.prependStep(sx,sy);
-      //  for(int f = 0; f<path.getLength(); f++)
+        path.prependStep(sx, sy);
+        //  for(int f = 0; f<path.getLength(); f++)
         // System.out.println(path.getStep(f).getX() + "   "  + path.getStep(f).getY());
         return path;
     }
 
 
     protected boolean isValidLocation(int mover, int sx, int sy, int x, int y) {
-        boolean invalid = ((x < 0) || (y < 0) ) || (x >= map.getNumTilesX() || (y >= map.getNumTilesY()));
+        boolean invalid = ((x < 0) || (y < 0)) || (x >= map.getNumTilesX() || (y >= map.getNumTilesY()));
 
         if ((!invalid) && ((sx != x) || (sy != y))) {
-           invalid = map.isSolid(x*map.getTileWidth() , y*map.getTileHeight() );
+            invalid = map.isSolid(x * map.getTileWidth(), y * map.getTileHeight());
 
 
         }
@@ -197,19 +195,20 @@ public class AStarPathFinder {
     }
 
     private int getMovementCost() {
-      //  return new Random().nextInt(2);
-       return 1;
+        //  return new Random().nextInt(2);
+        return 1;
     }
 
     //*** SINGLETON ***//
 
-    public static AStarPathFinder getInstance(){
+    public static AStarPathFinder getInstance() {
         if (instance == null) throw new InstantiationError(TAG + " has not been initialized");
-         return instance;
+        return instance;
     }
+
     public static void initialize(Map map, int maxSearchDistance,
                                   boolean allowDiagMovement, AStarHeuristic heuristic) {
-        new AStarPathFinder(map,maxSearchDistance,allowDiagMovement,heuristic);
+        new AStarPathFinder(map, maxSearchDistance, allowDiagMovement, heuristic);
     }
 
 }

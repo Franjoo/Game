@@ -102,25 +102,19 @@ public abstract class Creature extends GameObject {
         skeleton.y = y;
 
         // update state
-
         skeleton.updateWorldTransform();
         skeleton.update(deltaTime);
         skeletonBounds.update(skeleton,true);
-
-
-
-
 
     }
 
     public void render(SpriteBatch batch) {
         // draw skeleton
         //batch.draw(skeletonDebugRenderer.draw(skeleton);
-        skeletonDebugRenderer.draw(skeleton);
+        //skeletonDebugRenderer.draw(skeleton);
 
         batch.begin();
         skeletonRenderer.draw(batch, skeleton);
-
         batch.end();
 
         // draw bounds

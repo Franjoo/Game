@@ -511,15 +511,14 @@ public class Map {
             enemies.get(i).update(deltaTime);
         }
 
-        //enemies.get(0).update(deltaTime);
+            if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
+            if(player.attackFlag == 0);{
+                    player.attackFlag = 1;
+                    enemy.hit(50);
+                    player.attackFlag = 0;
+                }
 
-//        if (player.getAnimation().equals("attack_1") && player.getSkeletonBounds().aabbIntersectsSkeleton(enemy.getSkeletonBounds())) {
-//
-//            enemy.hit(50);
-//            player.setState(State.ATTACKING);
-//
-//        }
-//        player.setState(State.IDLE);
+            }
 
         renderer.setView(camera);
         fixedRenderer.setView(fixedCamera);
@@ -953,7 +952,6 @@ public class Map {
     private class SpawnController {
 
         private Array<SpawnObject> objects;
-        private final int xDist = 400;
 
         public SpawnController() {
             objects = new Array<SpawnObject>();
@@ -1000,7 +998,7 @@ public class Map {
 
                 String type = p.get("spawn").toString();
 
-                // create free create array
+                // create free enemy array
                 freeEnemies = new Array<Enemy>();
                 for (int i = 0; i < num; i++) {
                     if (type.equals("goblin")) {
