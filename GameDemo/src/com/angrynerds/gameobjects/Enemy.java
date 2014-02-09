@@ -120,9 +120,11 @@ public class Enemy extends Creature {
 
         }
 
-        else
-            ani.mix( skeleton, skeleton.getTime(), skeleton.getTime(), false, null,1);
 
+        else {
+            ani = skeletonData.findAnimation("die");
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+        }
     }
 
     public void updatePositions(){
@@ -141,45 +143,63 @@ public class Enemy extends Creature {
     public void moveToPlayer(float deltatime){
 
         if (alive){
-         path = getNewPath();
+       path = getNewPath();
         skeleton.setFlipX((player.x - x >= 0));
 
 
         if (path != null && nextStepInPath < path.getLength()) {
             attack();
             nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-            angle = (float) Math.atan2(path.getStep(nextStepInPath-1).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath-1).getX() * map.getTileWidth() - x);
+            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
             velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
-        if (!isReached(nextStepInPath)) {
+
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
+
                      }
 
-                if (yTilePosition != nextStep.y)
+                if (yTilePosition != nextStep.y){
                     y = (y + velocity.y * deltatime);
                      }
 
-         if(isReached(nextStepInPath)){
-                System.out.println("Reached");
-                nextStepInPath++;
 
-            }
-
-
-
-
-            if (nextStepInPath == path.getLength()-1) {
-                System.out.println("New Path");
-                path = getNewPath();
-                nextStepInPath = 1;
+//         if(isReached(nextStepInPath)){
+//                System.out.println("Reached");
+//                nextStepInPath++;
+//
+//
+//            }
 
 
-            }
 
-            if(path.getLength() <= 3)
+
+//            if (nextStepInPath == path.getLength()-1) {
+//                System.out.println("New Path");
+//                path = getNewPath();
+//                nextStepInPath = 1;
+//
+//
+//            }
+
+
+
+            if(nextStepInPath == path.getLength()-1){
+
+             for(int i = 0; i< map.getEnemies().size; i++){
+                 if(xTilePosition == map.getEnemies().get(i).xTilePosition)
+
+                     path.appendStep(xTilePosition + 1, yTilePosition);
+
+
+             }
+
+
+
+
                 ani =  skeletonData.findAnimation("attack");
+            }
             else
                 ani  = skeletonData.findAnimation("move");
         }
@@ -221,7 +241,7 @@ public class Enemy extends Creature {
     @Override
     public void attack() {
         if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
-
+            System.out.println(player.getSkeletonBounds().getBoundingBoxes().first());
                 hit(50);
 
 
