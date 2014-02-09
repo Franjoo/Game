@@ -814,6 +814,7 @@ public class Map {
     //*** GETTER METHODS ****//
     //<editor-fold desc="getter methods">
 
+
     public Array<Enemy> getEnemies(){
 
         return enemies;
@@ -829,6 +830,7 @@ public class Map {
         }
        return false;
     }
+
 
     /**
      * returns x position

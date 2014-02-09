@@ -5,6 +5,7 @@ import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.C;
 import com.angrynerds.util.State;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -56,6 +57,8 @@ public class Player extends Creature {
     private AnimationListener animationListener;
 
     private Animation currentAnimation;
+
+    private boolean dashRight;
 
 
     private Detector detector;
@@ -143,9 +146,6 @@ public class Player extends Creature {
         // set collision position
         Vector2 p = getCollisionPosition();
 
-        // update position attributes
-        x = p.x;
-        y = p.y;
 
         // flip skeleton
         if (vX == 0) skeleton.setFlipX(flipped);
@@ -153,9 +153,15 @@ public class Player extends Creature {
 
         setCurrentState();
 
+        // update position attributes
         if(state.getCurrent(0).toString().equals("dash")){
-              x += deltaTime*700;
+            x += dash(deltaTime);
         }
+        else{
+            x = p.x;
+        }
+        y = p.y;
+
 
         // apply and update skeleton
 //        Animation animation = state.getCurrent(0).getAnimation();
@@ -169,6 +175,18 @@ public class Player extends Creature {
 
         // was flipped for vX == 0 in next update
         flipped = skeleton.getFlipX();
+    }
+
+    private float dash(float deltaTime) {
+        if(dashRight){
+            skeleton.setFlipX(false);
+            return deltaTime * Gdx.graphics.getWidth()/2;
+        }
+
+        else{
+            skeleton.setFlipX(true);
+            return -deltaTime * Gdx.graphics.getWidth()/2;
+        }
     }
 
 
@@ -186,7 +204,10 @@ public class Player extends Creature {
             state.addAnimation(0, "run_test", true, 0);
         }
 
-        if (input.getState() == State.DASHING && !state.getCurrent(0).toString().equals("dash")){
+        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            if(input.getState() == State.DASHINGRIGHT)
+                dashRight = true;
+            else dashRight = false;
             state.setAnimation(0, "dash", false);
             state.addAnimation(0, "run_test", true, 0);
         }
