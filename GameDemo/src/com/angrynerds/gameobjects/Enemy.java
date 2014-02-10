@@ -29,7 +29,7 @@ public class Enemy extends Creature {
     private Random random = new Random();
     int ranX;
     int ranY;
-    private int attackCounter = 0;
+    private int attackCounter = 180;
 
 
 
