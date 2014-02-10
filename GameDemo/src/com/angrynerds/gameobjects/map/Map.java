@@ -38,8 +38,6 @@ import java.util.HashMap;
  */
 public class Map {
 
-    // GIT PUSH
-
     public static final String TAG = Map.class.getSimpleName();
 
     // constants
@@ -70,12 +68,9 @@ public class Map {
     private OrthographicCamera camera;
     private OrthographicCamera fixedCamera;
     private Player player;
-    private Enemy enemy;
 
     private SpawnController spawnController;
     private Array<Enemy> enemies;
-
-    private World world;
 
     // map properties
     private int numTilesX;
@@ -84,8 +79,6 @@ public class Map {
     private int tileHeight;
     private int mapWidth;
     private int mapHeight;
-    private int offsetX;
-    private int offsetY;
     public final int borderWidth = 5;
 
     private float x;
@@ -125,7 +118,7 @@ public class Map {
      */
     public Map(World world, Player player) {
         this.player = player;
-        this.world = world;
+//        this.world = world;
 
         camera = world.getCamera();
 
@@ -211,8 +204,6 @@ public class Map {
         tileHeight = Integer.parseInt(map.getProperties().get("tileheight").toString());
 //        offsetX = Integer.parseInt(map.getProperties().get("OffsetX").toString());
 //        offsetY = Integer.parseInt(map.getProperties().get("OffsetY").toString());
-        offsetX = 0;
-        offsetY = 0;
         mapWidth = numTilesX * tileWidth;
         mapHeight = numTilesY * tileHeight;
 

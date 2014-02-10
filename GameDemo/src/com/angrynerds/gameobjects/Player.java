@@ -43,27 +43,16 @@ public class Player extends Creature {
     // helper attributes
     private Vector2 vec2 = new Vector2();
     private boolean flipped;
-    private Array<Vector2> collPos = new Array<Vector2>();
-
-    private Vector2 _po = new Vector2();
-    private Vector2 _pm = new Vector2();
     private Vector2 _pt = new Vector2();
 
-    // creature relevant attributes
+    // animation
     private AnimationState state;
-    private AnimationStateData stateData;
-    private Array<Event> events;
-    private Animation walkAnimation;
-    private Animation jumpAnimation;
-
     private AnimationListener animationListener;
-
-    private Animation currentAnimation;
 
     private boolean dashRight;
     private boolean alive = true;
 
-
+    // detector
     private Detector detector;
 
     // input
@@ -108,30 +97,26 @@ public class Player extends Creature {
 
     private void setAnimationStates() {
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-//        stateData.setMix("run_test", "jump", 0.6f);
-//        stateData.setMix("jump", "run_test", 0.5f);
-//        stateData.setMix("jump", "jump", 0.2f);
-//        stateData.setMix("move", "attack_1", 0.4f);
-//        stateData.setMix("attack_1", "run_test", 0.4f);
-//        stateData.setMix("dash", "run_test", 0.4f);
-//        stateData.setMix("run_test", "dash", 0.4f);
 
-//        stateData.setMix("move", "jump", 0.6f);
-//        stateData.setMix("jump", "move", 0.5f);
-//        stateData.setMix("jump", "jump", 0.2f);
+        for (int i = 0; i < stateData.getSkeletonData().getAnimations().size; i++) {
+            String from = stateData.getSkeletonData().getAnimations().get(i).getName();
+            for (int j = 0; j < stateData.getSkeletonData().getAnimations().size; j++) {
+                String to = stateData.getSkeletonData().getAnimations().get(i).getName();
+
+                if(!from.equals(to)) stateData.setMix(from, to, 0.4f);
+            }
+        }
 //
+//        stateData.setMix("move", "dash", 0.4f);
 //        stateData.setMix("move", "attack_1", 0.4f);
+//
 //        stateData.setMix("attack_1", "move", 0.4f);
 //        stateData.setMix("dash", "move", 0.4f);
-        stateData.setMix("move", "dash", 0.4f);
-        stateData.setMix("move", "attack_1", 0.4f);
-        stateData.setMix("attack_1", "move", 0.4f);
-        stateData.setMix("dash", "move", 0.4f);
-        stateData.setMix("move", "dash", 0.4f);
-        stateData.setMix("move", "die", 0.4f);
-        stateData.setMix("attack_1", "die", 0.4f);
-        stateData.setMix("jump", "die", 0.4f);
-        stateData.setMix("dash", "die", 0.4f);
+//        stateData.setMix("move", "dash", 0.4f);
+//        stateData.setMix("move", "die", 0.4f);
+//        stateData.setMix("attack_1", "die", 0.4f);
+//        stateData.setMix("jump", "die", 0.4f);
+//        stateData.setMix("dash", "die", 0.4f);
 
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
