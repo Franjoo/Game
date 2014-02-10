@@ -29,7 +29,9 @@ public class Enemy extends Creature {
     private Random random = new Random();
     int ranX;
     int ranY;
-    boolean reached;
+    private int attackCounter = 0;
+
+
 
     private Path path;
     private AStarPathFinder pathFinder;
@@ -159,8 +161,14 @@ public class Enemy extends Creature {
                 }
                 else {
                     ani = skeletonData.findAnimation("attack");
-                    attack();
                     ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+                    if(attackCounter == 180){
+                        attack();
+                        attackCounter = 0;
+                    }
+                    else
+                        attackCounter++;
+
 
                 }
 
@@ -204,7 +212,7 @@ public class Enemy extends Creature {
             skeleton.setFlipX((player.x - x >= 0));
 
             if (path != null && nextStepInPath < path.getLength()) {
-                attack();
+
                 nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
                 angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
                 velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
