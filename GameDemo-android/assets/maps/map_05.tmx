@@ -105,5 +105,17 @@
    eJzt1FVXlFEUgOFRZrC7u+Mf293dHaB0I62AIiCCoIgKSIg+s+YnON/dftd6bvfFXvucVCqKoiiKoiiKoiiKoiiKoiiKov/tWTqVes4LXlJEMa94TQmllFFOBZVUUU0NtdRRTwON6eTmHsqkUoc5wlGOcZwTnOQUpznDWc5xngtc5BKXucJVrnE9k9zc2G9uD1GUj9640SaaaaGVNtrp4C3v6KSLbt7zgR4+0ksf/XxiIJ3c3Btu/ya3uM0d7nKP+zzgIY94zBOeZv8NnvOClxRRzCteZ5KbG/vN7SGK8tFnNzrIEF8YZoSvfGOU74zxg5/8YpwJJvnNFNPMMJtObm6J2y+ljHIqqKSKamqopY56GmjM/hs00UwLrbTRTkcmubmx39weoigf/XGjc/wl5a7mMZ8C0mQoZAELWcRilrCUZSxnBStZxepMcnPf8o5OuujmPR/o4SO99NHPJway/waDDPGFYUb4yrcE58Z+c3uIony0xi2tZR3r2cBGNrGZLWxlG9vZwU52sZs97GUf+znAwUxyc0f5zhg/+Mkvxplgkt9MMc0Ms9n3zRx/s2+n0PtmPgWkC5ObG/vN7SGK8tE/ToMDHw==
   </data>
  </layer>
- <objectgroup draworder="topdown" name="$enemySpawn" width="300" height="10"/>
+ <objectgroup draworder="topdown" name="$enemySpawn" width="300" height="10">
+  <object type="spawn" x="806" y="258" width="1332" height="324">
+   <properties>
+    <property name="dist" value="400"/>
+    <property name="height" value="5"/>
+    <property name="max" value="20"/>
+    <property name="min" value="8"/>
+    <property name="name" value="spinne"/>
+    <property name="scale" value="0.08 0.13"/>
+    <property name="width" value="20"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
