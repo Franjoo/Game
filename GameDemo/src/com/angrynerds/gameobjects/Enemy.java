@@ -134,7 +134,7 @@ public class Enemy extends Creature {
         path = getNewPath();
         ranX = -1 + (int) (+(Math.random() * 3));
         ranY = -1 + (int) (+(Math.random() * 3));
-        setAnimationStates();
+
 
     }
 
@@ -149,32 +149,27 @@ public class Enemy extends Creature {
     public void update(float deltatime) {
         super.update(deltatime);
         path = getNewPath();
-
-        if (alive) {
-            updatePositions();
-
-            moveToPlayer(deltatime);
-
-
-        } else {
-            ani = skeletonData.findAnimation("die");
             if (alive) {
+
                 updatePositions();
 
-                if (path != null && path.getLength() > 2)
+                if (path != null && path.getLength() >= 2)  {
                     moveToPlayer(deltatime);
+                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+                }
                 else {
                     ani = skeletonData.findAnimation("attack");
+                    attack();
                     ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
                 }
-                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
-            } else {
-                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+
             }
+        else{
 
-
-        }
+        ani = skeletonData.findAnimation("die");
+        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+            }
     }
 
     public void updatePositions() {
@@ -185,22 +180,10 @@ public class Enemy extends Creature {
         yTilePlayer = (int) (player.y) / map.getTileHeight();
     }
 
-    //    public Path getNewPath() {
-//        //updatePositions();
-//        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer, yTilePlayer);
-//    }
-//
-//    public void moveToPlayer(float deltatime) {
-//        xTilePosition = (int) (x) / map.getTileWidth();
-//        yTilePosition = (int) (y) / map.getTileHeight();
-//        xTilePlayer = (int) (player.x) / map.getTileWidth() + ranX;
-//        yTilePlayer = (int) (player.y) / map.getTileHeight() + ranY;
-//
-//    }
 
     public Path getNewPath() {
-        //updatePositions();
-        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer, yTilePlayer);
+       // updatePositions();
+        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
     }
 
     public int getTilePostionX() {
@@ -216,8 +199,8 @@ public class Enemy extends Creature {
 
     public void moveToPlayer(float deltatime) {
 
-        if (alive) {
-            path = getNewPath();
+
+
             skeleton.setFlipX((player.x - x >= 0));
 
             if (path != null && nextStepInPath < path.getLength()) {
@@ -253,43 +236,12 @@ public class Enemy extends Creature {
 //
 //            }
 
-
-                if (nextStepInPath == path.getLength() - 1) {
-
-                    for (int i = 0; i < map.getEnemies().size; i++) {
-                        if (xTilePosition == map.getEnemies().get(i).xTilePosition)
-
-                            path.appendStep(xTilePosition + 1, yTilePosition);
-                        System.out.println(x + "      " + nextStep.x);
-                    }
-
-
-                    if ((int) y != nextStep.y) {
-
-                        y = (y + velocity.y * deltatime);
-                    }
-
-
-                }
-
-
-                ani = skeletonData.findAnimation("attack");
-            } else
                 ani = skeletonData.findAnimation("move");
+            }
         }
 
-    }
 
 
-    public void hit(int healthDecrease) {
-        health -= healthDecrease;
-        if (health <= 0) {
-            die();
-
-
-        }
-
-    }
 
     public void die() {
         state.addAnimation(0, "die", false, 0);
@@ -306,12 +258,10 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
-        if (player.getAnimation().equals("attack") && player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
-            System.out.println(player.getSkeletonBounds().getBoundingBoxes().first());
-            hit(50);
+
             if (player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
                 player.setActualHP(player.getActualHP() - atckDmg);
-        }
+
     }
 
 
