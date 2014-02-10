@@ -60,6 +60,7 @@ public class Enemy extends Creature {
     private AnimationListener animationListener;
 
     private int atckDmg;
+    private boolean attacks;
 
 
     public Enemy(String name, String path, String skin, Player player, float scale) {
@@ -149,27 +150,25 @@ public class Enemy extends Creature {
     public void update(float deltatime) {
         super.update(deltatime);
         path = getNewPath();
-            if (alive) {
+        if (alive) {
 
-                updatePositions();
+            updatePositions();
 
-                if (path != null && path.getLength() >= 2)  {
-                    moveToPlayer(deltatime);
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
-                }
-                else {
-                    ani = skeletonData.findAnimation("attack");
-                    attack();
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
-
-                }
+            if (path != null && path.getLength() >= 2) {
+                moveToPlayer(deltatime);
+                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+            } else {
+                ani = skeletonData.findAnimation("attack");
+                attack();
+                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
             }
-        else{
 
-        ani = skeletonData.findAnimation("die");
-        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
-            }
+        } else {
+
+            ani = skeletonData.findAnimation("die");
+            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+        }
     }
 
     public void updatePositions() {
@@ -182,7 +181,7 @@ public class Enemy extends Creature {
 
 
     public Path getNewPath() {
-       // updatePositions();
+        // updatePositions();
         return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
     }
 
@@ -200,24 +199,23 @@ public class Enemy extends Creature {
     public void moveToPlayer(float deltatime) {
 
 
+        skeleton.setFlipX((player.x - x >= 0));
 
-            skeleton.setFlipX((player.x - x >= 0));
-
-            if (path != null && nextStepInPath < path.getLength()) {
-                attack();
-                nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-                angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
-                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+        if (path != null && nextStepInPath < path.getLength()) {
+            attack();
+            nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
-                if ((int) x != nextStep.x) {
-                    x = x + velocity.x * deltatime;
+            if ((int) x != nextStep.x) {
+                x = x + velocity.x * deltatime;
 
-                }
+            }
 
-                if (yTilePosition != nextStep.y) {
-                    y = (y + velocity.y * deltatime);
-                }
+            if (yTilePosition != nextStep.y) {
+                y = (y + velocity.y * deltatime);
+            }
 
 
 //         if(isReached(nextStepInPath)){
@@ -236,11 +234,9 @@ public class Enemy extends Creature {
 //
 //            }
 
-                ani = skeletonData.findAnimation("move");
-            }
+            ani = skeletonData.findAnimation("move");
         }
-
-
+    }
 
 
     public void die() {
@@ -258,10 +254,11 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
-
+        if (!attacks) {
+            attacks = true;
             if (player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
                 player.setActualHP(player.getActualHP() - atckDmg);
-
+        }
     }
 
 
@@ -297,7 +294,10 @@ public class Enemy extends Creature {
 
         @Override
         public void end(int trackIndex) {
-//            System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
+            if (state.getCurrent(trackIndex).toString().equals("attack")) {
+                System.out.println("attack finished");
+                attacks = false;
+            }
         }
     }
 
