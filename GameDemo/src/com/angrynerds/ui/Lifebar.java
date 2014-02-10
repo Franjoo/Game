@@ -25,9 +25,9 @@ public class Lifebar extends Actor {
     public Lifebar (String borderName, String lifeName, String bubbleName){
 
 //        this.player = player;
-        this.bubble = new Sprite(new Texture("data/bars/" + bubbleName));
-        this.border = new Sprite(new Texture("data/bars/" + borderName));
-        this.life = new Sprite(new Texture("data/bars/" + lifeName));
+        this.bubble = new Sprite(new Texture("ui/ingame/bars/" + bubbleName));
+        this.border = new Sprite(new Texture("ui/ingame/bars/" + borderName));
+        this.life = new Sprite(new Texture("ui/ingame/bars/" + lifeName));
 
 
     }

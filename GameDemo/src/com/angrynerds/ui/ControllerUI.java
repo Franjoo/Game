@@ -52,18 +52,18 @@ public class ControllerUI{
         lifeBar.setPosition(10, C.VIEWPORT_HEIGHT - lifeBar.getHeight());
         // start touchpad init
         Skin skin = new Skin();
-        skin.add("joystick_bg", new Texture("data/buttons/joystick_bg.png"));
-        skin.add("joystick_knob", new Texture("data/buttons/joystick_knob.png"));
-        skin.add("mid_up", new Texture("data/buttons/mid_up.png"));
-        skin.add("mid_down", new Texture("data/buttons/mid_down.png"));
-        skin.add("top_up", new Texture("data/buttons/top_up.png"));
-        skin.add("top_down", new Texture("data/buttons/top_down.png"));
-        skin.add("right_up", new Texture("data/buttons/right_up.png"));
-        skin.add("right_down", new Texture("data/buttons/right_down.png"));
-        skin.add("left_up", new Texture("data/buttons/left_up.png"));
-        skin.add("left_down", new Texture("data/buttons/left_down.png"));
-        skin.add("bottom_up", new Texture("data/buttons/bottom_up.png"));
-        skin.add("bottom_down", new Texture("data/buttons/bottom_down.png"));
+        skin.add("joystick_bg", new Texture("ui/ingame/controls/joystick_bg.png"));
+        skin.add("joystick_knob", new Texture("ui/ingame/controls/joystick_knob.png"));
+        skin.add("mid_up", new Texture("ui/ingame/controls/mid_up.png"));
+        skin.add("mid_down", new Texture("ui/ingame/controls/mid_down.png"));
+        skin.add("top_up", new Texture("ui/ingame/controls/top_up.png"));
+        skin.add("top_down", new Texture("ui/ingame/controls/top_down.png"));
+        skin.add("right_up", new Texture("ui/ingame/controls/right_up.png"));
+        skin.add("right_down", new Texture("ui/ingame/controls/right_down.png"));
+        skin.add("left_up", new Texture("ui/ingame/controls/left_up.png"));
+        skin.add("left_down", new Texture("ui/ingame/controls/left_down.png"));
+        skin.add("bottom_up", new Texture("ui/ingame/controls/bottom_up.png"));
+        skin.add("bottom_down", new Texture("ui/ingame/controls/bottom_down.png"));
 
 
         Touchpad.TouchpadStyle style = new Touchpad.TouchpadStyle();

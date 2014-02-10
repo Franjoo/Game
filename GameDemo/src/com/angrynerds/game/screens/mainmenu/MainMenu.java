@@ -82,11 +82,11 @@ public class MainMenu extends AbstractScreen {
     private void init(){
         bListener = new MenuButtonListener();
         stage = new Stage();
-        atlas = new TextureAtlas("data/mainMenuButton.pack");
+        atlas = new TextureAtlas("ui/menus/main/mainMenuButton.pack");
         skin = new Skin(atlas);
-        white = new BitmapFont(Gdx.files.internal("data/bmtFont.fnt"), false);
+        white = new BitmapFont(Gdx.files.internal("fonts/bmtFont.fnt"), false);
         batch = new SpriteBatch();
-        bg = new Texture("data/titel_moon.jpg");
+        bg = new Texture("ui/menus/main/titel_moon.jpg");
 
         table = new Table(skin);
         table.setBounds(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2.0f,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()/6);

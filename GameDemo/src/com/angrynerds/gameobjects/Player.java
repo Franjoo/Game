@@ -69,7 +69,7 @@ public class Player extends Creature {
      * creates a new player
      */
     public Player(IGameInputController input) {
-        super("Max_move2", "data/spine/animations/", null, 0.20f);
+        super("ted", "spine/ted/", null, 0.20f);
 
 
         this.input = input;
@@ -102,19 +102,27 @@ public class Player extends Creature {
 
     private void setAnimationStates() {
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-        stateData.setMix("run_test", "jump", 0.6f);
-        stateData.setMix("jump", "run_test", 0.5f);
+//        stateData.setMix("run_test", "jump", 0.6f);
+//        stateData.setMix("jump", "run_test", 0.5f);
+//        stateData.setMix("jump", "jump", 0.2f);
+//        stateData.setMix("run_test", "attack_1", 0.4f);
+//        stateData.setMix("attack_1", "run_test", 0.4f);
+//        stateData.setMix("dash", "run_test", 0.4f);
+//        stateData.setMix("run_test", "dash", 0.4f);
+
+        stateData.setMix("move", "jump", 0.6f);
+        stateData.setMix("jump", "move", 0.5f);
         stateData.setMix("jump", "jump", 0.2f);
-        stateData.setMix("run_test", "attack_1", 0.4f);
-        stateData.setMix("attack_1", "run_test", 0.4f);
-        stateData.setMix("dash", "run_test", 0.4f);
-        stateData.setMix("run_test", "dash", 0.4f);
+        stateData.setMix("move", "attack_1", 0.4f);
+        stateData.setMix("attack_1", "move", 0.4f);
+        stateData.setMix("dash", "move", 0.4f);
+        stateData.setMix("move", "dash", 0.4f);
 
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
         animationListener = new AnimationListener();
         state.addListener(animationListener);
-        state.setAnimation(0, "run_test", true);
+        state.setAnimation(0, "move", true);
     }
 
     public void render(SpriteBatch batch) {
@@ -147,6 +155,10 @@ public class Player extends Creature {
         x = p.x;
         y = p.y;
 
+        // map border
+        if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
+        if(y <= 0) y = 0;
+
         // flip skeleton
         if (vX == 0) skeleton.setFlipX(flipped);
         else skeleton.setFlipX(vX < 0);
@@ -159,7 +171,7 @@ public class Player extends Creature {
 
         // apply and update skeleton
 //        Animation animation = state.getCurrent(0).getAnimation();
-//        if(animation.getName().equals("run_test")){
+//        if(animation.getName().equals("move")){
 //            System.out.println(vX);
 //            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
 //        }
@@ -175,20 +187,20 @@ public class Player extends Creature {
     private void setCurrentState() {
         if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
             state.setAnimation(0, "jump", false);
-            state.addAnimation(0, "run_test", true, 0);
-//            state.addAnimation(1, "run_test", true, jumpAnimation.getDuration() - 30);
-//            state.addAnimation(1, "run_test", false, 0);
+            state.addAnimation(0, "move", true, 0);
+//            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
+//            state.addAnimation(1, "move", false, 0);
         }
 
 
         if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
             state.setAnimation(0, "attack_1", false);
-            state.addAnimation(0, "run_test", true, 0);
+            state.addAnimation(0, "move", true, 0);
         }
 
         if (input.getState() == State.DASHING && !state.getCurrent(0).toString().equals("dash")){
             state.setAnimation(0, "dash", false);
-            state.addAnimation(0, "run_test", true, 0);
+            state.addAnimation(0, "move", true, 0);
         }
         input.setState(State.IDLE);
 
@@ -434,7 +446,7 @@ public class Player extends Creature {
 //            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
 //            System.out.println(state.getCurrent(trackIndex));
             if (state.getCurrent(trackIndex).toString().equals("jump")) {
-                state.setAnimation(0, "run_test", true);
+                state.setAnimation(0, "move", true);
             }
         }
 

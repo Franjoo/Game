@@ -48,11 +48,10 @@ public class Enemy extends Creature {
     float angle;
 
 
-
     private Vector2 velocity = new Vector2();
     private int speed = 120;
-    private float tolerance =1.0f;
-    private boolean alive  = true;
+    private float tolerance = 1.0f;
+    private boolean alive = true;
 
     private Animation ani;
 
@@ -70,7 +69,7 @@ public class Enemy extends Creature {
         y = 150;
     }
 
-    public Enemy(float x, float y,String name, String path, String skin, Player player, float scale) {
+    public Enemy(float x, float y, String name, String path, String skin, Player player, float scale) {
         super(name, path, skin, scale);
         this.x = x;
         this.y = y;
@@ -92,15 +91,11 @@ public class Enemy extends Creature {
         path = getNewPath();
 
 
-
-
-
     }
 
 
     public void render(SpriteBatch batch) {
         super.render(batch);
-
 
 
     }
@@ -110,59 +105,53 @@ public class Enemy extends Creature {
         super.update(deltatime);
 
 
+        if (alive) {
+            updatePositions();
+
+            moveToPlayer(deltatime);
 
 
-        if (alive){
-         updatePositions();
-
-         moveToPlayer(deltatime);
-
-
-        }
-
-
-        else {
+        } else {
             ani = skeletonData.findAnimation("die");
             ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
         }
     }
 
-    public void updatePositions(){
+    public void updatePositions() {
 
-        xTilePosition =   (int) (x) / map.getTileWidth();
-        yTilePosition =   (int) (y) / map.getTileHeight();
-        xTilePlayer   =   (int) (player.x) / map.getTileWidth();
-        yTilePlayer   =   (int) (player.y) / map.getTileHeight() ;
+        xTilePosition = (int) (x) / map.getTileWidth();
+        yTilePosition = (int) (y) / map.getTileHeight();
+        xTilePlayer = (int) (player.x) / map.getTileWidth();
+        yTilePlayer = (int) (player.y) / map.getTileHeight();
     }
 
-    public Path getNewPath(){
-               //updatePositions();
-        return pathFinder.findPath(1,xTilePosition ,yTilePosition ,xTilePlayer , yTilePlayer);
+    public Path getNewPath() {
+        //updatePositions();
+        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer, yTilePlayer);
     }
 
-    public void moveToPlayer(float deltatime){
+    public void moveToPlayer(float deltatime) {
 
-        if (alive){
-       path = getNewPath();
-        skeleton.setFlipX((player.x - x >= 0));
+        if (alive) {
+            path = getNewPath();
+            skeleton.setFlipX((player.x - x >= 0));
 
 
-        if (path != null && nextStepInPath < path.getLength()) {
-            attack();
-            nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
-            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
-
+            if (path != null && nextStepInPath < path.getLength()) {
+                attack();
+                nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+                angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
                 if (xTilePosition != nextStep.x) {
                     x = x + velocity.x * deltatime;
 
-                     }
+                }
 
-                if (yTilePosition != nextStep.y){
+                if (yTilePosition != nextStep.y) {
                     y = (y + velocity.y * deltatime);
-                     }
+                }
 
 
 //         if(isReached(nextStepInPath)){
@@ -171,8 +160,6 @@ public class Enemy extends Creature {
 //
 //
 //            }
-
-
 
 
 //            if (nextStepInPath == path.getLength()-1) {
@@ -184,25 +171,21 @@ public class Enemy extends Creature {
 //            }
 
 
+                if (nextStepInPath == path.getLength() - 1) {
 
-            if(nextStepInPath == path.getLength()-1){
+                    for (int i = 0; i < map.getEnemies().size; i++) {
+                        if (xTilePosition == map.getEnemies().get(i).xTilePosition)
 
-             for(int i = 0; i< map.getEnemies().size; i++){
-                 if(xTilePosition == map.getEnemies().get(i).xTilePosition)
-
-                     path.appendStep(xTilePosition + 1, yTilePosition);
-
-
-             }
+                            path.appendStep(xTilePosition + 1, yTilePosition);
 
 
+                    }
 
 
-                ani =  skeletonData.findAnimation("attack");
+                    ani = skeletonData.findAnimation("attack");
+                } else
+                    ani = skeletonData.findAnimation("move");
             }
-            else
-                ani  = skeletonData.findAnimation("move");
-        }
         }
 
 
@@ -212,18 +195,17 @@ public class Enemy extends Creature {
     }
 
 
-
-
-    public void hit(int healthDecrease){
+    public void hit(int healthDecrease) {
         health -= healthDecrease;
-        if(health <= 0)   {
-           die();
+        if (health <= 0) {
+            die();
 
 
         }
 
     }
-    public void die(){
+
+    public void die() {
 
 
         ani = skeletonData.findAnimation("die");
@@ -240,10 +222,9 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
-        if(player.getAnimation().equals("attack_1")&& player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
+        if (player.getAnimation().equals("attack_1") && player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
             System.out.println(player.getSkeletonBounds().getBoundingBoxes().first());
-                hit(50);
-
+            hit(50);
 
 
         }

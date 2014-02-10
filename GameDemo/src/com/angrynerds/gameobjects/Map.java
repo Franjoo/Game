@@ -110,7 +110,7 @@ public class Map {
     private TextureAtlas atlas;
 
     // tmx map path
-    private String mapPath = "data/maps/map_04.tmx";
+    private String mapPath = "maps/map_04.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
@@ -188,19 +188,19 @@ public class Map {
         renderer.setView(camera);
 
         // create texture atlas
-        atlas = new TextureAtlas("data/maps/map_02.txt");
-        regionMap = new HashMap<String, TextureRegion>();
+//        atlas = new TextureAtlas("data/maps/map_02.txt");
+//        regionMap = new HashMap<String, TextureRegion>();
 
         // set Texture Filter
-        for (Texture t : atlas.getTextures()) {
-            t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        }
+//        for (Texture t : atlas.getTextures()) {
+//            t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+//        }
 
         // fill region Map
-        for (int i = 0; i < atlas.getRegions().size; i++) {
-            regionMap.put(atlas.getRegions().get(i).name, atlas.getRegions().get(i));
-            // System.out.println("putted: " + atlas.getRegions().get(i).name);
-        }
+//        for (int i = 0; i < atlas.getRegions().size; i++) {
+//            regionMap.put(atlas.getRegions().get(i).name, atlas.getRegions().get(i));
+//            // System.out.println("putted: " + atlas.getRegions().get(i).name);
+//        }
 
         // parse map properties
         numTilesX = Integer.parseInt(map.getProperties().get("width").toString());
@@ -484,7 +484,6 @@ public class Map {
         for (int i = 0; i < enemies.size; i++) {
             enemies.get(i).update(deltaTime);
         }
-
 
 
         renderer.setView(camera);
@@ -813,7 +812,7 @@ public class Map {
     //*** GETTER METHODS ****//
     //<editor-fold desc="getter methods">
 
-    public Array<Enemy> getEnemies(){
+    public Array<Enemy> getEnemies() {
 
         return enemies;
 
@@ -971,11 +970,28 @@ public class Map {
 
                 String type = p.get("spawn").toString();
 
-                // create free enemy array
+                String skin = null;
+                if(p.containsKey("skin")) skin = p.get("skin").toString();
+
                 freeEnemies = new Array<Enemy>();
-                for (int i = 0; i < num; i++) {
-                    if (type.equals("goblin")) {
-                        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
+                if (type.equals("goblin")) {
+                    for (int i = 0; i < num; i++) {
+//                        enemy = new Enemy(type, "data/spine/animations/", null, player, 0.1f);
+                        enemy = new Enemy(type, "spine/" + type + "/", skin, player, 0.2f);
+//                        enemy = new Enemy(type, "spine/hase/", null, player, 0.1f);
+                        enemy.init();
+
+                        enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
+                        enemy.y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
+                        freeEnemies.add(enemy);
+                    }
+                } else {
+                    // create free enemy array
+
+                    for (int i = 0; i < num; i++) {
+//                        enemy = new Enemy(type, "data/spine/animations/", null, player, 0.1f);
+                        enemy = new Enemy(type, "spine/" + type + "/", null, player, 0.1f);
+//                        enemy = new Enemy(type, "spine/hase/", null, player, 0.1f);
                         enemy.init();
 
                         enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
