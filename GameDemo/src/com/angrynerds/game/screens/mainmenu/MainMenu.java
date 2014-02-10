@@ -1,6 +1,7 @@
 package com.angrynerds.game.screens.mainmenu;
 
 import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenAccessor;
 import aurelienribon.tweenengine.TweenEquation;
 import aurelienribon.tweenengine.TweenManager;
 import aurelienribon.tweenengine.equations.*;
@@ -11,6 +12,8 @@ import com.angrynerds.tweens.MenuAccessor;
 import com.angrynerds.ui.Lifebar;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,7 +33,7 @@ import java.awt.event.ActionListener;
  * Time: 16:26
  * To change this template use File | Settings | File Templates.
  */
-public class MainMenu extends AbstractScreen {
+public class MainMenu extends AbstractScreen  {
 
     private GameController game;
 
@@ -46,6 +49,11 @@ public class MainMenu extends AbstractScreen {
     private MenuButtonListener bListener;
     private TweenManager manager;
 
+    // sounds
+    private static final int SOUND_TITLE = 0;
+    private float volume;
+    private Sound sound_title;
+
 
     public MainMenu(GameController gameController) {
         game = gameController;
@@ -54,15 +62,15 @@ public class MainMenu extends AbstractScreen {
 
     @Override
     public void render(float v) {
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Table.drawDebug(stage);
         manager.update(v);
 
-        
+
         batch.begin();
-        batch.draw(bg, 0, 0, stage.getWidth(),stage.getHeight() );
+        batch.draw(bg, 0, 0, stage.getWidth(), stage.getHeight());
         batch.end();
 
         stage.act(v);
@@ -79,7 +87,7 @@ public class MainMenu extends AbstractScreen {
 
     }
 
-    private void init(){
+    private void init() {
         bListener = new MenuButtonListener();
         stage = new Stage();
         atlas = new TextureAtlas("ui/menus/main/mainMenuButton.pack");
@@ -89,7 +97,7 @@ public class MainMenu extends AbstractScreen {
         bg = new Texture("ui/menus/main/titel_moon.jpg");
 
         table = new Table(skin);
-        table.setBounds(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2.0f,Gdx.graphics.getWidth()/6,Gdx.graphics.getHeight()/6);
+        table.setBounds(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2.0f, Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 6);
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         //textButtonStyle.up = skin.getDrawable("button.up");
@@ -105,16 +113,16 @@ public class MainMenu extends AbstractScreen {
         buttonSettings = new Button((skin.getDrawable("button_settings")));
 
         table.add(buttonPlay);
-        table.getCell(buttonPlay).size(buttonPlay.getWidth()/2.5f,buttonPlay.getHeight()/2.5f);
+        table.getCell(buttonPlay).size(buttonPlay.getWidth() / 2.5f, buttonPlay.getHeight() / 2.5f);
         table.add(buttonSettings);
-        table.getCell(buttonSettings).size(buttonSettings.getWidth()/2.5f,buttonSettings.getHeight()/2.5f);
+        table.getCell(buttonSettings).size(buttonSettings.getWidth() / 2.5f, buttonSettings.getHeight() / 2.5f);
         stage.addActor(table);
         table.debug();
 
         Tween.registerAccessor(buttonPlay.getClass(), new MenuAccessor());
 
         manager = new TweenManager();
-        Tween.to(buttonPlay, MenuAccessor.POSITION_Y,2.0f)
+        Tween.to(buttonPlay, MenuAccessor.POSITION_Y, 2.0f)
                 .targetRelative(15)
                 .ease(Sine.IN)
                 .repeatYoyo(-1, 0)
@@ -130,10 +138,21 @@ public class MainMenu extends AbstractScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
+
+        // start tile music
+        sound_title = Gdx.audio.newSound(Gdx.files.internal("sounds/menus/titelmusik.wav"));
+        sound_title.setLooping(0, true);
+        volume = 1;
+        sound_title.play(volume);
+
+        //todo sound ausfaden, problem: kein volume getter um TweenAccessor zu benutzen
+
     }
 
     @Override
     public void hide() {
+
+        sound_title.dispose();
         bg.dispose();
         stage.dispose();
     }
@@ -153,15 +172,16 @@ public class MainMenu extends AbstractScreen {
 
     }
 
-    private class MenuButtonListener extends ClickListener{
+    private class MenuButtonListener extends ClickListener {
         TextButton target = null;
+
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            if(event.getTarget() instanceof TextButton)
+            if (event.getTarget() instanceof TextButton)
                 target = (TextButton) event.getTarget();
             System.out.println(target);
             //super.clicked(event, x, y);
-            if(true){
+            if (true) {
                 game.setActiveScreen(game.getPlayScreen());
                 game.setScreen(game.getPlayScreen());
             }

@@ -2,8 +2,7 @@ package com.angrynerds.game;
 
 import com.angrynerds.game.camera.CameraHelper;
 import com.angrynerds.game.screens.play.PlayController;
-import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.gameobjects.Map;
+import com.angrynerds.gameobjects.map.Map;
 import com.angrynerds.gameobjects.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -44,7 +43,7 @@ public class World {
         map = new Map(this, player);
 
         // camera
-        cameraHelper = new CameraHelper(this);
+        cameraHelper = new CameraHelper();
         cameraHelper.applyTo(camera);
         cameraHelper.setTarget(player);
     }

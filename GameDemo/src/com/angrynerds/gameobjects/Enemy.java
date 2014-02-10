@@ -1,28 +1,18 @@
 package com.angrynerds.gameobjects;
 
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
-import com.angrynerds.ai.pathfinding.ClosestHeuristic;
 import com.angrynerds.ai.pathfinding.Path;
-import com.angrynerds.game.World;
-import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.creatures.Creature;
-import com.angrynerds.gameobjects.creatures.Goblin;
-import com.angrynerds.input.TouchInput;
-import com.badlogic.gdx.Application;
+import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.esotericsoftware.spine.*;
-import com.esotericsoftware.spine.attachments.Attachment;
-import com.esotericsoftware.spine.attachments.RegionAttachment;
+import com.esotericsoftware.spine.Animation;
+import com.esotericsoftware.spine.AnimationState;
+import com.esotericsoftware.spine.AnimationStateData;
+import com.esotericsoftware.spine.Event;
 
 import java.util.Random;
-import java.util.Timer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,13 +26,19 @@ public class Enemy extends Creature {
 
     private Map map;
     private Player player;
+    private Random random = new Random();
+    int ranX;
+    int ranY;
+    boolean reached;
 
     private Path path;
     private AStarPathFinder pathFinder;
     private int nextStepInPath = 1;
 
+    private Random gen = new Random();
 
-    public float health = 100;
+    public int health;
+    public int type;
 
     Vector2 nextStep = new Vector2();
     float angle;
@@ -60,13 +56,29 @@ public class Enemy extends Creature {
     private int xTilePlayer;
     private int yTilePlayer;
 
+    private AnimationState state;
+    private AnimationListener animationListener;
+
+    private int atckDmg;
+
 
     public Enemy(String name, String path, String skin, Player player, float scale) {
         super(name, path, skin, scale);
 
         this.player = player;
-        x = 300;
-        y = 150;
+        this.health = 100;
+        this.atckDmg = 5;
+        this.type = 1;
+    }
+
+
+    public Enemy(String name, String path, String skin, Player player, float scale, int health, int atckDmg, int type) {
+        super(name, path, skin, scale);
+
+        this.player = player;
+        this.health = health;
+        this.atckDmg = atckDmg;
+        this.type = type;
     }
 
     public Enemy(float x, float y, String name, String path, String skin, Player player, float scale) {
@@ -79,9 +91,23 @@ public class Enemy extends Creature {
         init();
     }
 
+    private void setAnimationStates() {
+
+        AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
+        stateData.setMix("move", "attack", 0.6f);
+        stateData.setMix("attack", "move", 0.6f);
+        stateData.setMix("attack", "die", 0.5f);
+        stateData.setMix("move", "die", 0.2f);
+
+
+        state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
+        animationListener = new AnimationListener();
+        state.addListener(animationListener);
+        state.setAnimation(0, "move", true);
+    }
+
 
     public void init() {
-
 
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
@@ -89,7 +115,26 @@ public class Enemy extends Creature {
         ani = skeletonData.findAnimation("move");
         updatePositions();
         path = getNewPath();
+        ranX = -1 + (int) (+(Math.random() * 3));
+        ranY = -1 + (int) (+(Math.random() * 3));
+        setAnimationStates();
 
+    }
+
+    public void init(float x, float y) {
+
+        this.x = x;
+        this.y = y;
+
+        map = Map.getInstance();
+        pathFinder = AStarPathFinder.getInstance();
+
+        ani = skeletonData.findAnimation("move");
+        updatePositions();
+        path = getNewPath();
+        ranX = -1 + (int) (+(Math.random() * 3));
+        ranY = -1 + (int) (+(Math.random() * 3));
+        setAnimationStates();
 
     }
 
@@ -103,7 +148,7 @@ public class Enemy extends Creature {
 
     public void update(float deltatime) {
         super.update(deltatime);
-
+        path = getNewPath();
 
         if (alive) {
             updatePositions();
@@ -113,7 +158,22 @@ public class Enemy extends Creature {
 
         } else {
             ani = skeletonData.findAnimation("die");
-            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+            if (alive) {
+                updatePositions();
+
+                if (path != null && path.getLength() > 2)
+                    moveToPlayer(deltatime);
+                else {
+                    ani = skeletonData.findAnimation("attack");
+                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+
+                }
+                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+            } else {
+                ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+            }
+
+
         }
     }
 
@@ -125,33 +185,67 @@ public class Enemy extends Creature {
         yTilePlayer = (int) (player.y) / map.getTileHeight();
     }
 
+    //    public Path getNewPath() {
+//        //updatePositions();
+//        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer, yTilePlayer);
+//    }
+//
+//    public void moveToPlayer(float deltatime) {
+//        xTilePosition = (int) (x) / map.getTileWidth();
+//        yTilePosition = (int) (y) / map.getTileHeight();
+//        xTilePlayer = (int) (player.x) / map.getTileWidth() + ranX;
+//        yTilePlayer = (int) (player.y) / map.getTileHeight() + ranY;
+//
+//    }
+
     public Path getNewPath() {
         //updatePositions();
         return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer, yTilePlayer);
     }
 
+    public int getTilePostionX() {
+
+        return xTilePosition;
+    }
+
+    public int getTilePostionY() {
+
+        return yTilePosition;
+    }
+
+
     public void moveToPlayer(float deltatime) {
 
         if (alive) {
-            path = getNewPath();
+
             skeleton.setFlipX((player.x - x >= 0));
 
+            if (alive) {
+                path = getNewPath();
+                skeleton.setFlipX((player.x - x >= 0));
 
-            if (path != null && nextStepInPath < path.getLength()) {
-                attack();
-                nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-                angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
-                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+                if (path != null && nextStepInPath < path.getLength()) {
+                    attack();
+
+                    nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+                    angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+                    velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+
+                    if (path != null && nextStepInPath < path.getLength()) {
+                        attack();
+                        nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+                        angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+                        velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
-                if (xTilePosition != nextStep.x) {
-                    x = x + velocity.x * deltatime;
+                        if ((int) x != nextStep.x) {
+                            x = x + velocity.x * deltatime;
 
-                }
+                        }
 
-                if (yTilePosition != nextStep.y) {
-                    y = (y + velocity.y * deltatime);
-                }
+                        if (yTilePosition != nextStep.y) {
+                            y = (y + velocity.y * deltatime);
+                        }
 
 
 //         if(isReached(nextStepInPath)){
@@ -171,25 +265,37 @@ public class Enemy extends Creature {
 //            }
 
 
-                if (nextStepInPath == path.getLength() - 1) {
+                        if (nextStepInPath == path.getLength() - 1) {
 
-                    for (int i = 0; i < map.getEnemies().size; i++) {
-                        if (xTilePosition == map.getEnemies().get(i).xTilePosition)
+                            for (int i = 0; i < map.getEnemies().size; i++) {
+                                if (xTilePosition == map.getEnemies().get(i).xTilePosition)
 
-                            path.appendStep(xTilePosition + 1, yTilePosition);
+                                    path.appendStep(xTilePosition + 1, yTilePosition);
+                                System.out.println(x + "      " + nextStep.x);
+                            }
 
 
-                    }
+                            if ((int) y != nextStep.y) {
+
+                                y = (y + velocity.y * deltatime);
+                            }
 
 
+                        }
+
+
+                        ani = skeletonData.findAnimation("attack");
+                    } else
+                        ani = skeletonData.findAnimation("move");
+                }
+                if (path.getLength() - 1 == 1) {
                     ani = skeletonData.findAnimation("attack");
+
                 } else
                     ani = skeletonData.findAnimation("move");
+
             }
         }
-
-
-        ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
 
 
     }
@@ -206,15 +312,13 @@ public class Enemy extends Creature {
     }
 
     public void die() {
-
-
-        ani = skeletonData.findAnimation("die");
+        state.addAnimation(0, "die", false, 0);
         alive = false;
+
     }
 
     private boolean isReached(int i) {
 
-        System.out.println(Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) + "     " + speed / tolerance * Gdx.graphics.getDeltaTime());
 
         return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
                 Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
@@ -225,8 +329,45 @@ public class Enemy extends Creature {
         if (player.getAnimation().equals("attack_1") && player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
             System.out.println(player.getSkeletonBounds().getBoundingBoxes().first());
             hit(50);
+            if (player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
+                player.setActualHP(player.getActualHP() - atckDmg);
+        }
+    }
 
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+        if (health <= 0) alive = false;
+    }
+
+    class AnimationListener implements AnimationState.AnimationStateListener {
+
+        @Override
+        public void event(int trackIndex, Event event) {
+//            System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
+        }
+
+        @Override
+        public void complete(int trackIndex, int loopCount) {
+//            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
+//            System.out.println(state.getCurrent(trackIndex));
+            if (state.getCurrent(trackIndex).toString().equals("jump")) {
+                state.setAnimation(0, "run_test", true);
+            }
+        }
+
+        @Override
+        public void start(int trackIndex) {
+//            System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+        }
+
+        @Override
+        public void end(int trackIndex) {
+//            System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
         }
     }
 

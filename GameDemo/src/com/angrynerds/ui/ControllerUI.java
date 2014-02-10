@@ -157,6 +157,7 @@ public class ControllerUI{
 
     public void update(float deltaTime) {
         stage.act(deltaTime);
+
     }
 
    // public void render() {

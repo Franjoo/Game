@@ -21,6 +21,7 @@ public class Lifebar extends Actor {
     private Sprite border;
     private Sprite life;
     private Sprite bubble;
+    private final float maxLifeWidth;
 
     public Lifebar (String borderName, String lifeName, String bubbleName){
 
@@ -28,6 +29,8 @@ public class Lifebar extends Actor {
         this.bubble = new Sprite(new Texture("ui/ingame/bars/" + bubbleName));
         this.border = new Sprite(new Texture("ui/ingame/bars/" + borderName));
         this.life = new Sprite(new Texture("ui/ingame/bars/" + lifeName));
+        maxLifeWidth = life.getWidth();
+
 
 
     }
@@ -57,7 +60,7 @@ public class Lifebar extends Actor {
     }
 
     public void setLifePercent(float percent){
-        life.setSize(life.getWidth()*percent, life.getHeight());
+        life.setSize(maxLifeWidth*percent, life.getHeight());
     }
 
     @Override

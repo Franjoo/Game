@@ -1,6 +1,6 @@
 package com.angrynerds.ai.pathfinding;
 
-import com.angrynerds.gameobjects.Map;
+import com.angrynerds.gameobjects.map.Map;
 
 /**
  * Created with IntelliJ IDEA.

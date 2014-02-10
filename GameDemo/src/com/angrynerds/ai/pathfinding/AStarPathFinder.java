@@ -1,12 +1,8 @@
 package com.angrynerds.ai.pathfinding;
 
-import com.angrynerds.gameobjects.Map;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.SortedIntList;
+import com.angrynerds.gameobjects.map.Map;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -56,6 +52,15 @@ public class AStarPathFinder {
 
         path.flushPath();
 
+//        for (int i = 0; i < map.getEnemies().size ; i++) {
+//              if(tx == map.getEnemies().get(i).getTilePostionX() && ty == map.getEnemies().get(i).getTilePostionY())
+//                  return null;
+//
+//        }
+//        if(map.blockedByEnemie(sx,sy)) {
+//            System.out.println("Blocked");
+//            return null;
+//        }
         if (map.isSolid(tx * map.getTileWidth(), ty * map.getTileHeight())) {
 
             return null;

@@ -3,7 +3,7 @@ package com.angrynerds.game.camera;
 import com.angrynerds.game.screens.play.PlayController;
 import com.angrynerds.game.World;
 import com.angrynerds.gameobjects.GameObject;
-import com.angrynerds.gameobjects.Map;
+import com.angrynerds.gameobjects.map.Map;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -28,30 +28,16 @@ public class CameraHelper {
     private GameObject target;
     private Map map;
 
-    private World world;
-
     private PlayController playController;
     public float deltaX;
     public float deltaY;
-    public float oldX;
-    public float oldY;
 
-    private float targetDeltaX;
-    private float targetDeltaY;
-
-    public CameraHelper(World world) {
-        this.playController = playController;
-
-//        map = playController.world.map;
-
-
+    public CameraHelper() {
         position = new Vector2();
         zoom = 1;
 
         position.x = C.VIEWPORT_WIDTH / 2;
-        position.y = C.VIEWPORT_HEIGHT / 2 + 100;
-
-
+        position.y = C.VIEWPORT_HEIGHT / 2;
     }
 
     public void update(float deltaTime) {
@@ -66,7 +52,7 @@ public class CameraHelper {
             map = Map.getInstance();
         }
 
-        float focusY = 170;
+        float focusY = 150;
 
         float qX = target.getX();
         float qY = target.getY() + focusY;
@@ -74,30 +60,11 @@ public class CameraHelper {
         deltaX = qX - position.x;
         deltaY = qY - position.y;
 
-//        System.out.println(deltaX + ", " + deltaY);
+        position.x += deltaX * aX;
+        position.y += deltaY * aY;
 
-
-        // TOP
-        if (qX + deltaX < C.VIEWPORT_WIDTH / 2) {
-            position.x += (C.VIEWPORT_WIDTH / 2 - position.x) * aX;
-        } else {
-            position.x += deltaX * aX;
-        }
-
-        // BOTTOM
-        if (qY + deltaY + 10 > C.VIEWPORT_HEIGHT) {
-
-        } else if (qY + deltaY - map.getOffsetY() * map.getTileHeight() < C.VIEWPORT_HEIGHT / 2) {
-            position.y += (C.VIEWPORT_HEIGHT / 2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY;
-        }
-
-//        else if (qY + deltaY - map.getOffsetY() * map.getTileHeight() > C.VIEWPORT_HEIGHT / 2) {
-//            position.y -= (C.VIEWPORT_HEIGHT / 2 - position.y + map.getOffsetY() * map.getTileHeight()) * aY;
-//        }
-
-        else {
-            position.y += deltaY * aY;
-        }
+        if (position.y <= C.VIEWPORT_HEIGHT / 2) position.y = C.VIEWPORT_HEIGHT / 2;
+        if (position.y >= C.VIEWPORT_HEIGHT / 2 + focusY) position.y = C.VIEWPORT_HEIGHT / 2 + focusY;
 
 //        position.x = Math.round(position.x);
 //        position.y = Math.round(position.y);
@@ -149,8 +116,11 @@ public class CameraHelper {
 
     public void setTarget(GameObject target) {
         this.target = target;
-        position.x = C.VIEWPORT_WIDTH / 2;
-        position.y = C.VIEWPORT_HEIGHT / 2;
+        position.x = target.getX();
+        position.y = target.getY() + C.VIEWPORT_HEIGHT / 2;
+
+//        position.x = C.VIEWPORT_WIDTH / 2;
+//        position.y = C.VIEWPORT_HEIGHT / 2;
     }
 
     public GameObject getTarget() {

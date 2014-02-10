@@ -1,4 +1,4 @@
-package com.angrynerds.gameobjects;
+package com.angrynerds.gameobjects.map;
 
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
 import com.angrynerds.ai.pathfinding.ClosestHeuristic;
@@ -6,7 +6,9 @@ import com.angrynerds.game.Layer;
 import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
-import com.angrynerds.gameobjects.creatures.Creature;
+import com.angrynerds.gameobjects.Enemy;
+import com.angrynerds.gameobjects.Player;
+import com.angrynerds.gameobjects.TmxMapObject;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -110,7 +112,7 @@ public class Map {
     private TextureAtlas atlas;
 
     // tmx map path
-    private String mapPath = "maps/map_04.tmx";
+    private String mapPath = "maps/map_05.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
@@ -137,7 +139,7 @@ public class Map {
 //        enemy = new Enemy("Spinne", "data/spine/animations/", null, player, 0.1f);
 //        enemy.init();
 
-        spawnController = new SpawnController();
+        spawnController = new SpawnController(this);
 
         // creation methods
         createEnemies();
@@ -154,7 +156,7 @@ public class Map {
                 for (int j = 0; j < objects.getCount(); j++) {
                     MapProperties p = objects.get(j).getProperties();
 
-                    if (p.containsKey("spawn")) {
+                    if (p.get("type").toString().equals("spawn")) {
                         System.out.println("add enemy");
                         spawnController.add(objects.get(j));
                     }
@@ -275,10 +277,21 @@ public class Map {
                     float y = Float.parseFloat(ps.get("y").toString());
                     float vX = Float.parseFloat(ps.get("vx").toString());
                     float vY = Float.parseFloat(ps.get("vy").toString());
+                    boolean moveable = ps.containsKey("mx") && ps.containsKey("my");
+
                     TiledMapTileLayer tl = (TiledMapTileLayer) map.getLayers().get(i);
                     System.out.println(tl.getName() + "  " + "x: " + x + "y: " + y);
+
                     // create layer
-                    Layer layer = new Layer(x, y, vX, vY, tl);
+                    Layer layer;
+                    if (!moveable) {
+                        layer = new Layer(x, y, vX, vY, tl);
+                    } else {
+                        float mX = Float.parseFloat(ps.get("mx").toString());
+                        float mY = Float.parseFloat(ps.get("my").toString());
+                        layer = new Layer(x, y, vX, vY, tl, mX, mY);
+                    }
+
 
                     // background layer
                     if (tl.getName().startsWith("bg")) {
@@ -454,7 +467,9 @@ public class Map {
         fixedCamera.position.y = camera.position.y;
         for (int i = 0; i < layers_background.size; i++) {
 
+
             Layer l = layers_background.get(i);
+
             fixedCamera.position.x = camera.position.x * l.getvX() + l.getX() + C.VIEWPORT_WIDTH / 2;
             fixedCamera.position.y = camera.position.y * l.getvY() + l.getY();
 
@@ -474,8 +489,13 @@ public class Map {
      */
     public void update(float deltaTime) {
 
+        // update layers
+        for (Layer l : layers_background) l.update(deltaTime);
+        for (Layer l : layers_foreground) l.update(deltaTime);
+
         // update player
         player.update(deltaTime);
+
 
         // update spawnController
         spawnController.update(deltaTime);
@@ -507,6 +527,7 @@ public class Map {
         }
         return false;
     }
+
 
     /**
      * returns an array of rectangles which contains the assigned point
@@ -812,11 +833,21 @@ public class Map {
     //*** GETTER METHODS ****//
     //<editor-fold desc="getter methods">
 
+
     public Array<Enemy> getEnemies() {
-
         return enemies;
-
     }
+
+    public boolean blockedByEnemie(int x, int y) {
+        for (int i = 0; i < enemies.size; i++) {
+            if (x == enemies.get(i).getTilePostionX() && y == enemies.get(i).getTilePostionY())
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
+
 
     /**
      * returns x position
@@ -888,127 +919,4 @@ public class Map {
         return tileHeight;
     }
 
-    /**
-     * returns map height
-     *
-     * @return
-     */
-    public int getMapHeight() {
-        return mapHeight;
-    }
-
-    /**
-     * returns map width
-     */
-    public int getMapWidth() {
-        return mapWidth;
-    }
-
-    /**
-     * returns offset X
-     */
-    public int getOffsetX() {
-        return offsetX;
-
-    }
-
-    /**
-     * returns offset Y
-     */
-    public int getOffsetY() {
-        return offsetY;
-
-    }
-
-
-    private class SpawnController {
-
-        private Array<SpawnObject> objects;
-
-        public SpawnController() {
-            objects = new Array<SpawnObject>();
-        }
-
-        public void add(MapObject mapObject) {
-            objects.add(new SpawnObject(mapObject));
-        }
-
-        public void update(float delta) {
-            for (int i = 0; i < objects.size; i++) {
-                SpawnObject o = objects.get(i);
-                if (o.rectangle.x - o.distance <= player.x) {
-                    o.spawn();
-                    objects.removeIndex(i);
-                }
-            }
-
-        }
-
-        class SpawnObject extends MapObject {
-
-            public Rectangle rectangle;
-            public float distance;
-            private Array<Enemy> freeEnemies;
-
-            public SpawnObject(MapObject mapObject) {
-
-                // parse mapObject
-                MapProperties p = mapObject.getProperties();
-
-                float x = Float.parseFloat(p.get("x").toString());
-                float y = Float.parseFloat(p.get("y").toString());
-                float w = Float.parseFloat(p.get("width").toString()) * tileWidth;
-                float h = Float.parseFloat(p.get("height").toString()) * tileHeight;
-                rectangle = new Rectangle(x, y, w, h);
-
-                distance = Float.parseFloat(p.get("dist").toString());
-
-                int min = Integer.parseInt(p.get("min").toString());
-                int max = Integer.parseInt(p.get("max").toString());
-
-                int num = (int) (min + (Math.random() * (max - min)));
-
-                String type = p.get("spawn").toString();
-
-                String skin = null;
-                if(p.containsKey("skin")) skin = p.get("skin").toString();
-
-                freeEnemies = new Array<Enemy>();
-                if (type.equals("goblin")) {
-                    for (int i = 0; i < num; i++) {
-//                        enemy = new Enemy(type, "data/spine/animations/", null, player, 0.1f);
-                        enemy = new Enemy(type, "spine/" + type + "/", skin, player, 0.2f);
-//                        enemy = new Enemy(type, "spine/hase/", null, player, 0.1f);
-                        enemy.init();
-
-                        enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
-                        enemy.y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
-                        freeEnemies.add(enemy);
-                    }
-                } else {
-                    // create free enemy array
-
-                    for (int i = 0; i < num; i++) {
-//                        enemy = new Enemy(type, "data/spine/animations/", null, player, 0.1f);
-                        enemy = new Enemy(type, "spine/" + type + "/", null, player, 0.1f);
-//                        enemy = new Enemy(type, "spine/hase/", null, player, 0.1f);
-                        enemy.init();
-
-                        enemy.x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
-                        enemy.y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
-                        freeEnemies.add(enemy);
-                    }
-                }
-            }
-
-
-            private void spawn() {
-                enemies.addAll(freeEnemies);
-            }
-
-        }
-
-    }
-
-    //</editor-fold>
 }

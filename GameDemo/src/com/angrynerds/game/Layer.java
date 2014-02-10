@@ -1,11 +1,5 @@
 package com.angrynerds.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 /**
@@ -19,18 +13,35 @@ public class Layer extends AbstractLayer {
     private TiledMapTileLayer tl;
     private float scale;
     private boolean useTS;
+    private boolean movable;
+
+    private float mX;
+    private float mY;
 
 
     public Layer(float x, float y, float vX, float vY, TiledMapTileLayer tl) {
         super(x, y, vX, vY);
-
         this.tl = tl;
+
+        movable = false;
+    }
+
+    public Layer(float x, float y, float vX, float vY, TiledMapTileLayer tl, float mX,float mY) {
+        super(x, y, vX, vY);
+        this.tl = tl;
+
+        this.mX = mX;
+        this.mY = mY;
+
+        movable = true;
     }
 
     @Override
     public void update(float deltaTime) {
-//        x += vX * deltaTime;
-//        y += vY * deltaTime;
+        if (movable) {
+            x += mX * deltaTime;
+            y += mY * deltaTime;
+        }
     }
 
     public TiledMapTileLayer getTiledMapTileLayer() {
