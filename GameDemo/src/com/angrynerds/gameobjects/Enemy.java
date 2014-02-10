@@ -29,11 +29,11 @@ public class Enemy extends Creature {
     private Random random = new Random();
     int ranX;
     int ranY;
-    private int attackCounter = 180;
+    private int attackCounter = 0;
 
 
 
-    private Path path;
+    private Path path = new Path();
     private AStarPathFinder pathFinder;
     private int nextStepInPath = 1;
 
@@ -82,6 +82,7 @@ public class Enemy extends Creature {
         this.health = health;
         this.atckDmg = atckDmg;
         this.type = type;
+        init();
     }
 
     public Enemy(float x, float y, String name, String path, String skin, Player player, float scale) {
@@ -95,18 +96,22 @@ public class Enemy extends Creature {
     }
 
     private void setAnimationStates() {
+        AnimationStateData stateData = new AnimationStateData(skeletonData);
+        for (int i = 0; i < stateData.getSkeletonData().getAnimations().size; i++) {
+            String from = stateData.getSkeletonData().getAnimations().get(i).getName();
+            for (int j = 0; j < stateData.getSkeletonData().getAnimations().size; j++) {
+                String to = stateData.getSkeletonData().getAnimations().get(i).getName();
 
-        AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
-        stateData.setMix("move", "attack", 0.6f);
-        stateData.setMix("attack", "move", 0.6f);
-        stateData.setMix("attack", "die", 0.5f);
-        stateData.setMix("move", "die", 0.2f);
-
+                if(!from.equals(to)) stateData.setMix(from, to, 0.8f);
+            }
+        }
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
-        animationListener = new AnimationListener();
-        state.addListener(animationListener);
-        state.setAnimation(0, "move", true);
+       animationListener = new AnimationListener();
+       //state.addListener(animationListener);
+
+
+        state.setAnimation(0,"move",true);
     }
 
 
@@ -115,7 +120,7 @@ public class Enemy extends Creature {
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
 
-        ani = skeletonData.findAnimation("move");
+        //ani = skeletonData.findAnimation("move");
         updatePositions();
         path = getNewPath();
         ranX = -1 + (int) (+(Math.random() * 3));
@@ -132,12 +137,12 @@ public class Enemy extends Creature {
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
 
-        ani = skeletonData.findAnimation("move");
+       // ani = skeletonData.findAnimation("move");
         updatePositions();
         path = getNewPath();
         ranX = -1 + (int) (+(Math.random() * 3));
         ranY = -1 + (int) (+(Math.random() * 3));
-
+        setAnimationStates();
 
     }
 
@@ -157,29 +162,26 @@ public class Enemy extends Creature {
             updatePositions();
 
 
-                if (path != null && path.getLength() >= 2)  {
-                    moveToPlayer(deltatime);
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+
+                if (path != null && path.getLength() > 2)  {
+                        moveToPlayer(deltatime);
                 }
                 else {
-                    ani = skeletonData.findAnimation("attack");
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
-                    if(attackCounter == 180){
+
+                    if(attackCounter == 60){
                         attack();
                         attackCounter = 0;
                     }
-                    else
+                    else {
                         attackCounter++;
-
-
+                    }
                 }
 
 
-        } else {
-
-            ani = skeletonData.findAnimation("die");
-            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
         }
+        setCurrentState();
+        state.update(deltatime);
+        state.apply(skeleton);
     }
 
     public void updatePositions() {
@@ -192,8 +194,13 @@ public class Enemy extends Creature {
 
 
     public Path getNewPath() {
-        // updatePositions();
-        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+        Path oldPath = path;
+        Path newPath = pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+
+        if(newPath != null)
+         return newPath;
+        return oldPath;
+
     }
 
     public int getTilePostionX() {
@@ -205,7 +212,39 @@ public class Enemy extends Creature {
 
         return yTilePosition;
     }
+    private void setCurrentState() {
 
+       if(alive && state.getCurrent(0) != null){
+        if(path.getLength() > 2 && state.getCurrent(0).toString().equals("attack")){
+            state.setAnimation(0, "attack", false);
+            state.clearTrack(0);
+            state.addAnimation(0,"move",true,0);
+        }
+
+        else if(path.getLength() <= 2 && state.getCurrent(0).toString().equals("move")){
+            state.setAnimation(0, "move", false);
+            state.clearTrack(0);
+            state.addAnimation(0, "attack", true, 0);
+        }
+       }
+        else{
+           if(state.getCurrent(0) != null && state.getCurrent(0).toString().equals("move")){
+               state.setAnimation(0, "move", false);
+               state.clearTrack(0);
+               state.addAnimation(0, "die", false, 0);
+           }
+           if(state.getCurrent(0) != null && state.getCurrent(0).toString().equals("attack")){
+               state.setAnimation(0, "attack", false);
+                state.clearTrack(0);
+               state.addAnimation(0, "die", false, 0);
+           }
+       }
+
+
+
+
+
+    }
 
     public void moveToPlayer(float deltatime) {
 
@@ -245,7 +284,7 @@ public class Enemy extends Creature {
 //
 //            }
 
-            ani = skeletonData.findAnimation("move");
+           // ani = skeletonData.findAnimation("move");
         }
     }
 
@@ -265,11 +304,10 @@ public class Enemy extends Creature {
 
     @Override
     public void attack() {
-        if (!attacks) {
-            attacks = true;
+
             if (player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
                 player.setActualHP(player.getActualHP() - atckDmg);
-        }
+
     }
 
 
