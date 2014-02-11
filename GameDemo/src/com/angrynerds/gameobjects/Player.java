@@ -2,6 +2,7 @@ package com.angrynerds.gameobjects;
 
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.gameobjects.creatures.Creature;
+import com.angrynerds.gameobjects.items.HealthPotion;
 import com.angrynerds.gameobjects.map.Map;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.C;
@@ -165,6 +166,8 @@ public class Player extends Creature {
             // set v in x and y direction
             vX = input.get_stickX() * deltaTime * vX_MAX;
             vY = input.get_stickY() * deltaTime * vY_MAX;
+            if(vX != 0 && vY != 0 && input.getState() == State.IDLE)     input.setState(State.RUNNING);
+            if(vX == 0 && vY == 0 && input.getState() == State.RUNNING)  input.setState(State.IDLE);
 
             // set collision position
             Vector2 p = getCollisionPosition();
@@ -174,13 +177,13 @@ public class Player extends Creature {
             if (vX == 0) skeleton.setFlipX(flipped);
             else skeleton.setFlipX(vX < 0);
 
-        // map border
-        if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
-        if(y <= 0) y = 0;
+            // map border
+            if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
+            if(y <= 0) y = 0;
 
-        // flip skeleton
-        if (vX == 0) skeleton.setFlipX(flipped);
-        else skeleton.setFlipX(vX < 0);
+            // flip skeleton
+            if (vX == 0) skeleton.setFlipX(flipped);
+            else skeleton.setFlipX(vX < 0);
 
             setCurrentState();
 
@@ -192,6 +195,8 @@ public class Player extends Creature {
                 x = p.x;
             }
             y = p.y;
+
+            nextToItem();
 
 
             // apply and update skeleton
@@ -216,6 +221,22 @@ public class Player extends Creature {
         state.apply(skeleton);
     }
 
+    private void nextToItem() {
+        for(Item item : map.getItems()){
+            if(item.getX() > x - 8 && item.getX() < x + 8){
+                if(item.getY() > y - 8 && item.getY() < y + 8){
+                    collectItem(item);
+                }
+            }
+        }
+    }
+
+    private void collectItem(Item item) {
+        if(item instanceof HealthPotion)
+            actHP += 8;
+        map.getItems().removeValue(item, true);
+    }
+
     private float dash(float deltaTime) {
         if(dashRight){
             skeleton.setFlipX(false);
@@ -232,7 +253,7 @@ public class Player extends Creature {
         if(state.getCurrent(0).toString().equals("move") || state.getCurrent(0).toString().equals("idle")){
             if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
                 state.setAnimation(0, "jump", false);
-                state.addAnimation(0, "move", true, 0);
+                state.addAnimation(0, "idle", true, 0);
     //            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
     //            state.addAnimation(1, "move", false, 0);
             }
@@ -241,7 +262,7 @@ public class Player extends Creature {
             if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
                 attack();
                 state.setAnimation(0, "attack_1", false);
-                state.addAnimation(0, "move", true, 0);
+                state.addAnimation(0, "idle", true, 0);
             }
 
             if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
@@ -249,17 +270,28 @@ public class Player extends Creature {
                     dashRight = true;
                 else dashRight = false;
                 state.setAnimation(0, "dash", false);
-                state.addAnimation(0, "move", true, 0);
-
+                state.addAnimation(0, "idle", true, 0);
                 sound_dash.play();
+
             }
 
-            if ((input.getState() == State.DEAD)&& !state.getCurrent(0).toString().equals("die")){
+            if ((input.getState() == State.DEAD) && !state.getCurrent(0).toString().equals("die")){
                 state.setAnimation(0, "die", false);
             }
         }
 
-        if(input.getState() != State.DEAD)
+        if(input.getState() == State.IDLE && !state.getCurrent(0).toString().equals("idle")) {
+            if(state.getCurrent(0).toString().equals("move"))
+                state.setAnimation(0, "idle", false);
+            state.addAnimation(0, "idle", true, 0);
+        }
+
+        if(input.getState() == State.RUNNING && !state.getCurrent(0).toString().equals("move")){
+            state.setAnimation(0, "move", false);
+            state.addAnimation(0, "move", true, 0);
+        }
+
+        if(input.getState() != State.DEAD && input.getState() != State.RUNNING)
             input.setState(State.IDLE);
 
 

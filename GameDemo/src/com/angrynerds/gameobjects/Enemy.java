@@ -4,6 +4,7 @@ import aurelienribon.tweenengine.TweenAccessor;
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
 import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.gameobjects.creatures.Creature;
+import com.angrynerds.gameobjects.items.HealthPotion;
 import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -108,15 +109,6 @@ public class Enemy extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
-
-//        // draw with transparency
-//        batch.begin();
-//        Color c = batch.getColor();
-//        batch.setColor(c.r, c.g, c.b, 0.2f);
-//        skeletonRenderer.draw(batch, skeleton);
-//        batch.setColor(c.r, c.g, c.b, c.a);
-//
-//        batch.end();
 
     }
 
@@ -264,11 +256,16 @@ public class Enemy extends Creature {
 
     private void setHealth(float health) {
         this.health = health;
-        if (health <= 0) alive = false;
+        if (health <= 0){
+            alive = false;
+            map.addItem(new HealthPotion(x,y));
+        }
+
     }
 
     public void setDamage(float dmg) {
-        setHealth(health - dmg);
+        if(alive)
+            setHealth(health - dmg);
     }
 
     private void removeFromMap() {

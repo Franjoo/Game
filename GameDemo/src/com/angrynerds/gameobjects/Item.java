@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,11 +17,11 @@ public class Item {
     public TextureRegion region;
     private float x,y;
 
-    public Item(float x, float y){
+    public Item(float x, float y, String path){
         this.x = x;
         this.y = y;
 
-        region = new TextureRegion(new Texture(Gdx.files.internal("items/potion_01.png")));
+        region = new TextureRegion(new Texture(Gdx.files.internal(path)));
     }
 
     public void update(float delta){
@@ -34,4 +35,11 @@ public class Item {
 
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 }

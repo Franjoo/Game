@@ -26,6 +26,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 import java.io.BufferedReader;
@@ -937,4 +939,11 @@ public class Map {
         return tileHeight;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public Array<Item> getItems() {
+        return items;
+    }
 }
