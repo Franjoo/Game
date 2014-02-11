@@ -7,12 +7,9 @@ import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.esotericsoftware.spine.Animation;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
 import com.esotericsoftware.spine.Event;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,46 +20,40 @@ import java.util.Random;
  */
 public class Enemy extends Creature {
 
-
-    private Map map;
-    private Player player;
-    private Random random = new Random();
-    int ranX;
-    int ranY;
-    private int attackCounter = 180;
-
-
-
+    // pathfinding relevant
     private Path path;
     private AStarPathFinder pathFinder;
+    private Vector2 nextStep = new Vector2();
     private int nextStepInPath = 1;
-
-    private Random gen = new Random();
-
-    public int health;
-    public int type;
-
-    Vector2 nextStep = new Vector2();
-    float angle;
-
-
-    private Vector2 velocity = new Vector2();
-    private int speed = 120;
-    private float tolerance = 1.0f;
-    private boolean alive = true;
-
-    private Animation ani;
-
+    private int ranX;
+    private int ranY;
     private int xTilePosition;
     private int yTilePosition;
     private int xTilePlayer;
     private int yTilePlayer;
+    private float angle;
+    private Vector2 velocity = new Vector2();
+    private int speed = 120;
+    private float tolerance = 1.0f;
 
+    // interaction
+    private Map map;
+    private Player player;
+
+    // stats
+    private final float minDmg = 1.2f;
+    private final float maxDmg = 5.1f;
+    private final float cooldown = 1.5f;
+
+    private float health = 100f;
+    private float nextAttackTime = -1;
+
+    // animation
     private AnimationState state;
     private AnimationListener animationListener;
 
-    private int atckDmg;
-    private boolean attacks;
+    // global flags
+    private boolean alive = true;
 
 
     public Enemy(String name, String path, String skin, Player player, float scale) {
@@ -70,52 +61,33 @@ public class Enemy extends Creature {
 
         this.player = player;
         this.health = 100;
-        this.atckDmg = 5;
-        this.type = 1;
+
     }
 
-
-    public Enemy(String name, String path, String skin, Player player, float scale, int health, int atckDmg, int type) {
-        super(name, path, skin, scale);
-
-        this.player = player;
-        this.health = health;
-        this.atckDmg = atckDmg;
-        this.type = type;
-    }
-
-    public Enemy(float x, float y, String name, String path, String skin, Player player, float scale) {
-        super(name, path, skin, scale);
-        this.x = x;
-        this.y = y;
-
-        this.player = player;
-
-        init();
-    }
 
     private void setAnimationStates() {
 
-        AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
+        AnimationStateData stateData = new AnimationStateData(skeletonData);
         stateData.setMix("move", "attack", 0.6f);
         stateData.setMix("attack", "move", 0.6f);
         stateData.setMix("attack", "die", 0.5f);
         stateData.setMix("move", "die", 0.2f);
 
 
-        state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
+        state = new AnimationState(stateData);
         animationListener = new AnimationListener();
         state.addListener(animationListener);
-        state.setAnimation(0, "move", true);
+        state.addAnimation(0, "move", true, 0);
     }
 
 
-    public void init() {
+    public void init(float x, float y) {
+        this.x = x;
+        this.y = y;
 
         map = Map.getInstance();
         pathFinder = AStarPathFinder.getInstance();
 
-        ani = skeletonData.findAnimation("move");
         updatePositions();
         path = getNewPath();
         ranX = -1 + (int) (+(Math.random() * 3));
@@ -124,62 +96,67 @@ public class Enemy extends Creature {
 
     }
 
-    public void init(float x, float y) {
-
-        this.x = x;
-        this.y = y;
-
-        map = Map.getInstance();
-        pathFinder = AStarPathFinder.getInstance();
-
-        ani = skeletonData.findAnimation("move");
-        updatePositions();
-        path = getNewPath();
-        ranX = -1 + (int) (+(Math.random() * 3));
-        ranY = -1 + (int) (+(Math.random() * 3));
-
-
-    }
-
 
     public void render(SpriteBatch batch) {
         super.render(batch);
 
+//        draw with transparency
+//        batch.begin();
+//        Color c = batch.getColor();
+//        batch.setColor(c.r, c.g, c.b, 0.2f);
+//        skeletonRenderer.draw(batch, skeleton);
+//        batch.end();
 
     }
 
 
     public void update(float deltatime) {
         super.update(deltatime);
+
+        // find new path
         path = getNewPath();
+
         if (alive) {
 
+            // update pathfinding attributes
             updatePositions();
 
+            // enemy is far from player (move)
+            if (path != null && path.getLength() >= 2) {
+                moveToPlayer(deltatime);
 
-                if (path != null && path.getLength() >= 2)  {
-                    moveToPlayer(deltatime);
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
+                // append move animation
+                if (state.getCurrent(0).getNext() == null) {
+                    state.addAnimation(0, "move", false, 0);
                 }
-                else {
-                    ani = skeletonData.findAnimation("attack");
-                    ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), true, null);
-                    if(attackCounter == 180){
-                        attack();
-                        attackCounter = 0;
-                    }
-                    else
-                        attackCounter++;
+            }
 
+            // enemy in front of player (attack)
+            else {
 
+                // append attack animation
+                if (state.getCurrent(0).getNext() == null) {
+                    state.addAnimation(0, "attack", false, 0);
                 }
 
+                // attack player (animation is active)
+                else if (state.getCurrent(0).getAnimation().getName().equals("attack")) {
+                    attack();
+                }
 
-        } else {
+            }
 
-            ani = skeletonData.findAnimation("die");
-            ani.apply(skeleton, skeleton.getTime(), skeleton.getTime(), false, null);
+            // if not alive and not dead - die (triggers die animation)
+        } else if (state.getCurrent(0) != null
+                && !state.getCurrent(0).getAnimation().getName().equals("die")) {
+
+            state.setAnimation(0, "die", false);
         }
+
+
+        // update animation
+        state.apply(skeleton);
+        state.update(deltatime);
     }
 
     public void updatePositions() {
@@ -192,31 +169,29 @@ public class Enemy extends Creature {
 
 
     public Path getNewPath() {
-        // updatePositions();
         return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
     }
 
     public int getTilePostionX() {
-
         return xTilePosition;
     }
 
     public int getTilePostionY() {
-
         return yTilePosition;
     }
 
 
     public void moveToPlayer(float deltatime) {
 
-            skeleton.setFlipX((player.x - x >= 0));
+        // todo hier steckt wird der fehler stecken, der das flackern verursacht
 
-            if (path != null && nextStepInPath < path.getLength()) {
+        skeleton.setFlipX((player.x - x >= 0));
 
-                nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
-                angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
-                velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+        if (path != null && nextStepInPath < path.getLength()) {
 
+            nextStep = new Vector2((float) path.getStep(nextStepInPath).getX() * map.getTileWidth(), (float) path.getStep(nextStepInPath).getY() * map.getTileHeight());
+            angle = (float) Math.atan2(path.getStep(nextStepInPath).getY() * map.getTileHeight() - y, path.getStep(nextStepInPath).getX() * map.getTileWidth() - x);
+            velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
             if ((int) x != nextStep.x) {
@@ -228,86 +203,78 @@ public class Enemy extends Creature {
                 y = (y + velocity.y * deltatime);
             }
 
-
-//         if(isReached(nextStepInPath)){
-//                System.out.println("Reached");
-//                nextStepInPath++;
-//
-//
-//            }
-
-
-//            if (nextStepInPath == path.getLength()-1) {
-//                System.out.println("New Path");
-//                path = getNewPath();
-//                nextStepInPath = 1;
-//
-//
-//            }
-
-            ani = skeletonData.findAnimation("move");
         }
     }
 
-
-    public void die() {
-        state.addAnimation(0, "die", false, 0);
-        alive = false;
-
-    }
-
     private boolean isReached(int i) {
-
-
         return Math.abs(path.getStep(i).getX() * map.getTileWidth() - getX()) <= speed / tolerance * Gdx.graphics.getDeltaTime() &&
                 Math.abs(path.getStep(i).getY() * map.getTileHeight() - getY()) <= speed / tolerance * Gdx.graphics.getDeltaTime();
     }
 
     @Override
     public void attack() {
-        if (!attacks) {
-            attacks = true;
-            if (player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds()))
-                player.setActualHP(player.getActualHP() - atckDmg);
+        nextAttackTime -= Gdx.graphics.getDeltaTime();
+
+        if (nextAttackTime <= 0 && player.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())) {
+
+            // calculate random damage
+            float dmg = (float) (minDmg + Math.random() * (maxDmg - minDmg));
+            player.setDamage(dmg);
+
+            // refresh attack timer
+            nextAttackTime = cooldown;
         }
     }
 
 
-    public int getHealth() {
+    public float getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    private void setHealth(float health) {
         this.health = health;
         if (health <= 0) alive = false;
     }
 
+    public void setDamage(float dmg) {
+        setHealth(health - dmg);
+    }
+
     class AnimationListener implements AnimationState.AnimationStateListener {
+
+        // todo SOUNDS!
 
         @Override
         public void event(int trackIndex, Event event) {
-//            System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
         }
 
         @Override
         public void complete(int trackIndex, int loopCount) {
-//            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
-//            System.out.println(state.getCurrent(trackIndex));
-            if (state.getCurrent(trackIndex).toString().equals("jump")) {
-                state.setAnimation(0, "run_test", true);
+            String completedState = state.getCurrent(trackIndex).toString();
+            switch (completedState) {
+                case "die":
+                    System.out.println("killed enemy");
+                    break;
             }
         }
 
         @Override
         public void start(int trackIndex) {
-//            System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+            String completedState = state.getCurrent(trackIndex).toString();
+            switch (completedState) {
+                case "die":
+                    System.out.println("die animation started");
+                    break;
+            }
         }
 
         @Override
         public void end(int trackIndex) {
-            if (state.getCurrent(trackIndex).toString().equals("attack")) {
-                System.out.println("attack finished");
-                attacks = false;
+            String completedState = state.getCurrent(trackIndex).toString();
+            switch (completedState) {
+                case "die":
+                    System.out.println("die animation ended");
+                    break;
             }
         }
     }

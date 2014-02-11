@@ -33,7 +33,7 @@ import java.awt.event.ActionListener;
  * Time: 16:26
  * To change this template use File | Settings | File Templates.
  */
-public class MainMenu extends AbstractScreen  {
+public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
 
     private GameController game;
 
@@ -170,6 +170,16 @@ public class MainMenu extends AbstractScreen  {
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public int getValues(Sound target, int tweenType, float[] returnValues) {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setValues(Sound target, int tweenType, float[] newValues) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private class MenuButtonListener extends ClickListener {

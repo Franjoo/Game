@@ -7,6 +7,7 @@ import com.angrynerds.game.World;
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.angrynerds.gameobjects.Enemy;
+import com.angrynerds.gameobjects.Item;
 import com.angrynerds.gameobjects.Player;
 import com.angrynerds.gameobjects.TmxMapObject;
 import com.angrynerds.util.C;
@@ -71,6 +72,9 @@ public class Map {
 
     private SpawnController spawnController;
     private Array<Enemy> enemies;
+
+    // item list
+    private Array<Item> items;
 
     // map properties
     private int numTilesX;
@@ -227,6 +231,8 @@ public class Map {
         collisionObjects = createCollisionObjects();
         mapObjects = createMapObjects();
 
+        // item list
+        items = new Array<>();
 
         // set render layers
         setRenderLayers();
@@ -416,6 +422,8 @@ public class Map {
             }
         }
 
+        for(Item i: items) i.render(batch);
+
         // render foreground
         renderForeground(batch);
 
@@ -487,6 +495,8 @@ public class Map {
         // update player
         player.update(deltaTime);
 
+        // update items
+        for(Item i : items) i.update(deltaTime);
 
         // update spawnController
         spawnController.update(deltaTime);
@@ -544,6 +554,11 @@ public class Map {
             if (r.getX() < min) min = r.getX();
         }
         return min;
+    }
+
+    public void putItem(Item item){
+        System.out.println("item puttted");
+        items.add(item);
     }
 
     public float getYmin(Array<Rectangle> rectangles) {

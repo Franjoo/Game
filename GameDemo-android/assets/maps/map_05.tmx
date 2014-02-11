@@ -117,40 +117,5 @@
     <property name="width" value="10"/>
    </properties>
   </object>
-  <object type="spawn" x="1972" y="338" width="456" height="132">
-   <properties>
-    <property name="dist" value="400"/>
-    <property name="height" value="4"/>
-    <property name="max" value="1"/>
-    <property name="min" value="1"/>
-    <property name="name" value="goblin"/>
-    <property name="scale" value="0.08 0.13"/>
-    <property name="skin" value="goblin"/>
-    <property name="width" value="10"/>
-   </properties>
-  </object>
-  <object type="spawn" x="3024" y="358" width="456" height="132">
-   <properties>
-    <property name="dist" value="400"/>
-    <property name="height" value="4"/>
-    <property name="max" value="1"/>
-    <property name="min" value="1"/>
-    <property name="name" value="hase"/>
-    <property name="scale" value="0.08 0.13"/>
-    <property name="width" value="10"/>
-   </properties>
-  </object>
-  <object type="spawn" x="4068" y="366" width="456" height="132">
-   <properties>
-    <property name="dist" value="400"/>
-    <property name="height" value="4"/>
-    <property name="max" value="1"/>
-    <property name="min" value="1"/>
-    <property name="name" value="goblin"/>
-    <property name="scale" value="0.08 0.13"/>
-    <property name="skin" value="zauberer"/>
-    <property name="width" value="10"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

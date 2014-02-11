@@ -36,9 +36,9 @@ public class Player extends Creature {
     private float vY_MAX = 220;
 
     // stats
-    private int maxHP = 100;
-    private int actHP;
-    private int atckDmg = 25;
+    private float maxHP = 100;
+    private float actHP;
+    private float atckDmg = 25;
 
     // helper attributes
     private Vector2 vec2 = new Vector2();
@@ -139,7 +139,7 @@ public class Player extends Creature {
     public void attack() {
         for (Enemy e : map.getEnemies()) {
             if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
-                e.setHealth(e.getHealth()-atckDmg);
+                e.setDamage(atckDmg);
                 System.out.println("atccking enemy " + e.getHealth());
             }
 
@@ -458,15 +458,15 @@ public class Player extends Creature {
 //    }
 
 
-    public int getMaxHP() {
+    public float getMaxHP() {
         return maxHP;
     }
 
-    public int getActualHP() {
+    public float getActualHP() {
         return actHP;
     }
 
-    public void setActualHP(int hp) {
+    public void setActualHP(float hp) {
         if(actHP > 0)
             actHP = hp;
         if(actHP <= 0 && alive)
@@ -482,6 +482,10 @@ public class Player extends Creature {
 
     public void setMaxHP(int hp) {
         maxHP = hp;
+    }
+
+    public void setDamage(float dmg){
+        setActualHP(actHP - dmg);
     }
 
     public IGameInputController getInput() {
