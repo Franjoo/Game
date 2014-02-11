@@ -223,8 +223,8 @@ public class Player extends Creature {
 
     private void nextToItem() {
         for(Item item : map.getItems()){
-            if(item.getX() > x - 8 && item.getX() < x + 8){
-                if(item.getY() > y - 8 && item.getY() < y + 8){
+            if(item.getX() > x - 12 && item.getX() < x + 12){
+                if(item.getY() > y - 12 && item.getY() < y + 12){
                     collectItem(item);
                 }
             }
@@ -233,7 +233,7 @@ public class Player extends Creature {
 
     private void collectItem(Item item) {
         if(item instanceof HealthPotion)
-            actHP += 8;
+            setActualHP(actHP + 8);
         map.getItems().removeValue(item, true);
     }
 
@@ -286,7 +286,7 @@ public class Player extends Creature {
             state.addAnimation(0, "idle", true, 0);
         }
 
-        if(input.getState() == State.RUNNING && !state.getCurrent(0).toString().equals("move")){
+        if(input.getState() == State.RUNNING && state.getCurrent(0).toString().equals("idle")){
             state.setAnimation(0, "move", false);
             state.addAnimation(0, "move", true, 0);
         }
@@ -514,8 +514,11 @@ public class Player extends Creature {
     }
 
     public void setActualHP(float hp) {
-        if(actHP > 0)
-            actHP = hp;
+        if(actHP > 0) {
+            if(actHP + hp > maxHP)
+                actHP = maxHP;
+            else actHP = hp;
+        }
         if(actHP <= 0 && alive)
             die();
     }
