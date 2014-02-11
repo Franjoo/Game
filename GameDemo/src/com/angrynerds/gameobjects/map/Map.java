@@ -11,6 +11,7 @@ import com.angrynerds.gameobjects.Item;
 import com.angrynerds.gameobjects.Player;
 import com.angrynerds.gameobjects.TmxMapObject;
 import com.angrynerds.util.C;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -108,6 +109,9 @@ public class Map {
     // texture atlas
     private TextureAtlas atlas;
 
+    // loading screen
+    private Texture texture_loading;
+
     // tmx map path
     private String mapPath = "maps/map_05.tmx";
 
@@ -122,9 +126,17 @@ public class Map {
      */
     public Map(World world, Player player) {
         this.player = player;
-//        this.world = world;
 
         camera = world.getCamera();
+        SpriteBatch batch = new SpriteBatch();
+        // loading texture
+        texture_loading = new Texture(Gdx.files.internal("ui/menus/main/loadingScreen.png"));
+
+        // draw loading screen
+        batch.begin();
+        batch.draw(texture_loading,0,0);
+        batch.end();
+
 
         init();
 

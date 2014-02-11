@@ -33,7 +33,7 @@ import java.awt.event.ActionListener;
  * Time: 16:26
  * To change this template use File | Settings | File Templates.
  */
-public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
+public class MainMenu extends AbstractScreen implements TweenAccessor<Sound> {
 
     private GameController game;
 
@@ -54,9 +54,6 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
     private float volume;
     private Sound sound_title;
 
-    // loading screen
-    private Texture texture_loading;
-
 
     public MainMenu(GameController gameController) {
         game = gameController;
@@ -70,7 +67,6 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
 
         //Table.drawDebug(stage);
         manager.update(v);
-
 
         batch.begin();
         batch.draw(bg, 0, 0, stage.getWidth(), stage.getHeight());
@@ -136,9 +132,6 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
                 .repeatYoyo(-1, 0)
                 .start(manager);
 
-       // loading screen
-        texture_loading = new Texture(Gdx.files.internal("ui/menus/main/loadingScreen.png"));
-
     }
 
     @Override
@@ -157,12 +150,6 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
 
     @Override
     public void hide() {
-        // draw loading screen
-        batch.begin();
-        batch.draw(texture_loading,0,0);
-        batch.end();
-
-
         sound_title.dispose();
         bg.dispose();
         stage.dispose();
