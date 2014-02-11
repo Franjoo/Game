@@ -1,6 +1,8 @@
 package com.angrynerds.game.screens.play;
 
 import com.angrynerds.util.C;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -21,6 +23,7 @@ public class PlayRenderer {
     public PlayRenderer(PlayController playController, SpriteBatch batch) {
         this.playController = playController;
         this.batch = batch;
+
     }
 
     /**

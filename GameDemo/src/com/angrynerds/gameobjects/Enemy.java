@@ -110,13 +110,6 @@ public class Enemy extends Creature {
     public void render(SpriteBatch batch) {
         super.render(batch);
 
-        // draw with transparency
-//        batch.begin();
-//        Color c = batch.getColor();
-//        batch.setColor(c.r, c.g, c.b, 0.2f);
-//        skeletonRenderer.draw(batch, skeleton);
-//        batch.end();
-
     }
 
 

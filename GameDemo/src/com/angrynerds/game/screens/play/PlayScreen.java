@@ -28,9 +28,6 @@ public class PlayScreen extends AbstractScreen {
         // allow static access, note: ugly code practice
         batch = super.getSpriteBatch();
 
-
-        Sprite s;
-        init();
     }
 
     /**

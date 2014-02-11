@@ -23,6 +23,7 @@ public class PlayController {
      * creates an new PlayController
      */
     public PlayController() {
+        System.out.println("playcontreoller craerted");
         init();
     }
 
