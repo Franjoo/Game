@@ -16,9 +16,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -59,6 +61,7 @@ public class Map {
     private AStarPathFinder pathFinder;
 
     private static final boolean SHOW_COLLISION_TILES = false;
+    private static final boolean RENDER_PATHES = true;
 
     private Texture gridTexture;
     private Texture collisionShapesTexture;
@@ -69,6 +72,12 @@ public class Map {
     private OrthogonalTiledMapRenderer renderer;
     private OrthogonalTiledMapRenderer fixedRenderer;
     private int[] renderLayers;
+    private ShapeRenderer shapeRenderer = new ShapeRenderer();
+
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
     private OrthographicCamera camera;
     private OrthographicCamera fixedCamera;
     private Player player;
@@ -344,6 +353,21 @@ public class Map {
         }
     }
 
+    private void renderPathes(){
+        camera.update();
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+        for(int i = 0; i< enemies.size;i++){
+
+            shapeRenderer.setColor(enemies.get(i).r,enemies.get(i).g,enemies.get(i).b, 1);
+
+        enemies.get(i).renderPath(shapeRenderer);
+
+        }
+        shapeRenderer.end();
+    }
+
     /**
      * flips the y postition of the assigned rectangles
      *
@@ -452,7 +476,7 @@ public class Map {
 
         // shows the collision tiles
         if (SHOW_COLLISION_TILES) batch.draw(collisionTilesTexture, 0, 0);
-
+        if(RENDER_PATHES) renderPathes();
         batch.end();
 
     }

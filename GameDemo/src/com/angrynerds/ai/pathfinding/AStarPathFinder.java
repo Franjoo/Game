@@ -27,7 +27,7 @@ public class AStarPathFinder {
     private SortedList openList = new SortedList();
 
 
-    private AStarPathFinder(Map map, int maxSearchDistance,
+    public AStarPathFinder(Map map, int maxSearchDistance,
                             boolean allowDiagMovement, AStarHeuristic heuristic) {
         this.heuristic = heuristic;
         this.map = map;
@@ -62,13 +62,14 @@ public class AStarPathFinder {
 //            return null;
 //        }
         if (map.isSolid(tx * map.getTileWidth(), ty * map.getTileHeight())) {
-
+            System.out.println("no path");
             return null;
 
         }
-        if (tx < 0 || ty < 0)
+        if (tx < 0 || ty < 0){
+            System.out.println("no path");
             return null;
-
+        }
         /** Init A Star */
         nodes[sx][sy].setDepth(0);
         nodes[sx][sy].setCost(0);
@@ -133,10 +134,10 @@ public class AStarPathFinder {
 
         }
 
-        if (nodes[tx][ty].parent == null)
-            return null;
+        if (nodes[tx][ty].parent == null){
 
-
+            System.out.println("no path"); return null;
+        }
         Node target = nodes[tx][ty];
         while (target != nodes[sx][sy]) {
             path.prependStep(target.getX(), target.getY());
@@ -162,6 +163,8 @@ public class AStarPathFinder {
 
         //return true;
     }
+
+
 
 
     private boolean inOpenList(Object o) {

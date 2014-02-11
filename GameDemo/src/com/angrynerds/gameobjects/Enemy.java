@@ -2,6 +2,7 @@ package com.angrynerds.gameobjects;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
+import com.angrynerds.ai.pathfinding.ClosestHeuristic;
 import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.items.HealthPotion;
@@ -9,7 +10,14 @@ import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
@@ -44,6 +52,12 @@ public class Enemy extends Creature {
     private Map map;
     private Player player;
 
+    // colors for Path
+    public float r = (float)Math.random();
+    public float g = (float)Math.random();
+    public float b = (float)Math.random();
+
+
     // stats
     private final float minDmg = 1.2f;
     private final float maxDmg = 5.1f;
@@ -55,13 +69,14 @@ public class Enemy extends Creature {
 
     // animation
     private AnimationState state;
-    private AnimationListener animationListener;
+   // private AnimationListener animationListener;
 
     // sound
     private Sound sound;
 
     // global flags
     private boolean alive = true;
+    private ShapeRenderer shapeRenderer = new ShapeRenderer();
 
 
     public Enemy(String name, String path, String skin, Player player, float scale) {
@@ -85,19 +100,36 @@ public class Enemy extends Creature {
 
 
         state = new AnimationState(stateData);
-        animationListener = new AnimationListener();
-        state.addListener(animationListener);
+       // animationListener = new AnimationListener();
+      //  state.addListener(animationListener);
         state.addAnimation(0, "move", true, 0);
     }
 
+    public void renderPath(ShapeRenderer shapeRenderer){
 
-    public void init(float x, float y) {
+
+        if(path != null){
+        for (int i = 0; i < path.getLength()-1 ; i++) {
+           float x1 =path.getStep(i).getX() * map.getTileWidth();
+           float x2 =  path.getStep(i + 1).getX() * map.getTileWidth();
+           float y1 =   path.getStep(i).getY() * map.getTileHeight();
+            float y2 =  path.getStep(i + 1).getY() * map.getTileHeight();
+            shapeRenderer.line(x1,y1,x2,y2);
+        }
+
+  
+        }
+
+
+    }
+
+        public void init(float x, float y) {
         this.x = x;
         this.y = y;
 
         map = Map.getInstance();
-        pathFinder = AStarPathFinder.getInstance();
-
+       // pathFinder = AStarPathFinder.getInstance();
+        pathFinder = new AStarPathFinder(map,50,true,new ClosestHeuristic());
         updatePositions();
         path = getNewPath();
         ranX = -1 + (int) (+(Math.random() * 3));
@@ -109,6 +141,8 @@ public class Enemy extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
+
+
 
     }
 
@@ -200,6 +234,10 @@ public class Enemy extends Creature {
     }
 
 
+
+
+
+
     public void moveToPlayer(float deltatime) {
 
         // todo hier steckt wird der fehler stecken, der das flackern verursacht
@@ -272,43 +310,43 @@ public class Enemy extends Creature {
         map.getEnemies().removeValue(this, true);
     }
 
-    class AnimationListener implements AnimationState.AnimationStateListener {
-
-        // todo SOUNDS!
-
-        @Override
-        public void event(int trackIndex, Event event) {
-        }
-
-        @Override
-        public void complete(int trackIndex, int loopCount) {
-            String completedState = state.getCurrent(trackIndex).toString();
-            switch (completedState) {
-                case "die":
-                    System.out.println("killed enemy");
-                    break;
-            }
-        }
-
-        @Override
-        public void start(int trackIndex) {
-            String completedState = state.getCurrent(trackIndex).toString();
-            switch (completedState) {
-                case "die":
-                    System.out.println("die animation started");
-                    break;
-            }
-        }
-
-        @Override
-        public void end(int trackIndex) {
-            String completedState = state.getCurrent(trackIndex).toString();
-            switch (completedState) {
-                case "die":
-                    System.out.println("die animation ended");
-                    break;
-            }
-        }
-    }
-
+//    class AnimationListener implements AnimationState.AnimationStateListener {
+//
+//        // todo SOUNDS!
+//
+//        @Override
+//        public void event(int trackIndex, Event event) {
+//        }
+//
+//        @Override
+//        public void complete(int trackIndex, int loopCount) {
+//            String completedState = state.getCurrent(trackIndex).toString();
+//            switch (completedState) {
+//                case "die":
+//                    System.out.println("killed enemy");
+//                    break;
+//            }
+//        }
+//
+//        @Override
+//        public void start(int trackIndex) {
+//            String completedState = state.getCurrent(trackIndex).toString();
+//            switch (completedState) {
+//                case "die":
+//                    System.out.println("die animation started");
+//                    break;
+//            }
+//        }
+//
+//        @Override
+//        public void end(int trackIndex) {
+//            String completedState = state.getCurrent(trackIndex).toString();
+//            switch (completedState) {
+//                case "die":
+//                    System.out.println("die animation ended");
+//                    break;
+//            }
+//        }
+//    }
+//
 }
