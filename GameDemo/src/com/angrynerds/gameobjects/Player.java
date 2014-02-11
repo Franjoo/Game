@@ -515,7 +515,7 @@ public class Player extends Creature {
 
     public void setActualHP(float hp) {
         if(actHP > 0) {
-            if(actHP + hp > maxHP)
+            if(hp > maxHP)
                 actHP = maxHP;
             else actHP = hp;
         }
