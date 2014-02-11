@@ -60,6 +60,10 @@ public class SpawnController {
             // name (type) of enemy
             String name = p.get("name").toString();
 
+            // path (boss)
+            String path = name;
+            if(p.containsKey("path")) path = p.get("path").toString();
+
             // skin of enemy
             String skin = null;
             if (p.containsKey("skin")) skin = p.get("skin").toString();
@@ -75,7 +79,7 @@ public class SpawnController {
                     scale = scaleMin + ((float) (Math.random() * (scaleMax - scaleMin)));
                 }
 
-                Enemy enemy = new Enemy(name, "spine/" + name + "/", skin, map.getPlayer(), scale);
+                Enemy enemy = new Enemy(name, "spine/" + path + "/", skin, map.getPlayer(), scale);
 
                 float _x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
                 float _y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
