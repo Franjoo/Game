@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * Date: 10.02.14
  * Time: 22:37
  */
-public class Item extends Actor{
+public class Item {
 
     public TextureRegion region;
     private float x,y;
@@ -35,4 +35,11 @@ public class Item extends Actor{
 
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 }

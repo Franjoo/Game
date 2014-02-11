@@ -54,6 +54,9 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
     private float volume;
     private Sound sound_title;
 
+    // loading screen
+    private Texture texture_loading;
+
 
     public MainMenu(GameController gameController) {
         game = gameController;
@@ -133,6 +136,9 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
                 .repeatYoyo(-1, 0)
                 .start(manager);
 
+       // loading screen
+        texture_loading = new Texture(Gdx.files.internal("ui/menus/main/loadingScreen.png"));
+
     }
 
     @Override
@@ -151,6 +157,11 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound>{
 
     @Override
     public void hide() {
+        // draw loading screen
+        batch.begin();
+        batch.draw(texture_loading,0,0);
+        batch.end();
+
 
         sound_title.dispose();
         bg.dispose();

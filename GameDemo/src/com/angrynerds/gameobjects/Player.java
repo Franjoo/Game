@@ -2,11 +2,13 @@ package com.angrynerds.gameobjects;
 
 import com.angrynerds.game.collision.Detector;
 import com.angrynerds.gameobjects.creatures.Creature;
+import com.angrynerds.gameobjects.items.HealthPotion;
 import com.angrynerds.gameobjects.map.Map;
 import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.C;
 import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -48,6 +50,10 @@ public class Player extends Creature {
     // animation
     private AnimationState state;
     private AnimationListener animationListener;
+
+    // sound_sword
+    private Sound sound_sword;
+    private Sound sound_dash;
 
     private boolean dashRight;
     private boolean alive = true;
@@ -92,6 +98,10 @@ public class Player extends Creature {
 
 
         setAnimationStates();
+
+        //*** sounds
+        sound_sword = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/lightsaber.mp3"));
+        sound_dash = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/dash.wav"));
 
     }
 
@@ -144,6 +154,8 @@ public class Player extends Creature {
             }
 
         }
+
+        sound_sword.play();
         //actHP -= 50;
     }
 
@@ -154,9 +166,8 @@ public class Player extends Creature {
             // set v in x and y direction
             vX = input.get_stickX() * deltaTime * vX_MAX;
             vY = input.get_stickY() * deltaTime * vY_MAX;
-            if(vX != 0 && vY != 0){
-                input.setState(State.RUNNING);
-            }
+            if(vX != 0 && vY != 0 && input.getState() == State.IDLE)     input.setState(State.RUNNING);
+            if(vX == 0 && vY == 0 && input.getState() == State.RUNNING)  input.setState(State.IDLE);
 
             // set collision position
             Vector2 p = getCollisionPosition();
@@ -166,13 +177,13 @@ public class Player extends Creature {
             if (vX == 0) skeleton.setFlipX(flipped);
             else skeleton.setFlipX(vX < 0);
 
-        // map border
-        if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
-        if(y <= 0) y = 0;
+            // map border
+            if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
+            if(y <= 0) y = 0;
 
-        // flip skeleton
-        if (vX == 0) skeleton.setFlipX(flipped);
-        else skeleton.setFlipX(vX < 0);
+            // flip skeleton
+            if (vX == 0) skeleton.setFlipX(flipped);
+            else skeleton.setFlipX(vX < 0);
 
             setCurrentState();
 
@@ -184,6 +195,8 @@ public class Player extends Creature {
                 x = p.x;
             }
             y = p.y;
+
+            nextToItem();
 
 
             // apply and update skeleton
@@ -206,6 +219,22 @@ public class Player extends Creature {
         state.update(deltaTime);
 
         state.apply(skeleton);
+    }
+
+    private void nextToItem() {
+        for(Item item : map.getItems()){
+            if(item.getX() > x - 8 && item.getX() < x + 8){
+                if(item.getY() > y - 8 && item.getY() < y + 8){
+                    collectItem(item);
+                }
+            }
+        }
+    }
+
+    private void collectItem(Item item) {
+        if(item instanceof HealthPotion)
+            actHP += 8;
+        map.getItems().removeValue(item, true);
     }
 
     private float dash(float deltaTime) {
@@ -242,6 +271,8 @@ public class Player extends Creature {
                 else dashRight = false;
                 state.setAnimation(0, "dash", false);
                 state.addAnimation(0, "idle", true, 0);
+                sound_dash.play();
+
             }
 
             if ((input.getState() == State.DEAD) && !state.getCurrent(0).toString().equals("die")){
@@ -250,14 +281,17 @@ public class Player extends Creature {
         }
 
         if(input.getState() == State.IDLE && !state.getCurrent(0).toString().equals("idle")) {
-            state.setAnimation(0, "idle", false);
+            if(state.getCurrent(0).toString().equals("move"))
+                state.setAnimation(0, "idle", false);
+            state.addAnimation(0, "idle", true, 0);
         }
 
         if(input.getState() == State.RUNNING && !state.getCurrent(0).toString().equals("move")){
             state.setAnimation(0, "move", false);
+            state.addAnimation(0, "move", true, 0);
         }
 
-        if(input.getState() != State.DEAD)
+        if(input.getState() != State.DEAD && input.getState() != State.RUNNING)
             input.setState(State.IDLE);
 
 

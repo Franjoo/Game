@@ -77,7 +77,6 @@ public class Map {
 
     // item list
     private Array<Item> items;
-    private ItemListener itemListener;
 
     // map properties
     private int numTilesX;
@@ -929,18 +928,10 @@ public class Map {
     }
 
     public void addItem(Item item) {
-        item.addListener(itemListener);
         items.add(item);
     }
 
-    private class ItemListener extends ClickListener{
-        @Override
-        public void clicked(InputEvent event, float x, float y) {
-            items.removeValue((Item) event.getTarget(), true);
-            System.out.println("item removed");
-
-            super.clicked(event, x, y);    //To change body of overridden methods use File | Settings | File Templates.
-        }
+    public Array<Item> getItems() {
+        return items;
     }
-
 }
