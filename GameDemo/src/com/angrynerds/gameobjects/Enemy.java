@@ -3,6 +3,7 @@ package com.angrynerds.gameobjects;
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
 import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.gameobjects.creatures.Creature;
+import com.angrynerds.gameobjects.items.HealthPotion;
 import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -241,11 +242,16 @@ public class Enemy extends Creature {
 
     private void setHealth(float health) {
         this.health = health;
-        if (health <= 0) alive = false;
+        if (health <= 0){
+            alive = false;
+            map.addItem(new HealthPotion(x,y));
+        }
+
     }
 
     public void setDamage(float dmg) {
-        setHealth(health - dmg);
+        if(alive)
+            setHealth(health - dmg);
     }
 
     class AnimationListener implements AnimationState.AnimationStateListener {
