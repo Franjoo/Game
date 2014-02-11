@@ -1,10 +1,12 @@
 package com.angrynerds.gameobjects;
 
+import aurelienribon.tweenengine.TweenAccessor;
 import com.angrynerds.ai.pathfinding.AStarPathFinder;
 import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -48,10 +50,14 @@ public class Enemy extends Creature {
 
     private float health = 100f;
     private float nextAttackTime = -1;
+    private float alpha = 1;
 
     // animation
     private AnimationState state;
     private AnimationListener animationListener;
+
+    // sound
+    private Sound sound;
 
     // global flags
     private boolean alive = true;
@@ -62,6 +68,8 @@ public class Enemy extends Creature {
 
         this.player = player;
         this.health = 100;
+
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/attack_0.wav"));
 
     }
 
@@ -130,7 +138,7 @@ public class Enemy extends Creature {
 //
 //            System.out.println("dist: " + dist);
 
-            if (path != null && path.getLength() >= 2)  {
+            if (path != null && path.getLength() >= 2) {
                 moveToPlayer(deltatime);
 
                 // append move animation
@@ -159,6 +167,15 @@ public class Enemy extends Creature {
                 && !state.getCurrent(0).getAnimation().getName().equals("die")) {
 
             state.setAnimation(0, "die", false);
+
+            // fade enemy out when dead
+        } else {
+            alpha -= 0.005;
+            Color c = skeleton.getColor();
+            skeleton.getColor().set(c.r, c.g, c.b, alpha);
+
+            // remove from map
+            if (alpha <= 0) removeFromMap();
         }
 
 
@@ -207,7 +224,7 @@ public class Enemy extends Creature {
 
             }
 
-            if (yTilePosition != (int)nextStep.y) {
+            if (yTilePosition != (int) nextStep.y) {
                 y = (y + velocity.y * deltatime);
             }
 
@@ -231,6 +248,10 @@ public class Enemy extends Creature {
 
             // refresh attack timer
             nextAttackTime = cooldown;
+
+            // sound
+            sound.play();
+
         }
     }
 
@@ -246,6 +267,10 @@ public class Enemy extends Creature {
 
     public void setDamage(float dmg) {
         setHealth(health - dmg);
+    }
+
+    private void removeFromMap() {
+        map.getEnemies().removeValue(this, true);
     }
 
     class AnimationListener implements AnimationState.AnimationStateListener {

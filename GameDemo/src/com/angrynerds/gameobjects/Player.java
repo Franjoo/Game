@@ -7,6 +7,7 @@ import com.angrynerds.input.IGameInputController;
 import com.angrynerds.util.C;
 import com.angrynerds.util.State;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -48,6 +49,10 @@ public class Player extends Creature {
     // animation
     private AnimationState state;
     private AnimationListener animationListener;
+
+    // sound_sword
+    private Sound sound_sword;
+    private Sound sound_dash;
 
     private boolean dashRight;
     private boolean alive = true;
@@ -92,6 +97,10 @@ public class Player extends Creature {
 
 
         setAnimationStates();
+
+        //*** sounds
+        sound_sword = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/lightsaber.mp3"));
+        sound_dash = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/dash.wav"));
 
     }
 
@@ -144,6 +153,8 @@ public class Player extends Creature {
             }
 
         }
+
+        sound_sword.play();
         //actHP -= 50;
     }
 
@@ -239,6 +250,8 @@ public class Player extends Creature {
                 else dashRight = false;
                 state.setAnimation(0, "dash", false);
                 state.addAnimation(0, "move", true, 0);
+
+                sound_dash.play();
             }
 
             if ((input.getState() == State.DEAD)&& !state.getCurrent(0).toString().equals("die")){
