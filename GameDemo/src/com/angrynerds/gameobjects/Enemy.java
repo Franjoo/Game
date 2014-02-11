@@ -68,8 +68,8 @@ public class Enemy extends Creature {
     private void setAnimationStates() {
 
         AnimationStateData stateData = new AnimationStateData(skeletonData);
-        stateData.setMix("move", "attack", 0.6f);
-        stateData.setMix("attack", "move", 0.6f);
+        stateData.setMix("move", "attack", 0.2f);
+        stateData.setMix("attack", "move", 0.2f);
         stateData.setMix("attack", "die", 0.5f);
         stateData.setMix("move", "die", 0.2f);
 
@@ -194,12 +194,12 @@ public class Enemy extends Creature {
             velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
 
 
-            if ((int) x != nextStep.x) {
+            if ((int) x != (int) nextStep.x) {
                 x = x + velocity.x * deltatime;
 
             }
 
-            if (yTilePosition != nextStep.y) {
+            if (yTilePosition != (int)nextStep.y) {
                 y = (y + velocity.y * deltatime);
             }
 

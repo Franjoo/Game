@@ -232,7 +232,7 @@ public class Map {
         mapObjects = createMapObjects();
 
         // item list
-        items = new Array<>();
+        items = new Array<Item>();
 
         // set render layers
         setRenderLayers();
@@ -422,7 +422,7 @@ public class Map {
             }
         }
 
-        for(Item i: items) i.render(batch);
+        for(Item i: items) if(i != null) i.render(batch);
 
         // render foreground
         renderForeground(batch);
@@ -496,7 +496,7 @@ public class Map {
         player.update(deltaTime);
 
         // update items
-        for(Item i : items) i.update(deltaTime);
+        for(Item i : items) if(i != null) i.update(deltaTime);
 
         // update spawnController
         spawnController.update(deltaTime);
