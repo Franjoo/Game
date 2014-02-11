@@ -217,7 +217,6 @@ public class Player extends Creature {
         }
     }
 
-
     private void setCurrentState() {
         if(state.getCurrent(0).toString().equals("move") || state.getCurrent(0).toString().equals("idle")){
             if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
@@ -252,6 +251,7 @@ public class Player extends Creature {
 
 
     }
+
 
 
     /**
@@ -493,6 +493,41 @@ public class Player extends Creature {
     public IGameInputController getInput() {
         return input;
     }
+
+    /*
+    private void setCurrentState() {
+        if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
+            state.setAnimation(0, "jump", false);
+            state.addAnimation(0, "move", true, 0);
+//            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
+//            state.addAnimation(1, "move", false, 0);
+        }
+
+
+        if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
+            attack();
+            state.setAnimation(0, "attack_1", false);
+            state.addAnimation(0, "move", true, 0);
+        }
+
+        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            if(input.getState() == State.DASHINGRIGHT)
+                dashRight = true;
+            else dashRight = false;
+            state.setAnimation(0, "dash", false);
+            state.addAnimation(0, "move", true, 0);
+        }
+
+        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            state.setAnimation(0, "die", false);
+        }
+
+        if(input.getState() != State.DEAD)
+            input.setState(State.IDLE);
+
+
+    }
+    */
 
     class AnimationListener implements AnimationState.AnimationStateListener {
 

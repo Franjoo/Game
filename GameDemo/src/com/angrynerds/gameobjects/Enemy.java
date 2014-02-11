@@ -5,6 +5,7 @@ import com.angrynerds.ai.pathfinding.Path;
 import com.angrynerds.gameobjects.creatures.Creature;
 import com.angrynerds.gameobjects.map.Map;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.esotericsoftware.spine.AnimationState;
@@ -100,12 +101,12 @@ public class Enemy extends Creature {
     public void render(SpriteBatch batch) {
         super.render(batch);
 
-//        draw with transparency
-//        batch.begin();
-//        Color c = batch.getColor();
-//        batch.setColor(c.r, c.g, c.b, 0.2f);
-//        skeletonRenderer.draw(batch, skeleton);
-//        batch.end();
+        // draw with transparency
+        batch.begin();
+        Color c = batch.getColor();
+        batch.setColor(c.r, c.g, c.b, 0.2f);
+        skeletonRenderer.draw(batch, skeleton);
+        batch.end();
 
     }
 
@@ -122,7 +123,14 @@ public class Enemy extends Creature {
             updatePositions();
 
             // enemy is far from player (move)
-            if (path != null && path.getLength() >= 2) {
+//
+//            final float x_d = player.getX() - x;
+//            final float y_d = player.getY() - y;
+//            final float dist = (float) Math.sqrt(x_d * x_d + y_d * y_d);
+//
+//            System.out.println("dist: " + dist);
+
+            if (path != null && path.getLength() >= 2)  {
                 moveToPlayer(deltatime);
 
                 // append move animation
