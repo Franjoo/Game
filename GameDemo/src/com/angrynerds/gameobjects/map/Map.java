@@ -124,7 +124,7 @@ public class Map {
     private Texture texture_loading;
 
     // tmx map path
-    private String mapPath = "maps/map_05.tmx";
+    private String mapPath = "maps/map_05-col.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
@@ -784,7 +784,7 @@ public class Map {
                         float qW = Float.parseFloat(objects.get(j).get("width").toString());
                         float qH = Float.parseFloat(objects.get(j).get("height").toString());
 
-                        co.add(new Rectangle(qX, mapHeight - qY - qH, qW, qH));
+                        co.add(flipY(new Rectangle(qX, mapHeight - qY - qH, qW, qH)));
                     }
                 }
             }
@@ -807,6 +807,7 @@ public class Map {
                 ctl.add((TiledMapTileLayer) layers.get(i));
             }
         }
+            collisionTileLayers = ctl;
         return ctl;
     }
 

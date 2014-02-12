@@ -64,6 +64,8 @@ public class Player extends Creature {
     // input
     private IGameInputController input;
     public int attackFlag = 0;
+    boolean upleft,downleft,upright,downright;
+
 
 
     /**
@@ -88,8 +90,8 @@ public class Player extends Creature {
         map = Map.getInstance();
         detector = Detector.getInstance();
 
-        x = 500;
-        y = 150;
+        x = 0;
+        y = 0;
 
         actHP = maxHP;
 
@@ -168,9 +170,10 @@ public class Player extends Creature {
             vY = input.get_stickY() * deltaTime * vY_MAX;
             if(vX != 0 && vY != 0 && input.getState() == State.IDLE)     input.setState(State.RUNNING);
             if(vX == 0 && vY == 0 && input.getState() == State.RUNNING)  input.setState(State.IDLE);
-
+            System.out.println(vX + "       "+vY);
             // set collision position
-            Vector2 p = getCollisionPosition();
+            System.out.println("1. vX = " + x + " vY = " + y);
+             Vector2 p = getCollisionPosition();
 
 
             // flip skeleton
@@ -186,15 +189,17 @@ public class Player extends Creature {
             else skeleton.setFlipX(vX < 0);
 
             setCurrentState();
-
+           // getCollisionPosition(vX,vY,deltaTime);
             // update position attributes
             if(state.getCurrent(0).toString().equals("dash")){
                 x += dash(deltaTime);
             }
-            else{
-                x = p.x;
-            }
-            y = p.y;
+           else{
+              x = p.x; y = p.y;
+                System.out.println("1. vX = " + x + " vY = " + y);
+               // getCollisionPosition(deltaTime);
+           }
+
 
             nextToItem();
 
@@ -297,7 +302,20 @@ public class Player extends Creature {
 
     }
 
+    public void getMyCorners(float pX,float pY){
 
+        // calculate corner coordinates
+        float downY=(float) Math.floor((pY)-map.getHeight()/map.getTileHeight());
+        float upY=(float) Math.floor((pY+map.getTileHeight())/map.getTileHeight());
+        float leftX=(float) Math.floor((pX)/map.getTileWidth());
+        float rightX=(float) Math.floor((pX+map.getTileWidth())/map.getTileWidth());
+
+        // check if the in the corner is a wall
+        upleft=!map.isSolid(leftX, upY);
+        downleft=!map.isSolid(leftX, downY);
+        upright=!map.isSolid(rightX,upY);
+        downright=!map.isSolid(rightX, downY);
+    }
 
     /**
      * detects whether the player collides with a solid
@@ -306,23 +324,59 @@ public class Player extends Creature {
      */
     private Vector2 getCollisionPosition() {
 
-        /* --- COLLISION DETECTION --- */
 
-        // helper variables
-        float qX = x + vX;
-        float qY = y + vY;
+       float dx = x + vX;
+       float dy = y + vY;
+//
+        float nX = x;
+        float nY = y;
+// System.out.println("1. nX = " + nX + " nY = " + nY);
 
-        float nX;
-        float nY;
+//        _pt.set(getTileCollisionPosition(x, y, vX, vY));
+//        nX = _pt.x;
+//        nY = _pt.y;
+//
+//
+//        vec2.set(nX, nY);
+//        return vec2;
 
+        int xtile=(int) ( (dx) /map.getTileWidth());
+        int ytile=(int) ( (dx) /map.getTileHeight());
+        System.out.println( map.getTileHeight());
+        getMyCorners(x, dy);
 
-        _pt.set(getTileCollisionPosition(x, y, vX, vY));
-        nX = _pt.x;
-        nY = _pt.y;
+        if(vY>0){
+            if(upleft&&upright){
+                nY = dy;
 
+            }else{
+               nY = ( (ytile)*map.getTileHeight()-map.getTileHeight());
+            }
+        }else if(vY<0){
+            if(downleft&&downright){
+               nY = (dy);
+            }else{
+                nY =( (ytile)*map.getTileHeight()+1);
+            }
+        }
 
+        getMyCorners(dx,y);
+        if(vX<0){
+            if(downleft && upleft){
+                nX= dx;
+            }else{
+                nX= ( (xtile+1)*map.getTileWidth());
+            }
+        }else if(vX>0){
+            if(downright && upright){
+               nX = dx;
+            }else{
+               nX =  (xtile+1)*map.getTileWidth()-map.getTileWidth()-1;
+            }
+        }
+     //   System.out.println("2. nX = " + nX + " nY = " + nY);
         vec2.set(nX, nY);
-        return vec2;
+      return vec2;
     }
 
 
@@ -355,6 +409,7 @@ public class Player extends Creature {
                 vY = 0;
             }
         }
+
     }
 
     private Vector2 getObjectCollisionPosition(float pX, float pY, float vX, float vY) {

@@ -4,6 +4,7 @@ import com.angrynerds.gameobjects.creatures.Creature;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 
@@ -39,6 +40,9 @@ public class Detector {
     private int tileHeight;
     private int mapWidth;
     private int mapHeight;
+    private TiledMapTileLayer.Cell FREE_TILE;
+    private TiledMapTileLayer collision;
+
 
     // map lists
     private Array<TiledMapTileLayer> collisionTileLayers;
@@ -65,8 +69,8 @@ public class Detector {
         mapWidth = numTilesX * tileWidth;
         mapHeight = numTilesY * tileHeight;
 
-        collisionTileLayers = getCollisionTileLayers();
-
+        collision = getCollisionTileLayers();
+        FREE_TILE = collision.getCell(0, 0);
 
     }
 
@@ -77,15 +81,13 @@ public class Detector {
      * @param y position y
      * @return whether point collides with solid tile or not
      */
-    public boolean isSolid(final float x, final float y) {
+    public boolean isSolid(final float x, final float y) { 
+            if(collision.getCell((int) x, (int) y) == null)  {
 
-        for (int i = 0; i < collisionTileLayers.size; i++) {
-            TiledMapTileLayer.Cell cell = collisionTileLayers.get(i).getCell((int) (x) / tileWidth, (int) (y) / tileHeight);
-            if (cell != null) {
-                return true;
+                return false;
             }
-        }
-        return false;
+        System.err.print("x " +x +    "y " + y  );
+        return true;
     }
 
     /**
@@ -94,13 +96,13 @@ public class Detector {
      * <p/>
      * note: the name of a collision tiled map tile layer starts with $c and must not contain a tmx object
      */
-    private Array<TiledMapTileLayer> getCollisionTileLayers() {
-        Array<TiledMapTileLayer> ctl = new Array<TiledMapTileLayer>();
+    private TiledMapTileLayer getCollisionTileLayers() {
+       TiledMapTileLayer ctl = new TiledMapTileLayer(0,0,0,0);
 
         MapLayers layers = tiledMap.getLayers();
         for (int i = 0; i < layers.getCount(); i++) {
             if (layers.get(i).getName().startsWith("$c") && layers.get(i).getObjects().getCount() == 0) {
-                ctl.add((TiledMapTileLayer) layers.get(i));
+                ctl = (TiledMapTileLayer) layers.get(i);
             }
         }
         return ctl;

@@ -107,7 +107,7 @@ public class Enemy extends Creature {
 
     public void renderPath(ShapeRenderer shapeRenderer){
 
-
+        shapeRenderer.rect(x,y,map.getTileWidth(),map.getTileHeight());
         if(path != null){
         for (int i = 0; i < path.getLength()-1 ; i++) {
            float x1 =path.getStep(i).getX() * map.getTileWidth();
@@ -166,7 +166,7 @@ public class Enemy extends Creature {
 //
 //            System.out.println("dist: " + dist);
 
-            if (path != null && path.getLength() >= 2) {
+            if (path != null && path.getLength() >= 1) {
                 moveToPlayer(deltatime);
 
                 // append move animation
