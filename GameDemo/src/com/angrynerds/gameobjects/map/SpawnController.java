@@ -11,13 +11,22 @@ public class SpawnController {
     private Array<SpawnObject> objects;
     private Map map;
 
+    // num max enemies
+    private int maxEnemies;
+
     public SpawnController(Map map) {
         this.map = map;
         objects = new Array();
+
+        maxEnemies = 0;
     }
 
     public void add(MapObject mapObject) {
         objects.add(new SpawnObject(mapObject));
+    }
+
+    public int getMaxEnemies(){
+        return maxEnemies;
     }
 
     public void update(float delta) {
@@ -88,6 +97,7 @@ public class SpawnController {
                 enemy.init(_x, _y);
 
                 freeEnemies.add(enemy);
+                maxEnemies++;
             }
 
         }
@@ -95,6 +105,7 @@ public class SpawnController {
         private void spawn() {
             map.getEnemies().addAll(freeEnemies);
         }
+
 
     }
 

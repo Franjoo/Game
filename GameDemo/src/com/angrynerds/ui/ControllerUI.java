@@ -8,13 +8,14 @@ import com.angrynerds.input.UIButtonListener;
 import com.angrynerds.tweens.LifebarAccessor;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * User: Franjo
@@ -22,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
  * Time: 16:05
  * Project: GameDemo
  */
-public class ControllerUI{
+public class ControllerUI {
 
     private UIButtonListener listener;
 
@@ -39,6 +40,7 @@ public class ControllerUI{
     private Stage stage;
 
     private TweenManager manager;
+    private boolean showInputUI = true;
 
     public ControllerUI() {
         init();
@@ -46,7 +48,7 @@ public class ControllerUI{
 
     private void init() {
 
-        stage = new Stage(800,480,true,PlayScreen.getBatch());
+        stage = new Stage(800, 480, true, PlayScreen.getBatch());
 
         lifeBar = new Lifebar("lifebar2_03.png", "lifebar2b_03.png", "lifebar2c_03.png");
         lifeBar.setPosition(10, C.VIEWPORT_HEIGHT - lifeBar.getHeight());
@@ -94,11 +96,11 @@ public class ControllerUI{
 
         leftButton = new MyButton(4, skin.getDrawable("left_up"), skin.getDrawable("left_down"));
         //leftButton.setBounds(midButton.getX()-midButton.getWidth()/1.75f, midButton.getY()-midButton.getHeight()/15, 70, 100);
-         // end button init
+        // end button init
 
-        buttonTable.setBounds(0, 0, leftButton.getWidth()+midButton.getWidth()+rightButton.getWidth(), topButton.getHeight()+midButton.getHeight()+botButton.getHeight());
+        buttonTable.setBounds(0, 0, leftButton.getWidth() + midButton.getWidth() + rightButton.getWidth(), topButton.getHeight() + midButton.getHeight() + botButton.getHeight());
 
-        buttonTable.setPosition(stage.getWidth()-buttonTable.getWidth(), 0);
+        buttonTable.setPosition(stage.getWidth() - buttonTable.getWidth(), 0);
 //        buttonTable.add().width(leftButton.getWidth()).height(topButton.getHeight());
 //        buttonTable.add(topButton).width(topButton.getWidth()).height(topButton.getHeight()).bottom();
 //        buttonTable.add().width(rightButton.getWidth()).height(topButton.getHeight()).row();
@@ -131,7 +133,6 @@ public class ControllerUI{
         buttons[4] = leftButton;
 
 
-
         Gdx.input.setInputProcessor(stage);
 
         // add buttons and touchpad to the stage
@@ -156,13 +157,13 @@ public class ControllerUI{
 
 
     public void update(float deltaTime) {
-        stage.act(deltaTime);
+            stage.act(deltaTime);
 
     }
 
-   // public void render() {
+    // public void render() {
 //        stage.draw();
-   // }
+    // }
 
 
     // getters
@@ -203,13 +204,23 @@ public class ControllerUI{
     }
 
     public void render(float delta) {
-        manager.update(delta);
-        stage.draw();
+            manager.update(delta);
+            stage.draw();
 //        Tween.to(lifeBar, -1 , 1.0f)
 //        .target(-1, -1)
 //        .ease(Bounce.INOUT)
 //        .delay(1.0f)
 //        .repeatYoyo(2, 0.5f)
 //        .start(manager);
+    }
+
+    public void hideInputUI() {
+        stage.getActors().removeValue(touchpad,true);
+        stage.getActors().removeValue(buttonTable,true);
+    }
+
+    public void show() {
+        stage.addActor(touchpad);
+        stage.addActor(buttonTable);
     }
 }

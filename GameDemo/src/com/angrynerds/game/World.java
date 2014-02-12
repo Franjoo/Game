@@ -4,9 +4,15 @@ import com.angrynerds.game.camera.CameraHelper;
 import com.angrynerds.game.screens.play.PlayController;
 import com.angrynerds.gameobjects.map.Map;
 import com.angrynerds.gameobjects.Player;
+import com.angrynerds.input.IGameInputController;
+import com.angrynerds.input.gamepads.X360Gamepad;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * represents the World in which the game is taking place
@@ -23,7 +29,6 @@ public class World {
 
     /**
      * creates a new World
-     *
      */
     public World(PlayController playController) {
         Gdx.app.log(TAG, " created");
@@ -38,8 +43,25 @@ public class World {
      * initializes the World
      */
     private void init() {
+        // input
+        IGameInputController input = playController.getControllerUI().getListener();
+        if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+
+            // xbox 360 controller
+            Array<Controller> controllers = Controllers.getControllers();
+            try {
+                if (controllers != null) {
+                    input = new X360Gamepad(controllers.get(0));
+                    playController.getControllerUI().hideInputUI();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
         // world objects
-        player = new Player(playController.getControllerUI().getListener());
+        player = new Player(input);
         map = new Map(this, player);
 
         // camera

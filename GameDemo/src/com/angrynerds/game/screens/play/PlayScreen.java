@@ -2,6 +2,9 @@ package com.angrynerds.game.screens.play;
 
 import com.angrynerds.game.screens.AbstractScreen;
 import com.angrynerds.ui.ControllerUI;
+import com.angrynerds.ui.TimeDisplay;
+import com.angrynerds.util.C;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,6 +17,9 @@ public class PlayScreen extends AbstractScreen {
     private PlayController playController;
     private PlayRenderer playRenderer;
 
+    // TimeDisplay
+    private TimeDisplay timer;
+    private OrthographicCamera camera;
 
     private static SpriteBatch batch;
 
@@ -36,6 +42,11 @@ public class PlayScreen extends AbstractScreen {
     private void init() {
         playController = new PlayController();
         playRenderer = new PlayRenderer(playController, batch);
+
+        // timer
+        timer = new TimeDisplay(playController);
+        camera = new OrthographicCamera(C.VIEWPORT_WIDTH, C.VIEWPORT_HEIGHT);
+        camera.setToOrtho(true);
 
     }
 
@@ -64,11 +75,20 @@ public class PlayScreen extends AbstractScreen {
     @Override
     public void update(float deltaTime) {
         playController.update(deltaTime);
+
     }
 
     @Override
     public void render(float deltaTime) {
         playRenderer.render(deltaTime);
+
+        // timer
+        batch.setProjectionMatrix(camera.combined);
+        timer.update(deltaTime);
+        timer.render(batch);
+        camera.update();
+
+
     }
 
     @Override

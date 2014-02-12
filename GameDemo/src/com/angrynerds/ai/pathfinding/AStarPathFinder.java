@@ -62,12 +62,12 @@ public class AStarPathFinder {
 //            return null;
 //        }
         if (map.isSolid(tx * map.getTileWidth(), ty * map.getTileHeight())) {
-            System.out.println("no path");
+            System.out.println("no path because solid");
             return null;
 
         }
         if (tx < 0 || ty < 0){
-            System.out.println("no path");
+            System.out.println("no path because out of map");
             return null;
         }
         /** Init A Star */
@@ -136,7 +136,7 @@ public class AStarPathFinder {
 
         if (nodes[tx][ty].parent == null){
 
-            System.out.println("no path"); return null;
+            System.out.println("no path because no path found"); return null;
         }
         Node target = nodes[tx][ty];
         while (target != nodes[sx][sy]) {

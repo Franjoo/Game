@@ -12,6 +12,7 @@ import com.angrynerds.gameobjects.Player;
 import com.angrynerds.gameobjects.TmxMapObject;
 import com.angrynerds.util.C;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -129,6 +130,12 @@ public class Map {
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();
 
+    // background music
+    private Sound sound_background;
+
+    // dead enemies
+    private int deadEnemies;
+
     /**
      * creates a new Map
      *
@@ -163,6 +170,8 @@ public class Map {
 
         // creation methods
         createEnemies();
+
+
     }
 
     private void createEnemies() {
@@ -275,6 +284,11 @@ public class Map {
 
         // draw collision tiles
         if (SHOW_COLLISION_TILES) drawCollisionTiles();
+
+
+        // sound
+        sound_background = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/game_background.mp3"));
+        sound_background.loop();
 
     }
 
@@ -449,6 +463,14 @@ public class Map {
             }
         }
 
+        // render items
+        for (int i = 0; i < items.size; i++) {
+            Item item =items.get(i);
+            if (player.getY() <= item.getY()) {
+                item.render(batch);
+            }
+        }
+
         // player (middleground)
         player.render(batch);
 
@@ -460,7 +482,15 @@ public class Map {
             }
         }
 
-        for(Item i: items) if(i != null) i.render(batch);
+        // render items
+        for (int i = 0; i < items.size; i++) {
+            Item item =items.get(i);
+            if (player.getY() > item.getY()) {
+                item.render(batch);
+            }
+        }
+
+//        for(Item i: items) if(i != null) i.render(batch);
 
         // render foreground
         renderForeground(batch);
@@ -970,5 +1000,18 @@ public class Map {
 
     public Array<Item> getItems() {
         return items;
+    }
+
+    public int getMaxEnemies(){
+        return spawnController.getMaxEnemies();
+    }
+
+    public int getDeadEnemies() {
+        return deadEnemies;
+    }
+
+    public void removeFromMap(Enemy e) {
+        enemies.removeValue(e, true);
+        deadEnemies++;
     }
 }

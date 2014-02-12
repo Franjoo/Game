@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
 import com.esotericsoftware.spine.Event;
@@ -30,10 +31,11 @@ import com.esotericsoftware.spine.Event;
  * Time: 14:44
  * To change this template use File | Settings | File Templates.
  */
-public class Enemy extends Creature {
+public class Enemy extends Creature implements Disposable{
 
     // pathfinding relevant
     private Path path;
+    private Path oldPath;
     private AStarPathFinder pathFinder;
     private Vector2 nextStep = new Vector2();
     private int nextStepInPath = 1;
@@ -47,6 +49,8 @@ public class Enemy extends Creature {
     private Vector2 velocity = new Vector2();
     private int speed = 120;
     private float tolerance = 1.0f;
+    public boolean gotHit = false;
+    private  boolean findPath = true;
 
     // interaction
     private Map map;
@@ -64,8 +68,14 @@ public class Enemy extends Creature {
     private final float cooldown = 1.5f;
 
     private float health = 100f;
-    private float nextAttackTime = -1;
+    private float nextAttackTime = 0;
     private float alpha = 1;
+
+    //hit parameters
+    private float slideX;
+
+
+
 
     // animation
     private AnimationState state;
@@ -142,21 +152,20 @@ public class Enemy extends Creature {
     public void render(SpriteBatch batch) {
         super.render(batch);
 
-
-
     }
 
 
     public void update(float deltatime) {
         super.update(deltatime);
-
+        updatePositions();
         // find new path
-        path = getNewPath();
+        if(getNewPath() != null && findPath)
+          path = getNewPath();
 
         if (alive) {
 
             // update pathfinding attributes
-            updatePositions();
+
 
             // enemy is far from player (move)
 //
@@ -189,6 +198,13 @@ public class Enemy extends Creature {
                 }
 
             }
+            if(gotHit) {
+                if(player.x < x)
+                gotHit(deltatime,0);
+                else
+                gotHit(deltatime,1);
+             path = null;
+            }
 
             // if not alive and not dead - die (triggers die animation)
         } else if (state.getCurrent(0) != null
@@ -203,7 +219,7 @@ public class Enemy extends Creature {
             skeleton.getColor().set(c.r, c.g, c.b, alpha);
 
             // remove from map
-            if (alpha <= 0) removeFromMap();
+            if (alpha <= 0) map.removeFromMap(this);
         }
 
 
@@ -214,15 +230,22 @@ public class Enemy extends Creature {
 
     public void updatePositions() {
 
-        xTilePosition = (int) (x) / map.getTileWidth();
-        yTilePosition = (int) (y) / map.getTileHeight();
-        xTilePlayer = (int) (player.x) / map.getTileWidth();
-        yTilePlayer = (int) (player.y) / map.getTileHeight();
+        xTilePosition = (int) Math.floor((x) / map.getTileWidth());
+        yTilePosition = (int) Math.floor((y) / map.getTileHeight());
+        xTilePlayer = (int) Math.floor((player.x) / map.getTileWidth());
+        yTilePlayer = (int) Math.floor((player.y) / map.getTileHeight());
     }
 
 
     public Path getNewPath() {
-        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+        oldPath = path;
+
+        if(xTilePlayer + ranY < map.getNumTilesX() && xTilePlayer >= 0 && yTilePlayer +ranY < map.getNumTilesY() && yTilePlayer >= 0) {
+            if(pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY) != null)
+         return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+        }
+        return oldPath;
+
     }
 
     public int getTilePostionX() {
@@ -234,7 +257,23 @@ public class Enemy extends Creature {
     }
 
 
+    public void gotHit(float deltaTime,int i){
+        System.out.println("Hit going to Position: " + slideX + " I'am at: " + x);
 
+        findPath = false;
+
+        if ((i == 0 && (int) x < (int) slideX) || (i == 1 &&  (int) x > (int) slideX)) {
+
+          if(i == 0)
+            x += 10;
+          else
+              x-= 10;
+        }
+        else {
+            gotHit = false;
+            findPath = true;
+        }
+    }
 
 
 
@@ -298,7 +337,12 @@ public class Enemy extends Creature {
             alive = false;
             map.addItem(new HealthPotion(x,y));
         }
-
+        else {
+            if(player.x <= x)
+                slideX = (float) (xTilePosition +2) * map.getTileWidth();
+            else
+                slideX = (float) (xTilePosition -2) * map.getTileWidth();
+        }
     }
 
     public void setDamage(float dmg) {
@@ -306,8 +350,9 @@ public class Enemy extends Creature {
             setHealth(health - dmg);
     }
 
-    private void removeFromMap() {
-        map.getEnemies().removeValue(this, true);
+    @Override
+    public void dispose() {
+
     }
 
 //    class AnimationListener implements AnimationState.AnimationStateListener {

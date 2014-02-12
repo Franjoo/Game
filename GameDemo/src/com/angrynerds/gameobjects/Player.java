@@ -50,6 +50,7 @@ public class Player extends Creature {
     // animation
     private AnimationState state;
     private AnimationListener animationListener;
+    private Array<String> attackAnimations;
 
     // sound_sword
     private Sound sound_sword;
@@ -64,8 +65,8 @@ public class Player extends Creature {
     // input
     private IGameInputController input;
     public int attackFlag = 0;
-    boolean upleft,downleft,upright,downright;
 
+    boolean upleft,downleft,upright,downright;
 
 
     /**
@@ -77,11 +78,11 @@ public class Player extends Creature {
 
         this.input = input;
 
-//        walkAnimation = skeletonData.findAnimation("run_test");
-//        jumpAnimation = skeletonData.findAnimation("jump");
+// walkAnimation = skeletonData.findAnimation("run_test");
+// jumpAnimation = skeletonData.findAnimation("jump");
 
 
-//        showBounds = true;
+// showBounds = true;
 
     }
 
@@ -90,8 +91,8 @@ public class Player extends Creature {
         map = Map.getInstance();
         detector = Detector.getInstance();
 
-        x = 0;
-        y = 0;
+        x = 500;
+        y = 150;
 
         actHP = maxHP;
 
@@ -108,10 +109,13 @@ public class Player extends Creature {
     }
 
     private void setAnimationStates() {
+        attackAnimations = new Array<>();
+
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
 
         for (int i = 0; i < stateData.getSkeletonData().getAnimations().size; i++) {
             String from = stateData.getSkeletonData().getAnimations().get(i).getName();
+            if(from.startsWith("attack")) attackAnimations.add(from);
             for (int j = 0; j < stateData.getSkeletonData().getAnimations().size; j++) {
                 String to = stateData.getSkeletonData().getAnimations().get(i).getName();
 
@@ -119,16 +123,16 @@ public class Player extends Creature {
             }
         }
 //
-//        stateData.setMix("move", "dash", 0.4f);
-//        stateData.setMix("move", "attack_1", 0.4f);
+// stateData.setMix("move", "dash", 0.4f);
+// stateData.setMix("move", "attack_1", 0.4f);
 //
-//        stateData.setMix("attack_1", "move", 0.4f);
-//        stateData.setMix("dash", "move", 0.4f);
-//        stateData.setMix("move", "dash", 0.4f);
-//        stateData.setMix("move", "die", 0.4f);
-//        stateData.setMix("attack_1", "die", 0.4f);
-//        stateData.setMix("jump", "die", 0.4f);
-//        stateData.setMix("dash", "die", 0.4f);
+// stateData.setMix("attack_1", "move", 0.4f);
+// stateData.setMix("dash", "move", 0.4f);
+// stateData.setMix("move", "dash", 0.4f);
+// stateData.setMix("move", "die", 0.4f);
+// stateData.setMix("attack_1", "die", 0.4f);
+// stateData.setMix("jump", "die", 0.4f);
+// stateData.setMix("dash", "die", 0.4f);
 
 
         state = new AnimationState(stateData); // Holds the animation state for a skeleton (current animation, time, etc).
@@ -152,6 +156,7 @@ public class Player extends Creature {
         for (Enemy e : map.getEnemies()) {
             if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
                 e.setDamage(atckDmg);
+                e.gotHit = true;
                 System.out.println("atccking enemy " + e.getHealth());
             }
 
@@ -163,17 +168,20 @@ public class Player extends Creature {
 
     public void update(float deltaTime) {
         super.update(deltaTime);
+        if(x/map.getTileWidth() < 0)
+        System.out.println("x : " + x / map.getTileWidth());
+        if(y/map.getTileHeight() < 0 )
+            System.out.println("y : " + y/map.getTileHeight());
         if(alive){
 
             // set v in x and y direction
             vX = input.get_stickX() * deltaTime * vX_MAX;
             vY = input.get_stickY() * deltaTime * vY_MAX;
-            if(vX != 0 && vY != 0 && input.getState() == State.IDLE)     input.setState(State.RUNNING);
-            if(vX == 0 && vY == 0 && input.getState() == State.RUNNING)  input.setState(State.IDLE);
-            System.out.println(vX + "       "+vY);
+            if(vX != 0 && vY != 0 && input.getState() == State.IDLE) input.setState(State.RUNNING);
+            if(vX == 0 && vY == 0 && input.getState() == State.RUNNING) input.setState(State.IDLE);
+
             // set collision position
-            System.out.println("1. vX = " + x + " vY = " + y);
-             Vector2 p = getCollisionPosition();
+            Vector2 p = getCollisionPosition();
 
 
             // flip skeleton
@@ -189,35 +197,33 @@ public class Player extends Creature {
             else skeleton.setFlipX(vX < 0);
 
             setCurrentState();
-           // getCollisionPosition(vX,vY,deltaTime);
+
             // update position attributes
             if(state.getCurrent(0).toString().equals("dash")){
                 x += dash(deltaTime);
             }
-           else{
-              x = p.x; y = p.y;
-                System.out.println("1. vX = " + x + " vY = " + y);
-               // getCollisionPosition(deltaTime);
-           }
-
+            else{
+                x = p.x;
+            }
+            y = p.y;
 
             nextToItem();
 
 
             // apply and update skeleton
-    //        Animation animation = state.getCurrent(0).getAnimation();
-    //        if(animation.getName().equals("run_test")){
-    //            System.out.println(vX);
-    //            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
-    //        }
+            // Animation animation = state.getCurrent(0).getAnimation();
+            // if(animation.getName().equals("run_test")){
+            // System.out.println(vX);
+            // animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
+            // }
 
 
-        // apply and update skeleton
-//        Animation animation = state.getCurrent(0).getAnimation();
-//        if(animation.getName().equals("move")){
-//            System.out.println(vX);
-//            animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
-//        }
+            // apply and update skeleton
+// Animation animation = state.getCurrent(0).getAnimation();
+// if(animation.getName().equals("move")){
+// System.out.println(vX);
+// animation.apply(skeleton,skeleton.getTime(),skeleton.getTime() * input.get_stickX(),true,null);
+// }
             // was flipped for vX == 0 in next update
             flipped = skeleton.getFlipX();
         }
@@ -255,22 +261,25 @@ public class Player extends Creature {
     }
 
     private void setCurrentState() {
-        if(state.getCurrent(0).toString().equals("move") || state.getCurrent(0).toString().equals("idle")){
-            if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
+        String current = state.getCurrent(0).toString();
+
+        if(current.equals("move") || current.equals("idle")){
+            if (input.getState() == State.JUMPING && !current.equals("jump")) {
                 state.setAnimation(0, "jump", false);
                 state.addAnimation(0, "idle", true, 0);
-    //            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
-    //            state.addAnimation(1, "move", false, 0);
+                // state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
+                // state.addAnimation(1, "move", false, 0);
             }
 
 
-            if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
+            if (input.getState() == State.ATTACKING && !current.startsWith("attack_1")) {
                 attack();
-                state.setAnimation(0, "attack_1", false);
+                String attack = attackAnimations.get((int) (Math.random() * attackAnimations.size));
+                state.setAnimation(0, attack, false);
                 state.addAnimation(0, "idle", true, 0);
             }
 
-            if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !current.equals("dash")){
                 if(input.getState() == State.DASHINGRIGHT)
                     dashRight = true;
                 else dashRight = false;
@@ -280,18 +289,18 @@ public class Player extends Creature {
 
             }
 
-            if ((input.getState() == State.DEAD) && !state.getCurrent(0).toString().equals("die")){
+            if ((input.getState() == State.DEAD) && !current.equals("die")){
                 state.setAnimation(0, "die", false);
             }
         }
 
-        if(input.getState() == State.IDLE && !state.getCurrent(0).toString().equals("idle")) {
-            if(state.getCurrent(0).toString().equals("move"))
+        if(input.getState() == State.IDLE && !current.equals("idle")) {
+            if(current.equals("move"))
                 state.setAnimation(0, "idle", false);
             state.addAnimation(0, "idle", true, 0);
         }
 
-        if(input.getState() == State.RUNNING && state.getCurrent(0).toString().equals("idle")){
+        if(input.getState() == State.RUNNING && current.equals("idle")){
             state.setAnimation(0, "move", false);
             state.addAnimation(0, "move", true, 0);
         }
@@ -302,20 +311,7 @@ public class Player extends Creature {
 
     }
 
-    public void getMyCorners(float pX,float pY){
 
-        // calculate corner coordinates
-        float downY=(float) Math.floor((pY)-map.getHeight()/map.getTileHeight());
-        float upY=(float) Math.floor((pY+map.getTileHeight())/map.getTileHeight());
-        float leftX=(float) Math.floor((pX)/map.getTileWidth());
-        float rightX=(float) Math.floor((pX+map.getTileWidth())/map.getTileWidth());
-
-        // check if the in the corner is a wall
-        upleft=!map.isSolid(leftX, upY);
-        downleft=!map.isSolid(leftX, downY);
-        upright=!map.isSolid(rightX,upY);
-        downright=!map.isSolid(rightX, downY);
-    }
 
     /**
      * detects whether the player collides with a solid
@@ -324,59 +320,23 @@ public class Player extends Creature {
      */
     private Vector2 getCollisionPosition() {
 
+        /* --- COLLISION DETECTION --- */
 
-       float dx = x + vX;
-       float dy = y + vY;
-//
-        float nX = x;
-        float nY = y;
-// System.out.println("1. nX = " + nX + " nY = " + nY);
+        // helper variables
+        float qX = x + vX;
+        float qY = y + vY;
 
-//        _pt.set(getTileCollisionPosition(x, y, vX, vY));
-//        nX = _pt.x;
-//        nY = _pt.y;
-//
-//
-//        vec2.set(nX, nY);
-//        return vec2;
+        float nX;
+        float nY;
 
-        int xtile=(int) ( (dx) /map.getTileWidth());
-        int ytile=(int) ( (dx) /map.getTileHeight());
-        System.out.println( map.getTileHeight());
-        getMyCorners(x, dy);
 
-        if(vY>0){
-            if(upleft&&upright){
-                nY = dy;
+        _pt.set(getTileCollisionPosition(x, y, vX, vY));
+        nX = _pt.x;
+        nY = _pt.y;
 
-            }else{
-               nY = ( (ytile)*map.getTileHeight()-map.getTileHeight());
-            }
-        }else if(vY<0){
-            if(downleft&&downright){
-               nY = (dy);
-            }else{
-                nY =( (ytile)*map.getTileHeight()+1);
-            }
-        }
 
-        getMyCorners(dx,y);
-        if(vX<0){
-            if(downleft && upleft){
-                nX= dx;
-            }else{
-                nX= ( (xtile+1)*map.getTileWidth());
-            }
-        }else if(vX>0){
-            if(downright && upright){
-               nX = dx;
-            }else{
-               nX =  (xtile+1)*map.getTileWidth()-map.getTileWidth()-1;
-            }
-        }
-     //   System.out.println("2. nX = " + nX + " nY = " + nY);
         vec2.set(nX, nY);
-      return vec2;
+        return vec2;
     }
 
 
@@ -409,7 +369,6 @@ public class Player extends Creature {
                 vY = 0;
             }
         }
-
     }
 
     private Vector2 getObjectCollisionPosition(float pX, float pY, float vX, float vY) {
@@ -461,6 +420,21 @@ public class Player extends Creature {
         return vec2;
     }
 
+    public void getMyCorners(float pX,float pY){
+
+        // calculate corner coordinates
+        int downY=(int) Math.floor(map.getHeight()-(pY)/map.getTileHeight());
+        int upY=(int) Math.floor(map.getHeight()-(pY+map.getHeight())/map.getTileHeight());
+        int leftX=(int) Math.floor((pX)/map.getTileWidth());
+        int rightX=(int) Math.floor((pX+map.getWidth())/map.getTileWidth());
+
+        // check if the in the corner is a wall
+        upleft=map.isSolid(leftX, upY);
+        downleft=map.isSolid(leftX, downY);
+        upright=map.isSolid(rightX, upY);
+        downright=map.isSolid(rightX,downY);
+
+    }
     private Vector2 getTileCollisionPosition(float pX, float pY, float vX, float vY) {
 
         float _x = pX;
@@ -470,11 +444,11 @@ public class Player extends Creature {
         float qY = pY + vY;
 
         /* COLLIDED TILES */
-
+        getMyCorners(qX,qY);
         /* X-AXIS */
         if (vX < 0) {
             // botton left
-            if (map.isSolid(qX, pY)) {
+            if (downleft && upleft) {
                 _x = ((int) (pX) / map.getTileWidth()) * map.getTileWidth();
             }
             // top left
@@ -555,9 +529,9 @@ public class Player extends Creature {
         t.draw(p, 0, 0);
     }
 
-//    public boolean isHit(float x, float y){
-////        return
-//    }
+// public boolean isHit(float x, float y){
+//// return
+// }
 
 
     public float getMaxHP() {
@@ -581,8 +555,8 @@ public class Player extends Creature {
     private void die() {
         alive = false;
         state.setAnimation(0, "die", false);
-//        input.setState(State.DEAD);
-//        setCurrentState();
+// input.setState(State.DEAD);
+// setCurrentState();
     }
 
     public void setMaxHP(int hp) {
@@ -598,51 +572,51 @@ public class Player extends Creature {
     }
 
     /*
-    private void setCurrentState() {
-        if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
-            state.setAnimation(0, "jump", false);
-            state.addAnimation(0, "move", true, 0);
-//            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
-//            state.addAnimation(1, "move", false, 0);
-        }
+private void setCurrentState() {
+if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
+state.setAnimation(0, "jump", false);
+state.addAnimation(0, "move", true, 0);
+// state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
+// state.addAnimation(1, "move", false, 0);
+}
 
 
-        if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
-            attack();
-            state.setAnimation(0, "attack_1", false);
-            state.addAnimation(0, "move", true, 0);
-        }
+if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
+attack();
+state.setAnimation(0, "attack_1", false);
+state.addAnimation(0, "move", true, 0);
+}
 
-        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
-            if(input.getState() == State.DASHINGRIGHT)
-                dashRight = true;
-            else dashRight = false;
-            state.setAnimation(0, "dash", false);
-            state.addAnimation(0, "move", true, 0);
-        }
+if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+if(input.getState() == State.DASHINGRIGHT)
+dashRight = true;
+else dashRight = false;
+state.setAnimation(0, "dash", false);
+state.addAnimation(0, "move", true, 0);
+}
 
-        if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
-            state.setAnimation(0, "die", false);
-        }
+if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+state.setAnimation(0, "die", false);
+}
 
-        if(input.getState() != State.DEAD)
-            input.setState(State.IDLE);
+if(input.getState() != State.DEAD)
+input.setState(State.IDLE);
 
 
-    }
-    */
+}
+*/
 
     class AnimationListener implements AnimationState.AnimationStateListener {
 
         @Override
         public void event(int trackIndex, Event event) {
-//            System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
+// System.out.println(trackIndex + " event: " + state.getCurrent(trackIndex) + ", " + event.getData().getName());
         }
 
         @Override
         public void complete(int trackIndex, int loopCount) {
-//            System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
-//            System.out.println(state.getCurrent(trackIndex));
+// System.out.println(trackIndex + " complete: " + state.getCurrent(trackIndex) + ", " + loopCount);
+// System.out.println(state.getCurrent(trackIndex));
             if (state.getCurrent(trackIndex).toString().equals("jump")) {
                 state.setAnimation(0, "move", true);
             }
@@ -650,12 +624,12 @@ public class Player extends Creature {
 
         @Override
         public void start(int trackIndex) {
-//            System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
+// System.out.println(trackIndex + " start: " + state.getCurrent(trackIndex));
         }
 
         @Override
         public void end(int trackIndex) {
-//            System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
+// System.out.println(trackIndex + " end: " + state.getCurrent(trackIndex));
         }
     }
 

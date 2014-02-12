@@ -186,7 +186,19 @@ public class X360Gamepad implements IGameInputController {
 
     @Override
     public State getState() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        // jump
+        if(is_A_pressed()) return State.JUMPING;
+        // attack
+        if(is_X_pressed()) return State.ATTACKING;
+        // dash
+        if(is_B_pressed() && stick_left_X() >= 0) return State.DASHINGRIGHT;
+        if(is_B_pressed() && stick_left_X() < 0) return State.DASHINGLEFT;
+
+        // run
+        if(stick_left_X() != 0 || stick_left_Y() != 0) return State.RUNNING;
+
+        return State.IDLE;
+
     }
 
     @Override
