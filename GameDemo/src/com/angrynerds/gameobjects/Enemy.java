@@ -27,6 +27,7 @@ public class Enemy extends Creature implements Disposable{
 
     // pathfinding relevant
     private Path path;
+    private Path oldPath;
     private AStarPathFinder pathFinder;
     private Vector2 nextStep = new Vector2();
     private int nextStepInPath = 1;
@@ -51,7 +52,7 @@ public class Enemy extends Creature implements Disposable{
     private final float cooldown = 1.5f;
 
     private float health = 100f;
-    private float nextAttackTime = -1;
+    private float nextAttackTime = 0;
     private float alpha = 1;
 
     // animation
@@ -115,14 +116,15 @@ public class Enemy extends Creature implements Disposable{
 
     public void update(float deltatime) {
         super.update(deltatime);
-
+        updatePositions();
         // find new path
-        path = getNewPath();
+        if(getNewPath() != null)
+          path = getNewPath();
 
         if (alive) {
 
             // update pathfinding attributes
-            updatePositions();
+
 
             // enemy is far from player (move)
 //
@@ -132,7 +134,7 @@ public class Enemy extends Creature implements Disposable{
 //
 //            System.out.println("dist: " + dist);
 
-            if (path != null && path.getLength() >= 2) {
+            if (path != null && path.getLength() >= 1) {
                 moveToPlayer(deltatime);
 
                 // append move animation
@@ -180,15 +182,22 @@ public class Enemy extends Creature implements Disposable{
 
     public void updatePositions() {
 
-        xTilePosition = (int) (x) / map.getTileWidth();
-        yTilePosition = (int) (y) / map.getTileHeight();
-        xTilePlayer = (int) (player.x) / map.getTileWidth();
-        yTilePlayer = (int) (player.y) / map.getTileHeight();
+        xTilePosition = (int) Math.floor((x) / map.getTileWidth());
+        yTilePosition = (int) Math.floor((y) / map.getTileHeight());
+        xTilePlayer = (int) Math.floor((player.x) / map.getTileWidth());
+        yTilePlayer = (int) Math.floor((player.y) / map.getTileHeight());
     }
 
 
     public Path getNewPath() {
-        return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+        oldPath = path;
+
+        if(xTilePlayer + ranY < map.getNumTilesX() && xTilePlayer >= 0 && yTilePlayer +ranY < map.getNumTilesY() && yTilePlayer >= 0) {
+            if(pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY) != null)
+         return pathFinder.findPath(1, xTilePosition, yTilePosition, xTilePlayer + ranX, yTilePlayer + ranY);
+        }
+        return oldPath;
+
     }
 
     public int getTilePostionX() {
