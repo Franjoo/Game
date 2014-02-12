@@ -192,6 +192,9 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound> {
             if (true) {
                 game.setActiveScreen(game.getPlayScreen());
                 game.setScreen(game.getPlayScreen());
+
+                LoadingScreen s = new LoadingScreen();
+                game.setScreen(s);
             }
         }
     }

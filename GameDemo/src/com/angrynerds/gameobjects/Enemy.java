@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Disposable;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
 import com.esotericsoftware.spine.Event;
@@ -22,7 +23,7 @@ import com.esotericsoftware.spine.Event;
  * Time: 14:44
  * To change this template use File | Settings | File Templates.
  */
-public class Enemy extends Creature {
+public class Enemy extends Creature implements Disposable{
 
     // pathfinding relevant
     private Path path;
@@ -109,7 +110,6 @@ public class Enemy extends Creature {
 
     public void render(SpriteBatch batch) {
         super.render(batch);
-
     }
 
 
@@ -270,6 +270,11 @@ public class Enemy extends Creature {
 
     private void removeFromMap() {
         map.getEnemies().removeValue(this, true);
+    }
+
+    @Override
+    public void dispose() {
+
     }
 
     class AnimationListener implements AnimationState.AnimationStateListener {
