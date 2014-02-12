@@ -93,7 +93,7 @@ public class MainMenu extends AbstractScreen implements TweenAccessor<Sound> {
         skin = new Skin(atlas);
         white = new BitmapFont(Gdx.files.internal("fonts/bmtFont.fnt"), false);
         batch = new SpriteBatch();
-        bg = new Texture("ui/menus/main/titel_moon.jpg");
+        bg = new Texture("ui/menus/main/titel_moon_02.jpg");
 
         table = new Table(skin);
         table.setBounds(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2.0f, Gdx.graphics.getWidth() / 6, Gdx.graphics.getHeight() / 6);

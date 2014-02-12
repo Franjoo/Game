@@ -124,6 +124,9 @@ public class Map {
     // background music
     private Sound sound_background;
 
+    // dead enemies
+    private int deadEnemies;
+
     /**
      * creates a new Map
      *
@@ -458,7 +461,7 @@ public class Map {
         // render items
         for (int i = 0; i < items.size; i++) {
             Item item =items.get(i);
-            if (player.getY() <= item.getY()) {
+            if (player.getY() > item.getY()) {
                 item.render(batch);
             }
         }
@@ -972,5 +975,18 @@ public class Map {
 
     public Array<Item> getItems() {
         return items;
+    }
+
+    public int getMaxEnemies(){
+        return spawnController.getMaxEnemies();
+    }
+
+    public int getDeadEnemies() {
+        return deadEnemies;
+    }
+
+    public void removeFromMap(Enemy e) {
+        enemies.removeValue(e, true);
+        deadEnemies++;
     }
 }

@@ -169,7 +169,7 @@ public class Enemy extends Creature implements Disposable{
             skeleton.getColor().set(c.r, c.g, c.b, alpha);
 
             // remove from map
-            if (alpha <= 0) removeFromMap();
+            if (alpha <= 0) map.removeFromMap(this);
         }
 
 
@@ -266,10 +266,6 @@ public class Enemy extends Creature implements Disposable{
     public void setDamage(float dmg) {
         if(alive)
             setHealth(health - dmg);
-    }
-
-    private void removeFromMap() {
-        map.getEnemies().removeValue(this, true);
     }
 
     @Override

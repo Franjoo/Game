@@ -50,6 +50,7 @@ public class Player extends Creature {
     // animation
     private AnimationState state;
     private AnimationListener animationListener;
+    private Array<String> attackAnimations;
 
     // sound_sword
     private Sound sound_sword;
@@ -106,10 +107,13 @@ public class Player extends Creature {
     }
 
     private void setAnimationStates() {
+        attackAnimations = new Array<>();
+
         AnimationStateData stateData = new AnimationStateData(skeletonData); // Defines mixing (crossfading) between animations.
 
         for (int i = 0; i < stateData.getSkeletonData().getAnimations().size; i++) {
             String from = stateData.getSkeletonData().getAnimations().get(i).getName();
+            if(from.startsWith("attack")) attackAnimations.add(from);
             for (int j = 0; j < stateData.getSkeletonData().getAnimations().size; j++) {
                 String to = stateData.getSkeletonData().getAnimations().get(i).getName();
 
@@ -250,8 +254,10 @@ public class Player extends Creature {
     }
 
     private void setCurrentState() {
-        if(state.getCurrent(0).toString().equals("move") || state.getCurrent(0).toString().equals("idle")){
-            if (input.getState() == State.JUMPING && !state.getCurrent(0).toString().equals("jump")) {
+        String current = state.getCurrent(0).toString();
+
+        if(current.equals("move") || current.equals("idle")){
+            if (input.getState() == State.JUMPING && !current.equals("jump")) {
                 state.setAnimation(0, "jump", false);
                 state.addAnimation(0, "idle", true, 0);
     //            state.addAnimation(1, "move", true, jumpAnimation.getDuration() - 30);
@@ -259,13 +265,14 @@ public class Player extends Creature {
             }
 
 
-            if (input.getState() == State.ATTACKING && !state.getCurrent(0).toString().equals("attack_1")) {
+            if (input.getState() == State.ATTACKING && !current.startsWith("attack_1")) {
                 attack();
-                state.setAnimation(0, "attack_1", false);
+                String attack = attackAnimations.get((int) (Math.random() * attackAnimations.size));
+                state.setAnimation(0, attack, false);
                 state.addAnimation(0, "idle", true, 0);
             }
 
-            if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !state.getCurrent(0).toString().equals("dash")){
+            if ((input.getState() == State.DASHINGRIGHT || input.getState() == State.DASHINGLEFT)&& !current.equals("dash")){
                 if(input.getState() == State.DASHINGRIGHT)
                     dashRight = true;
                 else dashRight = false;
@@ -275,18 +282,18 @@ public class Player extends Creature {
 
             }
 
-            if ((input.getState() == State.DEAD) && !state.getCurrent(0).toString().equals("die")){
+            if ((input.getState() == State.DEAD) && !current.equals("die")){
                 state.setAnimation(0, "die", false);
             }
         }
 
-        if(input.getState() == State.IDLE && !state.getCurrent(0).toString().equals("idle")) {
-            if(state.getCurrent(0).toString().equals("move"))
+        if(input.getState() == State.IDLE && !current.equals("idle")) {
+            if(current.equals("move"))
                 state.setAnimation(0, "idle", false);
             state.addAnimation(0, "idle", true, 0);
         }
 
-        if(input.getState() == State.RUNNING && state.getCurrent(0).toString().equals("idle")){
+        if(input.getState() == State.RUNNING && current.equals("idle")){
             state.setAnimation(0, "move", false);
             state.addAnimation(0, "move", true, 0);
         }
