@@ -125,7 +125,7 @@ public class Map {
     private Texture texture_loading;
 
     // tmx map path
-    private String mapPath = "maps/map_05-col.tmx";
+    private String mapPath = "maps/map_05.tmx";
 
     // global helper variables
     private Array<Rectangle> qArray = new Array<Rectangle>();

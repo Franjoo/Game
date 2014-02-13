@@ -339,9 +339,9 @@ public class Enemy extends Creature implements Disposable{
         }
         else {
             if(player.x <= x)
-                slideX = (float) (xTilePosition +2) * map.getTileWidth();
+                slideX = (float) (xTilePosition +1) * map.getTileWidth();
             else
-                slideX = (float) (xTilePosition -2) * map.getTileWidth();
+                slideX = (float) (xTilePosition -1) * map.getTileWidth();
         }
     }
 

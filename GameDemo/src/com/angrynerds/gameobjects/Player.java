@@ -444,11 +444,11 @@ public class Player extends Creature {
         float qY = pY + vY;
 
         /* COLLIDED TILES */
-        getMyCorners(qX,qY);
+      //  getMyCorners(qX,qY);
         /* X-AXIS */
         if (vX < 0) {
             // botton left
-            if (downleft && upleft) {
+            if (map.isSolid(qX, pY)) {
                 _x = ((int) (pX) / map.getTileWidth()) * map.getTileWidth();
             }
             // top left
