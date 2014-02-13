@@ -73,6 +73,8 @@ public class Enemy extends Creature implements Disposable{
 
     //hit parameters
     private float slideX;
+    private float slideY;
+    public boolean gotDashed = false;
 
 
 
@@ -117,7 +119,7 @@ public class Enemy extends Creature implements Disposable{
 
     public void renderPath(ShapeRenderer shapeRenderer){
 
-        shapeRenderer.rect(x,y,map.getTileWidth(),map.getTileHeight());
+        shapeRenderer.rect(x, y, map.getTileWidth(), map.getTileHeight());
         if(path != null){
         for (int i = 0; i < path.getLength()-1 ; i++) {
            float x1 =path.getStep(i).getX() * map.getTileWidth();
@@ -145,8 +147,40 @@ public class Enemy extends Creature implements Disposable{
         ranX = -1 + (int) (+(Math.random() * 3));
         ranY = -1 + (int) (+(Math.random() * 3));
         setAnimationStates();
+        }
+
+    public void hit(int y){
+
+        gotDashed = true;
+
+
+        if(player.y <= this.y)
+            slideY = (float) (xTilePosition +y) * map.getTileWidth();
+        else
+            slideY = (float) (xTilePosition -y) * map.getTileWidth();
+
+
 
     }
+
+    public void gotDashed(int i){
+
+        findPath = false;
+
+        if (((i == 0 && ((int) y > (int) slideY)) &&( y - 10 > 0) || ((i == 1)) &&  (((int) y < (int) slideY))  && (y + 10 <map.getHeight()))) {
+
+            if(i == 1 && y < slideY)
+                y += 10;
+            else if(i == 0 && y > slideY)
+                y-= 10;
+        }
+        else {
+            gotDashed = false;
+            findPath = true;
+        }
+
+    }
+
 
 
     public void render(SpriteBatch batch) {
@@ -204,6 +238,13 @@ public class Enemy extends Creature implements Disposable{
                 else
                 gotHit(deltatime,1);
              path = null;
+            }
+            if(gotDashed) {
+                if(player.y < y)
+                    gotDashed(0);
+                else
+                    gotDashed(1);
+                path = null;
             }
 
             // if not alive and not dead - die (triggers die animation)

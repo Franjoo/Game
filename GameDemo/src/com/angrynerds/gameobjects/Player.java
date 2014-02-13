@@ -251,11 +251,27 @@ public class Player extends Creature {
     private float dash(float deltaTime) {
         if(dashRight){
             skeleton.setFlipX(false);
+            for (Enemy e : map.getEnemies()) {
+                if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
+                    e.hit(2);
+                    e.gotDashed = true;
+                    System.out.println("atccking enemy " + e.getHealth());
+                }
+
+            }
             return deltaTime * Gdx.graphics.getWidth()/2;
         }
 
         else{
             skeleton.setFlipX(true);
+            for (Enemy e : map.getEnemies()) {
+                if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
+                    e.hit(2);
+                    e.gotDashed = true;
+                    System.out.println("atccking enemy " + e.getHealth());
+                }
+
+            }
             return -deltaTime * Gdx.graphics.getWidth()/2;
         }
     }
