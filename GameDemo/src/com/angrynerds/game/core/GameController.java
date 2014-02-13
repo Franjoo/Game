@@ -34,7 +34,7 @@ public class GameController extends Game implements Disposable {
      */
     private void init() {
         mainMenu = new MainMenu(this);
-        playScreen = new PlayScreen();
+        playScreen = new PlayScreen(this);
         startingScreen = new StartingScreen(this);
         activeScreen = startingScreen;
         this.setScreen(activeScreen);
@@ -98,6 +98,10 @@ public class GameController extends Game implements Disposable {
 
     public StartingScreen getStartingScreen(){
         return startingScreen;
+    }
+
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
 
     public void setActiveScreen(AbstractScreen activeScreen) {

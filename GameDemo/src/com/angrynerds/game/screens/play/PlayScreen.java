@@ -1,9 +1,12 @@
 package com.angrynerds.game.screens.play;
 
+import com.angrynerds.game.core.GameController;
 import com.angrynerds.game.screens.AbstractScreen;
+import com.angrynerds.game.screens.mainmenu.MainMenu;
 import com.angrynerds.ui.ControllerUI;
 import com.angrynerds.ui.TimeDisplay;
 import com.angrynerds.util.C;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,14 +26,17 @@ public class PlayScreen extends AbstractScreen {
 
     private static SpriteBatch batch;
 
+    private GameController game;
+
     /**
      * creates a new PlayScreen.
      * PlayScreen provides static access to the SpriteBatch which
      * is used for rendering
+     * @param gameController
      */
-    public PlayScreen() {
+    public PlayScreen(GameController gameController) {
         super();
-
+        game = gameController;
         // allow static access, note: ugly code practice
         batch = super.getSpriteBatch();
 
@@ -87,6 +93,14 @@ public class PlayScreen extends AbstractScreen {
         timer.update(deltaTime);
         timer.render(batch);
         camera.update();
+
+        if(playController.getWorld().getPlayer().getActualHP() <= 0){
+            if (Gdx.input.isTouched()) { // If the screen is touched after the game is done loading, go to the main menu screen
+                game.setMainMenu(new MainMenu(game));
+                game.setActiveScreen(game.getMainMenu());
+                game.setScreen(game.getMainMenu());
+            }
+        }
 
 
     }
