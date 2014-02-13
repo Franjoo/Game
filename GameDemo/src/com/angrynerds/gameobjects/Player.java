@@ -66,6 +66,8 @@ public class Player extends Creature {
     private IGameInputController input;
     public int attackFlag = 0;
 
+    boolean upleft,downleft,upright,downright;
+
 
     /**
      * creates a new player
@@ -154,6 +156,10 @@ public class Player extends Creature {
         for (Enemy e : map.getEnemies()) {
             if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
                 e.setDamage(atckDmg);
+                if(e.x< x)
+                    e.x =  (e.getTilePostionX()-1)*map.getTileWidth();
+                else
+                    e.x =  (e.getTilePostionX()-1)*map.getTileWidth();
                 System.out.println("atccking enemy " + e.getHealth());
             }
 
@@ -413,6 +419,21 @@ public class Player extends Creature {
         return vec2;
     }
 
+    public void getMyCorners(float pX,float pY){
+
+        // calculate corner coordinates
+        int downY=(int) Math.floor(map.getHeight()-(pY)/map.getTileHeight());
+        int upY=(int) Math.floor(map.getHeight()-(pY+map.getHeight())/map.getTileHeight());
+        int leftX=(int) Math.floor((pX)/map.getTileWidth());
+        int rightX=(int) Math.floor((pX+map.getWidth())/map.getTileWidth());
+
+        // check if the in the corner is a wall
+        upleft=map.isSolid(leftX, upY);
+        downleft=map.isSolid(leftX, downY);
+        upright=map.isSolid(rightX, upY);
+        downright=map.isSolid(rightX,downY);
+      
+    }
     private Vector2 getTileCollisionPosition(float pX, float pY, float vX, float vY) {
 
         float _x = pX;
@@ -422,11 +443,11 @@ public class Player extends Creature {
         float qY = pY + vY;
 
         /* COLLIDED TILES */
-
+         getMyCorners(qX,qY);
         /* X-AXIS */
         if (vX < 0) {
             // botton left
-            if (map.isSolid(qX, pY)) {
+            if (downleft && upleft) {
                 _x = ((int) (pX) / map.getTileWidth()) * map.getTileWidth();
             }
             // top left
