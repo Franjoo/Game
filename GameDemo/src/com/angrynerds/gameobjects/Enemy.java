@@ -47,8 +47,8 @@ public class Enemy extends Creature implements Disposable{
     private Player player;
 
     // stats
-    private final float minDmg = 1.2f;
-    private final float maxDmg = 5.1f;
+    private final float minDmg = 3.2f;
+    private final float maxDmg = 7.1f;
     private final float cooldown = 1.5f;
 
     private float health = 100f;
@@ -139,7 +139,8 @@ public class Enemy extends Creature implements Disposable{
 
                 // append move animation
                 if (state.getCurrent(0).getNext() == null) {
-                    state.addAnimation(0, "move", false, 0);
+                    state.setAnimation(0, "move", false);
+                    state.addAnimation(0, "move", true, 0);
                 }
             }
 
@@ -148,7 +149,8 @@ public class Enemy extends Creature implements Disposable{
 
                 // append attack animation
                 if (state.getCurrent(0).getNext() == null) {
-                    state.addAnimation(0, "attack", false, 0);
+                    state.setAnimation(0, "attack", false);
+                    state.addAnimation(0, "attack", true, 0);
                 }
 
                 // attack player (animation is active)

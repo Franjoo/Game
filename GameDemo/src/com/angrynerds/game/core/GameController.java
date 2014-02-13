@@ -2,6 +2,7 @@ package com.angrynerds.game.core;
 
 import com.angrynerds.game.screens.AbstractScreen;
 import com.angrynerds.game.screens.mainmenu.MainMenu;
+import com.angrynerds.game.screens.mainmenu.StartingScreen;
 import com.angrynerds.game.screens.play.PlayScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.Disposable;
@@ -16,11 +17,13 @@ public class GameController extends Game implements Disposable {
     private PlayScreen playScreen;
     private MainMenu mainMenu;
     private AbstractScreen activeScreen;
+    private StartingScreen startingScreen;
 
     // game states
     private static String STATE;
     private static final String PLAY = "play";
     private static final String MENU = "menu";
+
 
     public GameController() {
         init();
@@ -31,8 +34,9 @@ public class GameController extends Game implements Disposable {
      */
     private void init() {
         mainMenu = new MainMenu(this);
-        playScreen = new PlayScreen();
-        activeScreen = mainMenu;
+        playScreen = new PlayScreen(this);
+        startingScreen = new StartingScreen(this);
+        activeScreen = startingScreen;
         this.setScreen(activeScreen);
     }
 
@@ -90,6 +94,14 @@ public class GameController extends Game implements Disposable {
 
     public MainMenu getMainMenu() {
         return mainMenu;
+    }
+
+    public StartingScreen getStartingScreen(){
+        return startingScreen;
+    }
+
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
 
     public void setActiveScreen(AbstractScreen activeScreen) {

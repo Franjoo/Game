@@ -64,6 +64,7 @@ public class Map {
     private Texture gridTexture;
     private Texture collisionShapesTexture;
     private Texture collisionTilesTexture;
+    private Texture dreamOver;
 
     // map relevant attributes
     private TiledMap map;
@@ -126,6 +127,7 @@ public class Map {
 
     // dead enemies
     private int deadEnemies;
+
 
     /**
      * creates a new Map
@@ -208,6 +210,8 @@ public class Map {
         map = new TmxMapLoader().load(mapPath);
         renderer = new OrthogonalTiledMapRenderer(map, PlayScreen.getBatch());
         renderer.setView(camera);
+
+        dreamOver = new Texture("ui/ingame/dreamover.png");
 
         // create texture atlas
 //        atlas = new TextureAtlas("data/maps/map_02.txt");
@@ -482,6 +486,10 @@ public class Map {
 
         // shows the collision tiles
         if (SHOW_COLLISION_TILES) batch.draw(collisionTilesTexture, 0, 0);
+
+        if(player.getActualHP() <= 0){
+            batch.draw(dreamOver,fixedCamera.position.x-dreamOver.getWidth()/2,fixedCamera.position.y-dreamOver.getHeight()/2);
+        }
 
         batch.end();
 

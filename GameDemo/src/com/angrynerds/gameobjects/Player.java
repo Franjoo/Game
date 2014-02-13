@@ -156,10 +156,7 @@ public class Player extends Creature {
         for (Enemy e : map.getEnemies()) {
             if(e.getSkeletonBounds().aabbIntersectsSkeleton(getSkeletonBounds())){
                 e.setDamage(atckDmg);
-                if(e.x< x)
-                    e.x =  (e.getTilePostionX()-1)*map.getTileWidth();
-                else
-                    e.x =  (e.getTilePostionX()-1)*map.getTileWidth();
+
                 System.out.println("atccking enemy " + e.getHealth());
             }
 
@@ -233,8 +230,8 @@ public class Player extends Creature {
 
     private void nextToItem() {
         for(Item item : map.getItems()){
-            if(item.getX() > x - 12 && item.getX() < x + 12){
-                if(item.getY() > y - 12 && item.getY() < y + 12){
+            if(item.getX() > x - 15 && item.getX() < x + 15){
+                if(item.getY() > y - 15 && item.getY() < y + 15){
                     collectItem(item);
                 }
             }
