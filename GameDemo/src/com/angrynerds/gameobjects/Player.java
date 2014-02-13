@@ -206,6 +206,8 @@ public class Player extends Creature {
             // map border
             if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
             if(y <= 0) y = 0;
+            if(x <= 20) x = 20;
+            if(x >= map.getWidth() -20) x = map.getWidth() - 20;
 
 
             // apply and update skeleton
