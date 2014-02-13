@@ -47,8 +47,8 @@ public class Enemy extends Creature implements Disposable{
     private Player player;
 
     // stats
-    private final float minDmg = 3.2f;
-    private final float maxDmg = 7.1f;
+    private float minDmg = 3.2f;
+    private float maxDmg = 7.1f;
     private final float cooldown = 1.5f;
 
     private float health = 100f;
@@ -72,8 +72,20 @@ public class Enemy extends Creature implements Disposable{
         this.player = player;
         this.health = 100;
 
+        minDmg = 3.2f;
+        maxDmg = 7.1f;
+
         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/ingame/attack_0.wav"));
 
+    }
+
+    public Enemy(String name, String path, String skin, Player player, float scale, float ap, float hp) {
+        this(name, path, skin, player,scale);
+
+        minDmg = ap - 0.25f * ap;
+        maxDmg = ap + 0.25f * ap;
+
+        health = hp;
     }
 
 
@@ -269,7 +281,7 @@ public class Enemy extends Creature implements Disposable{
         this.health = health;
         if (health <= 0){
             alive = false;
-            map.addItem(new HealthPotion(x,y));
+            if(Math.random() >= 0.6) map.addItem(new HealthPotion(x,y));
         }
 
     }

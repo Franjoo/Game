@@ -184,9 +184,7 @@ public class Player extends Creature {
             if (vX == 0) skeleton.setFlipX(flipped);
             else skeleton.setFlipX(vX < 0);
 
-            // map border
-            if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
-            if(y <= 0) y = 0;
+
 
             // flip skeleton
             if (vX == 0) skeleton.setFlipX(flipped);
@@ -204,6 +202,10 @@ public class Player extends Creature {
             y = p.y;
 
             nextToItem();
+
+            // map border
+            if(y >= map.getTileHeight() * 6) y = map.getTileHeight() * 6;
+            if(y <= 0) y = 0;
 
 
             // apply and update skeleton

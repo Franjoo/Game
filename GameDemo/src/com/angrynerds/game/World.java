@@ -56,7 +56,8 @@ public class World {
                     playController.getControllerUI().hideInputUI();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("No Controller detected");
             }
 
         }

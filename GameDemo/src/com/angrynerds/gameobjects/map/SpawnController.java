@@ -77,6 +77,12 @@ public class SpawnController {
             String skin = null;
             if (p.containsKey("skin")) skin = p.get("skin").toString();
 
+            // hp & ap
+            float ap = 3;
+            float hp = 100;
+            if(p.containsKey("ap")) ap =Float.parseFloat(p.get("ap").toString());
+            if(p.containsKey("hp")) hp =Float.parseFloat(p.get("hp").toString());
+
             freeEnemies = new Array();
             for (int i = 0; i < num; i++) {
 
@@ -88,7 +94,7 @@ public class SpawnController {
                     scale = scaleMin + ((float) (Math.random() * (scaleMax - scaleMin)));
                 }
 
-                Enemy enemy = new Enemy(name, "spine/" + path + "/", skin, map.getPlayer(), scale);
+                Enemy enemy = new Enemy(name, "spine/" + path + "/", skin, map.getPlayer(), scale,ap,hp);
 
                 float _x = (float) (rectangle.x + Math.random() * rectangle.getWidth());
                 float _y = (float) (rectangle.y + Math.random() * rectangle.getHeight());
